@@ -1,0 +1,111 @@
+title: Start
+tags: Shop_Waffen
+colorID: 0
+position: 693,-324
+---
+Ohhhhohoho, ein neuer aufsteigender Stern in der Arena, seh ich den recht?
+Oh ho ho
+Schau dich um, bestimmt gefällt dir was.
+
+// Option "Ein Schmied? Hier mitten in der Wüste?" moved to the end of this node
+// Option "Zeig mal deine Waren" moved to the end of this node
+// Option "Leider muss ich gleich weiter(Verlassen)" moved to the end of this node
+-> Ein Schmied? Hier mitten in der Wüste?
+    <<jump A>>
+-> Zeig mal deine Waren
+    <<jump C>>
+-> Leider muss ich gleich weiter(Verlassen)
+    <<jump B>>
+===
+title: A
+tags: 
+colorID: 8
+position: -103,91
+---
+Hohoho! Wie meine Familie, auch sie dachten ich wäre verrückt,
+einfach in die Wüste zu ziehen und im sandigsten Nimandsland meine Schmiedekunst anzubieten!
+Aber siehe her! In meinem Laden geben sich Vulcanus und Plutos die Hand! Hohoho
+Ich komme gar nicht dazu meinen Reichtum zu genießen! 
+Denn ganzen Tag bitten und betteln Edelmänner und Gladiatoren nach aufwändigen und kunstvollen Unikaten!
+Ich kriege sogar schon Aufträge vom Nil! Soweit verbreitete sich die Kunde des legendären Wüstenschmieds!
+
+// Option "(RhetorikIII)Dann wird deine Arbeit sicher der Legende gerecht" moved to the end of this node
+// Option "Zeig mal deine Waren" moved to the end of this node
+// Option "Ich komme später nochmal" moved to the end of this node
+-> (RhetorikIII)Dann wird deine Arbeit sicher der Legende gerecht
+    <<jump D>>
+-> Zeig mal deine Waren
+    <<jump C>>
+-> Ich komme später nochmal
+    <<jump B>>
+===
+title: C
+tags: Shop_öffnen
+colorID: 0
+position: 545,608
+---
+Schau dich ruhig um! #Shop_öffnen
+===
+title: B
+tags: Dialogue_End
+colorID: 0
+position: 967,235
+---
+Schau mal wieder rein!
+Denn, du findest keinen besseren Schmied hier! Ho Ho
+===
+title: D
+tags: 
+colorID: 0
+position: 198,-236
+---
+Gladiator...
+Ich will ehrlich zu dir sein.
+Meine Werkzeuge sind nicht gerade die besten... 
+Ja, es ist wahrlich schwer die notwendigen Ressourcen in die Wüste zu schaffen.
+Meine Ausrüstung verkauft sich gut, ja, denn ich bin der Einzige, der sich solch einer Tortur aussetzt!
+In der Wüste zu schmieden, wahrlicher Irrsinn! Ho Ho
+Meine Waren sind beliebt, da habe ich nicht übertrieben, aber sie sind nicht beliebt aufgrund ihrer Qualität, nein...
+Sie sind beliebt weil sie Kuriositäten sind! Der verrückte Wüstenschmied! Guckt mal was der macht! hohoho
+
+// Option "Kann man dir helfen, das notwendige Werkzeug zu beschaffen?" moved to the end of this node
+// Option "Das ist unglücklich, aber ich muss weiter" moved to the end of this node
+-> Kann man dir helfen, das notwendige Werkzeug zu beschaffen?
+    <<jump E>>
+-> Das ist unglücklich, aber ich muss weiter
+    <<jump B>>
+===
+title: E
+tags: Cestus
+colorID: 0
+position: -166,-223
+---
+Ja in der Tat!
+Der Senator versprach mir eine stabile und regelmäßige Lieferung, wenn ich einen Champion ausrüste, der es mit seinem aufnehmen kann!
+Gladiator nimm diese Bewaffnung! Steige für mich in den Ring! Und zeige dem Senator, was für prächtige Krieger dieser harsche Ort hervorbringt! #Untergrund_Kampfring #Cestus_showcase
+Das dieser Ort es wert ist, die selben Waffen wie römische Legionäre zu tragen! Das Mars auch diesem Ort seine Gunst schenckt!
+Natürlich bekommst du diese Bewaffnung umsonst keine Frage! Hoho! Für den Sieg, allerdings, musst du selber kämpfen...
+... Würdest du... Kämpfen? 
+
+// Option "Ich werde dem Senator die Macht des Wüstenschmiedes vorführen!" moved to the end of this node
+// Option "Mit zweitklassiger Ausrüstung? dass klingt Lebensmüde(Verlassen)" moved to the end of this node
+-> Ich werde dem Senator die Macht des Wüstenschmiedes vorführen! #Cestus_erhalten
+    <<jump F>>
+-> Mit zweitklassiger Ausrüstung? dass klingt Lebensmüde(Verlassen)
+    <<jump B>>
+===
+title: F
+tags: Untergrund_Kampfring_Championkampf_freigeschaltet
+colorID: 0
+position: -679,204
+---
+Dein Kampfeswillen ist ausgesprochen eindrucksvoll! Hohoho
+Ich hege keinen Zweifel das du gewinnen wirst!
+
+// Option "Kann ich noch dein reguläres Angebot sehen?" moved to the end of this node
+// Option "Ich mach mich auf den Weg(Verlassen)" moved to the end of this node
+-> Kann ich noch dein reguläres Angebot sehen?
+    <<jump C>>
+-> Ich mach mich auf den Weg(Verlassen)
+    <<jump B>>
+===
