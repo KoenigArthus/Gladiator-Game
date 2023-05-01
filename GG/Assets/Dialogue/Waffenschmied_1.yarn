@@ -3,9 +3,9 @@ tags: Shop_Waffen
 colorID: 0
 position: 693,-324
 ---
-Ohhhhohoho, ein neuer aufsteigender Stern in der Arena, seh ich den recht?
-Oh ho ho
-Schau dich um, bestimmt gefällt dir was.
+Waffenschmied: Ohhhhohoho, ein neuer aufsteigender Stern in der Arena, seh ich den recht?
+Waffenschmied: Oh ho ho
+Waffenschmied: Schau dich um, bestimmt gefällt dir was.
 
 // Option "Ein Schmied? Hier mitten in der Wüste?" moved to the end of this node
 // Option "Zeig mal deine Waren" moved to the end of this node
@@ -22,12 +22,12 @@ tags:
 colorID: 8
 position: -103,91
 ---
-Hohoho! Wie meine Familie, auch sie dachten ich wäre verrückt,
-einfach in die Wüste zu ziehen und im sandigsten Nimandsland meine Schmiedekunst anzubieten!
-Aber siehe her! In meinem Laden geben sich Vulcanus und Plutos die Hand! Hohoho
-Ich komme gar nicht dazu meinen Reichtum zu genießen! 
-Denn ganzen Tag bitten und betteln Edelmänner und Gladiatoren nach aufwändigen und kunstvollen Unikaten!
-Ich kriege sogar schon Aufträge vom Nil! Soweit verbreitete sich die Kunde des legendären Wüstenschmieds!
+Waffenschmied: Hohoho! Wie meine Familie, auch sie dachten ich wäre verrückt,
+Waffenschmied: einfach in die Wüste zu ziehen und im sandigsten Nimandsland meine Schmiedekunst anzubieten!
+Waffenschmied: Aber siehe her! In meinem Laden geben sich Vulcanus und Plutos die Hand! Hohoho
+Waffenschmied: Ich komme gar nicht dazu meinen Reichtum zu genießen! 
+Waffenschmied: Denn ganzen Tag bitten und betteln Edelmänner und Gladiatoren nach aufwändigen und kunstvollen Unikaten!
+Waffenschmied: Ich kriege sogar schon Aufträge vom Nil! Soweit verbreitete sich die Kunde des legendären Wüstenschmieds!
 
 // Option "(RhetorikIII)Dann wird deine Arbeit sicher der Legende gerecht" moved to the end of this node
 // Option "Zeig mal deine Waren" moved to the end of this node

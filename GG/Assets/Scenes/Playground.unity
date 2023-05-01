@@ -10284,6 +10284,7 @@ GameObject:
   - component: {fileID: 1973922794}
   - component: {fileID: 1973922793}
   - component: {fileID: 1973922792}
+  - component: {fileID: 1973922796}
   m_Layer: 0
   m_Name: Debugbro
   m_TagString: Untagged
@@ -10383,6 +10384,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1973922796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973922791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3231b5ef3da805a41bbaddefc45237f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueRunner: {fileID: 8165621424946049948}
+  lineView: {fileID: 3102264939011229640}
 --- !u!1 &1974931143
 GameObject:
   m_ObjectHideFlags: 0
@@ -11285,8 +11300,8 @@ MonoBehaviour:
   onCharacterTyped:
     m_PersistentCalls:
       m_Calls: []
-  typewriterEffectSpeed: 120
-  continueButton: {fileID: 3102264939682806764}
+  typewriterEffectSpeed: 263.1
+  continueButton: {fileID: 0}
   holdTime: 1
   autoAdvance: 0
 --- !u!225 &3102264939011229641
@@ -11561,7 +11576,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3102264939682806765
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11581,7 +11596,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 10, y: -10}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 112.28, y: 42.82}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &3102264939726549286
 CanvasRenderer:
@@ -11974,7 +11989,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 1087.5178, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -12049,10 +12064,10 @@ RectTransform:
   m_Father: {fileID: 3102264939682806765}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 56.14, y: -21.41}
+  m_SizeDelta: {x: 96.28, y: 26.82}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3102264940945691579
 MonoBehaviour:
@@ -12829,7 +12844,7 @@ MonoBehaviour:
   - {fileID: 3102264939011229640}
   - {fileID: 7876327934739329596}
   startNode: Start
-  startAutomatically: 1
+  startAutomatically: 0
   runSelectedOptionAsLine: 0
   lineProvider: {fileID: 0}
   verboseLogging: 1
