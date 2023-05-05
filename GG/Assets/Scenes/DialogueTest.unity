@@ -1784,7 +1784,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194231313}
-  m_LocalRotation: {x: 0.3584849, y: 0.35182604, z: -0.1480449, w: 0.851933}
+  m_LocalRotation: {x: 0.3584849, y: 0.351826, z: -0.14804485, w: 0.851933}
   m_LocalPosition: {x: -22.5, y: 30.961, z: -22.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2709,7 +2709,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1494602158}
-  m_LocalRotation: {x: 0.3584849, y: 0.35182604, z: -0.1480449, w: 0.851933}
+  m_LocalRotation: {x: 0.3584849, y: 0.351826, z: -0.14804485, w: 0.851933}
   m_LocalPosition: {x: -22.5, y: 30.961, z: -22.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3548,7 +3548,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3292657646456078001
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3564,10 +3564,10 @@ RectTransform:
   m_Father: {fileID: 3292657646954877634}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 760, y: -50.11}
+  m_SizeDelta: {x: 1480, y: 60.22}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3292657646456078002
 MonoBehaviour:
@@ -3679,7 +3679,6 @@ GameObject:
   - component: {fileID: 3292657646954877660}
   - component: {fileID: 3292657646954877635}
   - component: {fileID: 3292657646954877661}
-  - component: {fileID: 3292657646954877663}
   m_Layer: 5
   m_Name: Options List View
   m_TagString: Untagged
@@ -3774,45 +3773,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 3292657646954877661}
-  optionViewPrefab: {fileID: 5665317717604146022, guid: 3ff4e0d87ab7d4789a1565ac303e8261,
+  optionViewPrefab: {fileID: 5665317717604146022, guid: 7b78c88b4d950b54da2d8d6a0e1a9a6c,
     type: 3}
   lastLineText: {fileID: 3292657646456078002}
   fadeTime: 0.1
   showUnavailableOptions: 0
---- !u!114 &3292657646954877663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3292657646954877633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 097b95c9f69f04f2d8c08a817e7786af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueView: {fileID: 3292657646954877662}
-  continueActionType: 1
-  continueActionKeyCode: 102
-  continueActionReference: {fileID: 0}
-  continueAction:
-    m_Name: Skip
-    m_Type: 1
-    m_ExpectedControlType: 
-    m_Id: 
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 
-      m_Path: Submit
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Skip
-      m_Flags: 0
-    m_Flags: 0
-  enableActionOnStart: 1
 --- !u!114 &3292657647012162344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4639,6 +4604,7 @@ GameObject:
   - component: {fileID: 7778558436124288815}
   - component: {fileID: 7778558436124288816}
   - component: {fileID: 7778558436124288817}
+  - component: {fileID: 7778558436124288818}
   - component: {fileID: 7778558436124288809}
   - component: {fileID: 7778558436124288808}
   - component: {fileID: 7778558436124288811}
@@ -4715,6 +4681,40 @@ MonoBehaviour:
   dialogueView: {fileID: 0}
   continueActionType: 1
   continueActionKeyCode: 102
+  continueActionReference: {fileID: 0}
+  continueAction:
+    m_Name: Skip
+    m_Type: 1
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 
+      m_Path: Submit
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Skip
+      m_Flags: 0
+    m_Flags: 0
+  enableActionOnStart: 1
+--- !u!114 &7778558436124288818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7778558436124288814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 097b95c9f69f04f2d8c08a817e7786af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueView: {fileID: 0}
+  continueActionType: 1
+  continueActionKeyCode: 323
   continueActionReference: {fileID: 0}
   continueAction:
     m_Name: Skip
