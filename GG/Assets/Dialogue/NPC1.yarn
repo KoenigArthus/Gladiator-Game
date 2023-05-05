@@ -1,0 +1,27 @@
+title: NPC1
+tags: 
+colorID: 0
+position: 831,564
+---
+NPC 1: Hi
+// Option "Bye A" moved to the end of this node
+// Option "Bye B" moved to the end of this node
+-> Bye A
+    <<jump NPC1A>>
+-> Bye B
+    <<jump NPC1B>>
+===
+title: NPC1A
+tags: 
+colorID: 0
+position: 610,833
+---
+NPC 1: Byeeeeeeeeeeeeee
+===
+title: NPC1B
+tags: 
+colorID: 0
+position: 1001,835
+---
+NPC 1: be
+===

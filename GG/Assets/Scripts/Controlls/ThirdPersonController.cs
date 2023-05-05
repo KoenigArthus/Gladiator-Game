@@ -12,6 +12,8 @@ public class ThirdPersonController : MonoBehaviour
     private InputAction move;
 
     //movement fields
+    [SerializeField]
+    private bool movementEnabled;
     private Rigidbody rb;
     /*[SerializeField]
     private float movementForce = 1f;*/
@@ -21,13 +23,12 @@ public class ThirdPersonController : MonoBehaviour
     private float turnTime = 1f;
     private float turnVelocity;
     private Vector3 forceDirection = Vector3.zero;
-
     [SerializeField]
-    private Camera cam;
+    private new Camera camera;
 
 
 
-    //Initialization
+    //Initialization of the controlls
     private void Awake()
     {
         rb = this.GetComponent<Rigidbody>();
@@ -35,19 +36,30 @@ public class ThirdPersonController : MonoBehaviour
     }
     private void OnEnable()
     {
-        move = playerAA.Player.Movement;
-        playerAA.Player.Enable();
+        EnableMovement();
     }
     private void OnDisable()
     {
-        playerAA.Player.Disable();
+        DisableMovement();
     }
 
+    //Enabvling or Disabling the Movement. Is used in the Dialogue System
+    public void EnableMovement()
+    {
+        move = playerAA.Player.Movement;
+        playerAA.Player.Enable();
+        movementEnabled = true;
+    }
+    public void DisableMovement()
+    {
+        playerAA.Player.Disable();
+        movementEnabled = false;
+    }
 
     private void FixedUpdate()
     {
-        forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(cam);
-        forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(cam);
+        forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(camera);
+        forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(camera);
 
         rb.AddForce(forceDirection, ForceMode.Impulse);
         forceDirection = Vector3.zero;
@@ -63,20 +75,29 @@ public class ThirdPersonController : MonoBehaviour
 
 
 
-
-    private Vector3 GetCameraForward(Camera cam)
+    /// <summary>
+    /// gets the forward direction relative to the <see cref="camera"/>
+    /// </summary>
+    /// <param name="camera"></param>
+    /// <returns></returns>
+    private Vector3 GetCameraForward(Camera camera)
     {
-        Vector3 forward = cam.transform.forward;
+        Vector3 forward = camera.transform.forward;
         forward.y = 0;
         return forward.normalized;
     }
-
-    private Vector3 GetCameraRight(Camera cam)
+    /// <summary>
+    /// gets the right direction relative to the <see cref="camera"/>
+    /// </summary>
+    /// <param name="camera"></param>
+    /// <returns></returns>
+    private Vector3 GetCameraRight(Camera camera)
     {
-        Vector3 right = cam.transform.right;
+        Vector3 right = camera.transform.right;
         right.y = 0;
         return right.normalized;
     }
+
 
     /// <summary>
     /// controlls where the Player Character is looking at
