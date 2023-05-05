@@ -8,7 +8,7 @@ public class Character : MonoBehaviour
     [SerializeField]
     private string characterName;
     [SerializeField]
-    private Vector3 offset;
+    private Vector3 DialogueControllsOffset;
     private DialogueRunner dialogueRunner;
     private bool intrigger;
 
@@ -36,8 +36,8 @@ public class Character : MonoBehaviour
     {
         if (intrigger)
         {
-            recenterUIElement(UIManager.i.activeDialogueIcon, offset);
-            if (Input.GetKeyDown(KeyCode.E))
+            recenterUIElement(UIManager.i.activeDialogueIcon, DialogueControllsOffset);
+            if (Input.GetKeyDown(KeyCode.F))
             {
                 if (dialogueRunner.IsDialogueRunning == false)
                 {

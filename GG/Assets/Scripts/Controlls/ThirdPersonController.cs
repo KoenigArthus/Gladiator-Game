@@ -43,7 +43,7 @@ public class ThirdPersonController : MonoBehaviour
         DisableMovement();
     }
 
-    //Enabvling or Disabling the Movement. Is used in the Dialogue System
+    //Enabvling or Disabling the Movement. Is used for the Dialogue System
     public void EnableMovement()
     {
         move = playerAA.Player.Movement;
@@ -56,20 +56,25 @@ public class ThirdPersonController : MonoBehaviour
         movementEnabled = false;
     }
 
+    // Updates the player position
     private void FixedUpdate()
     {
+        // gets the camera relative direction
         forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(camera);
         forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(camera);
 
+        // moves the player
         rb.AddForce(forceDirection, ForceMode.Impulse);
         forceDirection = Vector3.zero;
 
         Vector3 horizontalVelocity = rb.velocity;
         horizontalVelocity.y = 0f;
 
+        // clamps to the maximum movement speed
         if (horizontalVelocity.sqrMagnitude > maxSpeed * maxSpeed)
             rb.velocity = horizontalVelocity.normalized * maxSpeed + Vector3.up * rb.velocity.y;
 
+        // controlls the view Direction 
         LookAt();
     }
 
