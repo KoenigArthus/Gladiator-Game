@@ -24,7 +24,7 @@ public class ThirdPersonController : MonoBehaviour
     private float turnVelocity;
     private Vector3 forceDirection = Vector3.zero;
     [SerializeField]
-    private new Camera camera;
+    private Camera camera;
 
 
 

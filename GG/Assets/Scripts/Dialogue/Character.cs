@@ -7,7 +7,8 @@ public class Character : MonoBehaviour
 {
     [SerializeField]
     private string characterName;
-
+    [SerializeField]
+    private Vector3 offset;
     private DialogueRunner dialogueRunner;
     private bool intrigger;
 
@@ -19,30 +20,46 @@ public class Character : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         intrigger = true;
+        UIManager.i.activeDialogueIcon.SetActive(true);
         Debug.Log("entered " + characterName + " dialogue trigger");
     }
 
     private void OnTriggerExit(Collider other)
     {
         intrigger = false;
+        UIManager.i.activeDialogueIcon.SetActive(false);
         Debug.Log("left " + characterName + " dialogue trigger");
     }
 
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) & intrigger)
+        if (intrigger)
         {
-            if (dialogueRunner.IsDialogueRunning == false)
+            recenterUIElement(UIManager.i.activeDialogueIcon, offset);
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                dialogueRunner.StartDialogue(characterName);
+                if (dialogueRunner.IsDialogueRunning == false)
+                {
+                    dialogueRunner.StartDialogue(characterName);
+                }
             }
         }
 
-
     }
 
+    /// <summary>
+    /// recenters the UI Element relative to the character + an offset
+    /// must be used in an Update function to work properly
+    /// </summary>
+    /// <param name="uiObject"></param>
+    private void recenterUIElement(GameObject uiObject, Vector3 offset)
+    {
+        Vector3 pos = UIManager.i.camera.WorldToScreenPoint(transform.position + offset);
 
+        if(uiObject.transform.position != pos)
+            uiObject.transform.position = pos;
+    }
 
 
 
