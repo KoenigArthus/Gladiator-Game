@@ -1,27 +1,49 @@
 title: NPC0
-tags: 
-colorID: 0
-position: 832,563
+group: Cool 
+colorID: 12
+position: 888,361
 ---
+<<declare $v to 0>>
 NPC 0: Hi
-// Option "Bye A" moved to the end of this node
-// Option "Bye B" moved to the end of this node
--> Bye A
+NPC 0: are you there?
+// Option "A" moved to the end of this node
+// Option "B" moved to the end of this node
+// Option "D" moved to the end of this node
+-> A
     <<jump NPC0A>>
--> Bye B
+-> B
     <<jump NPC0B>>
+-> C <<if $v is 1>>
+    <<jump C>>
+-> D
+    <<jump D>>
 ===
 title: NPC0A
-tags: 
-colorID: 0
-position: 609,831
+group: Nodes
+colorID: 02342
+position: 603,537
 ---
 NPC 0: Bye
 ===
 title: NPC0B
-tags: 
+group: C
 colorID: 0
-position: 1094,813
+position: 1205,478
 ---
-NPC 0: baiiiiii
+NPC 0: baiiiiiiz
+===
+title: C
+group: C
+colorID: 0
+position: 1214,233
+---
+NPC 0:C
+===
+title: D
+group: es
+colorID: 0
+position: 607,177
+---
+NPC 0: D
+<<set $v to 1>>
 ===

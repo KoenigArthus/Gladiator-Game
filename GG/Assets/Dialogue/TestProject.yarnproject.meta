@@ -10,9 +10,18 @@ ScriptedImporter:
   script: {fileID: 11500000, guid: 053561912b1654d80a424bb0696a74ae, type: 3}
   sourceScripts:
   - {fileID: 6391573757903218779, guid: fd0038d44e1a2494386139dea3c559b1, type: 3}
-  - {fileID: 6391573757903218779, guid: 2695b1e3e00480f4caa9cbee4da3e123, type: 3}
+  - {fileID: 6391573757903218779, guid: 8215f78bc1df56f4dab8e257a4531856, type: 3}
   compileErrors: []
-  serializedDeclarations: []
+  serializedDeclarations:
+  - name: $v
+    typeName: Number
+    defaultValueBool: 0
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: 
+    isImplicit: 0
+    sourceYarnAsset: {fileID: 6391573757903218779, guid: fd0038d44e1a2494386139dea3c559b1,
+      type: 3}
   defaultLanguage: de-DE
   languagesToSourceAssets: []
   useAddressableAssets: 0
