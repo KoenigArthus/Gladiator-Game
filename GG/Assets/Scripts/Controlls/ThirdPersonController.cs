@@ -24,7 +24,7 @@ public class ThirdPersonController : MonoBehaviour
     private float turnVelocity;
     private Vector3 forceDirection = Vector3.zero;
     [SerializeField]
-    private Camera camera;
+    private Camera cam;
 
 
 
@@ -43,25 +43,78 @@ public class ThirdPersonController : MonoBehaviour
         DisableMovement();
     }
 
+    #region movement enabling
     //Enabvling or Disabling the Movement. Is used for the Dialogue System
+    /// <summary>
+    /// enables movement
+    /// </summary>
     public void EnableMovement()
     {
         move = playerAA.Player.Movement;
         playerAA.Player.Enable();
         movementEnabled = true;
     }
+    /// <summary>
+    /// disables movement
+    /// </summary>
     public void DisableMovement()
     {
         playerAA.Player.Disable();
         movementEnabled = false;
     }
+    /// <summary>
+    /// enables movement and turn the player to a look at position
+    /// </summary>
+    /// <param name="lookAtPos">the position the character shoult look at</param>
+    public void EnableMovement(Vector3 lookAtPos)
+    {
+        move = playerAA.Player.Movement;
+        playerAA.Player.Enable();
+        movementEnabled = true;
+        LookAt(lookAtPos);
+    }
+    /// <summary>
+    /// disables movement and turn the player to a look at position
+    /// </summary>
+    /// <param name="lookAtPos">the position the character shoult look at</param>
+    public void DisableMovement(Vector3 lookAtPos)
+    {
+        playerAA.Player.Disable();
+        movementEnabled = false;
+        LookAt(lookAtPos);
+    }
+    /// <summary>
+    /// enables movement and turn the player to a look at position as a string x,y,z
+    /// </summary>
+    /// <param name="lookAtPos">the position the character shoult look at</param>
+    public void EnableMovement(string lookAtPos)
+    {
+        move = playerAA.Player.Movement;
+        playerAA.Player.Enable();
+        movementEnabled = true;
+        Vector3 v3 = Vector3.zero;
+        LookAt(CustomUtility.StringToVector3(lookAtPos));
+    }
+    /// <summary>
+    /// disables movement and turn the player to a look at position
+    /// </summary>
+    /// <param name="lookAtPos">the position the character shoult look at</param>
+    public void DisableMovement(string lookAtPos)
+    {
+        playerAA.Player.Disable();
+        movementEnabled = false;
+        LookAt(CustomUtility.StringToVector3(lookAtPos));
+    }
+    #endregion
+
+
 
     // Updates the player position
     private void FixedUpdate()
     {
         // gets the camera relative direction
-        forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(camera);
-        forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(camera);
+        forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(cam);
+        forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(cam);
 
         // moves the player
         rb.AddForce(forceDirection, ForceMode.Impulse);
@@ -111,6 +164,25 @@ public class ThirdPersonController : MonoBehaviour
     private void LookAt()
     {
         Vector3 direction = rb.velocity;
+        direction.y = 0f;
+
+        if (move.ReadValue<Vector2>().sqrMagnitude > 0.1f && direction.sqrMagnitude > 0.1f)
+        {
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+            float lookAtAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnVelocity, turnTime);
+            rb.rotation = Quaternion.Euler(0f, lookAtAngle, 0f);
+            //rb.rotation = Quaternion.LookRotation(direction, Vector3.up);
+        }
+        else
+            rb.angularVelocity = Vector3.zero;
+    }
+    /// <summary>
+    /// makes the player look at the given position
+    /// </summary>
+    /// <param name="lookAtPos">the position the player should look</param>
+    private void LookAt(Vector3 lookAtPos)
+    {
+        Vector3 direction = lookAtPos;
         direction.y = 0f;
 
         if (move.ReadValue<Vector2>().sqrMagnitude > 0.1f && direction.sqrMagnitude > 0.1f)

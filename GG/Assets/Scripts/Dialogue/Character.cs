@@ -5,6 +5,7 @@ using Yarn.Unity;
 
 public class Character : MonoBehaviour
 {
+    public Sprite portrait;
     [SerializeField]
     private string characterName;
     [SerializeField]
@@ -20,15 +21,15 @@ public class Character : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         intrigger = true;
-        UIManager.i.activeDialogueIcon.SetActive(true);
-        Debug.Log("entered " + characterName + " dialogue trigger");
+        DialogueSystem.i.activeDialogueIcon.SetActive(true);
+       // Debug.Log("entered " + characterName + " dialogue trigger");
     }
 
     private void OnTriggerExit(Collider other)
     {
         intrigger = false;
-        UIManager.i.activeDialogueIcon.SetActive(false);
-        Debug.Log("left " + characterName + " dialogue trigger");
+        DialogueSystem.i.activeDialogueIcon.SetActive(false);
+       // Debug.Log("left " + characterName + " dialogue trigger");
     }
 
 
@@ -36,11 +37,12 @@ public class Character : MonoBehaviour
     {
         if (intrigger)
         {
-            recenterUIElement(UIManager.i.activeDialogueIcon, DialogueControllsOffset);
+            recenterUIElement(DialogueSystem.i.activeDialogueIcon, DialogueControllsOffset);
             if (Input.GetKeyDown(KeyCode.F))
             {
                 if (dialogueRunner.IsDialogueRunning == false)
                 {
+                    DialogueSystem.i.speakingCharacter = this;
                     dialogueRunner.StartDialogue(characterName);
                 }
             }
@@ -55,7 +57,7 @@ public class Character : MonoBehaviour
     /// <param name="uiObject"></param>
     private void recenterUIElement(GameObject uiObject, Vector3 offset)
     {
-        Vector3 pos = UIManager.i.camera.WorldToScreenPoint(transform.position + offset);
+        Vector3 pos = DialogueSystem.i.cam.WorldToScreenPoint(transform.position + offset);
 
         if(uiObject.transform.position != pos)
             uiObject.transform.position = pos;
