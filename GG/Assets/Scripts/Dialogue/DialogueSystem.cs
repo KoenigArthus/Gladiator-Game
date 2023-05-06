@@ -15,13 +15,13 @@ public class DialogueSystem : MonoBehaviour
     /// </summary>
     public GameObject activeDialogueIcon;
     public Camera cam;
-    public List<Character> characterList;
     public Character speakingCharacter;
     private string speakerName;
     [SerializeField] private Image portaitImage;
     [SerializeField] private DialogueRunner dialogueRunner;
     [SerializeField] private LineViewCustom lineViewCustom;
-
+    OptionView optionView;
+    OptionsListView options;
 
     private void Awake()
     {
@@ -49,10 +49,6 @@ public class DialogueSystem : MonoBehaviour
         {
             // Change the sprite of the image component
             portaitImage.sprite = newSprite;
-        }
-        else
-        {
-            Debug.LogError("Could not load sprite from Resources folder.");
         }
     }
 

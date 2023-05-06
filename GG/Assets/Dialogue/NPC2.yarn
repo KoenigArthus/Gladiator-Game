@@ -1,0 +1,35 @@
+
+
+
+
+
+
+title: NPC2
+tags: 
+position: -93,507
+---
+<<declare $variable = 0>>
+Wache: Hallo
+-> Hallo
+    <<jump NPC2Hallo>>
+-> Tschüss
+    <<jump NPC2Bye>>
+===
+title: NPC2Bye
+tags: 
+position: -391,511
+---
+Wache: Tschüss
+===
+title: NPC2Hallo
+tags: 
+position: -121,237
+---
+Wache: Hallo
+-> Hallo
+    << set $variable += 1>>
+    <<jump NPC2Hallo>>
+-> Tschüss <<if $variable == 2>>
+    << set $variable = 0>>
+    <<jump NPC2Bye>>
+===
