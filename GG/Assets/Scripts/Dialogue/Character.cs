@@ -6,30 +6,29 @@ using Yarn.Unity;
 public class Character : MonoBehaviour
 {
     public Sprite portrait;
-    [SerializeField]
-    private string characterName;
+    public string characterName;
+    public string startNode;
     [SerializeField]
     private Vector3 DialogueControllsOffset;
-    private DialogueRunner dialogueRunner;
     private bool intrigger;
 
     private void Awake()
     {
-        dialogueRunner = FindObjectOfType<DialogueRunner>();
+       
     }
 
     private void OnTriggerEnter(Collider other)
     {
         intrigger = true;
         DialogueSystem.i.activeDialogueIcon.SetActive(true);
-       // Debug.Log("entered " + characterName + " dialogue trigger");
+        // Debug.Log("entered " + character.characterName + " dialogue trigger");
     }
 
     private void OnTriggerExit(Collider other)
     {
         intrigger = false;
         DialogueSystem.i.activeDialogueIcon.SetActive(false);
-       // Debug.Log("left " + characterName + " dialogue trigger");
+        // Debug.Log("left " + character.characterName + " dialogue trigger");
     }
 
 
@@ -40,10 +39,9 @@ public class Character : MonoBehaviour
             recenterUIElement(DialogueSystem.i.activeDialogueIcon, DialogueControllsOffset);
             if (Input.GetKeyDown(KeyCode.F))
             {
-                if (dialogueRunner.IsDialogueRunning == false)
+                if (DialogueSystem.i.dialogueRunner.IsDialogueRunning == false)
                 {
-                    DialogueSystem.i.speakingCharacter = this;
-                    dialogueRunner.StartDialogue(characterName);
+                    DialogueSystem.i.dialogueRunner.StartDialogue(startNode);
                 }
             }
         }

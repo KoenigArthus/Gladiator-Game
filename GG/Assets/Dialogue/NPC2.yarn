@@ -10,6 +10,7 @@ position: -93,507
 ---
 <<declare $variable = 0>>
 Wache: Hallo
+Römer: Arschloch
 -> Hallo
     <<jump NPC2Hallo>>
 -> Tschüss

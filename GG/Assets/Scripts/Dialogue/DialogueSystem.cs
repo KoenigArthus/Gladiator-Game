@@ -4,6 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using Yarn.Unity;
 
+/// <summary>
+/// The Dialogue System is controlling various Dialogue related interactions
+/// It also holds important references and acts as a singleton
+/// It also servese functions to be used by yarn files and other Dialogue related classes
+/// </summary>
 public class DialogueSystem : MonoBehaviour
 {
     /// <summary>
@@ -15,10 +20,14 @@ public class DialogueSystem : MonoBehaviour
     /// </summary>
     public GameObject activeDialogueIcon;
     public Camera cam;
+    //Chacacter Fields
+    [SerializeField] List<Character> characters;
     public Character speakingCharacter;
     private string speakerName;
     [SerializeField] private Image portaitImage;
-    [SerializeField] private DialogueRunner dialogueRunner;
+
+    //Dialogue Fields
+    public DialogueRunner dialogueRunner;
     [SerializeField] private LineViewCustom lineViewCustom;
     OptionView optionView;
     OptionsListView options;
@@ -35,13 +44,14 @@ public class DialogueSystem : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-
     }
 
 
     public void ChangeCharacterPortrait()
     {
+        speakerName = lineViewCustom.currentLine.CharacterName;
+        speakingCharacter = characters.Find(c => c.characterName == speakerName);
+        Debug.Log(speakingCharacter.characterName);
         Sprite newSprite = speakingCharacter.portrait;
 
         // Check if sprite was successfully loaded

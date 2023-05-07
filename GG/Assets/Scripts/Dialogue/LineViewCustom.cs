@@ -195,7 +195,7 @@ namespace Yarn.Unity
         /// The current <see cref="LocalizedLine"/> that this line view is
         /// displaying.
         /// </summary>
-        LocalizedLine currentLine = null;
+        public LocalizedLine currentLine = null;
 
         /// <summary>
         /// A stop token that is used to interrupt the current animation.
@@ -455,7 +455,8 @@ namespace Yarn.Unity
                 // Stop the current animation, and skip to the end of whatever
                 // started it.
                 currentStopToken.Interrupt();
-
+                
+                //return so that we will skip to the end of the line
                 return;
             }
             // No animation is now running. Signal that we want to

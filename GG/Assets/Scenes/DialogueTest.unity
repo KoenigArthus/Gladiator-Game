@@ -1859,7 +1859,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194231313}
-  m_LocalRotation: {x: 0.3584849, y: 0.35182604, z: -0.1480449, w: 0.851933}
+  m_LocalRotation: {x: 0.3584849, y: 0.351826, z: -0.14804485, w: 0.851933}
   m_LocalPosition: {x: -22.5, y: 30.961, z: -22.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2614,8 +2614,13 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 4923654415425728158, guid: 94c246785d3ba314ca090dcd54dc9e00,
         type: 3}
-      propertyPath: characterName
+      propertyPath: startNode
       value: NPC2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4923654415425728158, guid: 94c246785d3ba314ca090dcd54dc9e00,
+        type: 3}
+      propertyPath: characterName
+      value: Wache
       objectReference: {fileID: 0}
     - target: {fileID: 4923654415425728159, guid: 94c246785d3ba314ca090dcd54dc9e00,
         type: 3}
@@ -2645,6 +2650,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1391814534}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1391814536 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4923654415425728158, guid: 94c246785d3ba314ca090dcd54dc9e00,
+    type: 3}
+  m_PrefabInstance: {fileID: 1391814534}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3231b5ef3da805a41bbaddefc45237f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1494602158
 GameObject:
   m_ObjectHideFlags: 0
@@ -2790,7 +2807,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1494602158}
-  m_LocalRotation: {x: 0.3584849, y: 0.35182604, z: -0.1480449, w: 0.851933}
+  m_LocalRotation: {x: 0.3584849, y: 0.351826, z: -0.14804485, w: 0.851933}
   m_LocalPosition: {x: -22.5, y: 30.961, z: -22.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2931,6 +2948,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4923654416205895747}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1988605660 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4923654415425728158, guid: 94c246785d3ba314ca090dcd54dc9e00,
+    type: 3}
+  m_PrefabInstance: {fileID: 4923654416205895747}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3231b5ef3da805a41bbaddefc45237f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2003344669
 GameObject:
   m_ObjectHideFlags: 3
@@ -3742,7 +3771,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 91.287964, y: 80}
+  m_AnchoredPosition: {x: 91.288086, y: 80}
   m_SizeDelta: {x: -681.42, y: 0}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &3292657646954877635
@@ -4035,6 +4064,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeDialogueIcon: {fileID: 163137848}
   cam: {fileID: 1494602159}
+  characters:
+  - {fileID: 1988605660}
+  - {fileID: 1391814536}
   speakingCharacter: {fileID: 0}
   portaitImage: {fileID: 313027744}
   dialogueRunner: {fileID: 3579681406124413822}
@@ -4187,6 +4219,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 425f843e012cfe342a0255d469306f97,
         type: 3}
+    - target: {fileID: 4923654415425728158, guid: 94c246785d3ba314ca090dcd54dc9e00,
+        type: 3}
+      propertyPath: startNode
+      value: NPC0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4923654415425728158, guid: 94c246785d3ba314ca090dcd54dc9e00,
+        type: 3}
+      propertyPath: characterName
+      value: "R\xF6mer"
+      objectReference: {fileID: 0}
     - target: {fileID: 4923654415425728159, guid: 94c246785d3ba314ca090dcd54dc9e00,
         type: 3}
       propertyPath: m_Size.x
@@ -4770,7 +4812,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 89.287964, y: 80}
+  m_AnchoredPosition: {x: 89.288086, y: 80}
   m_SizeDelta: {x: -677.424, y: 0}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &7778558436124288816

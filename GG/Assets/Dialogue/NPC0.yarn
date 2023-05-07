@@ -1,11 +1,12 @@
 title: NPC0
 group: Cool 
 colorID: 12
-position: 888,361
+position: 920,120
 ---
 <<declare $v to 0>>
-NPC 0: Hi
-NPC 0: are you there?
+Römer: Hi
+Wache: are you there?
+Römer: Du hast {$v} Münze(n).
 // Option "A" moved to the end of this node
 // Option "B" moved to the end of this node
 // Option "D" moved to the end of this node
@@ -13,37 +14,37 @@ NPC 0: are you there?
     <<jump NPC0A>>
 -> B
     <<jump NPC0B>>
--> C <<if $v is 1>>
+-> C (Du brauchst 2 Münzen) <<if $v is 2>>
     <<jump C>>
--> D
+-> Kann ich eine Münze haben?
     <<jump D>>
 ===
 title: NPC0A
 group: Nodes
 colorID: 02342
-position: 603,537
+position: 535,503
 ---
-NPC 0: Bye
+Römer: Bye
 ===
 title: NPC0B
 group: C
 colorID: 0
-position: 1205,478
+position: 1272,504
 ---
-NPC 0: baiiiiiiz
+Römer: baiiiiiiz
 ===
 title: C
 group: C
 colorID: 0
-position: 1214,233
+position: 1055,509
 ---
-NPC 0:C
+Wache:C
 ===
 title: D
 group: es
 colorID: 0
-position: 607,177
+position: 795,504
 ---
-NPC 0: D
-<<set $v to 1>>
+Wache: Hier hast du eine Münze
+<<set $v += 1>>
 ===
