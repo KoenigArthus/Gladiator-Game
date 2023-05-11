@@ -14,4 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WalkableArena.unity
     guid: 054c43513fe63ee469363cfb40e5045e
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: c07ef7e97ae3d4349833253c2e7e3b2f,
+      type: 2}
+    com.unity.localization.settings: {fileID: 11400000, guid: d50363f1004761d4a92ebf153ed5007b,
+      type: 2}
