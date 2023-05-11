@@ -130,11 +130,11 @@ Material:
     - _IF_Speed: 0.004
     - _IF_Tiling: 3.7
     - _Metallic: 0
-    - _N_Refracted_Strength: 0
-    - _N_Scale: 0.004
-    - _N_Speed: 0
-    - _N_Strength: 0
-    - _N_UV_Distortion: 0
+    - _N_Refracted_Strength: 7.84
+    - _N_Scale: 0.156
+    - _N_Speed: 0.061
+    - _N_Strength: 0.377
+    - _N_UV_Distortion: 0.435
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _Posterize: 1
@@ -142,12 +142,12 @@ Material:
     - _QueueOffset: 0
     - _RGB_Depth_Color: 1
     - _ReceiveShadows: 1
-    - _Refracted_UV: 0
+    - _Refracted_UV: 1
     - _SF_Blend: 1
     - _SF_Direction: 0.064
     - _SF_Distortion: 1.23
     - _SF_Speed: 0.038
-    - _SF_Tiling: 9.4
+    - _SF_Tiling: 12.3
     - _Smoothness: 0.506
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -170,7 +170,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Deep_Color: {r: 0.13379, g: 0.37599155, b: 0.78699994, a: 1}
+    - _Deep_Color: {r: 0.105019584, g: 0.20612752, b: 0.3773585, a: 0.80784315}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Horizon_Color: {r: 0.94509804, g: 0, b: 0.515357, a: 0.85882354}
     - _IFColor: {r: 0.95283014, g: 0.95283014, b: 0.95283014, a: 1}
@@ -179,6 +179,6 @@ Material:
     - _SF_Offset: {r: -0.05, g: -0.33, b: 0, a: 0}
     - _Shallow_Color: {r: 0, g: 0.83, b: 0.46334943, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Specular_Color: {r: 0.9811321, g: 0.94586533, b: 0.89320046, a: 0}
+    - _Specular_Color: {r: 1, g: 0.59090906, b: 0, a: 1}
     - _Wave_Directions: {r: 1, g: 1.49, b: 1.95, a: 0.25}
   m_BuildTextureStacks: []

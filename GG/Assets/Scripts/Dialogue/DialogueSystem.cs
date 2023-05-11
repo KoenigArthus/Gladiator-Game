@@ -29,8 +29,14 @@ public class DialogueSystem : MonoBehaviour
     //Dialogue Fields
     public DialogueRunner dialogueRunner;
     [SerializeField] private LineViewCustom lineViewCustom;
+    private VariableStorageCustom variableStorage;
     OptionView optionView;
     OptionsListView options;
+
+    [SerializeField] private Dictionary<string, float> floatValues;
+    [SerializeField] private Dictionary<string, string> stringValues;
+    [SerializeField] private Dictionary<string, bool> boolValues;
+
 
     private void Awake()
     {
@@ -44,15 +50,35 @@ public class DialogueSystem : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        variableStorage = this.GetComponent<VariableStorageCustom>();
+
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.C))
+        {
+            variableStorage.SecondCoins += 2;
+            variableStorage.PlayerCoins += 1;
+        }
+    }
+
 
 
     public void ChangeCharacterPortrait()
     {
         speakerName = lineViewCustom.currentLine.CharacterName;
-        speakingCharacter = characters.Find(c => c.characterName == speakerName);
-        Debug.Log(speakingCharacter.characterName);
-        Sprite newSprite = speakingCharacter.portrait;
+        Sprite newSprite = null;
+        if (characters.Find(c => c.characterName == speakerName) != null)
+        {
+            speakingCharacter = characters.Find(c => c.characterName == speakerName);
+            newSprite = speakingCharacter.portrait;
+        }
+        else
+            Debug.LogWarning("the Character has not been found!");
+
+
 
         // Check if sprite was successfully loaded
         if (newSprite != null)
