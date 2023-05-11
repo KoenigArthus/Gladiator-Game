@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -8,16 +10,25 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 {
     #region Fields
 
+    public bool interactable = true;
+    public float speed;
+    public float arcAngle;
+
     private static GameObject cardPrefab;
+    private static Sprite cardBack;
     private static CardObject hoveredCard = null;
 
-    private CardInfo cardInfo = new CardInfo();
+    private CardInfo cardInfo = null;
+    private CardCollection collection = null;
 
-    private Image backgroundUI;
-    private Image imageUI;
+    private Sprite cardFront;
+    private Image cardImage;
     private Text nameUI;
+    private Text setUI;
+    private Text typeUI;
     private Text descriptionUI;
 
+    private Vector3 targetPosition;
     private bool draging = false;
     private Vector2 dragOffset;
 
@@ -35,6 +46,7 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         obj.transform.localPosition = position;
 
         CardObject card = obj.GetComponent<CardObject>();
+        cardInfo.Setup(card);
         card.cardInfo = cardInfo;
 
         return card;
@@ -43,8 +55,14 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     #region Properties
 
     public CardInfo Info => cardInfo;
+    public CardCollection Collection { get => collection; set => collection = value; }
+    public bool Interactable => interactable && (collection == null || collection.cardsInteractable);
     public bool Hovered => this == hoveredCard;
+
+    public Vector3 TargetPosition { get => targetPosition; set => targetPosition = value; }
+
     public bool Draging => draging;
+    public bool Prepareing => collection != null && collection.Player != null && this == collection.Player.Prepareing;
 
     public static CardObject HoveredCard => hoveredCard;
 
@@ -54,14 +72,20 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     private void Awake()
     {
-        Image[] images = this.GetComponentsInChildren<Image>();
+        if (cardBack == null)
+            cardBack = Resources.Load<Sprite>("Textures/CardGame/back");
+
+        //cardFront = Resources.Load<Sprite>($"Textures/CardGame/Images/{name}");
+        cardFront = Resources.Load<Sprite>($"Textures/CardGame/Images/Debug");
+
         Text[] texts = this.GetComponentsInChildren<Text>();
 
-        backgroundUI = images[0];
-        imageUI = images[1];
-
         nameUI = texts[0];
-        descriptionUI = texts[1];
+        setUI = texts[1];
+        typeUI = texts[2];
+        descriptionUI = texts[3];
+
+        cardImage = GetComponentInChildren<Image>();
     }
 
     // Start is called before the first frame update
@@ -74,18 +98,56 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     private void Update()
     {
         updateCardUI();
+
+        if (!Draging)
+        {
+            Vector3 delta = targetPosition - transform.localPosition;
+            float deltaLength = delta.magnitude;
+
+            if (!(deltaLength > 0) || deltaLength < speed)
+                transform.localPosition = targetPosition;
+            else
+            {
+                float deltaAngle = Mathf.Atan2(delta.y, delta.x);
+                if (deltaAngle > -Mathf.PI * 0.5f && deltaAngle < Mathf.PI * 0.5f)
+                    deltaAngle += arcAngle;
+                else
+                    deltaAngle -= arcAngle;
+                delta = new Vector3(Mathf.Cos(deltaAngle), Mathf.Sin(deltaAngle), delta.z);
+                transform.localPosition += delta * speed;
+            }
+        }
     }
 
     private void updateCardUI()
     {
-        nameUI.text = cardInfo.Name;
-        descriptionUI.text =
-            $"Group: {cardInfo.Group}\n" +
-            $"Hovered: {Hovered}\n" +
-            $"Draging: {Draging}";
+        bool revealed = collection == null || collection.showCardsAsRevealed;
+
+        nameUI.enabled = revealed;
+        setUI.enabled = revealed;
+        typeUI.enabled = revealed;
+        descriptionUI.enabled = revealed;
+
+        if (!revealed)
+        {
+            cardImage.sprite = cardBack;
+            return;
+        }
+
+        cardImage.sprite = cardFront;
+
+        nameUI.text = cardInfo.TranslatedName;
+        setUI.text = $"{cardInfo.Set}";
+        typeUI.text = cardInfo.Type.ToString();
+        descriptionUI.text = $"Cost: {Info.Cost}";
+
+        if (Info is BlockCardInfo blockCard && blockCard.CurrentBlock > 0)
+            descriptionUI.text += $"\nBlock: {blockCard.CurrentBlock}";
     }
 
     #endregion Main-Loop
+
+    #region Pointer
 
     #region Hover
 
@@ -106,21 +168,31 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        draging = true;
-        dragOffset = (Vector2)transform.position - eventData.position;
+        if (Interactable)
+        {
+            if (collection.Player.Prepareing != null)
+                collection.Player.AbortPreparedCardPlay();
+
+            draging = true;
+            dragOffset = (Vector2)transform.position - eventData.position;
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         //Move GameObject
-        transform.position = eventData.position + dragOffset;
+        if (draging)
+            transform.position = eventData.position + dragOffset;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         draging = false;
-        //Snap GameObject back in bounds if outside
+        if (transform.localPosition.y > 500 && collection != null && collection.Player != null)
+            collection.Player.PrepareCard(this);
     }
 
     #endregion Drag
+
+    #endregion Pointer
 }
