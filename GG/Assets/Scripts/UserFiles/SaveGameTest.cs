@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class SaveGameTest : MonoBehaviour
 {
     public InputField nameInput;
-    SaveGame save = new SaveGame("TestSave");
+    private SaveGame save = new SaveGame("TestSave");
 
     public void Save()
     {
@@ -18,5 +18,7 @@ public class SaveGameTest : MonoBehaviour
     {
         save.Load();
         nameInput.text = save.Name;
+
+        Debug.Log(save.LogFlags());
     }
 }
