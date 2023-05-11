@@ -1,7 +1,7 @@
 ﻿title: NPC0Money
 group: Cool 
 colorID: 12
-position: 894,82
+position: 1095,62
 ---
 <<declare $player_coins = 0>>
 <<declare $second_coins = 0>>
@@ -28,14 +28,14 @@ Römer: Du hast {$player_coins} Münzen und {$second_coins} Räuber Münzen. Was
 title: NPC0A
 group: Nodes
 colorID: 02342
-position: 837,565
+position: 836,565
 ---
 Römer: Wohlan, was kann ich dir anbieten? #line:0158709 
 ===
 title: NPC0B
 group: C
 colorID: 0
-position: 1575,566
+position: 1683,560
 ---
 Römer: baiiiiiiz #line:0630f1e 
 ===
@@ -55,7 +55,7 @@ Wache: Hier hast du eine Münze #line:0349f99
 <<set $player_coins+=1>>
 ===
 title: No
-position: 546,79
+position: 437,25
 tracking: always
 ---
 <<if visited("No")>>
@@ -65,22 +65,25 @@ tracking: always
 <<endif>>
 ===
 title: NPC0
-position: 691,-134
+position: 687,-172
 ---
-<<if $player_coins <= 0>>
-<<jump No>>
+<<if visited("MOOOOOOO") and $player_coins <= 0>>
+    <<jump NPC0A>>
+<<elseif $player_coins <= 0>>
+    <<jump No>>
 <<else>>
-<<jump NPC0Money>>
+    <<jump NPC0Money>>
 <<endif>>
 ===
 title: NOMONEY2
+group: haha
 position: 370,233
 ---
 Wache: Hey!(drücke C für 1 Münze und 2 RäuberMünzen) #line:03d37bd 
 <<jump MOOOOOOO>>
 ===
 title: MOOOOOOO
-position: 366,412
+position: 321,408
 ---
 Römer: MOOOOOOO  #line:0fc8f22 
 ===
