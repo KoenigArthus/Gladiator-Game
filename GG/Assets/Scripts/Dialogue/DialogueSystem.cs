@@ -19,6 +19,8 @@ public class DialogueSystem : MonoBehaviour
     /// the icon displayed above a characters head when able to speak to
     /// </summary>
     public GameObject activeDialogueIcon;
+    [SerializeField] private GameObject dialogueBox;
+    [SerializeField] private GameObject thoughtBox;
     public Camera cam;
     //Chacacter Fields
     [SerializeField] List<Character> characters;
@@ -65,20 +67,31 @@ public class DialogueSystem : MonoBehaviour
     }
 
 
-
+    // Is used in the Character Name View Script on the Dialogue System Game Object at OnNameUpdate()
+    /// <summary>
+    /// Changes the Dialogue Portrait to that of the referenced Character
+    /// </summary>
     public void ChangeCharacterPortrait()
     {
         speakerName = lineViewCustom.currentLine.CharacterName;
         Sprite newSprite = null;
+
+        // Chosing picture depending on localization of the name
+
         if (characters.Find(c => c.characterName == speakerName) != null)
         {
             speakingCharacter = characters.Find(c => c.characterName == speakerName);
             newSprite = speakingCharacter.portrait;
+            ChangeToDialogueBox();
+        }
+        else if (characters.Find(c => c.englishCharacterName == speakerName) != null)
+        {
+            speakingCharacter = characters.Find(c => c.englishCharacterName == speakerName);
+            newSprite = speakingCharacter.portrait;
+            ChangeToDialogueBox();
         }
         else
-            Debug.LogWarning("the Character has not been found!");
-
-
+        Debug.LogWarning("the Character has not been found!");
 
         // Check if sprite was successfully loaded
         if (newSprite != null)
@@ -88,13 +101,41 @@ public class DialogueSystem : MonoBehaviour
         }
     }
 
-    public void InitializeDialogue()
+    // Is used in the Character Name View Script on the Dialogue System Game Object at OnNameNotPresent() 
+    public void ChangeToThoughtBox()
+    {
+        portaitImage.gameObject.SetActive(false);
+        dialogueBox.gameObject.SetActive(false);
+        thoughtBox.gameObject.SetActive(true);
+    }
+
+    public void ChangeToDialogueBox()
     {
         portaitImage.gameObject.SetActive(true);
+        dialogueBox.gameObject.SetActive(true);
+        thoughtBox.gameObject.SetActive(false);
     }
+
+
+
+    // Used in the Events of the Dialogue Runner on the Dialogue System Game Object at OnDialogueComplete()
     public void FinishDialogue()
     {
         portaitImage.gameObject.SetActive(false);
     }
+
+    [YarnCommand("open_shop")]
+    public static void OpenShop(string shopName)
+    {
+        Debug.Log(shopName);
+    }
+
+    [YarnCommand("add_card")]
+    public static void UnlockCard(string cardName)
+    {
+        Debug.Log(cardName);
+    }
+
+
 
 }

@@ -7,6 +7,7 @@ public class Character : MonoBehaviour
 {
     public Sprite portrait;
     public string characterName;
+    public string englishCharacterName;
     public string startNode;
     [SerializeField]
     private Vector3 DialogueControllsOffset;

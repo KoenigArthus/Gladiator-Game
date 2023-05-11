@@ -1,19 +1,19 @@
 ﻿title: NPC0Money
 group: Cool 
 colorID: 12
-position: 894,82
+position: 1095,62
 ---
 <<declare $player_coins = 0>>
 <<declare $second_coins = 0>>
 Wache: Was willst du!?   #line:08689d3 
 Wache: oho. #line:0be88c6 
 Wache: oho oh o oho #line:04a538e 
-Wache: oooo #line:0cee391 
-Römer: aaaaaaaaaaaaaaaaa #line:03a602b 
+Guard: oooo #line:0cee391 
+Roman: aaaaaaaaaaaaaaaaa #line:03a602b 
 Römer: Lass ihn durch Wache  #line:042b7a5 
 Römer: Du hast {$player_coins} Münzen und {$second_coins} Räuber Münzen. Was willst du? #line:054fcc6 
 -> Ich möchte einkaufen #line:0603ebe
-    Wache: fick dich
+    Wache: fick dich #line:0bbbe3a 
     <<jump NPC0A>>
 -> B #line:04f3e02 
     <<jump NPC0B>>
@@ -23,19 +23,21 @@ Römer: Du hast {$player_coins} Münzen und {$second_coins} Räuber Münzen. Was
     <<jump D>>
 -> Option A #line:014f67e 
     I have picked Option A #line:015c2da 
-    Roman: Yes you have! #line:0250e95 
+    Roman: Yes you have! Hier eine Karte! #line:0250e95 
+    <<add_card "Speerstoß">>
 ===
 title: NPC0A
 group: Nodes
 colorID: 02342
-position: 837,565
+position: 836,565
 ---
 Römer: Wohlan, was kann ich dir anbieten? #line:0158709 
+<<open_shop "weapon_shop">>
 ===
 title: NPC0B
 group: C
 colorID: 0
-position: 1575,566
+position: 1564,568
 ---
 Römer: baiiiiiiz #line:0630f1e 
 ===
@@ -55,7 +57,7 @@ Wache: Hier hast du eine Münze #line:0349f99
 <<set $player_coins+=1>>
 ===
 title: No
-position: 546,79
+position: 647,212
 tracking: always
 ---
 <<if visited("No")>>
@@ -65,22 +67,25 @@ tracking: always
 <<endif>>
 ===
 title: NPC0
-position: 691,-134
+position: 829,-18
 ---
-<<if $player_coins <= 0>>
-<<jump No>>
+<<if visited("MOOOOOOO") and $player_coins <= 0>>
+    <<jump NPC0A>>
+<<elseif $player_coins <= 0>>
+    <<jump No>>
 <<else>>
-<<jump NPC0Money>>
+    <<jump NPC0Money>>
 <<endif>>
 ===
 title: NOMONEY2
-position: 370,233
+group: haha
+position: 580,420
 ---
 Wache: Hey!(drücke C für 1 Münze und 2 RäuberMünzen) #line:03d37bd 
 <<jump MOOOOOOO>>
 ===
 title: MOOOOOOO
-position: 366,412
+position: 531,595
 ---
 Römer: MOOOOOOO  #line:0fc8f22 
 ===
