@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockCardInfo : PermanentCardInfo
+public class BlockCardInfo : CardInfo
 {
     private GetPower blockPower;
     private int damage = 0;
@@ -39,8 +39,6 @@ public class BlockCardInfo : PermanentCardInfo
 
     public override object Clone()
     {
-        return new BlockCardInfo(Name, Set, Type, Cost, blockPower, DestroyOnDiscard);
+        return new BlockCardInfo(Name, Set, Type, Cost, blockPower, DestroyOnDiscard) { CostReduction = this.CostReduction };
     }
-
-    public delegate int GetPower(CardInfo card);
 }

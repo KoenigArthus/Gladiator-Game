@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Intension
 {
-    private Action type;
+    private EnemyAction type;
 
-    public Intension(Action type)
+    public Intension(EnemyAction type)
     {
         this.type = type;
     }
@@ -15,14 +15,14 @@ public class Intension
     {
         int rng = Random.Range(0, 100);
         if (rng < attackChance)
-            type = Action.Attack;
+            type = EnemyAction.Attack;
         else if (rng < attackChance + defendChance)
-            type = Action.Block;
+            type = EnemyAction.Block;
         else
-            type = Action.Special;
+            type = EnemyAction.Special;
     }
 
-    public Action Type { get => type; set => type = value; }
+    public EnemyAction Type { get => type; set => type = value; }
 
     public override string ToString()
     {

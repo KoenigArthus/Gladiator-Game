@@ -7,18 +7,6 @@ using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
 
-public enum CardSet
-{
-    None = -1, Trident, Gladius, Rete, Scutum, Pugio, Spartha, Doru, Pilum, Parmula, Scindo, Cestus, Laqueus,
-    Armor = 100,
-    Health, Item
-}
-
-public enum CardType
-{
-    Attack, Block, Skill
-}
-
 public abstract class CardInfo : ICloneable
 {
     #region Fields
@@ -31,6 +19,7 @@ public abstract class CardInfo : ICloneable
     private int tier = 0;
 
     private int cost;
+    private GetPower costReduction = null;
     private DieInfo[] dice = new DieInfo[0];
 
     private bool destroyOnDiscard;
@@ -63,15 +52,17 @@ public abstract class CardInfo : ICloneable
     #region Properties
 
     public string Name => name;
-    public string TranslatedName => name;
+    public string TranslatedName => CardLibrary.GetTranslatedName(Name);
+    public string TranslatedDescription => CardLibrary.GetTranslatedDescription(Name);
     public CardSet Set => set;
     public CardType Type => type;
 
-    public int Cost => cost;
-    public bool CostMeet => dice.Length == cost;
+    public int Cost => cost - (costReduction != null && Player != null ? Math.Min(cost, costReduction(this)) : 0);
+    public GetPower CostReduction { get => costReduction; set => costReduction = value; }
+    public bool CostMeet => dice.Length == Cost;
     public int DicePower => dice.Sum(x => x.Value);
 
-    public bool DestroyOnDiscard => destroyOnDiscard;
+    public virtual bool DestroyOnDiscard => destroyOnDiscard;
 
     public CardObject Card => card;
     public Player Player => card?.Collection?.Player;
@@ -108,7 +99,7 @@ public abstract class CardInfo : ICloneable
         }
     }
 
-    public abstract object Clone();
-
     #endregion Dice
+
+    public abstract object Clone();
 }

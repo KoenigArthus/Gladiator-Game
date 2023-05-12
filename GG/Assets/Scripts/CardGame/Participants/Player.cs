@@ -4,6 +4,8 @@ using UnityEngine;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEditor.Rendering.LookDev;
+using System;
+using Yarn.Unity;
 
 public class Player : Participant
 {
@@ -16,11 +18,24 @@ public class Player : Participant
     private CardCollection block;
     private CardCollection discard;
 
-    private CardObject prepareing = null;
-
-    private DieObject[] dice = new DieObject[5];
+    private DieObject[] dice = new DieObject[10];
     private int diceAmount = 3;
     private int dicePower = 0;
+
+    private List<CardInfo> playedCards = new List<CardInfo>();
+
+    private CardObject prepareing = null;
+
+    private CardObject[] selecting = null;
+
+    private Delegate[][] permanentEffects = new Delegate[][]
+    {
+        new Delegate[] {},
+        new Delegate[] {},
+        new Delegate[] {},
+        new Delegate[] {},
+        new Delegate[] {}
+    };
 
     #endregion Fields
 
@@ -45,6 +60,9 @@ public class Player : Participant
 
     public CardCollection Deck => deck;
     public CardCollection Hand => hand;
+    public CardCollection Discard => discard;
+
+    public CardInfo[] PlayedCards => playedCards.ToArray();
 
     public CardObject Prepareing => prepareing;
 
@@ -82,40 +100,83 @@ public class Player : Participant
             else
                 prepareing.TargetPosition = new Vector3(0, 700, 0);
         }
+
+        if (hand.Changed)
+        {
+            CardObject[] cards = hand.Cards;
+            ChangeCard[] change = permanentEffects[(int)PermanentEffect.OnDeck].Cast<ChangeCard>().ToArray();
+            for (int i = 0; i < cards.Length; i++)
+            {
+                for (int j = 0; j < change.Length; j++)
+                {
+                    cards[i].ChangeInfo(change[j](cards[i].Info));
+                }
+            }
+
+            hand.ChangeHandeled();
+        }
     }
 
     protected void PlayPreparedCard()
     {
         CardObject card = prepareing;
+        CardInfo info = card.Info;
         prepareing = null;
 
         //Destroy used dice
         card.Info.DestroyDice();
 
+        CardAction[] playActions = permanentEffects[(int)PermanentEffect.OnPlay].Cast<CardAction>().ToArray();
+        for (int i = 0; i < playActions.Length; i++)
+        {
+            playActions[i](info);
+        }
+        info = card.Info;
+
+        playedCards.Add(info);
+
         //Move card to correct collection
-        if (card.Info is InstantCardInfo instantCard)
+        if (info is InstantCardInfo instantCard)
         {
             instantCard.Execute();
-
-            //Hand -> Discard
-            DiscardSingle(card);
         }
-        else if (card.Info is PermanentCardInfo permanentCard)
+        else if (info is BlockCardInfo blockCard)
         {
-            if (permanentCard is BlockCardInfo blockCard)
-            {
-                //Hand -> Block
-                block.Add(card);
+            //Hand -> Block
+            block.Add(card);
 
-                //Discard if block is overfilled
-                if (block.Count > BlockSlots)
-                    DiscardSingle(block.Cards[0]);
-            }
-            else
-            {
-                //Hand -> Permanent
-            }
+            //Discard if block is overfilled
+            if (block.Count > BlockSlots)
+                DiscardSingle(block.Cards[0]);
+
+            //Dont discard block
+            return;
         }
+        else if (info is PermanentCardInfo permanentCard)
+        {
+            PermanentEffect effect = permanentCard.Effect.Item1;
+            Delegate action = permanentCard.Effect.Item2;
+
+            if (effect == PermanentEffect.OnDeck)
+            {
+                if (action is ChangeCardAction changeCardAction)
+                {
+                    int power = permanentCard.DicePower;
+                    ChangeCard changeAction = (CardInfo c) => changeCardAction(c, power);
+                    action = changeAction;
+                }
+                else
+                {
+                    Debug.Log($"Black Magic failed! | Card: {permanentCard.Name} | If you ever see this message, RUN!");
+                    return;
+                }
+            }
+
+            permanentEffects[(int)effect] = permanentEffects[(int)effect].Concat(new Delegate[] { action }).ToArray();
+        }
+
+        //Hand -> Discard
+        DiscardSingle(card);
     }
 
     public void PrepareCard(CardObject card)
@@ -153,24 +214,30 @@ public class Player : Participant
 
     #region Discard
 
-    public void DiscardSingle(CardObject card)
+    public void DiscardSingle(CardObject card, bool isTribute = false)
     {
-        if (!card.Info.DestroyOnDiscard)
+        if (isTribute && card.Info is not TokenCardInfo || !card.Info.DestroyOnDiscard)
         {
             discard.Add(card);
             card.Info.Clear();
         }
         else
-        {
-            if (card.Collection != null)
-                card.Collection.Remove(card);
-            GameObject.Destroy(card.gameObject);
-        }
+            DestroyCard(card);
     }
 
     public void DiscardHand()
     {
+        foreach (var item in hand.Cards.Where(x => x.Info.DestroyOnDiscard && x.Info is TokenCardInfo))
+            DestroyCard(item);
+
         hand.MoveAllTo(discard);
+    }
+
+    public void DestroyCard(CardObject card)
+    {
+        if (card.Collection != null)
+            card.Collection.Remove(card);
+        GameObject.Destroy(card.gameObject);
     }
 
     #endregion Discard
@@ -221,4 +288,15 @@ public class Player : Participant
     }
 
     #endregion Dice
+
+    protected override void OnAdvanceRound()
+    {
+        playedCards = new List<CardInfo>();
+
+        GameEvent[] roundStartEvents = permanentEffects[(int)PermanentEffect.OnRoundStart].Cast<GameEvent>().ToArray();
+        for (int i = 0; i < roundStartEvents.Length; i++)
+        {
+            roundStartEvents[i](Manager);
+        }
+    }
 }

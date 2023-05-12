@@ -46,8 +46,7 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         obj.transform.localPosition = position;
 
         CardObject card = obj.GetComponent<CardObject>();
-        cardInfo.Setup(card);
-        card.cardInfo = cardInfo;
+        card.ChangeInfo(cardInfo);
 
         return card;
     }
@@ -86,12 +85,6 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         descriptionUI = texts[3];
 
         cardImage = GetComponentInChildren<Image>();
-    }
-
-    // Start is called before the first frame update
-    private void Start()
-    {
-        updateCardUI();
     }
 
     // Update is called once per frame
@@ -139,13 +132,26 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         nameUI.text = cardInfo.TranslatedName;
         setUI.text = $"{cardInfo.Set}";
         typeUI.text = cardInfo.Type.ToString();
-        descriptionUI.text = $"Cost: {Info.Cost}";
+        descriptionUI.text =
+            $"{(Info.Cost > -1 ? $"Cost: {Info.Cost}" : "[Unspielbar]")}\n" +
+            $"{Info.TranslatedDescription}";
 
         if (Info is BlockCardInfo blockCard && blockCard.CurrentBlock > 0)
             descriptionUI.text += $"\nBlock: {blockCard.CurrentBlock}";
     }
 
     #endregion Main-Loop
+
+    public void ChangeInfo(CardInfo cardInfo)
+    {
+        if (cardInfo == null)
+            return;
+
+        this.cardInfo = cardInfo;
+        cardInfo.Setup(this);
+
+        updateCardUI();
+    }
 
     #region Pointer
 

@@ -3,16 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public enum Action
-{
-    Attack, Block, Special
-}
-
-public enum StatusEffect
-{
-    Weak, Stun
-}
-
 public abstract class Participant
 {
     #region Fields
@@ -44,7 +34,13 @@ public abstract class Participant
 
     public void AdvanceRound()
     {
+        OnAdvanceRound();
+
         //Apply status effects
+    }
+
+    protected virtual void OnAdvanceRound()
+    {
     }
 
     #region Attack

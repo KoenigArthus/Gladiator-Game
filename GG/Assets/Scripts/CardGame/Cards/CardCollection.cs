@@ -4,11 +4,6 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public enum CardCollectionType
-{
-    Stack, List, Fan
-}
-
 public class CardCollection : MonoBehaviour
 {
     #region Fields
@@ -19,6 +14,7 @@ public class CardCollection : MonoBehaviour
     public bool offsetHovered = false;
 
     private List<CardObject> cards = new List<CardObject>();
+    private bool changed = false;
     private Player player;
 
     #endregion Fields
@@ -27,6 +23,7 @@ public class CardCollection : MonoBehaviour
 
     public int Count => cards.Count;
     public CardObject[] Cards => cards.ToArray();
+    public bool Changed => changed;
     public Player Player { get => player; set => player = value; }
 
     #endregion Properties
@@ -112,6 +109,8 @@ public class CardCollection : MonoBehaviour
         card.Collection = this;
         cards.Add(card);
         card.transform.parent = this.transform;
+
+        changed = true;
     }
 
     public void Remove(CardObject card)
@@ -120,6 +119,8 @@ public class CardCollection : MonoBehaviour
             card.Collection = null;
 
         cards.Remove(card);
+
+        changed = true;
     }
 
     public CardObject DrawCard()
@@ -129,6 +130,9 @@ public class CardCollection : MonoBehaviour
             int index = cards.Count - 1;
             CardObject card = cards[index];
             cards.RemoveAt(index);
+
+            changed = true;
+
             return card;
         }
 
@@ -142,5 +146,12 @@ public class CardCollection : MonoBehaviour
             collection.Add(cards[i]);
         }
         cards = new List<CardObject>();
+
+        changed = true;
+    }
+
+    public void ChangeHandeled()
+    {
+        changed = false;
     }
 }

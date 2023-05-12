@@ -19,8 +19,6 @@ public class InstantCardInfo : CardInfo
 
     public override object Clone()
     {
-        return new InstantCardInfo(Name, Set, Type, Cost, action, DestroyOnDiscard);
+        return new InstantCardInfo(Name, Set, Type, Cost, action, DestroyOnDiscard) { CostReduction = this.CostReduction };
     }
-
-    public delegate void CardAction(CardInfo card);
 }

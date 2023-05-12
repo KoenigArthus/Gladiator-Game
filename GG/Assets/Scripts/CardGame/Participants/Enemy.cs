@@ -4,11 +4,6 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
-public enum EnemyBehavior
-{
-    None, Aggressive, Defensive, Balanced, Tactical
-}
-
 public class Enemy : Participant
 {
     #region Fields
@@ -72,9 +67,9 @@ public class Enemy : Participant
         for (int i = 0; i < intensions.Length; i++)
         {
             Intension current = intensions[i];
-            if (current.Type == Action.Attack)
+            if (current.Type == EnemyAction.Attack)
                 this.Attack(target, Random.Range(1, 5));
-            else if (current.Type == Action.Block)
+            else if (current.Type == EnemyAction.Block)
             {
                 blockStack = blockStack.Concat(new int[] { Random.Range(2, 7) }).ToArray();
                 if (blockStack.Length > BlockSlots)
