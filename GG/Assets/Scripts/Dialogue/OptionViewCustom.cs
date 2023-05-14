@@ -16,6 +16,7 @@ namespace Yarn.Unity
 
         bool hasSubmittedOptionSelection = false;
 
+
         public DialogueOption Option
         {
             get => _option;

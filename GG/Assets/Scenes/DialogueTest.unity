@@ -2804,6 +2804,11 @@ PrefabInstance:
       propertyPath: englishCharacterName
       value: Guard
       objectReference: {fileID: 0}
+    - target: {fileID: 4923654415425728158, guid: 94c246785d3ba314ca090dcd54dc9e00,
+        type: 3}
+      propertyPath: activeDialogueIconOffset.y
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4923654415425728159, guid: 94c246785d3ba314ca090dcd54dc9e00,
         type: 3}
       propertyPath: m_Size.x
@@ -4222,11 +4227,14 @@ MonoBehaviour:
   canvasGroup: {fileID: 3292657646954877661}
   optionViewPrefab: {fileID: 3238334796445715065, guid: 7b78c88b4d950b54da2d8d6a0e1a9a6c,
     type: 3}
+  thoughtOptionViewPrefab: {fileID: 3238334796445715065, guid: 807634f8ba917334995cead2eddef720,
+    type: 3}
   lastLineText: {fileID: 3292657646456078002}
   fadeTime: 0.1
   showUnavailableOptions: 1
   unavailableColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
   availableColor: {r: 1, g: 1, b: 1, a: 1}
+  optionViews: []
 --- !u!114 &3292657647012162344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4617,6 +4625,11 @@ PrefabInstance:
         type: 3}
       propertyPath: englishCharacterName
       value: Roman
+      objectReference: {fileID: 0}
+    - target: {fileID: 4923654415425728158, guid: 94c246785d3ba314ca090dcd54dc9e00,
+        type: 3}
+      propertyPath: activeDialogueIconOffset.y
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 4923654415425728159, guid: 94c246785d3ba314ca090dcd54dc9e00,
         type: 3}

@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 3238334796445715065}
   - component: {fileID: 7306900526976280635}
   m_Layer: 5
-  m_Name: Option View Custom
+  m_Name: Thought Option View Custom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Interactable: 1
   m_TargetGraphic: {fileID: 2809876128215858307}
   text: {fileID: 7306900526976280635}
-  showCharacterName: 1
+  showCharacterName: 0
 --- !u!114 &7306900526976280635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,7 +316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0, g: 0.9716981, b: 0.9255727, a: 0.6862745}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

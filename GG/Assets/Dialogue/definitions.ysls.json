@@ -1,0 +1,14 @@
+{
+    "Commands": [
+      {
+        "YarnName": "open_shop",
+        "DefinitionName": "OpenShop",
+        "Language": "csharp"
+      },
+      {
+        "YarnName": "add_card",
+        "DefinitionName": "UnlockCard",
+        "Language": "csharp"
+      }
+    ]
+}
