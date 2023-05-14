@@ -10,13 +10,9 @@ public class Character : MonoBehaviour
     public string englishCharacterName;
     public string startNode;
     [SerializeField]
-    private Vector3 DialogueControllsOffset;
+    private Vector3 activeDialogueIconOffset;
     private bool intrigger;
 
-    private void Awake()
-    {
-       
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -37,7 +33,7 @@ public class Character : MonoBehaviour
     {
         if (intrigger)
         {
-            recenterUIElement(DialogueSystem.i.activeDialogueIcon, DialogueControllsOffset);
+            recenterUIElement(DialogueSystem.i.activeDialogueIcon, activeDialogueIconOffset);
             if (Input.GetKeyDown(KeyCode.F))
             {
                 if (DialogueSystem.i.dialogueRunner.IsDialogueRunning == false)

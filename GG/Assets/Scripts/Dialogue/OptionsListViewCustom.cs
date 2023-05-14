@@ -12,6 +12,7 @@ namespace Yarn.Unity
         [SerializeField] CanvasGroup canvasGroup;
 
         [SerializeField] OptionViewCustom optionViewPrefab;
+        [SerializeField] OptionViewCustom thoughtOptionViewPrefab;
 
         [SerializeField] TextMeshProUGUI lastLineText;
 
@@ -23,7 +24,8 @@ namespace Yarn.Unity
         [SerializeField] Color availableColor = Color.white;
 
         // A cached pool of OptionView objects so that we can reuse them
-        List<OptionViewCustom> optionViews = new List<OptionViewCustom>();
+        // edit: we wont reuse them because we have to change them to thought options sometimes
+        [SerializeField] List<OptionViewCustom> optionViews = new List<OptionViewCustom>();
 
         // The method we should call when an option has been selected.
         Action<int> OnOptionSelected;
@@ -57,6 +59,7 @@ namespace Yarn.Unity
             // Hide all existing option views
             foreach (var optionView in optionViews)
             {
+                Debug.Log(optionView + "1111111");
                 optionView.gameObject.SetActive(false);
             }
 
@@ -135,7 +138,16 @@ namespace Yarn.Unity
             /// </summary>
             OptionViewCustom CreateNewOptionView()
             {
-                var optionView = Instantiate(optionViewPrefab);
+                //change the optionview if the last line was a thought (aka. had no name)
+                OptionViewCustom localOptionView = new OptionViewCustom();
+
+                if (lastSeenLine.CharacterName != null)
+                    localOptionView = optionViewPrefab;
+                else
+                    localOptionView = thoughtOptionViewPrefab;
+
+
+                var optionView = Instantiate(localOptionView);
                 optionView.transform.SetParent(transform, false);
                 optionView.transform.SetAsLastSibling();
 
@@ -156,6 +168,13 @@ namespace Yarn.Unity
                 {
                     yield return StartCoroutine(Effects.FadeAlpha(canvasGroup, 1, 0, fadeTime));
                     OnOptionSelected(selectedOption.DialogueOptionID);
+
+                    // Deleting each Option as wen don't need them anymore
+                    foreach (var optionView in optionViews)
+                    {
+                        Destroy(optionView.gameObject);
+                    }
+                    optionViews.Clear();
                 }
             }
         }

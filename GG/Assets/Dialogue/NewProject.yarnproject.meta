@@ -37,6 +37,6 @@ ScriptedImporter:
     stringsFile: {instanceID: 0}
     assetsFolder: {instanceID: 0}
   - languageID: en
-    stringsFile: {fileID: 4900000, guid: e3eb79b418f0edf40af767fa58844fa9, type: 3}
+    stringsFile: {fileID: 4900000, guid: 5932134ac5851b94ca4cd9ab369a7ddc, type: 3}
     assetsFolder: {fileID: 102900000, guid: a9daa5bf4a8e7ba48b19ce25e33a6172, type: 3}
   useAddressableAssets: 0
