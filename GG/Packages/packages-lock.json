@@ -223,13 +223,12 @@
       "url": "https://packages.unity.com"
     },
     "dev.yarnspinner.unity": {
-      "version": "https://github.com/YarnSpinnerTool/YarnSpinner-Unity.git#v2.3.0-beta1",
+      "version": "file:F:/Unity Projects/Studium - Games/Packages/YarnSpinner-Unity-2.3.0-beta1",
       "depth": 0,
-      "source": "git",
+      "source": "local",
       "dependencies": {
         "com.unity.textmeshpro": "1.4.1"
-      },
-      "hash": "1e82708dbec358bd50c393def1c5ff14de2f32c4"
+      }
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
