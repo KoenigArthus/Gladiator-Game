@@ -1,0 +1,13 @@
+﻿title: NPC1
+group: Cool 
+colorID: 12
+position: 871,78
+---
+Römer: Hi  #line:014af40 
+<<jump Node>>
+===
+title: Node
+position: 988,322
+---
+Wache: Bye {$player_coins} #line:068ec0d
+===

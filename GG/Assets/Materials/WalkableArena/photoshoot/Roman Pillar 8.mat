@@ -119,7 +119,7 @@ Material:
     - _Rim_Smoothness: 0.01
     - _Rim_Threshhold: 0.1
     - _SPECULAR: 1
-    - _Smoothness: 0.34
+    - _Smoothness: 0.22
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _Specular_Smoothness: 0.1
@@ -138,7 +138,7 @@ Material:
     - _Main_Color: {r: 0.2, g: 0.21176471, b: 0.21960784, a: 0}
     - _RimColor: {r: 14.25947, g: 14.25947, b: 14.25947, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _SpecularColour: {r: 0.7171224, g: 0.8029319, b: 0.90099996, a: 0}
+    - _SpecularColour: {r: 0.885502, g: 0.90818554, b: 0.9339623, a: 0}
     - _Specular_Color: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &3959595201678925336
