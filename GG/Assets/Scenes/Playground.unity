@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18382302, g: 0.22850353, b: 0.3004311, a: 1}
+  m_IndirectSpecularColor: {r: 0.1838229, g: 0.22850347, b: 0.30043018, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4205,7 +4205,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 809710305}
-  m_LocalRotation: {x: 0.15152006, y: 0.8484143, z: -0.36431727, w: 0.35285667}
+  m_LocalRotation: {x: 0.1522776, y: 0.8476784, z: -0.36400127, w: 0.3546209}
   m_LocalPosition: {x: -19.24, y: 31, z: 25.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4876,6 +4876,7 @@ GameObject:
   - component: {fileID: 978536054}
   - component: {fileID: 978536056}
   - component: {fileID: 978536055}
+  - component: {fileID: 978536057}
   m_Layer: 6
   m_Name: plane7subs
   m_TagString: Untagged
@@ -4948,6 +4949,29 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 978536053}
   m_Mesh: {fileID: 5867076881049785127, guid: 68791ad0bccfbe140b4b99cd32b5c632, type: 3}
+--- !u!114 &978536057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978536053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c6cfe8bfc0d31409a979c41b0c8d71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spatialSound: 1
+  loopSound: 1
+  priority: 128
+  pitchShift: 0.05
+  delay: 0
+  ignoreTimeScale: 0
+  sound: {fileID: 11400000, guid: 62faf4057ef32c945bf429609bd61af1, type: 2}
+  onStart: 1
+  onEnable: 1
+  onDisable: 0
+  onDestroy: 0
 --- !u!1 &1000219559
 GameObject:
   m_ObjectHideFlags: 0
@@ -7913,6 +7937,7 @@ GameObject:
   - component: {fileID: 1626855846}
   - component: {fileID: 1626855845}
   - component: {fileID: 1626855844}
+  - component: {fileID: 1626855850}
   m_Layer: 6
   m_Name: Fred
   m_TagString: Player
@@ -8033,6 +8058,14 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 77.619, z: 0}
+--- !u!81 &1626855850
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626855843}
+  m_Enabled: 1
 --- !u!1 &1646908370
 GameObject:
   m_ObjectHideFlags: 0
@@ -8551,6 +8584,7 @@ GameObject:
   - component: {fileID: 1692564008}
   - component: {fileID: 1692564010}
   - component: {fileID: 1692564009}
+  - component: {fileID: 1692564011}
   m_Layer: 6
   m_Name: Point Light
   m_TagString: Untagged
@@ -8655,6 +8689,101 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1692564011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692564007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c6cfe8bfc0d31409a979c41b0c8d71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spatialSound: 1
+  loopSound: 1
+  priority: 128
+  pitchShift: 0.05
+  delay: 0
+  ignoreTimeScale: 0
+  sound: {fileID: 11400000, guid: bf4c4d78753adc9429ad3aed2aaaccd2, type: 2}
+  onStart: 1
+  onEnable: 1
+  onDisable: 0
+  onDestroy: 0
+--- !u!1 &1707637190
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1707637192}
+  - component: {fileID: 1707637191}
+  m_Layer: 0
+  m_Name: Audio Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1707637191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707637190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7241a3e106230140bd9d59ff2d17ccd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioFileObjects:
+  - {fileID: 11400000, guid: 76471d9739cd0414db6fc7b023d66cb4, type: 2}
+  - {fileID: 11400000, guid: 85717264f52ca9b45a40cf9df306d474, type: 2}
+  - {fileID: 11400000, guid: bf4c4d78753adc9429ad3aed2aaaccd2, type: 2}
+  - {fileID: 11400000, guid: 62faf4057ef32c945bf429609bd61af1, type: 2}
+  audioFileMusicObjects: []
+  sceneSoundEnumName: JSAM.Sounds
+  sceneMusicEnumName: JSAM.Music
+  masterVolume: 1
+  masterMuted: 0
+  soundVolume: 1
+  soundMuted: 0
+  musicVolume: 1
+  musicMuted: 0
+  spatialSound: 1
+  audioSources: 32
+  disableConsoleLogs: 0
+  dontDestroyOnLoad: 1
+  dynamicSourceAllocation: 1
+  stopOnSceneLoad: 0
+  spatializeLateUpdate: 0
+  timeScaledSounds: 1
+  instancedEnums: 0
+  wasInstancedBefore: 0
+  listener: {fileID: 1626855850}
+  sourcePrefab: {fileID: 3048837711066349604, guid: cf11aed7e0e56ae45afe7eaebe30a616,
+    type: 3}
+  audioFolderLocation: Assets/Audio
+--- !u!4 &1707637192
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707637190}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1721336286
 GameObject:
   m_ObjectHideFlags: 0
@@ -9239,6 +9368,7 @@ GameObject:
   - component: {fileID: 1819254945}
   - component: {fileID: 1819254947}
   - component: {fileID: 1819254946}
+  - component: {fileID: 1819254948}
   m_Layer: 6
   m_Name: Point Light
   m_TagString: Untagged
@@ -9343,6 +9473,29 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1819254948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819254944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c6cfe8bfc0d31409a979c41b0c8d71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spatialSound: 1
+  loopSound: 1
+  priority: 128
+  pitchShift: 0.05
+  delay: 0
+  ignoreTimeScale: 0
+  sound: {fileID: 11400000, guid: bf4c4d78753adc9429ad3aed2aaaccd2, type: 2}
+  onStart: 1
+  onEnable: 1
+  onDisable: 0
+  onDestroy: 0
 --- !u!1 &1822481071
 GameObject:
   m_ObjectHideFlags: 0
@@ -11006,7 +11159,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2064538272}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!4 &2064538277
 Transform:
   m_ObjectHideFlags: 0
@@ -11014,7 +11167,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2064538272}
-  m_LocalRotation: {x: 0.15152006, y: 0.8484143, z: -0.36431727, w: 0.35285667}
+  m_LocalRotation: {x: 0.1522776, y: 0.8476784, z: -0.36400127, w: 0.3546209}
   m_LocalPosition: {x: -19.24, y: 31, z: 25.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
