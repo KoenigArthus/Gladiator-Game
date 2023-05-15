@@ -1,3 +1,8 @@
 <UserFile>
-  <Name>John Cena</Name>
+  <Flags>
+    <Entry Key="Init" Value="True" />
+    <Entry Key="Test" Value="True" />
+    <Entry Key="Hello, World!" Value="True" />
+  </Flags>
+  <Name>Bob</Name>
 </UserFile>

@@ -7,11 +7,14 @@ public class SaveGameTest : MonoBehaviour
 {
     public InputField nameInput;
     private SaveGame save = new SaveGame("TestSave");
+    private DialogSave dialog = new DialogSave();
 
     public void Save()
     {
         save.Name = nameInput.text;
         save.Save();
+
+        dialog.Save();
     }
 
     public void Load()
