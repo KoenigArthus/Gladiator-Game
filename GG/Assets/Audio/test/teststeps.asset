@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: teststeps
   m_EditorClassIdentifier: 
   file: {fileID: 8300000, guid: 749c55fb902ae00499b6903445ec3430, type: 3}
-  files: []
-  useLibrary: 0
+  files:
+  - {fileID: 8300000, guid: 749c55fb902ae00499b6903445ec3430, type: 3}
+  useLibrary: 1
   neverRepeat: 0
   lastClipIndex: -1
   category: test
-  relativeVolume: 1
-  spatialize: 0
+  relativeVolume: 0.246
+  spatialize: 1
   maxDistance: 0
   priority: 128
   startingPitch: 1
@@ -27,7 +28,7 @@ MonoBehaviour:
   playReversed: 0
   delay: 0
   ignoreTimeScale: 0
-  fadeMode: 0
+  fadeMode: 3
   fadeInDuration: 0
   fadeOutDuration: 0
   clipStartPosition: 0

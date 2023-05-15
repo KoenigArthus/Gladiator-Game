@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using JSAM;
 
 
 public class ThirdPersonController : MonoBehaviour
@@ -49,7 +50,18 @@ public class ThirdPersonController : MonoBehaviour
         forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(cam);
         forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(cam);
 
-        rb.AddForce(forceDirection, ForceMode.Impulse);
+        if (forceDirection.sqrMagnitude > 0)
+        {
+            rb.AddForce(forceDirection, ForceMode.Impulse);
+            if (!JSAM.AudioManager.IsSoundPlaying(Sounds.teststeps))
+            {
+                JSAM.AudioManager.PlaySound(Sounds.teststeps);
+            }
+        }
+        else
+        {
+            JSAM.AudioManager.StopSound(Sounds.teststeps);
+        }
         forceDirection = Vector3.zero;
 
         Vector3 horizontalVelocity = rb.velocity;
