@@ -52,7 +52,7 @@ public class CardCollection : MonoBehaviour
             {
                 if (this.transform is RectTransform transform)
                 {
-                    float width = transform.rect.width;
+                    float width = Mathf.Min(transform.rect.width, current.Width * current.Scale * cards.Count);
 
                     current.transform.SetSiblingIndex(i);
 

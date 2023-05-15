@@ -38,7 +38,7 @@ public class CardGameManager : MonoBehaviour
 
     private void Awake()
     {
-        CardLibrary.LoadLanguage();
+        CardLibrary.Setup();
     }
 
     private void Start()

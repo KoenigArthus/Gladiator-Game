@@ -64,8 +64,12 @@ public class Enemy : Participant
 
     public void TakeTurn(Player target)
     {
+        int stun = GetStatus(StatusEffect.Stun);
         for (int i = 0; i < intensions.Length; i++)
         {
+            if (i < stun && Random.Range(0, 100) < 10)
+                continue;
+
             Intension current = intensions[i];
             if (current.Type == EnemyAction.Attack)
                 this.Attack(target, Random.Range(1, 5));
@@ -82,7 +86,7 @@ public class Enemy : Participant
 
     #region Defend
 
-    protected override void ReduceBlock(ref int amount)
+    public override void ReduceBlock(ref int amount)
     {
         for (int i = 0; i < blockStack.Length; i++)
         {

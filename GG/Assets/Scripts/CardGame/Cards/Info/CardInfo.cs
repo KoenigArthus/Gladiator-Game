@@ -21,6 +21,7 @@ public abstract class CardInfo : ICloneable
     private int cost;
     private GetPower costReduction = null;
     private DieInfo[] dice = new DieInfo[0];
+    private int diceBonus = 0;
 
     private bool destroyOnDiscard;
 
@@ -60,7 +61,8 @@ public abstract class CardInfo : ICloneable
     public int Cost => cost - (costReduction != null && Player != null ? Math.Min(cost, costReduction(this)) : 0);
     public GetPower CostReduction { get => costReduction; set => costReduction = value; }
     public bool CostMeet => dice.Length == Cost;
-    public int DicePower => dice.Sum(x => x.Value);
+    public int DiceBonus { get => diceBonus; set => diceBonus = value; }
+    public int DicePower => dice.Sum(x => x.Value) + diceBonus;
 
     public virtual bool DestroyOnDiscard => destroyOnDiscard;
 
@@ -73,6 +75,7 @@ public abstract class CardInfo : ICloneable
     public virtual void Clear()
     {
         dice = new DieInfo[0];
+        diceBonus = 0;
     }
 
     #region Dice

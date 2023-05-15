@@ -37,7 +37,7 @@ public static class CardLibrary
 
             //Schub - Entferne die letzte geg. Verteidigungskarte.
             new InstantCardInfo("Schub", CardSet.Trident, CardType.Attack, 1,
-            (CardInfo c) => c.Player.Attack(c.Enemy, c.Enemy.BlockStack.Length > 0 ? c.Enemy.BlockStack.Last() : 0)),
+            (CardInfo c) =>  { int damage = c.Enemy.BlockStack.Length > 0 ? c.Enemy.BlockStack.Last() : 0; if (damage > 0) c.Enemy.ReduceBlock(ref damage); }),
 
             #endregion Tier 0
 
@@ -63,7 +63,7 @@ public static class CardLibrary
 
             #region Tier 2
 
-            //Belagerungsangriff - Permanent: Entferne die Kosten für alle &#34;Stoß&#34; Karten. Der Grund-Schaden von &#34;Stoß&#34; Karten wird zu der für diese Karte aufgewendeten Augenzahl.
+            //Belagerungsangriff - Permanent: Entferne die Kosten für alle "Stoß" Karten. Der Grund-Schaden von "Stoß" Karten wird zu der für diese Karte aufgewendeten Augenzahl.
             new PermanentCardInfo("Belagerungsangriff", CardSet.Trident, CardType.Skill, 2,
             (CardInfo c, int v) => {if (c.Name.Equals(TRIDENT_MAIN_CARD_NAME)) return new InstantCardInfo(TRIDENT_MAIN_CARD_NAME, CardSet.Trident, CardType.Attack, 0, (CardInfo nc) => nc.Player.Attack(nc.Enemy, v)); return null; }),
 
@@ -71,11 +71,11 @@ public static class CardLibrary
             new InstantCardInfo("Wuchtiger Schwung", CardSet.Trident, CardType.Attack, 1,
             (CardInfo c) => {c.Player.Attack(c.Enemy, c.DicePower); c.Enemy.AddStatus(StatusEffect.Stun, c.DicePower); }),
 
-            //Ein-Mann-Phalanx - Permanent: Jedesmal wenn durch eine &#34;Stoß&#34; Karte Schaden verursacht wird, erhalte 1 Stärke.
+            //Ein-Mann-Phalanx - Permanent: Jedesmal wenn durch eine "Stoß" Karte Schaden verursacht wird, erhalte 1 Stärke.
             new PermanentCardInfo("Ein-Mann-Phalanx", CardSet.Trident, CardType.Skill, 2,
-            (CardInfo c) => {if (c.Name.Equals(TRIDENT_MAIN_CARD_NAME) && c.DicePower > 0 && c.DicePower > c.Enemy.Block) c.Player.AddStatus(StatusEffect.Strong, 1); }, true),
+            (CardInfo c) => {if (c.Name.Equals(TRIDENT_MAIN_CARD_NAME) && c.DicePower > 0 && c.DicePower > c.Enemy.Block) c.Player.AddStatus(StatusEffect.Strenght, 1); }, true),
 
-            //Schluss Stich - 10 Schaden. Die Kosten dieser Karte sinken um 1 für jede &#34;Stoß&#34; Karte, die diese Runde gespielt wurden.
+            //Schluss Stich - 10 Schaden. Die Kosten dieser Karte sinken um 1 für jede "Stoß" Karte, die diese Runde gespielt wurden.
             new InstantCardInfo("Schluss Stich", CardSet.Trident, CardType.Attack, 2,
             (CardInfo c) => c.Player.Attack(c.Enemy, 10)) {CostReduction = (CardInfo c) => c.Player.PlayedCards.Count(x => x.Name.Equals(TRIDENT_MAIN_CARD_NAME))},
 
@@ -83,15 +83,18 @@ public static class CardLibrary
 
             #region Tier 3
 
-            //Krönende Spitze - Erzeuge &#34;Stoß&#34; Karten auf die Hand entsprechend der Augenzahl.
+            //Krönende Spitze - Erzeuge "Stoß" Karten auf die Hand entsprechend der Augenzahl.
             new InstantCardInfo("Krönende Spitze", CardSet.Trident, CardType.Skill, 1,
             (CardInfo c) => {for(int i = 0; i < c.DicePower; i++) c.Player.Hand.Add(CardObject.Instantiate((CardInfo)cards[0].Clone(), Vector2.zero)); }),
 
+            #warning TODO
             //Fels in der Brandung - Wirf eine beliebige Anzahl an Handkarten ab. Block entsprechend Augenzahl multipliziert mit abgeworfenen Handkarten.
+            new BlockCardInfo("Fels in der Brandung", CardSet.Trident, CardType.Block, 1,
+            (CardInfo c) => c.DicePower * 1),
 
-            //Blitzangriff -  Nimm alle &#34;Stoß&#34; Karten aus dem Ablagestapel auf die Hand.
+            //Blitzangriff -  Nimm alle "Stoß" Karten aus dem Ablagestapel auf die Hand.
             new InstantCardInfo("Blitzangriff", CardSet.Trident, CardType.Attack, 1,
-            (CardInfo c) => { foreach (var card in c.Player.Discard.Cards.Where(x => x.name.Equals(TRIDENT_MAIN_CARD_NAME))) c.Player.Hand.Add(card); }),
+            (CardInfo c) => { foreach (var card in c.Player.Discard.Cards.Where(x => x.Info.Name.Equals(TRIDENT_MAIN_CARD_NAME))) c.Player.Hand.Add(card); }),
 
             //Tosende Dominanz - 12 Schaden. Füge Schwach entsprechend der Augenzahl zu.
             new InstantCardInfo("Tosende Dominanz", CardSet.Trident, CardType.Attack, 3,
@@ -101,23 +104,28 @@ public static class CardLibrary
 
             #region Tier 4
 
+            #warning TODO
             //Strahlstrom - 8 Schaden. Ziehe Karten entsprechend der Augenzahl, wähle einen Angriff aus den gezogenen Karten und aktiviere ihn, nutze die selbe Augenzahl wie für die Aktivierung dieser Karte. Wirf die anderen gezogenen Karten ab.
+            new InstantCardInfo("Strahlstrom", CardSet.Trident, CardType.Attack, 1,
+            (CardInfo c) => {c.Player.Attack(c.Enemy, 8); }),
 
             //Leviathanischer Zorn - Permanent: Ziehe jedesmal eine Karte wenn du einen Angriff aktivierst.
             new PermanentCardInfo("Leviathanischer Zorn", CardSet.Trident, CardType.Skill, 1,
             (CardInfo c) => { if (c.Type == CardType.Attack) c.Player.DrawCards(1); }, true),
 
-            //DonnerndeHerausforderung - 60 Schaden. Dieser Angriff macht keinen Schaden gegen Gegner ohne Block. Wenn dieser Angriff den geg. Block komplett bricht,  Betäubung entsprechend Augenzahl.
+            //Donnernde Herausforderung - 60 Schaden. Dieser Angriff macht keinen Schaden gegen Gegner ohne Block. Wenn dieser Angriff den geg. Block komplett bricht, Betäubung entsprechend Augenzahl.
             new InstantCardInfo("Donnernde Herausforderung", CardSet.Trident, CardType.Attack, 3,
-            (CardInfo c) => { c.Player.Attack(c.Enemy, c.Enemy.Block > 0 ? 60 : 0); if (!(c.Enemy.Block > 60)) c.Enemy.AddStatus(StatusEffect.Stun, c.DicePower); }),
+            (CardInfo c) => { if (c.Enemy.Block > 0) { c.Player.Attack(c.Enemy, 60); if (!(c.Enemy.Block > 0)) c.Enemy.AddStatus(StatusEffect.Stun, c.DicePower); } }),
 
             //Ruhe vor dem Sturm - 1 Block. Solange diese Karte im Block-Stapel aktiv ist, füge dem Gegner Betäubung entsprechend der Augenzahl zu, wenn er angreift.
+            new PassiveBlockCardInfo("Ruhe vor dem Sturm", CardSet.Trident, CardType.Block, 1,
+            (CardInfo c) => 1, (CardInfo c) => c.Enemy.AddStatus(StatusEffect.Stun, c.DicePower)),
 
             #endregion Tier 4
 
             #region Tier 5
 
-            //Donnerndes Gericht - Erzeuge 4 &#34;Stoß&#34; Karten. Nimm alle &#34;Stoß&#34; Karten aus deinem Ablagestapel und  deinem Stapel auf die Hand.
+            //Donnerndes Gericht - Erzeuge 4 "Stoß" Karten. Nimm alle "Stoß" Karten aus deinem Ablagestapel und  deinem Stapel auf die Hand.
             new InstantCardInfo("Donnerndes Gericht", CardSet.Trident, CardType.Skill, 4,
             (CardInfo c) => {for(int i = 0; i < 4; i++) c.Player.Hand.Add(CardObject.Instantiate((CardInfo)cards[0].Clone(), Vector2.zero)); CardObject[] tmCards = c.Player.Deck.Cards.Concat(c.Player.Discard.Cards).Where(x => x.Info.Name.Equals(TRIDENT_MAIN_CARD_NAME)).ToArray(); for (int i = 0; i < tmCards.Length; i++) c.Player.Hand.Add(tmCards[i]); }),
 
@@ -125,10 +133,13 @@ public static class CardLibrary
             new InstantCardInfo("Jupiters Dorn", CardSet.Trident, CardType.Attack, 4,
             (CardInfo c) => c.Player.Attack(c.Enemy, 4 * c.Enemy.GetStatus(StatusEffect.Stun))),
 
-            //Neptuns Gericht - Permanent: Zu Rundenbeginn wirf einen 12-Würfel, erhalte,bis zum Rundenende, einen zusätzlichen Würfel  und Stärke in Höhe dieses Würfels.
+            #warning TODO
+            //Neptuns Gericht - Permanent: Zu Rundenbeginn wirf einen 12-Würfel, erhalte,bis zum Rundenende, einen zusätzlichen Würfel und Stärke in Höhe dieses Würfels.
+            new PermanentCardInfo("Neptuns Gericht", CardSet.Trident, CardType.Skill, 4,
+            (CardGameManager m) => { m.Player.AddDie(new DieInfo(12)); }),
 
             //Kataklysmus - X Angriffe, entsprechen Augenzahl. Je Angriff: 4 Schaden und 1 Schwäche.
-            new InstantCardInfo("Dreistoß", CardSet.Trident, CardType.Attack, 4,
+            new InstantCardInfo("Kataklysmus", CardSet.Trident, CardType.Attack, 4,
             (CardInfo c) => { for(int i = 0; i < c.DicePower; i++)  { c.Player.Attack(c.Enemy, 4); c.Enemy.AddStatus(StatusEffect.Weak, 1); } }),
 
             #endregion Tier 5
@@ -166,10 +177,16 @@ public static class CardLibrary
 
     #endregion Properties
 
-    public static void LoadLanguage()
+    public static void Setup()
+    {
+        if (translationDoc == null)
+            LoadLanguage(Language.German);
+    }
+
+    public static void LoadLanguage(Language language)
     {
         translationDoc = new XmlDocument();
-        translationDoc.LoadXml(Resources.Load<TextAsset>("XML/Languages/German").text);
+        translationDoc.LoadXml(Resources.Load<TextAsset>($"XML/Languages/{language.ToString()}").text);
     }
 
     public static int GetIndexOfName(string name)

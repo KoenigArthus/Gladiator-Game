@@ -1,4 +1,13 @@
-﻿#region CardInfo
+﻿#region System
+
+public enum Language
+{
+    German, English
+}
+
+#endregion
+
+#region CardInfo
 
 public enum CardSet
 {
@@ -32,7 +41,7 @@ public enum PermanentEffect
 
 public enum StatusEffect
 {
-    Weak, Strong, Stun, Vulnerable
+    Strenght, Defence, Regeneration, Stun, Weak, Feeble, Bleeding, Vulnerable
 }
 
 #endregion

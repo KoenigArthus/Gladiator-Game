@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class BlockCardInfo : CardInfo
 {
+    #region Fields
+
     private GetPower blockPower;
     private int damage = 0;
+
+    #endregion Fields
 
     public BlockCardInfo(string name, CardSet set, CardType type, int cost, GetPower blockPower, bool destroyOnDiscard = false) :
         base(name, set, type, cost, destroyOnDiscard)
@@ -13,7 +17,12 @@ public class BlockCardInfo : CardInfo
         this.blockPower = blockPower;
     }
 
+    #region Properties
+
     public int CurrentBlock => blockPower(this) - this.damage;
+    protected GetPower BlockPower => blockPower;
+
+    #endregion Properties
 
     public void ApplyDamage(ref int damage)
     {

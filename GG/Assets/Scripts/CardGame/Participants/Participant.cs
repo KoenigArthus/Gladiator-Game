@@ -11,7 +11,7 @@ public abstract class Participant
 
     private int health;
     private int blockSlots;
-    private int[] statusEffectStacks = new int[5];
+    private int[] statusEffectStacks = new int[8];
 
     #endregion Fields
 
@@ -26,6 +26,7 @@ public abstract class Participant
 
     protected CardGameManager Manager => manager;
     public int Health { get => health; set => health = value; }
+    public int BonusDamage => GetStatus(StatusEffect.Strenght) - GetStatus(StatusEffect.Weak);
     public int Block => BlockStack.Sum();
     public abstract int[] BlockStack { get; }
     public int BlockSlots => blockSlots;
@@ -37,6 +38,14 @@ public abstract class Participant
         OnAdvanceRound();
 
         //Apply status effects
+        //Noting yet
+
+        //Decay status effects
+        int regeneration = GetStatus(StatusEffect.Regeneration);
+        for (int i = (int)StatusEffect.Regeneration + 1; i < statusEffectStacks.Length; i++)
+        {
+            statusEffectStacks[i] = Mathf.Max(0, statusEffectStacks[i] - regeneration);
+        }
     }
 
     protected virtual void OnAdvanceRound()
@@ -47,12 +56,18 @@ public abstract class Participant
 
     public void Attack(Participant target, int power)
     {
+        //Calculate bonus
+        power += BonusDamage;
+        if (target.GetStatus(StatusEffect.Vulnerable) > 0)
+            power += (int)(power * 0.05f);
+
         target.ReduceBlock(ref power);
 
-        target.Health -= power;
+        if (power > 0)
+            target.Health -= power + target.GetStatus(StatusEffect.Bleeding);
     }
 
-    protected abstract void ReduceBlock(ref int amount);
+    public abstract void ReduceBlock(ref int amount);
 
     #endregion Attack
 

@@ -21,6 +21,7 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     private CardInfo cardInfo = null;
     private CardCollection collection = null;
 
+    private Canvas canvas;
     private Sprite cardFront;
     private Image cardImage;
     private Text nameUI;
@@ -59,6 +60,9 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public bool Hovered => this == hoveredCard;
 
     public Vector3 TargetPosition { get => targetPosition; set => targetPosition = value; }
+    public float Width => (cardImage.transform as RectTransform).rect.width;
+    public float Height => (cardImage.transform as RectTransform).rect.height;
+    public float Scale => canvas.transform.localScale.x;
 
     public bool Draging => draging;
     public bool Prepareing => collection != null && collection.Player != null && this == collection.Player.Prepareing;
@@ -76,6 +80,8 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
         //cardFront = Resources.Load<Sprite>($"Textures/CardGame/Images/{name}");
         cardFront = Resources.Load<Sprite>($"Textures/CardGame/Images/Debug");
+
+        canvas = GetComponentInParent<Canvas>();
 
         Text[] texts = this.GetComponentsInChildren<Text>();
 
@@ -96,6 +102,7 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         {
             Vector3 delta = targetPosition - transform.localPosition;
             float deltaLength = delta.magnitude;
+            float speed = this.speed * Scale;
 
             if (!(deltaLength > 0) || deltaLength < speed)
                 transform.localPosition = targetPosition;
