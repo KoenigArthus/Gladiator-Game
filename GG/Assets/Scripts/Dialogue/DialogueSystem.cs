@@ -55,6 +55,11 @@ public class DialogueSystem : MonoBehaviour
 
         variableStorage = this.GetComponent<VariableStorageCustom>();
 
+        // Find all objects with the type "Character" in the scene
+        Character[] characterObjects = FindObjectsOfType<Character>();
+
+        // Store the found characters in the list
+        characters.AddRange(characterObjects);
     }
 
     private void Update()
