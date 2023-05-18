@@ -104,6 +104,7 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             float deltaLength = delta.magnitude;
             float speed = this.speed * Scale;
 
+            //Make card "fly" to destination
             if (!(deltaLength > 0) || deltaLength < speed)
                 transform.localPosition = targetPosition;
             else

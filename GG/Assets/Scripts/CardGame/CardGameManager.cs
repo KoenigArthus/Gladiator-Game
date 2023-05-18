@@ -1,10 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class CardGameManager : MonoBehaviour
 {
@@ -46,34 +41,7 @@ public class CardGameManager : MonoBehaviour
         player = new Player(this, 20, 3);
         enemy = new Enemy(this, 40, 5, EnemyBehavior.Tactical);
 
-        CardInfo[] deck;
-
-        switch (1)
-        {
-            case 1:
-                deck = cards;
-                break;
-
-            case 2:
-                deck = new CardInfo[30].Select(x => cards[Random.Range(0, cards.Length)]).ToArray();
-                break;
-
-            case 3:
-                deck = new CardInfo[]
-                {
-                    cards[1],
-                    cards[1],
-                    cards[1],
-                    cards[1],
-                    cards[1],
-                    cards[1],
-                    cards[1],
-                    cards[1],
-                    cards[1],
-                    cards[1],
-                };
-                break;
-        }
+        CardInfo[] deck = cards;
 
         for (int i = 0; i < deck.Length; i++)
             player.Deck.Add(CardObject.Instantiate((CardInfo)deck[i].Clone(), this.deck.transform.position));
@@ -91,6 +59,9 @@ public class CardGameManager : MonoBehaviour
 
         if (enemyStats != null)
             enemyStats.text = enemy.ToString();
+
+        if (!player.CanPlayCards())
+            EndRound();
     }
 
     #endregion Main-Loop

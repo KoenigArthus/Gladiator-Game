@@ -19,7 +19,7 @@ public class Player : Participant
     private CardCollection discard;
 
     private DieObject[] dice = new DieObject[10];
-    private int diceAmount = 3;
+    private int diceAmount = 4;
     private int dicePower = 0;
 
     private List<CardInfo> playedCards = new List<CardInfo>();
@@ -205,6 +205,16 @@ public class Player : Participant
             prepareing.Info.Clear();
             prepareing = null;
         }
+    }
+
+    public bool CanPlayCards()
+    {
+        if (hand.Cards.Length < 1)
+            return false;
+
+        int cost = hand.Cards.Min(x => x.Info.Cost);
+
+        return !(dice.Count(x => x != null && !x.IsDestroyed()) < cost);
     }
 
     #endregion Play

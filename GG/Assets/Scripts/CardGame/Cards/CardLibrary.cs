@@ -200,6 +200,23 @@ public static class CardLibrary
         return -1;
     }
 
+    public static CardInfo GetCardByName(string name)
+    {
+        return cards.FirstOrDefault(x => x.Name.Equals(name));
+    }
+
+    public static CardInfo[] GetCardsByNames(params string[] names)
+    {
+        List<CardInfo> result = new List<CardInfo>();
+        for (int i = 0; i < cards.Length; i++)
+        {
+            if (names.Contains(cards[i].Name))
+                result.Add(cards[i]);
+        }
+
+        return result.ToArray();
+    }
+
     public static XmlNode GetTranslationNode(string name)
     {
         int index = GetIndexOfName(name);
