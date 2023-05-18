@@ -13,7 +13,10 @@ public class ScreenSpaceOutlines : ScriptableRendererFeature
     {
 
         [Header("General Outline Settings")]
-        public Color outlineColor = Color.black;
+        [ColorUsage(true, true)]
+        public Color outerOutlineColor = Color.black;
+        [ColorUsage(true, true)]
+        public Color innerOutlineColor = Color.black;
         [Range(0.0f, 20.0f)]
         public float outlineScale = 1.0f;
 
@@ -56,14 +59,14 @@ public class ScreenSpaceOutlines : ScriptableRendererFeature
     {
 
         private ViewSpaceNormalsTextureSettings normalsTextureSettings;
+        private readonly List<ShaderTagId> shaderTagIdList;
+        private readonly RenderTargetHandle normals;
         private FilteringSettings filteringSettings;
         private FilteringSettings occluderFilteringSettings;
 
-        private readonly List<ShaderTagId> shaderTagIdList;
         private readonly Material normalsMaterial;
         private readonly Material occludersMaterial;
 
-        private readonly RenderTargetHandle normals;
 
         public ViewSpaceNormalsTexturePass(RenderPassEvent renderPassEvent, LayerMask layerMask, LayerMask occluderLayerMask, ViewSpaceNormalsTextureSettings settings)
         {
@@ -147,7 +150,8 @@ public class ScreenSpaceOutlines : ScriptableRendererFeature
             this.renderPassEvent = renderPassEvent;
 
             screenSpaceOutlineMaterial = new Material(Shader.Find("Hidden/Outlines"));
-            screenSpaceOutlineMaterial.SetColor("_OutlineColor", settings.outlineColor);
+            screenSpaceOutlineMaterial.SetColor("_OuterOutlineColor", settings.outerOutlineColor);
+            screenSpaceOutlineMaterial.SetColor("_InnerOutlineColor", settings.innerOutlineColor);
             screenSpaceOutlineMaterial.SetFloat("_OutlineScale", settings.outlineScale);
 
             screenSpaceOutlineMaterial.SetFloat("_DepthThreshold", settings.depthThreshold);
