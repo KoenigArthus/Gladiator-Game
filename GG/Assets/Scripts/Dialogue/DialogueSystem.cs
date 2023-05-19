@@ -142,5 +142,12 @@ public class DialogueSystem : MonoBehaviour
     }
 
 
+    [YarnCommand("start_fight")]
+    public static void Fight()
+    {
+        GameManager.i.LoadScene("CardGameTest");
+    }
+
+
 
 }

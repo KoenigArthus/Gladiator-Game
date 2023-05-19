@@ -1,72 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph.Serialization;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    /// <summary>
-    /// The Singleton instance of the Game Manager
-    /// </summary>
     public static GameManager i;
-    public GameObject loadingScreen;
-    private string currentScene;
+    [SerializeField] private string startScene;
+    [SerializeField] private string currentScene;
+    [SerializeField] private GameObject loadingScreen;
 
     private void Awake()
     {
-        // default singleton pattern
-        if (i == null)
-        {
-            DontDestroyOnLoad(gameObject);
-            i = this;
-        }
-        else if (i != this)
-        {
-            Destroy(gameObject);
-        }
-
-        SceneManager.LoadSceneAsync((int)SceneIndexes.START_SCREEN, LoadSceneMode.Additive);
+        i = this;
+        if (startScene != "" & SceneManager.sceneCount == 1)
+            SceneManager.LoadSceneAsync(startScene, LoadSceneMode.Additive);
+        else if (SceneManager.sceneCount < 2)
+            SceneManager.LoadSceneAsync("Start", LoadSceneMode.Additive);
+        else
+            startScene = SceneManager.GetActiveScene().name;
 
 
-    }
-
-    List<AsyncOperation> scenesLoading = new List<AsyncOperation>();
-    public void LoadGame()
-    {
-        loadingScreen.gameObject.SetActive(true);
-
-        scenesLoading.Add(SceneManager.UnloadSceneAsync("Start"));
-        scenesLoading.Add(SceneManager.LoadSceneAsync("Ludus", LoadSceneMode.Additive));
-        currentScene = "Ludus";
-
-
-        StartCoroutine(GetSceneLoadProgess());
+        currentScene = startScene;
     }
 
     public void LoadScene(string sceneName)
     {
-        scenesLoading.Add(SceneManager.UnloadSceneAsync(currentScene));
-        scenesLoading.Add(SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive));
+        SceneManager.UnloadSceneAsync(currentScene);
+        SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+        currentScene = sceneName;
     }
-
-
-
-    public IEnumerator GetSceneLoadProgess()
-    {
-        for (int n = 0; n < scenesLoading.Count; n++)
-        {
-            while (!scenesLoading[n].isDone)
-            {
-                yield return null;
-            }
-        }
-
-        yield return new WaitForSeconds(0.5f);
-
-
-        loadingScreen.gameObject.SetActive(false);
-
-    }
-
 
 }
+
+

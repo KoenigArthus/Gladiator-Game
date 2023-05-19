@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Persistent Scene.unity
+    path: Assets/Scenes/PersistentScene.unity
     guid: 171bccd4aa1646a4dac0836a09eaf3fd
   - enabled: 1
     path: Assets/Scenes/Start.unity
@@ -14,6 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ludus.unity
     guid: e360d9133a4bc77488907bf4b8e4944f
+  - enabled: 1
+    path: Assets/Scenes/CardGameTest.unity
+    guid: 620f04bffa7e5ab4a8cb2062f5008d4f
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: c07ef7e97ae3d4349833253c2e7e3b2f,
       type: 2}

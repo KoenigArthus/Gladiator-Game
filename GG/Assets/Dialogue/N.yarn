@@ -1,4 +1,4 @@
-﻿title: NPC1
+﻿title: N
 group: Cool 
 colorID: 12
 position: 871,78
@@ -9,5 +9,8 @@ Römer: Hi  #line:014af40
 title: Node
 position: 988,322
 ---
-Wache: Bye {$player_coins} #line:068ec0d
+N: Willst du Kämpfen?
+-> Nein
+-> Ja
+	<<start_fight>>
 ===
