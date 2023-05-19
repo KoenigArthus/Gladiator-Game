@@ -10,7 +10,7 @@ public class StartButton : MonoBehaviour
     private void Awake()
     {
         button = this.gameObject.GetComponent<Button>();
-        button.onClick.AddListener(delegate { GameManager.i.LoadScene("Ludus"); });
+        button.onClick.AddListener(delegate { LevelLoader.i.LoadScene("Ludus"); });
 
     }
 }

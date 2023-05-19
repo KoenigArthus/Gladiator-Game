@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private string startScene;
     [SerializeField] private string currentScene;
     [SerializeField] private GameObject loadingScreen;
+    List<AsyncOperation> scenesLoading = new List<AsyncOperation>();
 
     private void Awake()
     {
@@ -30,8 +31,29 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.UnloadSceneAsync(currentScene);
         SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+        loadingScreen.SetActive(true);
+
+        scenesLoading.Add(SceneManager.UnloadSceneAsync(currentScene));
+        scenesLoading.Add(SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive));
         currentScene = sceneName;
+
+        StartCoroutine(Loading());
     }
+
+    IEnumerator Loading()
+    {
+        for (int n = 0; n < scenesLoading.Count; n++)
+        {
+            while (!scenesLoading[n].isDone)
+            {
+                yield return null;
+            }
+        }
+
+        loadingScreen.SetActive(false);
+    }
+
+
 
 }
 
