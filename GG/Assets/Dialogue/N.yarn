@@ -12,5 +12,8 @@ position: 988,322
 N: Willst du Kämpfen?
 -> Nein
 -> Ja
+	//<<set_time to {get_time()} + 1>>
+	//<<if get_time() is 2>>
+	//<<endif>>
 	<<start_fight>>
 ===
