@@ -125,9 +125,9 @@ Material:
     - _IF_Blend: 1
     - _IF_Cutoff: 1
     - _IF_Debth: 1.2
-    - _IF_Direction: 0.073
+    - _IF_Direction: 0
     - _IF_Fade: 1
-    - _IF_Speed: 0.052
+    - _IF_Speed: 10
     - _IF_Tiling: 19.4
     - _Metallic: 0
     - _N_Refracted_Strength: 2.41
@@ -162,8 +162,8 @@ Material:
     - _ZWrite: 1
     - _camera_relative_depth: 0
     - _cr_Debth_Fade_Distance: 1
-    - _refraction_speed: 0.28
-    - _refraction_strength: 0.005
+    - _refraction_speed: 4.56
+    - _refraction_strength: 0.0045
     - _refration_scale: 0.105
     - _world_space_depth: 1
     - _ws_Debth_Fade_Distance: 1
@@ -180,5 +180,5 @@ Material:
     - _Shallow_Color: {r: 0.06666664, g: 1, b: 0.5717701, a: 0.5058824}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Specular_Color: {r: 0.9811321, g: 0.9458654, b: 0.89320046, a: 0.7019608}
-    - _Wave_Directions: {r: 0.76, g: 1.91, b: 0.88, a: 0.76}
+    - _Wave_Directions: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

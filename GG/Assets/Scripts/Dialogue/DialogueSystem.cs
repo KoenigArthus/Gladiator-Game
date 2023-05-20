@@ -160,8 +160,8 @@ public class DialogueSystem : MonoBehaviour
         Debug.Log(obj.name);
     }
 
-    [YarnCommand("get_time")]
-    public static int GetTime(int time)
+    [YarnFunction("get_time")]
+    public static int GetTime()
     {
         return 0;
     }
@@ -172,7 +172,7 @@ public class DialogueSystem : MonoBehaviour
         Debug.Log(time);
     }
 
-    [YarnCommand("hastime")]
+    [YarnFunction("hastime")]
     public static bool HasTime(bool hastime)
     {
         return true;
