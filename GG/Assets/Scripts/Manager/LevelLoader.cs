@@ -9,7 +9,7 @@ using Yarn;
 public class LevelLoader : MonoBehaviour
 {
     public static LevelLoader i;
-    [SerializeField] GameObject loadingScreen;
+    public GameObject loadingScreen;
     List<AsyncOperation> scenesLoading = new List<AsyncOperation>();
 
     private void Awake()
@@ -30,12 +30,14 @@ public class LevelLoader : MonoBehaviour
     {
 
         loadingScreen.gameObject.SetActive(true);
+        Debug.Log("a");
+
 
         var scene = SceneManager.LoadSceneAsync(sceneName);
         scene.allowSceneActivation = false;
 
 
-        StartCoroutine(Loading());
+       // StartCoroutine(Loading());
         await Task.Delay(1000);
 
 
