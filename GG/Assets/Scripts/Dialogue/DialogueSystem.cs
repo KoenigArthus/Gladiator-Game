@@ -154,4 +154,29 @@ public class DialogueSystem : MonoBehaviour
         Debug.Log(message);
     }
 
+    [YarnCommand("activate")]
+    public static void ActivateGameObject(GameObject obj)
+    {
+        Debug.Log(obj.name);
+    }
+
+    [YarnCommand("get_time")]
+    public static int GetTime(int time)
+    {
+        return 0;
+    }
+
+    [YarnCommand("set_time")]
+    public static void SetTime(int time)
+    {
+        Debug.Log(time);
+    }
+
+    [YarnCommand("hastime")]
+    public static bool HasTime(bool hastime)
+    {
+        return true;
+    }
+
+
 }

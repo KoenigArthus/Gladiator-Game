@@ -1,14 +1,58 @@
 {
-    "Commands": [
-      {
-        "YarnName": "open_shop",
-        "DefinitionName": "OpenShop",
-        "Language": "csharp"
-      },
-      {
-        "YarnName": "add_card",
-        "DefinitionName": "UnlockCard",
-        "Language": "csharp"
-      }
-    ]
+  "Commands": [
+    {
+      "YarnName": "open_shop",
+      "DefinitionName": "OpenShop",
+      "Documentation": "Opens the shop with the given name (string)",
+      "Language": "csharp"
+    },
+    {
+      "YarnName": "add_card",
+      "DefinitionName": "UnlockCard",
+      "Documentation": "Adds a card to the active deck by its english name (string)",
+      "Language": "csharp"
+    },
+    {
+      "YarnName": "start_fight",
+      "DefinitionName": "starts the fighting Scene in Unity",
+      "Documentation": "Despacito",
+      "Language": "csharp"
+    },
+    {
+      "YarnName": "log",
+      "DefinitionName": "Log",
+      "Documentation": "Debug.Log's the given massage (string)",
+      "Language": "csharp"
+    },
+    {
+      "YarnName": "log_int",
+      "DefinitionName": "Log",
+      "Documentation": "Debug.Log's the given number (int)",
+      "Language": "csharp"
+    },
+    {
+      "YarnName": "activate",
+      "DefinitionName": "ActivateGameObject",
+      "Documentation": "Activates the given GameObject by its name (string)",
+      "Language": "csharp"
+    },
+    {
+      "YarnName": "get_time",
+      "DefinitionName": "GetTime",
+      "Documentation": "Returns the current Time as (int) 0:morning 1:late morning 2:afternoon 3:evening 4:night",
+      "Language": "csharp"
+    },
+    {
+      "YarnName": "set_time",
+      "DefinitionName": "SetTime",
+      "Documentation": "Sets the world to the given time in (int) 0:morning 1:late morning 2:afternoon 3:evening 4:night ",
+      "Language": "csharp"
+    },
+    {
+      "YarnName": "hastime",
+      "DefinitionName": "HasTime",
+      "Documentation": "Returna a bool | False: The action the player is about to perform would take too much time.| True: The player has enough time to perform an action",
+      "Language": "csharp"
+    }
+  ]
 }
