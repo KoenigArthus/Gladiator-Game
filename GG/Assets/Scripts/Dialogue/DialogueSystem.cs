@@ -148,6 +148,16 @@ public class DialogueSystem : MonoBehaviour
         LevelLoader.i.LoadScene("CardGameTest");
     }
 
+    [YarnCommand("log")]
+    public static void Log(string message)
+    {
+        Debug.Log(message);
+    }
 
+    [YarnCommand("log_int")]
+    public static void Log(int message)
+    {
+        Debug.Log(message);
+    }
 
 }
