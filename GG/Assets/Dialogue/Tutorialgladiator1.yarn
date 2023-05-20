@@ -96,9 +96,11 @@ Tutorialgladiator: Was macht uns den anders?...
 
 
 title: tg0
-position: -101,726
+position: -215,586
 ---
+
 <<declare $tgday = 0>>
+//<<log_int $tgday>>
 //<<declare $tgtime = 0>>
 <<if $tgday == 0>>
     <<if visited("tgENDE2")>>
@@ -106,6 +108,9 @@ position: -101,726
     <<elseif $tgday == 0>>
         <<jump tg1>>
     <<endif>>
+<<endif>>
+<<if $tgday != 0>>
+    <<jump tgENDE2>>
 <<endif>>
 
 ===
