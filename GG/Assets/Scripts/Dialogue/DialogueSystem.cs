@@ -86,24 +86,18 @@ public class DialogueSystem : MonoBehaviour
         if (characters.Find(c => c.characterName == speakerName) != null)
         {
             speakingCharacter = characters.Find(c => c.characterName == speakerName);
-            newSprite = speakingCharacter.portrait;
+            portaitImage.sprite = speakingCharacter.portrait;
             ChangeToDialogueBox();
         }
         else if (characters.Find(c => c.englishCharacterName == speakerName) != null)
         {
             speakingCharacter = characters.Find(c => c.englishCharacterName == speakerName);
-            newSprite = speakingCharacter.portrait;
+            portaitImage.sprite = speakingCharacter.portrait;
             ChangeToDialogueBox();
         }
         else
         Debug.LogWarning("the Character has not been found!");
 
-        // Check if sprite was successfully loaded
-        if (newSprite != null)
-        {
-            // Change the sprite of the image component
-            portaitImage.sprite = newSprite;
-        }
     }
 
     // Is used in the Character Name View Script on the Dialogue System Game Object at OnNameNotPresent() 

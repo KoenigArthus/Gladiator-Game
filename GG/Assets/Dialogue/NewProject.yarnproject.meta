@@ -11,6 +11,9 @@ ScriptedImporter:
   sourceScripts:
   - {fileID: 6391573757903218779, guid: fd0038d44e1a2494386139dea3c559b1, type: 3}
   - {fileID: 6391573757903218779, guid: ce8f88a1abad42f4eb3f24a14c219d1f, type: 3}
+  - {fileID: 6391573757903218779, guid: 74b18c2887236f747b529c6a3ec4713e, type: 3}
+  - {fileID: 6391573757903218779, guid: e568dc801c1e5a94bbbfc191955a3f43, type: 3}
+  - {fileID: 6391573757903218779, guid: 5a82801d27805464da3fc5d7e60877a1, type: 3}
   compileErrors: []
   serializedDeclarations:
   - name: $player_coins
@@ -31,9 +34,21 @@ ScriptedImporter:
     isImplicit: 0
     sourceYarnAsset: {fileID: 6391573757903218779, guid: fd0038d44e1a2494386139dea3c559b1,
       type: 3}
-  defaultLanguage: de-DE
+  - name: $player_rhetoric
+    typeName: Number
+    defaultValueBool: 0
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: 
+    isImplicit: 0
+    sourceYarnAsset: {fileID: 6391573757903218779, guid: e568dc801c1e5a94bbbfc191955a3f43,
+      type: 3}
+  defaultLanguage: de
   languagesToSourceAssets:
   - languageID: de
     stringsFile: {instanceID: 0}
     assetsFolder: {instanceID: 0}
+  - languageID: en
+    stringsFile: {fileID: 4900000, guid: 5932134ac5851b94ca4cd9ab369a7ddc, type: 3}
+    assetsFolder: {fileID: 102900000, guid: a9daa5bf4a8e7ba48b19ce25e33a6172, type: 3}
   useAddressableAssets: 0
