@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
 using JSAM;
 
 
@@ -13,20 +14,14 @@ public class ThirdPersonController : MonoBehaviour
     private InputAction move;
 
     //movement fields
-    [SerializeField]
-    private bool movementEnabled;
+    [SerializeField] private bool movementEnabled;
     private Rigidbody rb;
-    /*[SerializeField]
-    private float movementForce = 1f;*/
-    [SerializeField]
-    private float maxSpeed = 5f;
-    [SerializeField]
-    private float turnTime = 1f;
+    [SerializeField] private float maxSpeed = 5f;
+    [SerializeField] private float turnTime = 1f;
     private float turnVelocity;
     private Vector3 forceDirection = Vector3.zero;
-    [SerializeField]
-    private Camera cam;
-
+    [SerializeField] private Camera cam;
+    private CinemachineFollowZoom cineZoom;
 
 
     //Initialization of the controlls
@@ -131,6 +126,8 @@ public class ThirdPersonController : MonoBehaviour
 
         // controlls the view Direction 
         LookAt();
+
+        // zoom
 
 
         // footsteps sound
