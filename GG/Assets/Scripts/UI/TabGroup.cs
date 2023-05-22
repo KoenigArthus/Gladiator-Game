@@ -9,6 +9,7 @@ public class TabGroup : MonoBehaviour
     public List<TabButtonG> tabButtons;
     public TabButtonG selectedTab;
     public List<GameObject> objectsToSwap;
+    public Button leftButton, rightButton;
     [Tooltip("This prevents you from closing the Tab by clicking on the Button you used to open again")]
     public bool thisGroupsTabsStayOpen;
     [Tooltip("Will load the selected Tab onEnable if there is one")]
@@ -34,6 +35,16 @@ public class TabGroup : MonoBehaviour
             }
         }
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+            GoLeft();
+
+        if (Input.GetKeyDown(KeyCode.E))
+            GoRight();
+    }
+
 
     public void Subscribe(TabButtonG button)
     {
@@ -68,7 +79,7 @@ public class TabGroup : MonoBehaviour
         }
         else
         {
-            if(selectedTab != null)
+            if (selectedTab != null)
                 selectedTab.Deselect();
 
             selectedTab = button;
@@ -100,5 +111,24 @@ public class TabGroup : MonoBehaviour
             button.background.sprite = tabIdle;
         }
     }
+
+    public void GoLeft()
+    {
+        if (selectedTab.transform.GetSiblingIndex() > 0)
+            OnTabSelected(transform.GetChild(selectedTab.transform.GetSiblingIndex() - 1).GetComponent<TabButtonG>());
+        else
+            OnTabSelected(transform.GetChild(transform.childCount - 1).GetComponent<TabButtonG>());
+    }
+
+    public void GoRight()
+    {
+        if (selectedTab.transform.GetSiblingIndex() < transform.childCount - 1)
+            OnTabSelected(transform.GetChild(selectedTab.transform.GetSiblingIndex() + 1).GetComponent<TabButtonG>());
+        else
+            OnTabSelected(transform.GetChild(0).GetComponent<TabButtonG>());
+    }
+
+
+
 }
 
