@@ -9,7 +9,9 @@ public class FlexibleGridLayout : LayoutGroup
     {
         Uniform,
         Width,
-        Heigt
+        Height,
+        FixedRows,
+        FixedColumns
     }
 
 
@@ -18,52 +20,55 @@ public class FlexibleGridLayout : LayoutGroup
     public int columns;
     public Vector2 cellSize;
     public Vector2 spacing;
+    public bool fitX;
+    public bool fitY;
 
     public override void CalculateLayoutInputHorizontal()
     {
         base.CalculateLayoutInputHorizontal();
 
-        float sqrRt = Mathf.Sqrt(transform.childCount);
-        rows = Mathf.CeilToInt(sqrRt);
-        columns = Mathf.CeilToInt(sqrRt);
-
-        if(fitType == FitType.Width)
+        if (fitType == FitType.Width || fitType == FitType.Height || fitType == FitType.Uniform)
         {
-          rows = Mathf.CeilToInt(rows);
+            fitX = true;
+            fitY = true;
+
+            float sqrRt = Mathf.Sqrt(transform.childCount);
+            rows = Mathf.CeilToInt(sqrRt);
+            columns = Mathf.CeilToInt(sqrRt);
         }
 
-        if (fitType == FitType.Heigt)
-        {
 
-        }
 
-        if (fitType == FitType.Uniform)
-        {
 
-        }
+        if (fitType == FitType.Width || fitType == FitType.FixedColumns)
+            rows = Mathf.CeilToInt(transform.childCount / (float)columns);
+
+        if (fitType == FitType.Height || fitType == FitType.FixedRows)
+            columns = Mathf.CeilToInt(transform.childCount / (float)rows);
+
 
 
         float parentWidth = rectTransform.rect.width;
         float parentHeight = rectTransform.rect.height;
 
-        float cellWidth = parentWidth / (float)columns - ((spacing.x / (float)columns) * 2) - (padding.left / (float)columns) - (padding.right / (float)columns);
-        float cellHeight = parentHeight / (float)rows - ((spacing.y / (float)rows) * 2)- (padding.top / (float)rows) - (padding.bottom / (float)rows);
+        float cellWidth = parentWidth / columns - (spacing.x / columns * 2) - (padding.left / columns) - (padding.right / columns);
+        float cellHeight = parentHeight / rows - (spacing.y / rows * 2) - (padding.top / rows) - (padding.bottom / rows);
 
-        cellSize.x = cellWidth;
-        cellSize.y = cellHeight;
+        cellSize.x = fitX? cellWidth : cellSize.x;
+        cellSize.y = fitY? cellHeight : cellSize.y;
 
         int rowCount = 0;
         int columnCount = 0;
 
-        for(int i = 0; i < rectChildren.Count; i++)
+        for (int i = 0; i < rectChildren.Count; i++)
         {
             rowCount = i / columns;
             columnCount = i % columns;
 
             var item = rectChildren[i];
 
-            var xPos = (cellSize.x + spacing.x) * columnCount + padding.left;
-            var yPos = (cellSize.y + spacing.y) * rowCount + padding.top;
+            var xPos = (cellSize.x * columnCount) + (spacing.x * columnCount) + padding.left;
+            var yPos = (cellSize.y * rowCount) + (spacing.y * rowCount) + padding.top;
 
             SetChildAlongAxis(item, 0, xPos, cellSize.x);
             SetChildAlongAxis(item, 1, yPos, cellSize.y);
