@@ -2,21 +2,55 @@
 
 public class PassiveBlockCardInfo : BlockCardInfo
 {
-    private CardAction defendEvent;
+    #region Fields
 
-    public PassiveBlockCardInfo(string name, CardSet set, CardType type, int cost, GetPower blockPower, CardAction defendEvent, bool destroyOnDiscard = false) :
-        base(name, set, type, cost, blockPower, destroyOnDiscard)
+    private bool blockNotBreakAction;
+    private DefendEvent defendEvent;
+    private GameEventAction roundStartEvent;
+
+    #endregion Fields
+
+    #region ctor
+
+    public PassiveBlockCardInfo(string name, CardSet set, int tier, int cost, GetPower blockPower, DefendEvent defendEvent, bool blockNotBreakAction, bool destroyOnDiscard = false) :
+        base(name, set, tier, cost, blockPower, destroyOnDiscard)
     {
+        this.blockNotBreakAction = blockNotBreakAction;
         this.defendEvent = defendEvent;
     }
 
-    public void OnBlock()
+    public PassiveBlockCardInfo(string name, CardSet set, int tier, int cost, GetPower blockPower, GameEventAction roundStartEvent, bool destroyOnDiscard = false) :
+        base(name, set, tier, cost, blockPower, destroyOnDiscard)
     {
-        defendEvent(this);
+        this.roundStartEvent = roundStartEvent;
     }
+
+    #endregion ctor
+
+    #region OnEvent
+
+    public void OnBlock(ref int damage)
+    {
+        if (blockNotBreakAction && defendEvent != null)
+            defendEvent(this, ref damage);
+    }
+
+    public void OnBreak(ref int damage)
+    {
+        if (!blockNotBreakAction && defendEvent != null)
+            defendEvent(this, ref damage);
+    }
+
+    public void OnRoundStart(CardGameManager manager)
+    {
+        if (roundStartEvent != null)
+            roundStartEvent(manager, this);
+    }
+
+    #endregion OnEvent
 
     public override object Clone()
     {
-        return new PassiveBlockCardInfo(Name, Set, Type, Cost, BlockPower, defendEvent, DestroyOnDiscard);
+        return new PassiveBlockCardInfo(Name, Set, Tier, Cost, BlockPower, defendEvent, DestroyOnDiscard);
     }
 }

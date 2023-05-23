@@ -7,7 +7,7 @@ using Unity.VisualScripting;
 
 public class TokenCardInfo : CardInfo
 {
-    public TokenCardInfo(string name, CardSet set, CardType type, bool destroyOnDiscard = false) : base(name, set, type, -1, destroyOnDiscard)
+    public TokenCardInfo(string name, CardSet set, CardType type, bool destroyOnDiscard = false) : base(name, set, type, -1, -1, destroyOnDiscard)
     {
     }
 

@@ -9,27 +9,25 @@ public abstract class Participant
 
     private CardGameManager manager;
 
-    private int health;
-    private int blockSlots;
-    private int[] statusEffectStacks = new int[8];
+    private int blockSlots = 3;
+    private int[] statusEffectStacks = new int[11];
 
     #endregion Fields
 
-    public Participant(CardGameManager manager, int health, int blockSlots)
+    public Participant(CardGameManager manager)
     {
         this.manager = manager;
-        this.health = health;
-        this.blockSlots = blockSlots;
     }
 
     #region Properties
 
     protected CardGameManager Manager => manager;
-    public int Health { get => health; set => health = value; }
-    public int BonusDamage => GetStatus(StatusEffect.Strenght) - GetStatus(StatusEffect.Weak);
+    public abstract int Health { get; set; }
+    public int BonusDamage => GetStatus(StatusEffect.Strenght) + GetStatus(StatusEffect.FragileStrenght) - GetStatus(StatusEffect.Weak);
+    public int BonusBlock => GetStatus(StatusEffect.Defence) + GetStatus(StatusEffect.FragileDefence) - GetStatus(StatusEffect.Feeble);
     public int Block => BlockStack.Sum();
     public abstract int[] BlockStack { get; }
-    public int BlockSlots => blockSlots;
+    public int BlockSlots { get => blockSlots; set => blockSlots = value; }
 
     #endregion Properties
 
@@ -41,33 +39,92 @@ public abstract class Participant
         //Noting yet
 
         //Decay status effects
-        int regeneration = GetStatus(StatusEffect.Regeneration);
-        for (int i = (int)StatusEffect.Regeneration + 1; i < statusEffectStacks.Length; i++)
-        {
-            statusEffectStacks[i] = Mathf.Max(0, statusEffectStacks[i] - regeneration);
-        }
+        DoRegeneration();
     }
 
     protected virtual void OnAdvanceRound()
     {
     }
 
+    public void DoRegeneration()
+    {
+        //Decay status effects
+        int regeneration = GetStatus(StatusEffect.Regeneration);
+        for (int i = (int)StatusEffect.Regeneration + 1; i < statusEffectStacks.Length; i++)
+        {
+            statusEffectStacks[i] = Mathf.Max(0, statusEffectStacks[i] - regeneration);
+        }
+
+        //Reset status effects
+        for (int i = (int)StatusEffect.Invulnerable; i < (int)StatusEffect.Regeneration; i++)
+        {
+            statusEffectStacks[i] = 0;
+        }
+    }
+
+    public void Heal(int amount)
+    {
+        if (amount > 0)
+            Health += amount;
+    }
+
+    public void InstantDamage(int amount)
+    {
+        if (amount > 0)
+            Health -= amount;
+    }
+
     #region Attack
 
-    public void Attack(Participant target, int power)
+    public int Attack(Participant target, int power, bool piercing = false)
     {
+        OnAttack(this, target, power);
+        target.OnAttack(this, target, power);
+
+        //Doge attack if invulnerable
+        if (GetStatus(StatusEffect.Invulnerable) > 0)
+        {
+            RemoveStatus(StatusEffect.Invulnerable, 1);
+            return 0;
+        }
+
         //Calculate bonus
         power += BonusDamage;
         if (target.GetStatus(StatusEffect.Vulnerable) > 0)
             power += (int)(power * 0.05f);
 
-        target.ReduceBlock(ref power);
+        if (!piercing)
+        {
+            //Reduce block and trigger block effects
+            target.ReduceBlock(ref power);
 
+            //Dage attack if invulnerable from block effect
+            if (GetStatus(StatusEffect.Invulnerable) > 0)
+            {
+                RemoveStatus(StatusEffect.Invulnerable, 1);
+                return 0;
+            }
+        }
+
+        //Add bleed bonus damage
+        power += target.GetStatus(StatusEffect.Bleeding);
+
+        //Deal health damage
         if (power > 0)
-            target.Health -= power + target.GetStatus(StatusEffect.Bleeding);
+            target.Health -= power;
+
+        return power;
     }
 
-    public abstract void ReduceBlock(ref int amount);
+    protected abstract void ReduceBlock(ref int amount);
+
+    public abstract int RemoveLastBlock();
+
+    public abstract int RemoveAllBlock();
+
+    public virtual void OnAttack(Participant attacker, Participant defender, int power)
+    {
+    }
 
     #endregion Attack
 
@@ -75,15 +132,20 @@ public abstract class Participant
 
     public void AddStatus(StatusEffect effect, int count)
     {
-        statusEffectStacks[(int)effect] += count;
+        if (count > 0)
+            statusEffectStacks[(int)effect] += count;
     }
 
-    public void RemoveStatus(StatusEffect effect, int count)
+    public void RemoveStatus(StatusEffect effect, int count, bool allowNegative = false)
     {
-        statusEffectStacks[(int)effect] -= count;
+        if (count > 0)
+            statusEffectStacks[(int)effect] -= count;
+
+        if (!allowNegative && statusEffectStacks[(int)effect] < 0)
+            statusEffectStacks[(int)effect] = 0;
     }
 
-    public int GetStatus(StatusEffect effect)
+    public virtual int GetStatus(StatusEffect effect)
     {
         return statusEffectStacks[(int)effect];
     }
@@ -92,8 +154,16 @@ public abstract class Participant
 
     public override string ToString()
     {
-        return $"{GetType().Name}\n" +
+        string str = $"{GetType().Name}\n" +
             $"Health: {Health}\n" +
             $"Block : {Block}";
+
+        for (int i = 0; i < statusEffectStacks.Length; i++)
+        {
+            if (statusEffectStacks[i] != 0)
+                str += $"\n{(StatusEffect)i}: {statusEffectStacks[i]}";
+        }
+
+        return str;
     }
 }

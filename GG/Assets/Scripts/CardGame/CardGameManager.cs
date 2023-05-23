@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -38,10 +39,11 @@ public class CardGameManager : MonoBehaviour
 
     private void Start()
     {
-        player = new Player(this, 20, 3);
-        enemy = new Enemy(this, 40, 5, EnemyBehavior.Tactical);
+        player = new Player(this);
+        enemy = new Enemy(this, 40, EnemyBehavior.Tactical);
 
-        CardInfo[] deck = cards;
+        CardSet[] sets = new CardSet[] { CardSet.Gladius, CardSet.Scutum, CardSet.Cassis, CardSet.Manica, CardSet.Ocrea };
+        CardInfo[] deck = cards.Where(x => x.Tier == 0 && sets.Contains(x.Set)).ToArray();
 
         for (int i = 0; i < deck.Length; i++)
             player.Deck.Add(CardObject.Instantiate((CardInfo)deck[i].Clone(), this.deck.transform.position));
@@ -52,16 +54,23 @@ public class CardGameManager : MonoBehaviour
 
     private void Update()
     {
-        player.Update();
+        if (player.Health > 0 && enemy.Health > 0)
+        {
+            player.Update();
 
-        if (playerStats != null)
-            playerStats.text = player.ToString();
+            if (playerStats != null)
+                playerStats.text = player.ToString();
 
-        if (enemyStats != null)
-            enemyStats.text = enemy.ToString();
+            if (enemyStats != null)
+                enemyStats.text = enemy.ToString();
 
-        if (!player.CanPlayCards())
-            EndRound();
+            if (!player.CanPlayCards())
+                EndRound();
+        }
+        else
+        {
+            LevelLoader.i.LoadScene("Ludus");
+        }
     }
 
     #endregion Main-Loop
@@ -89,5 +98,12 @@ public class CardGameManager : MonoBehaviour
 
         player.AdvanceRound();
         enemy.AdvanceRound();
+    }
+
+    public void Debug()
+    {
+        //CardLibrary.CreateLanugageFile();
+
+        CardLibrary.RenameCardImages(cards);
     }
 }

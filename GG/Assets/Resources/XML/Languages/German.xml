@@ -1,30 +1,49 @@
 <Language>
-	<Card Name="Stoß" Description="Schaden entsprechend Augenzahl." />
-	<Card Name="Parade" Description="Block entsprechend Augenzahl." />
-	<Card Name="Schub" Description="Entferne die letzte geg. Verteidigungskarte." />
+	<Thrust Name="Stoß" Description="Schaden entsprechend Augenzahl." />
+	<Shove Name="Schub" Description="Entferne die letzte geg. Verteidigungskarte." />
+	<Jump_Thrust Name="Sprungstoß" Description="Schaden entsprechend Augenzahl, multipliziert mit 2. Füge 2 Schwach zu." />
 
-	<Card Name="Dreistoß" Description="3 Angriffe. Je Angriff: Schaden entsprechend Augenzahl." />
-	<Card Name="Sprungstoß" Description="Schaden entsprechend doppelter Augenzahl. Füge 2 Schwach zu." />
-	<Card Name="Wegstoßen" Description="Betäubung entsprechend Augenzahl." />
-	<Card Name="Nachsetzen" Description="Schaden entsprechend geg. Betäubungsstapel. Ziehe 1 Karte." />
+	<Sting Name="Stich" Description="Schaden entsprechend Augenzahl. Diese Runde: Andere Angriffe fügen zusätzlich 3 Verwundbarkeit zu." />
+	<Mighty_Sweep Name="Mächtiger Schwung" Description="Schaden entsprechend Augenzahl, multipliziert mit 2." />
+	<Pommel_Strike Name="Knaufschlag" Description="Schaden entsprechend Augenzahl. Ziehe 1 Karte, Ziehe 2 Karten wenn diese Karte der erste gespielte Angriff in dieser Runde ist." />
 
-	<Card Name="Belagerungsangriff" Description="Permanent: Entferne die Kosten für alle &#34;Stoß&#34; Karten. Der Grund-Schaden von &#34;Stoß&#34; Karten wird zu der für diese Karte aufgewendeten Augenzahl." />
-	<Card Name="Wuchtiger Schwung" Description="Schaden entsprechend Augenzahl. Betäubung entsprechend Augenzahl." />
-	<Card Name="Ein-Mann-Phalanx" Description="Permanent: Jedesmal wenn durch eine &#34;Stoß&#34; Karte Schaden verursacht wird, erhalte 1 Stärke." />
-	<Card Name="Schluss Stich" Description="10 Schaden. Die Kosten dieser Karte sinken um 1 für jede &#34;Stoß&#34; Karte, die diese Runde gespielt wurden." />
+	<Trip_Rope Name="Stolperstrick" Description="Schwäche entsprechend Augenzahl." />
+	<Cast_Net Name="Netzwurf" Description="Entferne: Reduziere Stärke entsprechend Augenzahl." />
+	<Constrict Name="Einschnüren" Description="Entferne: Reduziere Schutz entsprechend Augenzahl." />
 
-	<Card Name="Krönende Spitze" Description="Erzeuge &#34;Stoß&#34; Karten auf die Hand entsprechend der Augenzahl." />
-	<Card Name="Fels in der Brandung" Description="Wirf eine beliebige Anzahl an Handkarten ab. Block entsprechend Augenzahl multipliziert mit abgeworfenen Handkarten." />
-	<Card Name="Blitzangriff" Description=" Nimm alle &#34;Stoß&#34; Karten aus dem Ablagestapel auf die Hand." />
-	<Card Name="Tosende Dominanz" Description="12 Schaden. Füge Schwach entsprechend der Augenzahl zu." />
+	<Shield_Block Name="Schildblock" Description="Block entsprechend Augenzahl." />
+	<Testudo Name="Testudo" Description="15 Block. Du kannst diese Karte nicht aktivieren wenn du in dieser Runde einen Angriff gespielt hast. Du kannst keine Angriffe nach Aktivierung dieser Karte spielen. " />
+	<Shield_Soul Name="Schildseele" Description="1 Schutz, multipliziert mit aktiven Verteidigungskarten." />
 
-	<Card Name="Strahlstrom" Description="8 Schaden. Ziehe Karten entsprechend der Augenzahl, wähle einen Angriff aus den gezogenen Karten und aktiviere ihn, nutze die selbe Augenzahl wie für die Aktivierung dieser Karte. Wirf die anderen gezogenen Karten ab." />
-	<Card Name="Leviathanischer Zorn" Description="Permanent: Ziehe jedesmal eine Karte wenn du einen Angriff aktivierst." />
-	<Card Name="DonnerndeHerausforderung" Description="60 Schaden. Dieser Angriff macht keinen Schaden gegen Gegner ohne Block. Wenn dieser Angriff den geg. Block komplett bricht,  Betäubung entsprechend Augenzahl." />
-	<Card Name="Ruhe vor dem Sturm" Description="1 Block. Solange diese Karte im Block-Stapel aktiv ist, füge dem Gegner Betäubung entsprechend der Augenzahl zu, wenn er angreift." />
+	<Dagger_Thrust Name="Dolchstoß" Description="2 Schaden. Blutung entsprechend Augenzahl, falls der Gegner keinen Block hat." />
+	<Artery_Cut Name="Arterienschnitt" Description="Blutung entsprechend Augenzahl, multipliziert mit 2, falls der Gegner keinen Block hat." />
+	<Knife_Throw Name="Messerwurf" Description="Schaden entsprechend Augenzahl. Multipliziert mit 2, falls der Gegner keinen Block hat." />
 
-	<Card Name="Donnerndes Gericht" Description="Erzeuge 4 &#34;Stoß&#34; Karten. Nimm alle &#34;Stoß&#34; Karten aus deinem Ablagestapel und  deinem Stapel auf die Hand." />
-	<Card Name="Jupiters Dorn" Description="4 Schaden multipliziert mit geg. Betäubung." />
-	<Card Name="Neptuns Gericht" Description="Permanent: Zu Rundenbeginn wirf einen 12-Würfel, erhalte,bis zum Rundenende, einen zusätzlichen Würfel  und Stärke in Höhe dieses Würfels." />
-	<Card Name="Kataklysmus" Description="X Angriffe, entsprechen Augenzahl. Je Angriff: 4 Schaden und 1 Schwäche." />
+	<Spear_Thrust Name="Speer Stoß" Description="Schaden entsprechend Augenzahl." />
+	<Fend_Off Name="Abwehren" Description="Block entsprechend Augenzahl." />
+	<Second_Tip Name="Zweite Spitze" Description="6 Schaden. Keine Kosten wenn in dieser Runde ein Angriff gespielt wurde." />
+
+	<Parma Name="Parma" Description="Block entsprechend Augenzahl." />
+	<Shield_Slam Name="Schildschlag" Description="Schaden entsprechend Augenzahl, skaliert mit Stärke und Schutz." />
+	<Sweep Name="Umfegen" Description="Schwäche entsprechend Block." />
+
+	<Jab_Cut Name="Stoß-Schnitt" Description="Blutung entsprechend Augenzahl, falls der Gegner keinen Block hat." />
+	<Bone_Shears Name="Knochenschere" Description="Schaden entsprechend Augenzahl. Diese Runde: Reduziere Schutz entsprechend Augenzahl." />
+	<Dagger_Whet Name="Messer Wetzen" Description="Permanent: Stärke entsprechend Augenzahl." />
+
+	<Head_Matter Name="Kopfsache" Description="Führe sofort eine Regeneration durch." />
+	<Head_Thrust Name="Kopfstoß" Description="2 Schaden. Betäubung entsprechend Augenzahl." />
+	<Boldness Name="Kühnheit" Description="Diese Runde: 4 Stärke und 4 Schutz." />
+
+	<Shoulder_Attack Name="Schulterangriff" Description=" 2 Schaden. Ziehe Karten entsprechend Augenzahl." />
+	<Full_Plate Name="Voll-Platte" Description="Block entsprechend Augenzahl, multipliziert mit 2." />
+	<Agility Name="Agilität" Description="Block entsprechend Augenzahl. Verteidigungsstapel: Zu Rundenbeginn: Ziehe 2 zusätzliche Karten." />
+
+	<Headbutt Name="Kopfnuss" Description="2 Schaden. Verwundbarkeit entsprechend Augenzahl." />
+	<Deflect Name="Ableiten" Description="1 Block. Verteidigungsstapel: Schutz entsprechend Augenzahl." />
+	<Wedge_Slash Name="Keil-Hieb" Description="20 Schaden. Keine Wirkung auf Gegner mit Block." />
+
+	<Kick Name="Tritt" Description="Schaden entsprechend Augenzahl. Multipliziert mit 2, falls der Gegner Block hat." />
+	<Deflect Name="Ausweichschritt" Description="1 Block. Verteidigungsstapel: 5% Chance (max. 75%), multipliziert mit Augenzahl, das geg. Angriffe verfehlen." />
+	<Footwork Name="Beinarbeit" Description="Block entsprechend Augenzahl. Verteidigungsstapel: Zu Rundenbeginn: Lege diese Karte auf den Ablagestapel, Stärke entsprechend abgelegtem Block." />
 </Language>
