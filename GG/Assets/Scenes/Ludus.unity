@@ -3058,7 +3058,7 @@ Transform:
   m_Children:
   - {fileID: 1099520760}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &223991294
 PrefabInstance:
@@ -7250,7 +7250,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2143757763}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &495385619
 MonoBehaviour:
@@ -8814,7 +8814,7 @@ Transform:
   - {fileID: 1233153903}
   - {fileID: 410058426}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &673663325
 GameObject:
@@ -9147,7 +9147,7 @@ Transform:
   - {fileID: 984705951}
   - {fileID: 710363267}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &697343266 stripped
 GameObject:
@@ -13610,7 +13610,7 @@ Transform:
   - {fileID: 499321464}
   - {fileID: 1719511514}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1030657998
 GameObject:
@@ -25400,7 +25400,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 00bbf2f0cebc49e409e7698e3344f905,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 00bbf2f0cebc49e409e7698e3344f905,
         type: 3}
@@ -30313,7 +30313,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 256963003}
-  m_Father: {fileID: 2143757763}
+  m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2099780685
@@ -30791,10 +30791,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2099780684}
   - {fileID: 495385618}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2146167700 stripped
 Transform:
