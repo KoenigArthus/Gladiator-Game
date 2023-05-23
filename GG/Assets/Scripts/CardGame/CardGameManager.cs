@@ -69,11 +69,7 @@ public class CardGameManager : MonoBehaviour
         }
         else
         {
-            playerStats.text = "";
-            if (player.Health > 0)
-                enemyStats.text = "You Win";
-            else
-                enemyStats.text = "You Lost";
+            LevelLoader.i.LoadScene("Ludus");
         }
     }
 

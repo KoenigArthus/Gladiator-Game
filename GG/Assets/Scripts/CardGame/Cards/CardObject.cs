@@ -81,9 +81,7 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         if (cardBack == null)
             cardBack = Resources.Load<Sprite>("Textures/CardGame/back");
 
-        cardFront = Resources.Load<Sprite>($"Textures/CardGame/Images/{name}");
-        if (cardFront == null)
-            cardFront = Resources.Load<Sprite>($"Textures/CardGame/Images/Debug");
+        cardFront = Info.Sprite;
 
         canvas = GetComponentInParent<Canvas>();
 

@@ -1061,6 +1061,11 @@ public static class CardLibrary
         return result.ToArray();
     }
 
+    public static CardInfo GetItemCard(CardSet set)
+    {
+        return new InstantCardInfo(set.ToString(), set, CardType.Quest, -1, -1, (CardInfo c) => { });
+    }
+
     public static XmlNode GetTranslationNode(string name)
     {
         return translationDoc.SelectSingleNode("Language/" + name);
@@ -1082,6 +1087,15 @@ public static class CardLibrary
             return node.Attributes["Description"].Value;
 
         return "";
+    }
+
+    public static Sprite GetSprite(string name)
+    {
+        Sprite sprite = Resources.Load<Sprite>($"Textures/CardGame/Images/{name}");
+        if (sprite != null)
+            return sprite;
+
+        return Resources.Load<Sprite>($"Textures/CardGame/Images/Debug");
     }
 
     #endregion Get

@@ -1,5 +1,7 @@
 ﻿#region System
 
+using System;
+
 public enum Language
 {
     German, English
@@ -26,6 +28,12 @@ public enum CardSet
 public enum CardType
 {
     Attack, Block, Skill, Aid, Ailment, Quest
+}
+
+[Flags]
+public enum EquipSlots
+{
+    RightHand = 1, LeftHand = 2, Head = 4, Shoulders = 8, Legs = 16
 }
 
 #endregion
