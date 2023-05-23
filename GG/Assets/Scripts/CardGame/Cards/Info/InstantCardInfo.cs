@@ -4,21 +4,27 @@ using UnityEngine;
 
 public class InstantCardInfo : CardInfo
 {
-    private CardAction action;
+    protected CardAction action;
 
-    public InstantCardInfo(string name, CardSet set, CardType type, int cost, CardAction action, bool destroyOnDiscard = false) :
-        base(name, set, type, cost, destroyOnDiscard)
+    public InstantCardInfo(string name, CardSet set, CardType type, int tier, int cost, CardAction action, bool destroyOnDiscard = false) :
+        base(name, set, type, tier, cost, destroyOnDiscard)
     {
         this.action = action;
     }
 
-    public void Execute()
+    protected InstantCardInfo(string name, CardSet set, CardType type, int tier, int cost, bool destroyOnDiscard = false) :
+        base(name, set, type, tier, cost, destroyOnDiscard)
     {
-        action(this);
+    }
+
+    public override void Execute()
+    {
+        if (action != null)
+            action(this);
     }
 
     public override object Clone()
     {
-        return new InstantCardInfo(Name, Set, Type, Cost, action, DestroyOnDiscard) { CostReduction = this.CostReduction };
+        return new InstantCardInfo(Name, Set, Type, Tier, Cost, action, DestroyOnDiscard) { CostReduction = this.CostReduction };
     }
 }

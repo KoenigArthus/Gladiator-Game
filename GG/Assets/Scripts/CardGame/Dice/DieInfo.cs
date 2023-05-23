@@ -73,6 +73,7 @@ public class DieInfo
     public int[] Sides => sides;
     public int Value => sides[index];
     public DieObject Die => die;
+    public bool Rolling => die != null && die.Rolling;
 
     #endregion Properties
 

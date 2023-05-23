@@ -17,22 +17,26 @@ public class Enemy : Participant
         (35, 35)
     };
 
+    private int health;
     private int[] blockStack = new int[0];
     private EnemyBehavior behavior;
     private Intension[] intensions;
 
     #endregion Fields
 
-    public Enemy(CardGameManager manager, int health, int blockSlots, EnemyBehavior behavior) : base(manager, health, blockSlots)
+    public Enemy(CardGameManager manager, int health, EnemyBehavior behavior) : base(manager)
     {
+        this.health = health;
+
         ChangeIntension();
         this.behavior = behavior;
     }
 
     #region Properties
 
-    public string Intension => string.Join('-', intensions.Select(x => x.ToString()));
+    public override int Health { get => health; set => health = value; }
     public override int[] BlockStack => blockStack;
+    public string Intension => string.Join('-', intensions.Select(x => x.ToString()));
 
     #endregion Properties
 
@@ -75,7 +79,7 @@ public class Enemy : Participant
                 this.Attack(target, Random.Range(1, 5));
             else if (current.Type == EnemyAction.Block)
             {
-                blockStack = blockStack.Concat(new int[] { Random.Range(2, 7) }).ToArray();
+                blockStack = blockStack.Concat(new int[] { Random.Range(2, 7) + BonusBlock }).ToArray();
                 if (blockStack.Length > BlockSlots)
                     blockStack = blockStack.Skip(1).ToArray();
             }
@@ -86,7 +90,7 @@ public class Enemy : Participant
 
     #region Defend
 
-    public override void ReduceBlock(ref int amount)
+    protected override void ReduceBlock(ref int amount)
     {
         for (int i = 0; i < blockStack.Length; i++)
         {
@@ -104,6 +108,24 @@ public class Enemy : Participant
         }
 
         blockStack = blockStack.Where(x => x > 0).ToArray();
+    }
+
+    public override int RemoveLastBlock()
+    {
+        if (blockStack.Length < 1)
+            return 0;
+
+        int index = blockStack.Length - 1;
+        int block = blockStack[index];
+        blockStack[index] = 0;
+        return block;
+    }
+
+    public override int RemoveAllBlock()
+    {
+        int block = Block;
+        blockStack = new int[0];
+        return block;
     }
 
     #endregion Defend

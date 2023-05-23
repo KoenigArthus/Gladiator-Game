@@ -18,7 +18,5 @@ public class SaveGameTest : MonoBehaviour
     {
         save.Load();
         nameInput.text = save.Name;
-
-        Debug.Log(save.LogFlags());
     }
 }

@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockCardInfo : CardInfo
+public class BlockCardInfo : InstantCardInfo
 {
     #region Fields
 
     private GetPower blockPower;
     private int damage = 0;
+    private (StatusEffect, int) statusMod = (StatusEffect.FragileStrenght, -1);
 
     #endregion Fields
 
-    public BlockCardInfo(string name, CardSet set, CardType type, int cost, GetPower blockPower, bool destroyOnDiscard = false) :
-        base(name, set, type, cost, destroyOnDiscard)
+    public BlockCardInfo(string name, CardSet set, int tier, int cost, GetPower blockPower, bool destroyOnDiscard = false) :
+        base(name, set, CardType.Block, tier, cost, destroyOnDiscard)
     {
         this.blockPower = blockPower;
     }
@@ -21,6 +22,8 @@ public class BlockCardInfo : CardInfo
 
     public int CurrentBlock => blockPower(this) - this.damage;
     protected GetPower BlockPower => blockPower;
+    public (StatusEffect, int) StatusMod { get => statusMod; set => statusMod = value; }
+    public CardAction InstantAction { get => action; set => action = value; }
 
     #endregion Properties
 
@@ -36,6 +39,10 @@ public class BlockCardInfo : CardInfo
         else
         {
             damage -= block;
+
+            if (this is PassiveBlockCardInfo passive)
+                passive.OnBreak(ref damage);
+
             Player.DiscardSingle(Card);
         }
     }
@@ -43,11 +50,16 @@ public class BlockCardInfo : CardInfo
     public override void Clear()
     {
         base.Clear();
+        ResetDamage();
+    }
+
+    public void ResetDamage()
+    {
         this.damage = 0;
     }
 
     public override object Clone()
     {
-        return new BlockCardInfo(Name, Set, Type, Cost, blockPower, DestroyOnDiscard) { CostReduction = this.CostReduction };
+        return new BlockCardInfo(Name, Set, Tier, Cost, blockPower, DestroyOnDiscard) { CostReduction = this.CostReduction };
     }
 }

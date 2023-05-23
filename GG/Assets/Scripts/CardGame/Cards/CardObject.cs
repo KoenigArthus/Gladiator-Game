@@ -29,6 +29,7 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     private Text typeUI;
     private Text descriptionUI;
 
+    private Vector3 startPosition = Vector3.zero;
     private Vector3 targetPosition;
     private bool draging = false;
     private Vector2 dragOffset;
@@ -56,10 +57,12 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public CardInfo Info => cardInfo;
     public CardCollection Collection { get => collection; set => collection = value; }
-    public bool Interactable => interactable && (collection == null || collection.cardsInteractable);
+    public bool Interactable => interactable && (collection == null || collection.cardsInteractable) && (collection?.Player == null || !collection.Player.Busy);
     public bool Hovered => this == hoveredCard;
 
-    public Vector3 TargetPosition { get => targetPosition; set => targetPosition = value; }
+    public Vector3 TargetPosition
+    { get => targetPosition; set { startPosition = transform.position; targetPosition = value; } }
+
     public float Width => (cardImage.transform as RectTransform).rect.width;
     public float Height => (cardImage.transform as RectTransform).rect.height;
     public float Scale => canvas.transform.localScale.x;
@@ -110,10 +113,14 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             else
             {
                 float deltaAngle = Mathf.Atan2(delta.y, delta.x);
-                if (deltaAngle > -Mathf.PI * 0.5f && deltaAngle < Mathf.PI * 0.5f)
-                    deltaAngle += arcAngle;
-                else
-                    deltaAngle -= arcAngle;
+                {
+                    Vector3 totalDelta = targetPosition - startPosition;
+                    float totalDeltaAngle = Mathf.Atan2(delta.y, delta.x);
+                    if (totalDeltaAngle > -Mathf.PI * 0.5f && totalDeltaAngle < Mathf.PI * 0.5f)
+                        deltaAngle += arcAngle;
+                    else
+                        deltaAngle -= arcAngle;
+                }
                 delta = new Vector3(Mathf.Cos(deltaAngle), Mathf.Sin(deltaAngle), delta.z);
                 transform.localPosition += delta * speed;
             }

@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -38,10 +39,10 @@ public class CardGameManager : MonoBehaviour
 
     private void Start()
     {
-        player = new Player(this, 20, 3);
-        enemy = new Enemy(this, 40, 5, EnemyBehavior.Tactical);
+        player = new Player(this);
+        enemy = new Enemy(this, 40, EnemyBehavior.Tactical);
 
-        CardInfo[] deck = cards;
+        CardInfo[] deck = cards.Where(x => x.Tier == 0 && x.Set != CardSet.Health && x.Set != CardSet.Item).ToArray();
 
         for (int i = 0; i < deck.Length; i++)
             player.Deck.Add(CardObject.Instantiate((CardInfo)deck[i].Clone(), this.deck.transform.position));
@@ -52,16 +53,27 @@ public class CardGameManager : MonoBehaviour
 
     private void Update()
     {
-        player.Update();
+        if (player.Health > 0 && enemy.Health > 0)
+        {
+            player.Update();
 
-        if (playerStats != null)
-            playerStats.text = player.ToString();
+            if (playerStats != null)
+                playerStats.text = player.ToString();
 
-        if (enemyStats != null)
-            enemyStats.text = enemy.ToString();
+            if (enemyStats != null)
+                enemyStats.text = enemy.ToString();
 
-        if (!player.CanPlayCards())
-            EndRound();
+            if (!player.CanPlayCards())
+                EndRound();
+        }
+        else
+        {
+            playerStats.text = "";
+            if (player.Health > 0)
+                enemyStats.text = "You Win";
+            else
+                enemyStats.text = "You Lost";
+        }
     }
 
     #endregion Main-Loop
@@ -89,5 +101,10 @@ public class CardGameManager : MonoBehaviour
 
         player.AdvanceRound();
         enemy.AdvanceRound();
+    }
+
+    public void CreateLanugageFileTemplate()
+    {
+        CardLibrary.CreateLanugageFile();
     }
 }

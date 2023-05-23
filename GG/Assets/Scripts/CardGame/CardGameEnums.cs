@@ -11,14 +11,21 @@ public enum Language
 
 public enum CardSet
 {
-    None = -1, Trident, Gladius, Rete, Scutum, Pugio, Spartha, Doru, Pilum, Parmula, Scindo, Cestus, Laqueus,
-    Armor = 100,
+    None = -1,
+
+    //Weapons
+    Trident, Gladius, Rete, Scutum, Pugio, Spartha, Doru, Pilum, Parmula, Scindo, Cestus, Laqueus,
+
+    //Armor
+    Cassis, Galerus, Manica, Ocrea,
+
+    //Other
     Health, Item
 }
 
 public enum CardType
 {
-    Attack, Block, Skill, Ailment
+    Attack, Block, Skill, Aid, Ailment, Quest
 }
 
 #endregion
@@ -41,7 +48,7 @@ public enum PermanentEffect
 
 public enum StatusEffect
 {
-    Strenght, Defence, Regeneration, Stun, Weak, Feeble, Bleeding, Vulnerable
+    Strenght, Defence, Invulnerable, FragileStrenght, FragileDefence, Regeneration, Stun, Weak, Feeble, Bleeding, Vulnerable
 }
 
 #endregion

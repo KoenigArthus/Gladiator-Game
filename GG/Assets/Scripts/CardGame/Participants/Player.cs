@@ -6,6 +6,8 @@ using Unity.VisualScripting;
 using UnityEditor.Rendering.LookDev;
 using System;
 using Yarn.Unity;
+using UnityEngine.Android;
+using System.Threading.Tasks;
 
 public class Player : Participant
 {
@@ -23,6 +25,7 @@ public class Player : Participant
     private int dicePower = 0;
 
     private List<CardInfo> playedCards = new List<CardInfo>();
+    private bool[] lockedCardTypes = new bool[6];
 
     private CardObject prepareing = null;
     private CardObject[] selecting = null;
@@ -36,9 +39,11 @@ public class Player : Participant
         new Delegate[] {}
     };
 
+    private Queue<GameEvent> eventQueue = new Queue<GameEvent>();
+
     #endregion Fields
 
-    public Player(CardGameManager manager, int health, int blockSlots) : base(manager, health, blockSlots)
+    public Player(CardGameManager manager) : base(manager)
     {
         this.deck = manager.deck;
         this.hand = manager.hand;
@@ -54,16 +59,20 @@ public class Player : Participant
 
     #region Properties
 
+    public override int Health { get => UserFile.SaveGame.Health; set => UserFile.SaveGame.Health = value; }
     public override int[] BlockStack => block.Cards.Select(x => (x.Info as BlockCardInfo).CurrentBlock).ToArray();
     public Enemy Enemy => Manager.Enemy;
 
     public CardCollection Deck => deck;
     public CardCollection Hand => hand;
     public CardCollection Discard => discard;
+    public CardCollection ActiveBlock => block;
 
     public CardInfo[] PlayedCards => playedCards.Where(x => x != null).ToArray();
 
     public CardObject Prepareing => prepareing;
+
+    public bool Busy => false;
 
     #endregion Properties
 
@@ -82,7 +91,15 @@ public class Player : Participant
             if (deck.Count < 1)
                 break;
 
-            hand.Add(deck.DrawCard());
+            CardObject drawnCard = deck.DrawCard();
+            CardInfo drawnCardInfo = drawnCard.Info;
+            hand.Add(drawnCard);
+
+            if (drawnCardInfo.Type == CardType.Ailment && drawnCardInfo.Cost == 0)
+            {
+                prepareing = drawnCard;
+                PlayPreparedCard();
+            }
         }
     }
 
@@ -118,6 +135,9 @@ public class Player : Participant
 
     protected void PlayPreparedCard()
     {
+        if (prepareing == null)
+            return;
+
         CardObject card = prepareing;
         CardInfo info = card.Info;
         prepareing = null;
@@ -141,23 +161,23 @@ public class Player : Participant
             if (info is InstantCardInfo instantCard)
             {
                 instantCard.Execute();
-            }
-            else if (info is BlockCardInfo blockCard)
-            {
-                //Apply bonus block
-                card.Info.DiceBonus += GetStatus(StatusEffect.Defence) - GetStatus(StatusEffect.Feeble);
-
-                if (card.Info.DicePower > 0)
+                if (info is BlockCardInfo blockCard)
                 {
-                    //Hand -> Block
-                    block.Add(card);
+                    //Apply bonus block
+                    card.Info.DiceBonus += BonusBlock;
 
-                    //Discard if block is overfilled
-                    if (block.Count > BlockSlots)
-                        DiscardSingle(block.Cards[0]);
+                    if (card.Info.DicePower > 0)
+                    {
+                        //Hand -> Block
+                        block.Add(card);
 
-                    //Dont discard block
-                    return;
+                        //Discard if block is overfilled
+                        if (block.Count > BlockSlots)
+                            DiscardSingle(block.Cards[0]);
+
+                        //Dont discard block
+                        return;
+                    }
                 }
             }
             else if (info is PermanentCardInfo permanentCard)
@@ -172,6 +192,20 @@ public class Player : Participant
                         int power = permanentCard.DicePower;
                         ChangeCard changeAction = (CardInfo c) => changeCardAction(c, power);
                         action = changeAction;
+                    }
+                    else
+                    {
+                        Debug.Log($"Black Magic failed! | Card: {permanentCard.Name} | If you ever see this message, RUN!");
+                        return;
+                    }
+                }
+                else if (effect == PermanentEffect.OnRoundStart)
+                {
+                    if (action is GameEventAction gameEvent)
+                    {
+                        CardInfo snapshot = permanentCard;
+                        GameEvent eventAction = (CardGameManager m) => gameEvent(m, snapshot);
+                        action = eventAction;
                     }
                     else
                     {
@@ -194,7 +228,7 @@ public class Player : Participant
 
     public void PrepareCard(CardObject card)
     {
-        if (card != null)
+        if (card != null && !lockedCardTypes[(int)card.Info.Type])
             prepareing = card;
     }
 
@@ -207,6 +241,11 @@ public class Player : Participant
         }
     }
 
+    public void LockCardType(CardType type)
+    {
+        lockedCardTypes[(int)type] = true;
+    }
+
     public bool CanPlayCards()
     {
         if (hand.Cards.Length < 1)
@@ -217,22 +256,73 @@ public class Player : Participant
         return !(dice.Count(x => x != null && !x.IsDestroyed()) < cost);
     }
 
+    public void AddAction(GameEvent gameAction, bool permanent = false)
+    {
+        if (permanent)
+            permanentEffects[(int)PermanentEffect.OnRoundStart] = permanentEffects[(int)PermanentEffect.OnRoundStart].Concat(new Delegate[] { gameAction }).ToArray();
+        else
+            eventQueue.Enqueue(gameAction);
+    }
+
     #endregion Play
+
+    #region Attack
+
+    public override void OnAttack(Participant attacker, Participant defender, int power)
+    {
+        if (defender == this)
+        {
+            AttackEvent[] attackEvents = permanentEffects[(int)PermanentEffect.OnDefend].Cast<AttackEvent>().ToArray();
+            for (int i = 0; i < attackEvents.Length; i++)
+            {
+                attackEvents[i](attacker, defender, power);
+            }
+        }
+    }
+
+    #endregion Attack
 
     #region Defend
 
-    public override void ReduceBlock(ref int amount)
+    protected override void ReduceBlock(ref int amount)
     {
         BlockCardInfo[] blockCards = block.Cards.Select(x => x.Info as BlockCardInfo).ToArray();
 
         for (int i = 0; i < blockCards.Length; i++)
         {
             if (blockCards[i] is PassiveBlockCardInfo passiveInfo)
-                passiveInfo.OnBlock();
+                passiveInfo.OnBlock(ref amount);
+        }
 
+        if (GetStatus(StatusEffect.Invulnerable) > 0)
+            return;
+
+        for (int i = 0; i < blockCards.Length; i++)
+        {
             if (amount > 0)
                 blockCards[i].ApplyDamage(ref amount);
         }
+    }
+
+    public override int RemoveLastBlock()
+    {
+        CardObject card = block.Cards.LastOrDefault();
+        if (card != null)
+        {
+            DiscardSingle(card);
+            return (card.Info as BlockCardInfo).CurrentBlock;
+        }
+
+        return 0;
+    }
+
+    public override int RemoveAllBlock()
+    {
+        int block = Block;
+        foreach (var card in this.block.Cards)
+            DiscardSingle(card);
+
+        return block;
     }
 
     #endregion Defend
@@ -263,13 +353,18 @@ public class Player : Participant
         if (card.Collection != null)
             card.Collection.Remove(card);
         GameObject.Destroy(card.gameObject);
+
+        if (card.Info.Set == CardSet.Item)
+        {
+            //Remove item from inventory
+        }
     }
 
     #endregion Discard
 
     #region Dice
 
-    public void AddDie(DieInfo info)
+    public void AddDie(DieInfo info, bool rollDie = true)
     {
         int index = dice.IndexOf(null);
 
@@ -278,7 +373,8 @@ public class Player : Participant
             Vector2 targetPosition = new Vector2(350, 600) - new Vector2(0, 150 * index);
             dice[index] = DieObject.Instantiate(info, targetPosition);
             dice[index].Player = this;
-            dice[index].Roll();
+            if (rollDie)
+                dice[index].Roll();
         }
     }
 
@@ -314,10 +410,33 @@ public class Player : Participant
 
     #endregion Dice
 
+    public override int GetStatus(StatusEffect effect)
+    {
+        int bonus = 0;
+        if (effect != StatusEffect.FragileStrenght && effect != StatusEffect.FragileDefence)
+            bonus = this.block.Cards.Where(x => x.Info is BlockCardInfo blocInfo && blocInfo.StatusMod.Item1 == effect).Sum(x => (x.Info as BlockCardInfo).StatusMod.Item2);
+
+        return base.GetStatus(effect) + bonus;
+    }
+
     protected override void OnAdvanceRound()
     {
         playedCards = new List<CardInfo>();
+        lockedCardTypes = new bool[6];
 
+        //Execute queued round start events
+        while (eventQueue.Count > 0)
+            eventQueue.Dequeue()(Manager);
+
+        //Execute passive block effects
+        PassiveBlockCardInfo[] blockCards = block.Cards.Select(x => x.Info as PassiveBlockCardInfo).ToArray();
+        for (int i = 0; i < blockCards.Length; i++)
+        {
+            if (blockCards[i] != null)
+                blockCards[i].OnRoundStart(Manager);
+        }
+
+        //Execute permanent round start effects
         GameEvent[] roundStartEvents = permanentEffects[(int)PermanentEffect.OnRoundStart].Cast<GameEvent>().ToArray();
         for (int i = 0; i < roundStartEvents.Length; i++)
         {

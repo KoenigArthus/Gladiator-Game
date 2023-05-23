@@ -43,6 +43,7 @@ public class DieObject : MonoBehaviour, IPointerClickHandler
     public DieInfo Info => dieInfo;
     public Player Player { get => player; set => player = value; }
     public bool Selected => player != null && player.Prepareing != null && player.Prepareing.Info.HasDie(Info);
+    public bool Rolling => rollAmount > 0;
 
     #endregion Properties
 

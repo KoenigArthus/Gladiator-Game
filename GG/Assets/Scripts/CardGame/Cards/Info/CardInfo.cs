@@ -29,11 +29,12 @@ public abstract class CardInfo : ICloneable
 
     #region ctor
 
-    public CardInfo(string name, CardSet set, CardType type, int cost, bool destroyOnDiscard = false)
+    public CardInfo(string name, CardSet set, CardType type, int tier, int cost, bool destroyOnDiscard = false)
     {
         this.name = name;
         this.set = set;
         this.type = type;
+        this.tier = tier;
         this.cost = cost;
 
         this.destroyOnDiscard = destroyOnDiscard || set == CardSet.Item;
@@ -57,12 +58,31 @@ public abstract class CardInfo : ICloneable
     public string TranslatedDescription => CardLibrary.GetTranslatedDescription(Name);
     public CardSet Set => set;
     public CardType Type => type;
+    public int Tier => tier;
 
-    public int Cost => cost - (costReduction != null && Player != null ? Math.Min(cost, costReduction(this)) : 0);
+    public int Cost
+    {
+        get
+        {
+            if (costReduction != null && Player != null)
+            {
+                int costReduction = this.costReduction(this);
+
+                if (costReduction < 0)
+                    return -1;
+
+                return cost - costReduction;
+            }
+
+            return cost;
+        }
+    }
+
     public GetPower CostReduction { get => costReduction; set => costReduction = value; }
     public bool CostMeet => dice.Length == Cost;
+    public int RawDicePower => dice.Sum(x => x.Value);
     public int DiceBonus { get => diceBonus; set => diceBonus = value; }
-    public int DicePower => dice.Sum(x => x.Value) + diceBonus;
+    public int DicePower => RawDicePower + diceBonus;
 
     public virtual bool DestroyOnDiscard => destroyOnDiscard;
 
@@ -71,6 +91,10 @@ public abstract class CardInfo : ICloneable
     public Enemy Enemy => Player?.Enemy;
 
     #endregion Properties
+
+    public virtual void Execute()
+    {
+    }
 
     public virtual void Clear()
     {
@@ -100,6 +124,12 @@ public abstract class CardInfo : ICloneable
             if (dice[i].Die != null && !dice[i].Die.gameObject.IsDestroyed())
                 GameObject.Destroy(dice[i].Die.gameObject);
         }
+    }
+
+    public void RefundDice()
+    {
+        for (int i = 0; i < dice.Length; i++)
+            Player.AddDie(dice[i], false);
     }
 
     #endregion Dice

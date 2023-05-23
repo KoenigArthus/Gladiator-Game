@@ -38,6 +38,11 @@ public class CardCollection : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        bool offsetHovered = this.offsetHovered && CardObject.HoveredCard != null && !CardObject.HoveredCard.Draging;
+
+        if (player != null && player.Prepareing == CardObject.HoveredCard)
+            offsetHovered = false;
+
         for (int i = cards.Count - 1; i > -1; i--)
         {
             CardObject current = cards[i];
@@ -52,7 +57,7 @@ public class CardCollection : MonoBehaviour
             {
                 if (this.transform is RectTransform transform)
                 {
-                    float width = Mathf.Min(transform.rect.width, current.Width * current.Scale * cards.Count);
+                    float width = transform.rect.width;
 
                     current.transform.SetSiblingIndex(i);
 
@@ -68,8 +73,8 @@ public class CardCollection : MonoBehaviour
                                 float offset = 0;
                                 if (cards.Count > 1)
                                     offset = width / (cards.Count - 1) * i - width * 0.5f;
-                                if (offsetHovered && current.Hovered)
-                                    current.TargetPosition = new Vector3(offset, 300, 0);
+                                if (offsetHovered && !current.Hovered)
+                                    current.TargetPosition = new Vector3(offset, -300, 0);
                                 else
                                     current.TargetPosition = new Vector3(offset, 0, 0);
                                 current.transform.rotation = new Quaternion();
