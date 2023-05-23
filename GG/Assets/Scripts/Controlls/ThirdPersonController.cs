@@ -131,10 +131,10 @@ public class ThirdPersonController : MonoBehaviour
 
 
         // footsteps sound
-        if (forceDirection.sqrMagnitude > 0 & !JSAM.AudioManager.IsSoundPlaying(Sounds.teststeps))
-            JSAM.AudioManager.PlaySound(Sounds.teststeps);
+        if (forceDirection.sqrMagnitude > 0 & !JSAM.AudioManager.IsSoundPlaying(Sounds.steps))
+            JSAM.AudioManager.PlaySound(Sounds.steps);
         else
-            JSAM.AudioManager.StopSound(Sounds.teststeps);
+            JSAM.AudioManager.StopSound(Sounds.steps);
     }
 
 

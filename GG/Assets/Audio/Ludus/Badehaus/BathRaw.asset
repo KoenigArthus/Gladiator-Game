@@ -18,9 +18,9 @@ MonoBehaviour:
   neverRepeat: 0
   lastClipIndex: -1
   category: Bath
-  relativeVolume: 1
+  relativeVolume: 0.7
   spatialize: 1
-  maxDistance: 30
+  maxDistance: 10
   priority: 128
   startingPitch: 1
   pitchShift: 0.05
