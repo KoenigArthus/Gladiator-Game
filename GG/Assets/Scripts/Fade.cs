@@ -3,20 +3,28 @@ using UnityEngine;
 public class Fade : MonoBehaviour
 {
     public GameObject roof = null;
+    public Material fadingMaterial = null;
+    public float fadeDuration = 1f;
     private Material[] roofMaterials;
     private Color[] initialDiffuseColors;
+    private int[] initialSurfaceValues;
+
+    private const string LUDUS_WALL_MATERIAL_NAME = "Ludus Wall";
+    private const string ALPHA_BLEND_KEYWORD = "_ALPHA_BLEND";
 
     private void Start()
     {
-        // Store the initial materials and diffuse colors of the roof
+        // Store the initial materials, diffuse colors, and surface values of the roof
         Renderer roofRenderer = roof.GetComponent<Renderer>();
         if (roofRenderer != null)
         {
             roofMaterials = roofRenderer.materials;
             initialDiffuseColors = new Color[roofMaterials.Length];
+            initialSurfaceValues = new int[roofMaterials.Length];
             for (int i = 0; i < roofMaterials.Length; i++)
             {
                 initialDiffuseColors[i] = roofMaterials[i].GetColor("_DiffuseColor");
+                initialSurfaceValues[i] = roofMaterials[i].GetInt("_Surface");
             }
         }
     }
@@ -25,8 +33,23 @@ public class Fade : MonoBehaviour
     {
         if (IsCharacter(collider))
         {
-            SetMaterialTransparent();
-            SetMaterialAlpha(0f);
+            ApplyFadingMaterial();
+            StartCoroutine(FadeMaterials(1f, 0f, 1));
+        }
+    }
+
+    private void ApplyFadingMaterial()
+    {
+        Renderer roofRenderer = roof.GetComponent<Renderer>();
+        if (roofRenderer != null && fadingMaterial != null)
+        {
+            // Apply the fading material to the roof
+            Material[] newMaterials = new Material[roofMaterials.Length];
+            for (int i = 0; i < roofMaterials.Length; i++)
+            {
+                newMaterials[i] = fadingMaterial;
+            }
+            roofRenderer.materials = newMaterials;
         }
     }
 
@@ -36,33 +59,54 @@ public class Fade : MonoBehaviour
         return true;
     }
 
-    private void SetMaterialTransparent()
+    private System.Collections.IEnumerator FadeMaterials(float startAlpha, float targetAlpha, int surfaceValue)
     {
-        foreach (Material m in roofMaterials)
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
         {
-            m.SetInt("_Surface", 1); // Set surface type to "Transparent"
-            m.EnableKeyword("_BLENDMODE_ALPHA"); // Enable custom blend mode keyword
+            float normalizedTime = elapsedTime / fadeDuration;
+
+            for (int i = 0; i < roofMaterials.Length; i++)
+            {
+                Material material = roofMaterials[i];
+
+                // Set surface value to transparent
+                material.SetInt("_Surface", surfaceValue);
+
+                // Set blending mode to alpha for Ludus Wall material
+                if (material.name == LUDUS_WALL_MATERIAL_NAME)
+                {
+                    material.EnableKeyword(ALPHA_BLEND_KEYWORD);
+                }
+
+                Color diffuseColor = initialDiffuseColors[i];
+                float alpha = Mathf.Lerp(startAlpha, targetAlpha, normalizedTime);
+                diffuseColor.a = alpha;
+                material.SetColor("_DiffuseColor", diffuseColor);
+            }
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Ensure the materials reach the target alpha value exactly
+        for (int i = 0; i < roofMaterials.Length; i++)
+        {
+            Material material = roofMaterials[i];
+            Color diffuseColor = initialDiffuseColors[i];
+            diffuseColor.a = targetAlpha;
+            material.SetColor("_DiffuseColor", diffuseColor);
         }
     }
 
-    private void SetMaterialOpaque()
+    private void ResetToOriginalMaterials()
     {
-        for (int i = 0; i < roofMaterials.Length; i++)
+        Renderer roofRenderer = roof.GetComponent<Renderer>();
+        if (roofRenderer != null)
         {
-            Material m = roofMaterials[i];
-            m.SetInt("_Surface", 0); // Set surface type to "Opaque"
-            m.DisableKeyword("_BLENDMODE_ALPHA"); // Disable custom blend mode keyword
-        }
-    }
-
-    private void SetMaterialAlpha(float alpha)
-    {
-        for (int i = 0; i < roofMaterials.Length; i++)
-        {
-            Material m = roofMaterials[i];
-            Color diffuseColor = m.GetColor("_DiffuseColor");
-            diffuseColor.a = alpha;
-            m.SetColor("_DiffuseColor", diffuseColor);
+            // Restore the original materials of the roof
+            roofRenderer.materials = roofMaterials;
         }
     }
 
@@ -70,11 +114,36 @@ public class Fade : MonoBehaviour
     {
         if (IsCharacter(collider))
         {
-            SetMaterialAlpha(1f);
-            SetMaterialOpaque();
+            StopAllCoroutines();
+            StartCoroutine(FadeMaterials(0f, 1f, 0));
+            ResetToOriginalMaterials();
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

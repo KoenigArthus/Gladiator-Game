@@ -1728,6 +1728,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roof: {fileID: 191777667}
+  fadingMaterial: {fileID: 2100000, guid: 8a98d09ca5d68e343a35106966995182, type: 2}
+  fadeDuration: 1
 --- !u!65 &191777672
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1836,6 +1838,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roof: {fileID: 215771068}
+  fadingMaterial: {fileID: 2100000, guid: 8a98d09ca5d68e343a35106966995182, type: 2}
+  fadeDuration: 1
 --- !u!65 &215771073
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4934,6 +4938,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roof: {fileID: 498576296}
+  fadingMaterial: {fileID: 2100000, guid: 8a98d09ca5d68e343a35106966995182, type: 2}
+  fadeDuration: 1
 --- !u!65 &498576301
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4945,7 +4951,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.105289534, y: 0.017999638, z: 0.021253373}
+  m_Size: {x: 0.105289534, y: 0.017999638, z: 0.14}
   m_Center: {x: -0.0404619, y: -0.0014511849, z: -0.000033830365}
 --- !u!1 &499321463
 GameObject:
@@ -5278,19 +5284,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roof: {fileID: 550569593}
---- !u!65 &550569603
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 550569593}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.029613953, y: 0.02089725, z: 0.021253353}
-  m_Center: {x: -0.00479357, y: 0.00000002514571, z: -0.00003382563}
+  fadingMaterial: {fileID: 2100000, guid: 8a98d09ca5d68e343a35106966995182, type: 2}
+  fadeDuration: 0.5
 --- !u!1 &552649856
 GameObject:
   m_ObjectHideFlags: 0
@@ -5407,6 +5402,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roof: {fileID: 562788016}
+  fadingMaterial: {fileID: 2100000, guid: 8a98d09ca5d68e343a35106966995182, type: 2}
+  fadeDuration: 1
 --- !u!65 &562788021
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6937,6 +6934,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roof: {fileID: 748058468}
+  fadingMaterial: {fileID: 2100000, guid: 8a98d09ca5d68e343a35106966995182, type: 2}
+  fadeDuration: 1
 --- !u!65 &748058473
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8054,6 +8053,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roof: {fileID: 888658374}
+  fadingMaterial: {fileID: 0}
+  fadeDuration: 1
 --- !u!65 &888658379
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20260,6 +20261,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roof: {fileID: 1981325625}
+  fadingMaterial: {fileID: 2100000, guid: 8a98d09ca5d68e343a35106966995182, type: 2}
+  fadeDuration: 1
 --- !u!65 &1981325630
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21092,6 +21095,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roof: {fileID: 2083225235}
+  fadingMaterial: {fileID: 2100000, guid: 8a98d09ca5d68e343a35106966995182, type: 2}
+  fadeDuration: 1
 --- !u!65 &2083225240
 BoxCollider:
   m_ObjectHideFlags: 0
