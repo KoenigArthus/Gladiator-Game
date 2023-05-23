@@ -3047,6 +3047,8 @@ MonoBehaviour:
   columns: 3
   cellSize: {x: 595.26666, y: 407.2}
   spacing: {x: 10.6, y: 12.7}
+  fitX: 0
+  fitY: 0
 --- !u!1 &382379857
 GameObject:
   m_ObjectHideFlags: 0
@@ -4139,7 +4141,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 430579874}
-  m_LocalRotation: {x: 0.33505806, y: 0.3566303, z: -0.1387856, w: 0.8609817}
+  m_LocalRotation: {x: 0.33505812, y: 0.35663036, z: -0.13878565, w: 0.8609817}
   m_LocalPosition: {x: 135.44, y: 30, z: 121}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5946,9 +5948,9 @@ Transform:
   - {fileID: 625550286}
   - {fileID: 20546716}
   - {fileID: 394167906}
+  - {fileID: 1835490041}
   - {fileID: 1408460553}
   - {fileID: 1273774858}
-  - {fileID: 1835490041}
   - {fileID: 2069166937}
   - {fileID: 1686140785}
   - {fileID: 1233153903}
@@ -10423,7 +10425,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194004730}
-  m_LocalRotation: {x: 0.33505806, y: 0.3566303, z: -0.1387856, w: 0.8609817}
+  m_LocalRotation: {x: 0.33505812, y: 0.35663036, z: -0.13878565, w: 0.8609817}
   m_LocalPosition: {x: 135.44, y: 30, z: 121}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16337,7 +16339,7 @@ Transform:
   m_Children:
   - {fileID: 752680939}
   m_Father: {fileID: 667558605}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1282565921
 GameObject:
@@ -17508,7 +17510,7 @@ Transform:
   - {fileID: 658754542}
   - {fileID: 1089272994}
   m_Father: {fileID: 667558605}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1412862122
 GameObject:
@@ -18043,7 +18045,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1484246851}
   m_LocalRotation: {x: -0, y: 0.71126336, z: -0, w: 0.7029257}
-  m_LocalPosition: {x: 135.75, y: 2.73, z: 132.74}
+  m_LocalPosition: {x: 122.9, y: 2.73, z: 187.4}
   m_LocalScale: {x: 11.767457, y: 0.1725, z: 8.003269}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19288,7 +19290,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 6a019c52bcb3d9842bd675972ae395a8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6a019c52bcb3d9842bd675972ae395a8,
         type: 3}
@@ -21439,8 +21441,6 @@ MonoBehaviour:
   - {fileID: 2075727200}
   - {fileID: 1151418220}
   - {fileID: 579051902}
-  leftButton: {fileID: 0}
-  rightButton: {fileID: 0}
   thisGroupsTabsStayOpen: 1
   LoadTabOnEnable: 1
   tabIdle: {fileID: 21300000, guid: 9107f4f68e0abd7448d55ef39a9f053d, type: 3}
