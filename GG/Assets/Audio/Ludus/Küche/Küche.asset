@@ -18,9 +18,9 @@ MonoBehaviour:
   neverRepeat: 0
   lastClipIndex: -1
   category: Ludus
-  relativeVolume: 1
+  relativeVolume: 0.5
   spatialize: 1
-  maxDistance: 0
+  maxDistance: 5
   priority: 128
   startingPitch: 1
   pitchShift: 0.05
