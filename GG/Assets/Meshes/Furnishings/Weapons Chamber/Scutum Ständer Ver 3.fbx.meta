@@ -1,19 +1,9 @@
 fileFormatVersion: 2
-guid: 875dde77c2899d74ea1349763eec5438
+guid: 18daacf8f7a8ef649a85d2aa9fdbf283
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Metall Monocolor
-    second: {fileID: 2100000, guid: a1133c8fa5b54174289cc4e981402591, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Void
-    second: {fileID: 2100000, guid: 03d8b2be2e95eb148b39d64d6899a6c2, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -78,7 +68,7 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
-    normalSmoothAngle: 20
+    normalSmoothAngle: 0
     normalImportMode: 1
     tangentImportMode: 3
     normalCalculationMode: 4
