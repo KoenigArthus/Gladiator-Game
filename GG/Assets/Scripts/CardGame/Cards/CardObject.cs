@@ -78,13 +78,6 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     private void Awake()
     {
-        if (cardBack == null)
-            cardBack = Resources.Load<Sprite>("Textures/CardGame/back");
-
-        cardFront = Resources.Load<Sprite>($"Textures/CardGame/Images/{name}");
-        if (cardFront == null)
-            cardFront = Resources.Load<Sprite>($"Textures/CardGame/Images/Debug");
-
         canvas = GetComponentInParent<Canvas>();
 
         Text[] texts = this.GetComponentsInChildren<Text>();
@@ -95,6 +88,14 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         descriptionUI = texts[3];
 
         cardImage = GetComponentInChildren<Image>();
+    }
+
+    private void Start()
+    {
+        if (cardBack == null)
+            cardBack = Resources.Load<Sprite>("Textures/CardGame/back");
+
+        cardFront = Info.Sprite;
     }
 
     // Update is called once per frame

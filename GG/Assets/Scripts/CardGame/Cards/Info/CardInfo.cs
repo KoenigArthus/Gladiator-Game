@@ -11,11 +11,13 @@ public abstract class CardInfo : ICloneable
 {
     #region Fields
 
+    private Dictionary<string, Sprite> cardSprites = new Dictionary<string, Sprite>();
+
     private CardObject card;
 
     private string name = "<Error>";
     private CardSet set = CardSet.None;
-    private CardType type;
+    private CardType type = CardType.Quest;
     private int tier = 0;
 
     private int cost;
@@ -56,6 +58,10 @@ public abstract class CardInfo : ICloneable
     public string Name => name;
     public string TranslatedName => CardLibrary.GetTranslatedName(Name);
     public string TranslatedDescription => CardLibrary.GetTranslatedDescription(Name);
+
+    public Sprite Sprite
+    { get { if (!cardSprites.ContainsKey(name)) cardSprites.Add(name, CardLibrary.GetSprite(name)); return cardSprites[name]; } }
+
     public CardSet Set => set;
     public CardType Type => type;
     public int Tier => tier;
