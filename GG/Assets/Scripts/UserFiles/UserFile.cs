@@ -8,14 +8,33 @@ using UnityEngine.InputSystem;
 
 public abstract class UserFile
 {
+    #region Fields
+
+    private static SaveGame saveGame = new SaveGame("default");
+    private static UserSettings settings = new UserSettings("settings");
+
     private string filename;
+
+    #endregion Fields
 
     public UserFile(string filename)
     {
         this.filename = filename;
+
+        if (File.Exists(Filepath))
+            Load();
+        else
+            Save();
     }
 
+    #region Properties
+
     public string Filepath => $"UserFiles\\Save\\{filename}.xml";
+
+    public static SaveGame SaveGame => saveGame;
+    public static UserSettings Settings => settings;
+
+    #endregion Properties
 
     #region Save/Load
 

@@ -9,6 +9,8 @@ public class DieInfo
 
     private readonly int[] validSideCounts = new int[] { 4, 6, 8, 12, 20 };
 
+    private DieObject die;
+
     private int[] sides;
     private int index = 0;
 
@@ -57,15 +59,36 @@ public class DieInfo
 
     #endregion ctor
 
+    #region Setup
+
+    public void Setup(DieObject die)
+    {
+        this.die = die;
+    }
+
+    #endregion Setup
+
     #region Properties
 
     public int[] Sides => sides;
     public int Value => sides[index];
+    public DieObject Die => die;
+    public bool Rolling => die != null && die.Rolling;
 
     #endregion Properties
 
     public void Roll()
     {
         index = Random.Range(0, sides.Length);
+    }
+
+    public void SpinUp(int amount)
+    {
+        index = Mathf.Min(sides.Length - 1, index + amount);
+    }
+
+    public void SpinDown(int amount)
+    {
+        index = Mathf.Min(0, index - amount);
     }
 }

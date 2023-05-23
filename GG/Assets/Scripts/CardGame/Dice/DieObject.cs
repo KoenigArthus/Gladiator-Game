@@ -4,13 +4,15 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DieObject : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
+public class DieObject : MonoBehaviour, IPointerClickHandler
 {
     #region Fields
 
     private static GameObject diePrefab;
 
     private DieInfo dieInfo;
+    private Player player;
+
     private int rollAmount = 0;
 
     private Image backgroundUI;
@@ -30,10 +32,20 @@ public class DieObject : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
         obj.transform.localPosition = position;
 
         DieObject die = obj.GetComponent<DieObject>();
+        dieInfo.Setup(die);
         die.dieInfo = dieInfo;
 
         return die;
     }
+
+    #region Properties
+
+    public DieInfo Info => dieInfo;
+    public Player Player { get => player; set => player = value; }
+    public bool Selected => player != null && player.Prepareing != null && player.Prepareing.Info.HasDie(Info);
+    public bool Rolling => rollAmount > 0;
+
+    #endregion Properties
 
     #region Main-Loop
 
@@ -57,6 +69,11 @@ public class DieObject : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
             rollAmount--;
         }
 
+        if (Selected)
+            valueUI.color = Color.red;
+        else
+            valueUI.color = Color.black;
+
         valueUI.text = dieInfo.Value.ToString();
     }
 
@@ -64,15 +81,16 @@ public class DieObject : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
 
     public void Roll()
     {
-        rollAmount = Random.Range(300, 501);
+        rollAmount = Random.Range(100, 201);
     }
+
+    #region Pointer
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Roll();
+        if (rollAmount < 1 && player != null && player.Prepareing != null)
+            player.Prepareing.Info.ToggleDie(Info);
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-    }
+    #endregion Pointer
 }

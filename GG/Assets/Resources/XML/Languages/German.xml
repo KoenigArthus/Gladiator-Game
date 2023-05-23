@@ -1,3 +1,49 @@
 <Language>
-	<TextInPascalCase>Übersetzung mit Leehrzeichen</TextInPascalCase>
+	<Thrust Name="Stoß" Description="Schaden entsprechend Augenzahl." />
+	<Shove Name="Schub" Description="Entferne die letzte geg. Verteidigungskarte." />
+	<Jump_Thrust Name="Sprungstoß" Description="Schaden entsprechend Augenzahl, multipliziert mit 2. Füge 2 Schwach zu." />
+
+	<Sting Name="Stich" Description="Schaden entsprechend Augenzahl. Diese Runde: Andere Angriffe fügen zusätzlich 3 Verwundbarkeit zu." />
+	<Mighty_Sweep Name="Mächtiger Schwung" Description="Schaden entsprechend Augenzahl, multipliziert mit 2." />
+	<Pommel_Strike Name="Knaufschlag" Description="Schaden entsprechend Augenzahl. Ziehe 1 Karte, Ziehe 2 Karten wenn diese Karte der erste gespielte Angriff in dieser Runde ist." />
+
+	<Trip_Rope Name="Stolperstrick" Description="Schwäche entsprechend Augenzahl." />
+	<Cast_Net Name="Netzwurf" Description="Entferne: Reduziere Stärke entsprechend Augenzahl." />
+	<Constrict Name="Einschnüren" Description="Entferne: Reduziere Schutz entsprechend Augenzahl." />
+
+	<Shield_Block Name="Schildblock" Description="Block entsprechend Augenzahl." />
+	<Testudo Name="Testudo" Description="15 Block. Du kannst diese Karte nicht aktivieren wenn du in dieser Runde einen Angriff gespielt hast. Du kannst keine Angriffe nach Aktivierung dieser Karte spielen. " />
+	<Shield_Soul Name="Schildseele" Description="1 Schutz, multipliziert mit aktiven Verteidigungskarten." />
+
+	<Dagger_Thrust Name="Dolchstoß" Description="2 Schaden. Blutung entsprechend Augenzahl, falls der Gegner keinen Block hat." />
+	<Artery_Cut Name="Arterienschnitt" Description="Blutung entsprechend Augenzahl, multipliziert mit 2, falls der Gegner keinen Block hat." />
+	<Knife_Throw Name="Messerwurf" Description="Schaden entsprechend Augenzahl. Multipliziert mit 2, falls der Gegner keinen Block hat." />
+
+	<Spear_Thrust Name="Speer Stoß" Description="Schaden entsprechend Augenzahl." />
+	<Fend_Off Name="Abwehren" Description="Block entsprechend Augenzahl." />
+	<Second_Tip Name="Zweite Spitze" Description="6 Schaden. Keine Kosten wenn in dieser Runde ein Angriff gespielt wurde." />
+
+	<Parma Name="Parma" Description="Block entsprechend Augenzahl." />
+	<Shield_Slam Name="Schildschlag" Description="Schaden entsprechend Augenzahl, skaliert mit Stärke und Schutz." />
+	<Sweep Name="Umfegen" Description="Schwäche entsprechend Block." />
+
+	<Jab_Cut Name="Stoß-Schnitt" Description="Blutung entsprechend Augenzahl, falls der Gegner keinen Block hat." />
+	<Bone_Shears Name="Knochenschere" Description="Schaden entsprechend Augenzahl. Diese Runde: Reduziere Schutz entsprechend Augenzahl." />
+	<Dagger_Whet Name="Messer Wetzen" Description="Permanent: Stärke entsprechend Augenzahl." />
+
+	<Head_Matter Name="Kopfsache" Description="Führe sofort eine Regeneration durch." />
+	<Head_Thrust Name="Kopfstoß" Description="2 Schaden. Betäubung entsprechend Augenzahl." />
+	<Boldness Name="Kühnheit" Description="Diese Runde: 4 Stärke und 4 Schutz." />
+
+	<Shoulder_Attack Name="Schulterangriff" Description=" 2 Schaden. Ziehe Karten entsprechend Augenzahl." />
+	<Full_Plate Name="Voll-Platte" Description="Block entsprechend Augenzahl, multipliziert mit 2." />
+	<Agility Name="Agilität" Description="Block entsprechend Augenzahl. Verteidigungsstapel: Zu Rundenbeginn: Ziehe 2 zusätzliche Karten." />
+
+	<Headbutt Name="Kopfnuss" Description="2 Schaden. Verwundbarkeit entsprechend Augenzahl." />
+	<Deflect Name="Ableiten" Description="1 Block. Verteidigungsstapel: Schutz entsprechend Augenzahl." />
+	<Wedge_Slash Name="Keil-Hieb" Description="20 Schaden. Keine Wirkung auf Gegner mit Block." />
+
+	<Kick Name="Tritt" Description="Schaden entsprechend Augenzahl. Multipliziert mit 2, falls der Gegner Block hat." />
+	<Deflect Name="Ausweichschritt" Description="1 Block. Verteidigungsstapel: 5% Chance (max. 75%), multipliziert mit Augenzahl, das geg. Angriffe verfehlen." />
+	<Footwork Name="Beinarbeit" Description="Block entsprechend Augenzahl. Verteidigungsstapel: Zu Rundenbeginn: Lege diese Karte auf den Ablagestapel, Stärke entsprechend abgelegtem Block." />
 </Language>
