@@ -127,8 +127,6 @@ public class ThirdPersonController : MonoBehaviour
         // controlls the view Direction 
         LookAt();
 
-        // zoom
-
 
         // footsteps sound
         if (forceDirection.sqrMagnitude > 0 & !JSAM.AudioManager.IsSoundPlaying(Sounds.teststeps))
