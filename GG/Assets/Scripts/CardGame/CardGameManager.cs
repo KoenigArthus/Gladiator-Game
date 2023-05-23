@@ -42,7 +42,8 @@ public class CardGameManager : MonoBehaviour
         player = new Player(this);
         enemy = new Enemy(this, 40, EnemyBehavior.Tactical);
 
-        CardInfo[] deck = cards.Where(x => x.Tier == 0 && x.Set != CardSet.Health && x.Set != CardSet.Item).ToArray();
+        CardSet[] sets = new CardSet[] { CardSet.Gladius, CardSet.Scutum, CardSet.Cassis, CardSet.Manica, CardSet.Ocrea };
+        CardInfo[] deck = cards.Where(x => x.Tier == 0 && sets.Contains(x.Set)).ToArray();
 
         for (int i = 0; i < deck.Length; i++)
             player.Deck.Add(CardObject.Instantiate((CardInfo)deck[i].Clone(), this.deck.transform.position));
@@ -103,8 +104,10 @@ public class CardGameManager : MonoBehaviour
         enemy.AdvanceRound();
     }
 
-    public void CreateLanugageFileTemplate()
+    public void Debug()
     {
-        CardLibrary.CreateLanugageFile();
+        //CardLibrary.CreateLanugageFile();
+
+        CardLibrary.RenameCardImages(cards);
     }
 }

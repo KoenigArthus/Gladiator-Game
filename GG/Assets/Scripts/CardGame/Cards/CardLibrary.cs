@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -1107,6 +1108,28 @@ public static class CardLibrary
         }
 
         doc.Save(path);
+    }
+
+    public static void RenameCardImages(CardInfo[] cards)
+    {
+        string path = "Assets\\Resources\\Textures\\CardGame\\Images";
+        for (int i = 0; i < cards.Length; i++)
+        {
+            CardInfo current = cards[i];
+            string translatedName = current.TranslatedName;
+
+            string filepath = $"{path}\\{translatedName}.png";
+            if (File.Exists(filepath))
+            {
+                //Move image file
+                string newFilepath = $"{path}\\{current.Name}.png";
+                File.Move(filepath, newFilepath);
+
+                //move meta file
+                if (File.Exists(filepath + ".meta"))
+                    File.Move(filepath + ".meta", newFilepath + ".meta");
+            }
+        }
     }
 
     #endregion Create
