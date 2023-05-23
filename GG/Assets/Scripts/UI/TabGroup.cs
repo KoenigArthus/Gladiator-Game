@@ -9,7 +9,6 @@ public class TabGroup : MonoBehaviour
     public List<TabButtonG> tabButtons;
     public TabButtonG selectedTab;
     public List<GameObject> objectsToSwap;
-    public Button leftButton, rightButton;
     [Tooltip("This prevents you from closing the Tab by clicking on the Button you used to open again")]
     public bool thisGroupsTabsStayOpen;
     [Tooltip("Will load the selected Tab onEnable if there is one")]
@@ -83,7 +82,7 @@ public class TabGroup : MonoBehaviour
             selectedTab = button;
             selectedTab.Select();
             ResetTabs();
-            button.background.sprite = tabSelected;
+            selectedTab.background.sprite = tabSelected;
             int index = button.transform.GetSiblingIndex();
             for (int i = 0; i < objectsToSwap.Count; i++)
             {

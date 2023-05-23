@@ -212,8 +212,8 @@ public class ScreenSpaceOutlines : ScriptableRendererFeature
 
     public override void Create()
     {
-        if (renderPassEvent < RenderPassEvent.BeforeRenderingPrePasses)
-            renderPassEvent = RenderPassEvent.BeforeRenderingPrePasses;
+        //if (renderPassEvent < RenderPassEvent.BeforeRenderingPrePasses)
+         //   renderPassEvent = RenderPassEvent.BeforeRenderingPrePasses;
 
         viewSpaceNormalsTexturePass = new ViewSpaceNormalsTexturePass(renderPassEvent, outlinesLayerMask, outlinesOccluderLayerMask, viewSpaceNormalsTextureSettings);
         screenSpaceOutlinePass = new ScreenSpaceOutlinePass(renderPassEvent, outlineSettings);

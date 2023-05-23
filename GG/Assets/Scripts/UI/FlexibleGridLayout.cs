@@ -14,7 +14,6 @@ public class FlexibleGridLayout : LayoutGroup
         FixedColumns
     }
 
-
     public FitType fitType;
     public int rows;
     public int columns;
@@ -38,14 +37,11 @@ public class FlexibleGridLayout : LayoutGroup
         }
 
 
-
-
         if (fitType == FitType.Width || fitType == FitType.FixedColumns)
             rows = Mathf.CeilToInt(transform.childCount / (float)columns);
 
         if (fitType == FitType.Height || fitType == FitType.FixedRows)
             columns = Mathf.CeilToInt(transform.childCount / (float)rows);
-
 
 
         float parentWidth = rectTransform.rect.width;
@@ -54,8 +50,9 @@ public class FlexibleGridLayout : LayoutGroup
         float cellWidth = parentWidth / columns - (spacing.x / columns * 2) - (padding.left / columns) - (padding.right / columns);
         float cellHeight = parentHeight / rows - (spacing.y / rows * 2) - (padding.top / rows) - (padding.bottom / rows);
 
-        cellSize.x = fitX? cellWidth : cellSize.x;
-        cellSize.y = fitY? cellHeight : cellSize.y;
+
+        cellSize.x = fitX ? cellWidth : cellSize.x;
+        cellSize.y = fitY ? cellHeight : cellSize.y;
 
         int rowCount = 0;
         int columnCount = 0;
@@ -67,11 +64,34 @@ public class FlexibleGridLayout : LayoutGroup
 
             var item = rectChildren[i];
 
-            var xPos = (cellSize.x * columnCount) + (spacing.x * columnCount) + padding.left;
-            var yPos = (cellSize.y * rowCount) + (spacing.y * rowCount) + padding.top;
+            RectTransform previousItem = null;
 
-            SetChildAlongAxis(item, 0, xPos, cellSize.x);
-            SetChildAlongAxis(item, 1, yPos, cellSize.y);
+            /*if(rectChildren[i - 1] != null)
+            {
+               previousItem = rectChildren[i - 1];
+            }*/
+
+            var xPos = 0f;
+            var yPos = 0f;
+
+            /*if (item.gameObject.GetComponent<LayoutElement>() != null)
+            {
+                LayoutElement layoutElement = item.gameObject.GetComponent<LayoutElement>();
+
+                xPos = (layoutElement.preferredWidth * columnCount) + (spacing.x * columnCount) + padding.left - (item.rect.width);
+                yPos = (layoutElement.preferredHeight * rowCount) + (spacing.y * rowCount) + padding.top;
+
+                SetChildAlongAxis(item, 0, xPos, layoutElement.preferredWidth );
+                SetChildAlongAxis(item, 1, yPos, layoutElement.preferredHeight);
+            }*/
+            //else
+            //{
+                xPos = (cellSize.x * columnCount) + (spacing.x * columnCount) + padding.left;
+                yPos = (cellSize.y * rowCount) + (spacing.y * rowCount) + padding.top;
+                SetChildAlongAxis(item, 0, xPos, cellSize.x);
+                SetChildAlongAxis(item, 1, yPos, cellSize.y);
+            //}
+
 
 
         }
@@ -95,4 +115,8 @@ public class FlexibleGridLayout : LayoutGroup
     {
         //throw new System.NotImplementedException();
     }
+
+    
+
+
 }
