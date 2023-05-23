@@ -79,8 +79,6 @@ public class TabGroup : MonoBehaviour
         }
         else
         {
-            if (selectedTab != null)
-                selectedTab.Deselect();
 
             selectedTab = button;
             selectedTab.Select();
