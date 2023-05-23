@@ -20,7 +20,7 @@ MonoBehaviour:
   category: Ludus
   relativeVolume: 0.5
   spatialize: 1
-  maxDistance: 5
+  maxDistance: 4
   priority: 128
   startingPitch: 1
   pitchShift: 0.05
