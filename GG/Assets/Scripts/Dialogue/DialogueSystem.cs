@@ -55,6 +55,11 @@ public class DialogueSystem : MonoBehaviour
 
         variableStorage = this.GetComponent<VariableStorageCustom>();
 
+        // Find all objects with the type "Character" in the scene
+        Character[] characterObjects = FindObjectsOfType<Character>();
+
+        // Store the found characters in the list
+        characters.AddRange(characterObjects);
     }
 
     private void Update()
@@ -81,24 +86,18 @@ public class DialogueSystem : MonoBehaviour
         if (characters.Find(c => c.characterName == speakerName) != null)
         {
             speakingCharacter = characters.Find(c => c.characterName == speakerName);
-            newSprite = speakingCharacter.portrait;
+            portaitImage.sprite = speakingCharacter.portrait;
             ChangeToDialogueBox();
         }
         else if (characters.Find(c => c.englishCharacterName == speakerName) != null)
         {
             speakingCharacter = characters.Find(c => c.englishCharacterName == speakerName);
-            newSprite = speakingCharacter.portrait;
+            portaitImage.sprite = speakingCharacter.portrait;
             ChangeToDialogueBox();
         }
         else
         Debug.LogWarning("the Character has not been found!");
 
-        // Check if sprite was successfully loaded
-        if (newSprite != null)
-        {
-            // Change the sprite of the image component
-            portaitImage.sprite = newSprite;
-        }
     }
 
     // Is used in the Character Name View Script on the Dialogue System Game Object at OnNameNotPresent() 
@@ -136,6 +135,48 @@ public class DialogueSystem : MonoBehaviour
         Debug.Log(cardName);
     }
 
+
+    [YarnCommand("start_fight")]
+    public static void Fight()
+    {
+        LevelLoader.i.LoadScene("CardGameTest");
+    }
+
+    [YarnCommand("log")]
+    public static void Log(string message)
+    {
+        Debug.Log(message);
+    }
+
+    [YarnCommand("log_int")]
+    public static void Log(int message)
+    {
+        Debug.Log(message);
+    }
+
+    [YarnCommand("activate")]
+    public static void ActivateGameObject(GameObject obj)
+    {
+        Debug.Log(obj.name);
+    }
+
+    [YarnFunction("get_time")]
+    public static int GetTime()
+    {
+        return 0;
+    }
+
+    [YarnCommand("set_time")]
+    public static void SetTime(int time)
+    {
+        Debug.Log(time);
+    }
+
+    [YarnFunction("hastime")]
+    public static bool HasTime(bool hastime)
+    {
+        return true;
+    }
 
 
 }

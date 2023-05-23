@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
+using JSAM;
 
 
 public class ThirdPersonController : MonoBehaviour
@@ -12,20 +14,14 @@ public class ThirdPersonController : MonoBehaviour
     private InputAction move;
 
     //movement fields
-    [SerializeField]
-    private bool movementEnabled;
+    [SerializeField] private bool movementEnabled;
     private Rigidbody rb;
-    /*[SerializeField]
-    private float movementForce = 1f;*/
-    [SerializeField]
-    private float maxSpeed = 5f;
-    [SerializeField]
-    private float turnTime = 1f;
+    [SerializeField] private float maxSpeed = 5f;
+    [SerializeField] private float turnTime = 1f;
     private float turnVelocity;
     private Vector3 forceDirection = Vector3.zero;
-    [SerializeField]
-    private Camera cam;
-
+    [SerializeField] private Camera cam;
+    private CinemachineFollowZoom cineZoom;
 
 
     //Initialization of the controlls
@@ -116,9 +112,26 @@ public class ThirdPersonController : MonoBehaviour
         forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(cam);
         forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(cam);
 
+        // footsteps sound
+        Debug.Log("forceDirection magnitude: " + forceDirection.magnitude);
+
+        if (forceDirection.sqrMagnitude <= 0 & JSAM.AudioManager.IsSoundPlaying(Sounds.steps))
+        {
+
+            Debug.Log("Stopping footsteps sound.");
+            JSAM.AudioManager.StopSound(Sounds.steps);
+        }
+        else if (forceDirection.sqrMagnitude > 0 & !JSAM.AudioManager.IsSoundPlaying(Sounds.steps))
+        {
+            Debug.Log("Playing footsteps sound.");
+            JSAM.AudioManager.PlaySound(Sounds.steps);
+        }
+       
+
         // moves the player
         rb.AddForce(forceDirection, ForceMode.Impulse);
         forceDirection = Vector3.zero;
+
 
         Vector3 horizontalVelocity = rb.velocity;
         horizontalVelocity.y = 0f;
@@ -129,6 +142,11 @@ public class ThirdPersonController : MonoBehaviour
 
         // controlls the view Direction 
         LookAt();
+
+
+        
+        
+        
     }
 
 

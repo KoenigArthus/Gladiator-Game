@@ -1,0 +1,64 @@
+﻿//Wir müssen hier so einen kleinen Schwenker der Kamera einbauen, wenn der Ausbilder über die Küche und die Baracken redet.
+title: Aus1
+tags:
+position: -93,-313
+---
+<<if visited("Aus2")>>
+    <<jump Aus3>>
+<<endif>>
+Ausbilder: Willkommen!
+Ausbilder: ich sehe hier vor mir Diebe, Mörder, Verbrecher, Sklaven...
+Ausbilder: Wenn wir diese Schwelle zum Ludus überschreiten,
+Ausbilder: spielt das alles keine Rolle mehr, 
+Ausbilder: von da an seit ihr Gladiatoren. 
+Ausbilder: Ihr werdet das ehrenhafte Leben eines Gladiatoren führen, 
+Ausbilder: trainieren wie ein Krieger, 
+Ausbilder: essen wie ein Krieger, 
+Ausbilder: kämpfen wie ein Krieger und 
+Ausbilder: sterben wie ein Krieger.
+Ausbilder: Wenn euch dieses Schicksal nicht zusagt, dürft ihr euch jetzt gerne der Wüste hingeben, 
+Ausbilder: doch seid euch bewusst, in alle Himmelsrichtung,
+Ausbilder: Tage und Nächte, nichts weiter als trockener Sand. 
+Ausbilder: Wenn ihr also den sicheren Tod wünscht dürft ihr jetzt gehen.
+<<jump Aus2>>
+===
+title: Aus2
+position: -321,-77
+---
+Ausbilder: Die Reise hierher hat euch bestimmt erschöpft, 
+Ausbilder: wir haben hier Betten für euch vorbereitet,
+Ausbilder: und hier könnt ihr essen.
+Ausbilder: Ich empfehle euch wärmstens, erstmal etwas zu essen
+Ausbilder: und euch dann etwas auszuschlafen.
+Ausbilder: Heute Abend, werden wir euch in der Arena Testen!
+Ausbilder: Ha! Ich freue mich bereits auf eure Darbietung!
+Ausbilder: Keine Angst, ist nur ein Trainingskampf, ich werd auf euch aufpassen!
+===
+title: Aus3
+position: -451,-387
+---
+<<if visited("Aus3")>>
+    <<jump Aus4>>
+<<endif>>
+Ausbilder: Keine Scheu Gladiator!
+Ausbilder: Die Küche ist warm und herzlich!
+Ausbilder: Die Betten warm und kuschlig! haha,
+Ausbilder: und falls du Probleme hast mit deinem bevorstehenden Schicksal umzugehen,
+Ausbilder: du weist schon potzenzielle Traumata, verkrüppelnde Verletzungen, vielleicht sogar Tod...
+Ausbilder: Dann, kannst du hier ein Buch zum Thema 
+Ausbilder: "Pflicht und Glückseligkeit" lesen!
+Ausbilder: Das wird deine Realität nicht ändern, HA
+Ausbilder: Aber vielleicht dabei helfen, dich damit abzufinden ein Todgeweihter zu sein...
+Ausbilder: Ahh... Hör zu...
+Ausbilder: Du musst nur zehn Kämpfe überleben, nicht mal gewinnen, nur überleben
+Ausbilder: Dann kann der Lanista, um deine Befreiung bitten.
+Ausbilder: Also reis dich zusammen! Sei die ehrwürdigste und liebenswürdigste Person die du sein kannst!
+Ausbilder: Überzeuge den Lanista, das dein Leben es Wert ist, verschohnt zu werden!
+Ausbilder: Das ist die beste zweite Chance die du kriegen kannst!
+===
+title: Aus4
+position: -592,-166
+---
+Ausbilder: Komm schon! Du brauchst Nahrung und Schlaf.
+Ausbilder: Fang besser an dich Einzuleben, HA!
+===

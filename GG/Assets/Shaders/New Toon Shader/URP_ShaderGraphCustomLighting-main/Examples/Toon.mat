@@ -23,15 +23,15 @@ Material:
   m_Name: Toon
   m_Shader: {fileID: -6465566751694194690, guid: 2753d56cee62e1e4c815b7d92a3a0328,
     type: 3}
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _SPECULAR_ON
   m_InvalidKeywords:
   - ADDITIONAL_LIGHTS_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2000
-  stringTagMap:
-    RenderType: Opaque
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -75,10 +75,12 @@ Material:
     - _LIGHTMAP_SHADOW_MIXING: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _SPECULAR: 0
+    - _ReceiveShadows: 1
+    - _SPECULAR: 1
     - _Smoothness: 0.5
     - _SrcBlend: 1
     - _Surface: 0
+    - _WorkflowMode: 1
     - _ZTest: 4
     - _ZWrite: 1
     - _ZWriteControl: 0

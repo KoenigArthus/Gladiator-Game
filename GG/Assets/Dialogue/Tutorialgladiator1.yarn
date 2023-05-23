@@ -1,0 +1,116 @@
+﻿title: tg1
+tags:
+position: -222,807
+---
+<<declare $player_rhetoric = 0>>
+<<if visited("tgENDE1")>>
+    <<jump tgENDE1>>
+<<endif>>
+<<if visited ("tgENDE2")>>
+    <<jump tgENDE2>>
+<<endif>>
+<<if visited ("tgENDE2") and visited("tgENDE1")>>
+    <<jump tgENDE2>>
+<<endif>>
+Tutorialgladiator: Ich bin froh das wir nicht bis zum Tod kämpfen müssen...
+Tutorialgladiator: Noch nicht zumindest...
+-> Legenden erzählen Gladiatoren hätten keine Todesangst
+    <<jump tg2>>
+-> (Verlassen) Wir werden sehen 
+    <<jump tgENDE1>>
+===
+title: tg2
+position: 59,436
+---
+Tutorialgladiator: So ein Schwachsinn...
+Tutorialgladiator: Welcher Mensch hat den keine Angst vor dem Tod?
+Tutorialgladiator: Egal, du bist noch unerfahren,
+Tutorialgladiator: naive
+Tutorialgladiator: Wenn du, erstmal solange wie ich dabei bist, wirst du verstehen was ich meine...
+-> Warst du schon vorher Gladiator, in einem anderen Ludus?
+    <<jump tg3>>
+-> (Verlassen) Wir werden sehen 
+    <<jump tgENDE1>>
+===
+title: tgENDE1
+position: -488,480
+---
+Tutorialgladiator: Geh jetzt...
+Tutorialgladiator: Ich muss mich sammeln
+<<if $player_rhetoric >= 1 and visited ("tgENDE2")==false>>
+    Reiß dich mal zusammen! Dir wird hier die Chance frei zu sein gewährt!
+    Hast du den gar keine Bestimmung?!
+    <<jump tg4>>
+<<endif>>
+===
+title: tg3
+position: -251,-240
+---
+Tutorialgladiator: Nein...
+Tutorialgladiator: Ich war Dieb auf der Straße.
+Tutorialgladiator: ist eigentlich das Selbe.
+Tutorialgladiator: Auf der Straße legte mich die Armut in Ketten,
+Tutorialgladiator: hier ein Lanista...
+Tutorialgladiator: Wahrlich, nur ein anderes Gefängnis...
+-> Es ist traurig das du so denkst
+    <<jump tgENDE1>>
+-> (Rhetorik I) Du scheinst ein Mann ohne Bestimmung zu sein <<if $player_rhetoric >= 1>>
+    <<jump tg4>>
+===
+title: tg4
+position: -539,21
+---
+Tutorialgladiator: Was weist du schon über Bestimmung?
+Tutorialgladiator: Alle Gladiatoren hier, teilen das selbe Schicksal
+Tutorialgladiator: Wir sollen in der Arena sterben!
+Tutorialgladiator: Das ist unsere Bestimmung!
+Tutorialgladiator: ICH bin nicht anders! Und DU bist nicht anders!
+-> Du und ich, wir sind komplett verschieden
+    <<jump tg5>>
+-> Du solltest dir vor Augen führen wofür du kämpfst
+    <<jump tg6>>
+===
+title: tg6
+position: -766,404
+---
+Tutorialgladiator: Und du solltest dir vor Augen führen was, du dir einbildest wer du bist!
+Tutorialgladiator: Hör auf zu philosophieren und sieh dich um!
+Tutorialgladiator: Wir sind hier damit wir zur Unterhaltung irgendwelcher Adliger draufgehen
+<<jump tgENDE2>>
+
+===
+title: tgENDE2
+position: -1092,85
+---
+Tutorialgladiator: Verschwinde jetzt... Ich habe genug.
+<<set $tgday to 1>>
+===
+title: tg5
+position: -840,-190
+---
+Tutorialgladiator: Was macht uns den anders?...
+-> Ich weis wofür ich Kämpfe
+    <<jump tgENDE2>>
+===
+
+
+
+title: tg0
+position: -215,586
+---
+
+<<declare $tgday = 0>>
+//<<log_int $tgday>>
+//<<declare $tgtime = 0>>
+<<if $tgday == 0>>
+    <<if visited("tgENDE2")>>
+        <<jump tg7>>
+    <<elseif $tgday == 0>>
+        <<jump tg1>>
+    <<endif>>
+<<endif>>
+<<if $tgday != 0>>
+    <<jump tgENDE2>>
+<<endif>>
+
+===
