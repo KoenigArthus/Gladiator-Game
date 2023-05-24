@@ -51,10 +51,6 @@ public class PermanentCardInfo : CardInfo
 
     public override object Clone()
     {
-        return new PermanentCardInfo(Name, Set, Tier, Cost, DestroyOnDiscard)
-        {
-            CostReduction = this.CostReduction,
-            effect = this.effect
-        };
+        return new PermanentCardInfo(Name, Set, Tier, Cost, DestroyOnDiscard) { CostReduction = this.CostReduction, effect = this.effect };
     }
 }

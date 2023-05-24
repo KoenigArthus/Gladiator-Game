@@ -51,6 +51,6 @@ public class PassiveBlockCardInfo : BlockCardInfo
 
     public override object Clone()
     {
-        return new PassiveBlockCardInfo(Name, Set, Tier, Cost, BlockPower, defendEvent, DestroyOnDiscard);
+        return new PassiveBlockCardInfo(Name, Set, Tier, Cost, BlockPower, defendEvent, DestroyOnDiscard) { action = this.action, CostReduction = this.CostReduction };
     }
 }

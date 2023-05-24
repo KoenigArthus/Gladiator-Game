@@ -243,6 +243,7 @@ public class Player : Participant
 
     public void LockCardType(CardType type)
     {
+        Debug.Log($"{type} locked");
         lockedCardTypes[(int)type] = true;
     }
 

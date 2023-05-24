@@ -760,7 +760,7 @@ public static class CardLibrary
 
             //Keil-Hieb - 20 Schaden. Keine Wirkung auf Gegner mit Block.
             new InstantCardInfo("Wedge_Slash", CardSet.Manica, CardType.Attack, 0,2,
-            (CardInfo c) => { if (c.Enemy.Block > 0) c.Player.Attack(c.Enemy, 20); }),
+            (CardInfo c) => { if (c.Enemy.Block < 1) c.Player.Attack(c.Enemy, 20); }),
 
             #endregion Tier 0
 
