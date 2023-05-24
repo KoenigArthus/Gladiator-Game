@@ -4,8 +4,10 @@ namespace JSAM {
         BathRaw2,
         BathRaw3,
         Küche,
+        SandSteps,
         Stable,
         steps,
+        StoneSteps,
         torchtest,
         wavetest
     }

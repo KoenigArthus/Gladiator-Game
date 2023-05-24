@@ -19,9 +19,8 @@ public class FlexibleGridLayout : LayoutGroup
     public int columns;
     public Vector2 cellSize;
     public Vector2 spacing;
-    public bool fitX;
-    public bool fitY;
-
+    [CustomAttributes.ReadOnly] public bool fitX, fitY;
+    public bool letChildsExpand;
     public override void CalculateLayoutInputHorizontal()
     {
         base.CalculateLayoutInputHorizontal();
@@ -64,35 +63,11 @@ public class FlexibleGridLayout : LayoutGroup
 
             var item = rectChildren[i];
 
-            RectTransform previousItem = null;
+            var xPos = (cellSize.x * columnCount) + (spacing.x * columnCount) + padding.left;
+            var yPos = (cellSize.y * rowCount) + (spacing.y * rowCount) + padding.top;
 
-            /*if(rectChildren[i - 1] != null)
-            {
-               previousItem = rectChildren[i - 1];
-            }*/
-
-            var xPos = 0f;
-            var yPos = 0f;
-
-            /*if (item.gameObject.GetComponent<LayoutElement>() != null)
-            {
-                LayoutElement layoutElement = item.gameObject.GetComponent<LayoutElement>();
-
-                xPos = (layoutElement.preferredWidth * columnCount) + (spacing.x * columnCount) + padding.left - (item.rect.width);
-                yPos = (layoutElement.preferredHeight * rowCount) + (spacing.y * rowCount) + padding.top;
-
-                SetChildAlongAxis(item, 0, xPos, layoutElement.preferredWidth );
-                SetChildAlongAxis(item, 1, yPos, layoutElement.preferredHeight);
-            }*/
-            //else
-            //{
-                xPos = (cellSize.x * columnCount) + (spacing.x * columnCount) + padding.left;
-                yPos = (cellSize.y * rowCount) + (spacing.y * rowCount) + padding.top;
-                SetChildAlongAxis(item, 0, xPos, cellSize.x);
-                SetChildAlongAxis(item, 1, yPos, cellSize.y);
-            //}
-
-
+            SetChildAlongAxis(item, 0, xPos, cellSize.x);
+            SetChildAlongAxis(item, 1, yPos, cellSize.y);
 
         }
 
@@ -116,7 +91,7 @@ public class FlexibleGridLayout : LayoutGroup
         //throw new System.NotImplementedException();
     }
 
-    
+
 
 
 }

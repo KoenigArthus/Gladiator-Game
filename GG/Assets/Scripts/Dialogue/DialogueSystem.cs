@@ -79,7 +79,6 @@ public class DialogueSystem : MonoBehaviour
     public void ChangeCharacterPortrait()
     {
         speakerName = lineViewCustom.currentLine.CharacterName;
-        Sprite newSprite = null;
 
         // Chosing picture depending on localization of the name
 
