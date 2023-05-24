@@ -21,6 +21,8 @@ public class CardGameManager : MonoBehaviour
 
     private int drawAmount = 4;
 
+    private bool battleEnded = false;
+
     #endregion Fields
 
     #region Properties
@@ -54,6 +56,8 @@ public class CardGameManager : MonoBehaviour
 
     private void Update()
     {
+        if (battleEnded) return;
+
         if (player.Health > 0 && enemy.Health > 0)
         {
             player.Update();
@@ -70,6 +74,7 @@ public class CardGameManager : MonoBehaviour
         else
         {
             LevelLoader.i.LoadScene("Ludus");
+            battleEnded = true;
         }
     }
 
