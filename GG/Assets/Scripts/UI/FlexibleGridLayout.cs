@@ -65,8 +65,9 @@ public class FlexibleGridLayout : LayoutGroup
 
             var xPos = (cellSize.x * columnCount) + (spacing.x * columnCount) + padding.left;
             var yPos = (cellSize.y * rowCount) + (spacing.y * rowCount) + padding.top;
-                SetChildAlongAxis(item, 0, xPos, cellSize.x);
-                SetChildAlongAxis(item, 1, yPos, cellSize.y);
+
+            SetChildAlongAxis(item, 0, xPos, cellSize.x);
+            SetChildAlongAxis(item, 1, yPos, cellSize.y);
 
         }
 
@@ -90,7 +91,7 @@ public class FlexibleGridLayout : LayoutGroup
         //throw new System.NotImplementedException();
     }
 
-    
+
 
 
 }
