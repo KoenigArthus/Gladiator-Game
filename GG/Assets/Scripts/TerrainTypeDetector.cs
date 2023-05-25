@@ -30,6 +30,10 @@ public class TerrainTypeDetector : MonoBehaviour
             {
                 JSAM.AudioManager.PlaySound(Sounds.StoneSteps);
             }
+            else
+            {
+                Debug.LogWarning("for the terrain " + terrainType + " was no sound assigned");
+            }
         }
     }
 
