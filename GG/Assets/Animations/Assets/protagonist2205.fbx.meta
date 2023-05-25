@@ -115,10 +115,11 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.34375116
-        functionName: NewEvent
+      - time: 0.46249288
+        functionName: Step
         data: 
-        objectReferenceParameter: {instanceID: 0}
+        objectReferenceParameter: {fileID: 11500000, guid: d5395fb4f18e8d249a2950f5f8ad1fbd,
+          type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0

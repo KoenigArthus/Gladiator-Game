@@ -1,14 +1,21 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.Rendering;
 
 public class Fade : MonoBehaviour
 {
     public GameObject roof = null;
-    public Material fadingMaterial = null;
+    public Material fadingMaterialRooftiles = null;
+    public Material fadingMaterialWall = null;
     public float fadeDuration = 1f;
     private Material[] roofMaterials;
     private Color[] initialDiffuseColors;
     private int[] initialSurfaceValues;
+    private List<Material> replacedMaterials;
+    private List<Material> fadingMaterials;
 
+    private const string LUDUS_ROOFTILES_MATERIAL_NAME = "Ludus Rooftiles";
     private const string LUDUS_WALL_MATERIAL_NAME = "Ludus Wall";
     private const string ALPHA_BLEND_KEYWORD = "_ALPHA_BLEND";
 
@@ -21,10 +28,24 @@ public class Fade : MonoBehaviour
             roofMaterials = roofRenderer.materials;
             initialDiffuseColors = new Color[roofMaterials.Length];
             initialSurfaceValues = new int[roofMaterials.Length];
+            replacedMaterials = new List<Material>();
+            fadingMaterials = new List<Material>();
+
             for (int i = 0; i < roofMaterials.Length; i++)
             {
                 initialDiffuseColors[i] = roofMaterials[i].GetColor("_DiffuseColor");
                 initialSurfaceValues[i] = roofMaterials[i].GetInt("_Surface");
+
+                if (roofMaterials[i].name == LUDUS_ROOFTILES_MATERIAL_NAME)
+                {
+                    replacedMaterials.Add(roofMaterials[i]);
+                    fadingMaterials.Add(fadingMaterialRooftiles);
+                }
+                else if (roofMaterials[i].name == LUDUS_WALL_MATERIAL_NAME)
+                {
+                    replacedMaterials.Add(roofMaterials[i]);
+                    fadingMaterials.Add(fadingMaterialWall);
+                }
             }
         }
     }
@@ -41,17 +62,23 @@ public class Fade : MonoBehaviour
     private void ApplyFadingMaterial()
     {
         Renderer roofRenderer = roof.GetComponent<Renderer>();
-        if (roofRenderer != null && fadingMaterial != null)
+        if (roofRenderer != null && fadingMaterials.Count > 0)
         {
-            // Apply the fading material to the roof
+            // Apply the fading materials to the roof
             Material[] newMaterials = new Material[roofMaterials.Length];
             for (int i = 0; i < roofMaterials.Length; i++)
             {
-                newMaterials[i] = fadingMaterial;
+                if (roofMaterials[i].name == LUDUS_ROOFTILES_MATERIAL_NAME)
+                    newMaterials[i] = fadingMaterialRooftiles;
+                else if (roofMaterials[i].name == LUDUS_WALL_MATERIAL_NAME)
+                    newMaterials[i] = fadingMaterialWall;
+                else
+                    newMaterials[i] = roofMaterials[i];
             }
             roofRenderer.materials = newMaterials;
         }
     }
+
 
     private bool IsCharacter(Collider collider)
     {
@@ -59,7 +86,7 @@ public class Fade : MonoBehaviour
         return true;
     }
 
-    private System.Collections.IEnumerator FadeMaterials(float startAlpha, float targetAlpha, int surfaceValue)
+    private IEnumerator FadeMaterials(float startAlpha, float targetAlpha, int surfaceValue)
     {
         float elapsedTime = 0f;
 
@@ -120,6 +147,7 @@ public class Fade : MonoBehaviour
         }
     }
 }
+
 
 
 
