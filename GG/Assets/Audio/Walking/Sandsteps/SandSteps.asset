@@ -22,10 +22,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b7b0f4accead51343bd505bcd81fbfa1, type: 3}
   useLibrary: 1
   neverRepeat: 1
-  lastClipIndex: 0
+  lastClipIndex: 4
   category: Walking
   relativeVolume: 1
-  spatialize: 1
+  spatialize: 0
   maxDistance: 0
   priority: 128
   startingPitch: 0.85
