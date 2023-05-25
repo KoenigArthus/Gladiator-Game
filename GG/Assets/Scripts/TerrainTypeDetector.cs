@@ -1,10 +1,10 @@
+using JSAM;
 using UnityEngine;
 
 public class TerrainTypeDetector : MonoBehaviour
 {
     private Terrain terrain;
     private TerrainData terrainData;
-    private string currentTerrainType = "";
 
     private void Start()
     {
@@ -24,13 +24,11 @@ public class TerrainTypeDetector : MonoBehaviour
 
             if (terrainType.Contains("Sand"))
             {
-                currentTerrainType = "Sand";
-                Debug.Log("Entered Sand terrain");
+                JSAM.AudioManager.PlaySound(Sounds.SandSteps);
             }
             else if (terrainType.Contains("Stone"))
             {
-                currentTerrainType = "Stone";
-                Debug.Log("Entered Stone terrain");
+                JSAM.AudioManager.PlaySound(Sounds.StoneSteps);
             }
         }
     }
