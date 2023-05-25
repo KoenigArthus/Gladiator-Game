@@ -7,7 +7,7 @@ public class Slot : MonoBehaviour, IDropHandler
 {
     public void OnDrop(PointerEventData eventData)
     {
-        if (transform.childCount == 0)
+        if (transform.childCount == 0 && eventData.pointerDrag.GetComponent<DraggableCard>() != null)
         {
 
             GameObject dropped = eventData.pointerDrag;
