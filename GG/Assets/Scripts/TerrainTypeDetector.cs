@@ -12,42 +12,29 @@ public class TerrainTypeDetector : MonoBehaviour
         terrainData = terrain.terrainData;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void PlayFootstepSound()
     {
-        if (currentTerrainType == "")
-        {
-            Vector3 playerPosition = transform.position;
-            Vector3 terrainLocalPos = terrain.transform.InverseTransformPoint(playerPosition);
-            int terrainTextureIndex = GetMainTextureIndex(terrainLocalPos);
+        Vector3 playerPosition = transform.position;
+        Vector3 terrainLocalPos = terrain.transform.InverseTransformPoint(playerPosition);
+        int terrainTextureIndex = GetMainTextureIndex(terrainLocalPos);
 
-            if (terrainTextureIndex >= 0 && terrainTextureIndex < terrainData.alphamapLayers)
+        if (terrainTextureIndex >= 0 && terrainTextureIndex < terrainData.alphamapLayers)
+        {
+            string terrainType = terrainData.splatPrototypes[terrainTextureIndex].texture.name;
+
+            if (terrainType.Contains("Sand"))
             {
-                string terrainType = terrainData.splatPrototypes[terrainTextureIndex].texture.name;
-
-                if (terrainType.Contains("Sand"))
-                {
-                    currentTerrainType = "Sand";
-                    Debug.Log("Entered Sand terrain");
-                }
-                else if (terrainType.Contains("Stone"))
-                {
-                    currentTerrainType = "Stone";
-                    Debug.Log("Entered Stone terrain");
-                }
+                currentTerrainType = "Sand";
+                Debug.Log("Entered Sand terrain");
             }
-            
+            else if (terrainType.Contains("Stone"))
+            {
+                currentTerrainType = "Stone";
+                Debug.Log("Entered Stone terrain");
+            }
         }
-        Debug.Log("hund");
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (currentTerrainType != "")
-        {
-            currentTerrainType = "";
-            Debug.Log("Left terrain");
-        }
-    }
 
     private int GetMainTextureIndex(Vector3 terrainLocalPos)
     {
