@@ -2736,7 +2736,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equipmentPanel: {fileID: 785587002}
   deckPanel: {fileID: 517852290}
-  inventoryCardPreFab: {fileID: 6209292183351981920, guid: c3a15c5c127cacf41b112ab007d95681,
+  dragableInventoryCardPreFab: {fileID: 6209292183351981920, guid: c3a15c5c127cacf41b112ab007d95681,
+    type: 3}
+  inventoryCardPreFab: {fileID: 6209292183351981920, guid: 44af9dcf570f29849a87e4d8c44c23d6,
     type: 3}
   rowPreFabFourColumns: {fileID: 5240763523965115542, guid: b9aa078b85687964eb9c76dbf2beb532,
     type: 3}
@@ -2778,40 +2780,7 @@ MonoBehaviour:
   - 
   - 
   - 
-  deckCardEntries:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  deckCardEntries: []
 --- !u!1 &541750316
 GameObject:
   m_ObjectHideFlags: 0

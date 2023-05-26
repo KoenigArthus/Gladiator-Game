@@ -9,7 +9,7 @@ Hi
 title: Node
 position: 988,322
 ---
-N: Willst du Kämpfen?
+N: Willst du ein Träningskampf machen mein Gladiator Bro ?
 -> Nein
 -> Ja
 	//<<set_time to {get_time()} + 1>>

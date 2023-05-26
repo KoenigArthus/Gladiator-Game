@@ -6220,7 +6220,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 19.46295
+  field of view: 10
   orthographic: 0
   orthographic size: 10
   m_Depth: 1
@@ -6312,7 +6312,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 430579874}
-  m_LocalRotation: {x: 0.33505806, y: 0.3566303, z: -0.1387856, w: 0.8609817}
+  m_LocalRotation: {x: 0.3379491, y: 0.35616195, z: -0.1399831, w: 0.85985106}
   m_LocalPosition: {x: 135.44, y: 30, z: 121}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16969,7 +16969,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194004730}
-  m_LocalRotation: {x: 0.33505806, y: 0.3566303, z: -0.1387856, w: 0.8609817}
+  m_LocalRotation: {x: 0.3379491, y: 0.35616195, z: -0.1399831, w: 0.85985106}
   m_LocalPosition: {x: 135.44, y: 30, z: 121}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16990,7 +16990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4700f9f03ad19f94baf0367cb7a9c988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Width: 15
+  m_Width: 7.5
   m_Damping: 1
   m_MinFOV: 10
   m_MaxFOV: 20
@@ -23806,7 +23806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 097b95c9f69f04f2d8c08a817e7786af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueView: {fileID: 0}
+  dialogueView: {fileID: 1322513820}
   continueActionType: 1
   continueActionKeyCode: 323
   continueActionReference: {fileID: 0}
@@ -23840,7 +23840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 097b95c9f69f04f2d8c08a817e7786af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueView: {fileID: 0}
+  dialogueView: {fileID: 1322513820}
   continueActionType: 1
   continueActionKeyCode: 102
   continueActionReference: {fileID: 0}
@@ -23885,7 +23885,7 @@ MonoBehaviour:
   onCharacterTyped:
     m_PersistentCalls:
       m_Calls: []
-  typewriterEffectSpeed: 30
+  typewriterEffectSpeed: 50
   continueButton: {fileID: 0}
   holdTime: 1.07
   autoAdvance: 0

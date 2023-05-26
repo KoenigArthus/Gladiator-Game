@@ -1,16 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using Unity.VisualScripting;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.Localization.SmartFormat.PersistentVariables;
-using static UnityEngine.Rendering.DebugUI;
 
 
 public class Deckbuilder : MonoBehaviour
 {
     [SerializeField] private Transform equipmentPanel, deckPanel;
-    [SerializeField] private GameObject inventoryCardPreFab;
+    [SerializeField] private GameObject dragableInventoryCardPreFab, inventoryCardPreFab;
     [SerializeField] private GameObject rowPreFabFourColumns, rowPreFabFiveColumns;
     public List<Transform> equipmentSlots = new List<Transform>();
     public List<Transform> deckSlots = new List<Transform>();
@@ -19,10 +16,13 @@ public class Deckbuilder : MonoBehaviour
 
     public void OnEnable()
     {
+        FillEntries(CardLibrary.Cards.Where(x => x.Set == CardSet.Trident), deckCardEntries);
+        FillEntries(CardLibrary.Cards.Where(x => x.Set == CardSet.Rete), deckCardEntries);
+        FillEntries(CardLibrary.Cards.Where(x => x.Set == CardSet.Trident),deckCardEntries);
         ClearPanel(equipmentPanel);
         ClearPanel(deckPanel);
-        FillPanel(equipmentPanel, equipmentSlots, equipmentCardEntries, 4);
-        FillPanel(deckPanel, deckSlots, deckCardEntries, 5);
+        FillPanel(dragableInventoryCardPreFab, equipmentPanel, equipmentSlots, equipmentCardEntries, 4);
+        FillPanel(inventoryCardPreFab, deckPanel, deckSlots, deckCardEntries, 5);
     }
     public void OnDisable()
     {
@@ -30,9 +30,16 @@ public class Deckbuilder : MonoBehaviour
         ClearPanel(deckPanel);
     }
 
+    private void FillEntries(IEnumerable<CardInfo> cards, List<string> entrieList)
+    {
+        entrieList.Clear();
+        foreach (CardInfo card in cards)
+        {
+            entrieList.Add(card.Name);
+        }
+    }
 
-
-    private void FillPanel(Transform panel, List<Transform> slotList, List<string> entries, int columnCount)
+    private void FillPanel(GameObject cardPreFab, Transform panel, List<Transform> slotList, List<string> entries, int columnCount)
     {
         int rowCount = Mathf.CeilToInt((float)entries.Count / (float)columnCount);
 
@@ -53,7 +60,7 @@ public class Deckbuilder : MonoBehaviour
 
         for (int i = 0; i < entries.Count; i++)
         {
-            Instantiate(inventoryCardPreFab, slotList[i]);
+            Instantiate(cardPreFab, slotList[i]);
         }
     }
 
