@@ -5,6 +5,7 @@ namespace JSAM {
         BathRaw3,
         CardsDealt,
         Küche,
+        Music,
         SandSteps,
         Stable,
         steps,
