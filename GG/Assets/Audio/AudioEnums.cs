@@ -3,6 +3,7 @@ namespace JSAM {
         BathRaw,
         BathRaw2,
         BathRaw3,
+        CardsDealt,
         Küche,
         SandSteps,
         Stable,
@@ -13,7 +14,6 @@ namespace JSAM {
     }
     public enum Music {
         CrowdRelaxed,
-        DesertWind,
-        LudusMusicTest
+        DesertWind
     }
 }
