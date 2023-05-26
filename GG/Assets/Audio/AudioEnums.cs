@@ -13,6 +13,7 @@ namespace JSAM {
     }
     public enum Music {
         CrowdRelaxed,
-        DesertWind
+        DesertWind,
+        LudusMusicTest
     }
 }

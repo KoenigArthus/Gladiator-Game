@@ -6312,7 +6312,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 430579874}
-  m_LocalRotation: {x: 0.33505812, y: 0.35663036, z: -0.13878565, w: 0.8609817}
+  m_LocalRotation: {x: 0.33505806, y: 0.3566303, z: -0.1387856, w: 0.8609817}
   m_LocalPosition: {x: 135.44, y: 30, z: 121}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7300,6 +7300,7 @@ MonoBehaviour:
   audioFileMusicObjects:
   - {fileID: 11400000, guid: cd5df12b213044c479ee8d98c08f3c3a, type: 2}
   - {fileID: 11400000, guid: f63725780f3b6a24f88bc338ffdd62e2, type: 2}
+  - {fileID: 11400000, guid: 164c3383b9075a34ba177e45e8c55430, type: 2}
   sceneSoundEnumName: JSAM.Sounds
   sceneMusicEnumName: JSAM.Music
   masterVolume: 1
@@ -10383,11 +10384,57 @@ MonoBehaviour:
   loopMode: 1
   music: {fileID: 11400000, guid: f63725780f3b6a24f88bc338ffdd62e2, type: 2}
   positions:
-  - {x: 142.7, y: 1.5, z: 152.3}
+  - {x: 104.6, y: 1.5, z: 139.79402}
+  - {x: 114.3, y: 1.5, z: 191.22}
+  - {x: 151.1, y: 1.5, z: 191.66}
+  - {x: 115.1, y: 1.5, z: 110.7}
+  - {x: 154.2, y: 1.5, z: 107.22082}
+  - {x: 134.9, y: 1.5, z: 118.5}
+  - {x: 143.3, y: 1.5, z: 128.8}
+  - {x: 121.2, y: 1.5, z: 133.8}
+  - {x: 113.99659, y: 1.5, z: 145.1708}
+  - {x: 95.4, y: 1.5, z: 161.68922}
+  - {x: 114.701965, y: 1.5, z: 169.26529}
+  - {x: 128.07768, y: 1.5, z: 182.13911}
+  - {x: 138.17659, y: 1.5, z: 180.37988}
+  - {x: 121.56352, y: 1.5, z: 152.01}
+  - {x: 119.39642, y: 1.5, z: 165.4962}
   maxDistance:
-  - 26.761063
+  - 12.763184
+  - 19.8
+  - 18.063324
+  - 23.2
+  - 24.505997
+  - 8.188278
+  - 3.350647
+  - 10.331726
+  - 14.159134
+  - 21.08216
+  - 12.28035
+  - 7.9
+  - 7.19
+  - 6.5528717
+  - 7.712723
+  - 26.96
+  - 23.2
   minDistance:
-  - 15.598099
+  - 12.177055
+  - 18.7
+  - 17.337784
+  - 22.837975
+  - 23.57965
+  - 7.886139
+  - 3.1351395
+  - 9.734619
+  - 13.326462
+  - 14.502731
+  - 11.212601
+  - 7.69
+  - 6.89
+  - 6.233902
+  - 7.5420227
+  - 16.7
+  - 10
 --- !u!1001 &777556989
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16969,7 +17016,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194004730}
-  m_LocalRotation: {x: 0.33505812, y: 0.35663036, z: -0.13878565, w: 0.8609817}
+  m_LocalRotation: {x: 0.33505806, y: 0.3566303, z: -0.1387856, w: 0.8609817}
   m_LocalPosition: {x: 135.44, y: 30, z: 121}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
