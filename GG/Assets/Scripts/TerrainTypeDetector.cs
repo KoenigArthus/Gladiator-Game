@@ -24,10 +24,12 @@ public class TerrainTypeDetector : MonoBehaviour
 
             if (terrainType.Contains("Sand"))
             {
+                JSAM.AudioManager.StopSound(Sounds.StoneSteps);
                 JSAM.AudioManager.PlaySound(Sounds.SandSteps);
             }
             else if (terrainType.Contains("Stone"))
             {
+                JSAM.AudioManager.StopSound(Sounds.SandSteps);
                 JSAM.AudioManager.PlaySound(Sounds.StoneSteps);
             }
             else

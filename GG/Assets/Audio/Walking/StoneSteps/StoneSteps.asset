@@ -14,25 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   file: {fileID: 0}
   files:
-  - {fileID: 8300000, guid: 8ce57f26f2093254d88f98cd21b62f3d, type: 3}
-  - {fileID: 8300000, guid: 46f621961bb687544adf0a82505c52b0, type: 3}
-  - {fileID: 8300000, guid: f08ee071e2f2bb4429b18d5221616452, type: 3}
-  - {fileID: 8300000, guid: f0a2f544ac9d16b43aa7ff6501a44d0b, type: 3}
-  - {fileID: 8300000, guid: 036c16ee57dbae24cb0329573e5fa477, type: 3}
-  - {fileID: 8300000, guid: f94f69d15885d184e8a0557b873589b6, type: 3}
-  - {fileID: 8300000, guid: d29a7cf2a18a9b248aa89a3113692a8b, type: 3}
-  - {fileID: 8300000, guid: 9381fe1fe4d30ee47ab0a4ce6860295a, type: 3}
-  - {fileID: 8300000, guid: f4fb7aedc5966a64f99900e788be39b8, type: 3}
-  - {fileID: 8300000, guid: 59d98a3b5c9655f4b932a744976cc92d, type: 3}
+  - {fileID: 8300000, guid: ec77c2567607d584aa206c537180bcf2, type: 3}
+  - {fileID: 8300000, guid: 8ca13b124e5790a45bdc66b3c3f2b0e2, type: 3}
+  - {fileID: 8300000, guid: 8387049c77c465d4780cb57922c183a5, type: 3}
+  - {fileID: 8300000, guid: 488c4361083fed94b92ce49444054947, type: 3}
+  - {fileID: 8300000, guid: a90bc20e2ba4d104d8ffae8ab2aafff7, type: 3}
+  - {fileID: 8300000, guid: 1a765ad79d54ebd499630eee9dc386c3, type: 3}
+  - {fileID: 8300000, guid: a8a67cba913d3d84594a6a391c417d6c, type: 3}
+  - {fileID: 8300000, guid: 436bb96b09c2ddc4b991905bdc7dc55e, type: 3}
+  - {fileID: 8300000, guid: 28591d2ceb24cc743af5a9397d26a31e, type: 3}
+  - {fileID: 8300000, guid: 0791b014f5b46ba41a19e6606344c134, type: 3}
+  - {fileID: 8300000, guid: 10b871fb8afe3b14a9187d81a53369bf, type: 3}
   useLibrary: 1
   neverRepeat: 1
   lastClipIndex: -1
   category: Walking
-  relativeVolume: 1
+  relativeVolume: 0.567
   spatialize: 1
   maxDistance: 0
   priority: 128
-  startingPitch: 0.76
+  startingPitch: 1.005
   pitchShift: 0
   playReversed: 0
   delay: 0
