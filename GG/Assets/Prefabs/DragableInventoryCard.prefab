@@ -147,9 +147,10 @@ GameObject:
   - component: {fileID: 6209292183351981923}
   - component: {fileID: 6209292183351981922}
   - component: {fileID: 6209292183351981924}
+  - component: {fileID: 4163183381497339664}
   - component: {fileID: 5747509340622462104}
   m_Layer: 0
-  m_Name: InventoryCard
+  m_Name: DragableInventoryCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -229,12 +230,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b278c1ee9fa2bc342a21246c049db7d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardIDName: 
+  cardID: 4
   image: {fileID: 6209292183351981922}
   cardName: {fileID: 6209292184220100044}
   cardSet: {fileID: 6209292184452122757}
   cardType: {fileID: 6209292183745565275}
   cardDescription: {fileID: 6209292182991735837}
+--- !u!114 &4163183381497339664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6209292183351981920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed313ae2bec0a744bbdc7f6cbefedf46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 6209292183351981922}
+  afterDragParent: {fileID: 0}
 --- !u!114 &5747509340622462104
 MonoBehaviour:
   m_ObjectHideFlags: 0

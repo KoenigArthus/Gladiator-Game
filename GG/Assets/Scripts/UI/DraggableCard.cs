@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class DraggableCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public Image image;
-    [HideInInspector ]public Transform afterDragParent;
+    [HideInInspector] public Transform afterDragParent;
 
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -27,5 +27,6 @@ public class DraggableCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         transform.SetParent(afterDragParent);
         image.raycastTarget = true;
+
     }
 }

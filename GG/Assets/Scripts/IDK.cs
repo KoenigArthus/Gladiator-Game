@@ -10,7 +10,7 @@ public class IDK : MonoBehaviour
     void Start()
     {
         CardLibrary.Setup();
-       CardObject c =  CardObject.Instantiate(CardLibrary.Cards.Where(x => x.Set == CardSet.Trident).First(), gameObject.transform.position);
+        CardObject c =  CardObject.Instantiate(CardLibrary.Cards.Where(x => x.Set == CardSet.Trident).First(), gameObject.transform.position);
         GameObject.Destroy(c);
     }
 
