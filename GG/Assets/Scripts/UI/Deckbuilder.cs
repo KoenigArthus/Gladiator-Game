@@ -16,9 +16,21 @@ public class Deckbuilder : MonoBehaviour
 
     public void OnEnable()
     {
-        FillEntries(CardLibrary.Cards.Where(x => x.Set == CardSet.Trident), deckCardEntries);
+        ClearEntrie(deckCardEntries);
+        ClearEntrie(equipmentCardEntries);
+        FillEntries(CardLibrary.Cards.Where(x => x.Set == CardSet.Gladius), deckCardEntries);
+        FillEntries(CardLibrary.Cards.Where(x => x.Set == CardSet.Cassis), deckCardEntries);
         FillEntries(CardLibrary.Cards.Where(x => x.Set == CardSet.Rete), deckCardEntries);
-        FillEntries(CardLibrary.Cards.Where(x => x.Set == CardSet.Trident),deckCardEntries);
+        FillEntries(CardLibrary.Cards.Where(x => x.Set == CardSet.Scutum), deckCardEntries);
+        FillEntries(CardLibrary.Cards.Where(x => x.Set == CardSet.Scindo), deckCardEntries);
+        FillEntries(CardLibrary.Cards.Where(x => x.Set == CardSet.Trident), deckCardEntries);
+        FillEntries(CardLibrary.Cards.Where(x => x.Set == CardSet.Pugio), deckCardEntries);
+        FillEntries(CardLibrary.Cards.Where(x => x.Set == CardSet.Spartha), deckCardEntries);
+        FillEntries(CardLibrary.Cards.Where(x => x.Set == CardSet.Galerus), deckCardEntries);
+        FillEntries(CardLibrary.Cards.Where(x => x.Set == CardSet.Manica), deckCardEntries);
+        FillEntries(CardLibrary.Cards.Where(x => x.Set == CardSet.Ocrea), deckCardEntries);
+        FillEntries(CardLibrary.Cards.Where(x => x.Set == CardSet.Pilum), deckCardEntries);
+        FillEntries(CardLibrary.Cards.Where(x => x.Set == CardSet.Parmula), deckCardEntries);
         ClearPanel(equipmentPanel);
         ClearPanel(deckPanel);
         FillPanel(dragableInventoryCardPreFab, equipmentPanel, equipmentSlots, equipmentCardEntries, 4);
@@ -30,9 +42,13 @@ public class Deckbuilder : MonoBehaviour
         ClearPanel(deckPanel);
     }
 
-    private void FillEntries(IEnumerable<CardInfo> cards, List<string> entrieList)
+    private void ClearEntrie(List<string> entrieList)
     {
         entrieList.Clear();
+    }
+
+    private void FillEntries(IEnumerable<CardInfo> cards, List<string> entrieList)
+    {
         foreach (CardInfo card in cards)
         {
             entrieList.Add(card.Name);
@@ -60,7 +76,9 @@ public class Deckbuilder : MonoBehaviour
 
         for (int i = 0; i < entries.Count; i++)
         {
-            Instantiate(cardPreFab, slotList[i]);
+            GameObject card = Instantiate(cardPreFab, slotList[i]);
+            Debug.Log(entries[i]);
+            card.GetComponent<InventoryCard>().cardIDName = entries[i];
         }
     }
 

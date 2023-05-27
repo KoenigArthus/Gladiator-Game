@@ -16,7 +16,7 @@ public class InventoryCard : MonoBehaviour
 
     private void Start()
     {
-        //SetupCard(cardIDName);
+        SetupCard(cardIDName);
     }
 
 
@@ -28,6 +28,7 @@ public class InventoryCard : MonoBehaviour
         //cardName.text = cardInfo.TranslatedName;
         cardSet.text = cardInfo.Set.ToString();
         cardType.text = cardInfo.Type.ToString();
+        image.sprite = cardInfo.Sprite;
         //cardDescription.text = cardInfo.TranslatedDescription;
 
     }
