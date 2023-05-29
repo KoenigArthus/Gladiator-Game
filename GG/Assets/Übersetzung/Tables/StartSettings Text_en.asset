@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: StartSettings Text_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: e1a0ec236bc26b24aa4ab0a17dd51ee6, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 10609790976
+    m_Localized: Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 468732645376
+    m_Localized: Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 487569264640
+    m_Localized: Quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37486913163264
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37885116190720
+    m_Localized: Credits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37993513783296
+    m_Localized: Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38013600305152
+    m_Localized: Effects
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38124531257344
+    m_Localized: Resolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38201844862976
+    m_Localized: Mute
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38254399492096
+    m_Localized: Display
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38463833673728
+    m_Localized: Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38557396013056
+    m_Localized: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38618582519808
+    m_Localized: Fullscreen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39360911413248
+    m_Localized: Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40656917794816
+    m_Localized: Music by Jakob Wagner/Quietpoet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 45593907204096
+    m_Localized: Menu
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []
