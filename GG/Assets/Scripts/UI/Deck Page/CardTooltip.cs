@@ -7,11 +7,11 @@ public class CardTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 {
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("over");
+      //  Debug.Log("over");
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.Log("bye");
+       // Debug.Log("bye");
     }
 }
