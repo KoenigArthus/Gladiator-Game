@@ -9,7 +9,7 @@ using static UnityEngine.Rendering.DebugUI;
 public class Deckbuilder : MonoBehaviour
 {
     [HideInInspector] public static Deckbuilder instance;
-    public GameObject slotArea;
+    public GameObject slotArea, tooltip;
     [SerializeField] private Transform equipmentPanel, deckPanel;
     [SerializeField] private GameObject equipmentCardPreFab, inventoryCardPreFab;
     [SerializeField] private GameObject rowPreFabFourColumns, rowPreFabFiveColumns;
@@ -31,6 +31,9 @@ public class Deckbuilder : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        tooltip.SetActive(false);
+
     }
 
 

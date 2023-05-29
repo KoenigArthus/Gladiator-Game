@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class InventoryCard : MonoBehaviour
+public class InventoryCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [CustomAttributes.ReadOnly]
     public string cardIDName;
@@ -25,14 +26,23 @@ public class InventoryCard : MonoBehaviour
     {
         CardLibrary.Setup();
         CardInfo cardInfo = CardLibrary.GetCardByName(name);
-        //cardName.text = cardInfo.TranslatedName;
+        cardName.text = cardInfo.TranslatedName;
         cardSet.text = cardInfo.Set.ToString();
         cardType.text = cardInfo.Type.ToString();
         image.sprite = cardInfo.Sprite;
-        //cardDescription.text = cardInfo.TranslatedDescription;
+        cardDescription.text = cardInfo.TranslatedDescription;
 
     }
 
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        Deckbuilder.instance.tooltip.GetComponent<TooltipCard>().cardIDName = cardIDName;
+        Deckbuilder.instance.tooltip.SetActive(true);
+    }
 
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Deckbuilder.instance.tooltip.SetActive(false);
+    }
 
 }

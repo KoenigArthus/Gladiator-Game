@@ -7,7 +7,7 @@ using TMPro;
 using UnityEngine.EventSystems;
 
 
-public class EquipmentCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class EquipmentCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [CustomAttributes.ReadOnly]
     public Equipment equipment;
@@ -29,7 +29,7 @@ public class EquipmentCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
 
 
-
+    #region Drag Events
     public void OnBeginDrag(PointerEventData eventData)
     {
         afterDragParent = transform.parent;
@@ -51,9 +51,17 @@ public class EquipmentCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         Deckbuilder.instance.slotArea.SetActive(false);
     }
 
+    #endregion Drag Events
 
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        //  Debug.Log("over");
+    }
 
-
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        // Debug.Log("bye");
+    }
 
 
 
