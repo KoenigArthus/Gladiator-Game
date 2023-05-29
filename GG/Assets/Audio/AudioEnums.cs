@@ -4,6 +4,8 @@ namespace JSAM {
         BathRaw2,
         BathRaw3,
         CardsDealt,
+        Click,
+        Hover,
         Küche,
         Music,
         SandSteps,

@@ -11,6 +11,7 @@ public class StartSettings : MonoBehaviour
     public Toggle muteToggle;
     public Toggle modeToggle; // Toggle for selecting fullscreen/windowed mode
     public TMPro.TMP_Dropdown resolutionDropdown; // Dropdown for selecting resolution
+    public TMPro.TMP_Dropdown languageDropdown; // Dropdown for selecting language
 
     private float previousVolume;
     private float previousEffectsVolume;
@@ -66,6 +67,7 @@ public class StartSettings : MonoBehaviour
         float savedMusicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
         bool savedIsMuted = PlayerPrefs.GetInt("IsMuted", 0) == 1;
         bool savedIsFullscreen = PlayerPrefs.GetInt("IsFullscreen", 1) == 1;
+        int savedLanguageIndex = PlayerPrefs.GetInt("LanguageIndex", 0);
 
         // Apply the loaded settings
         volumeSlider.value = savedVolume;
@@ -84,8 +86,14 @@ public class StartSettings : MonoBehaviour
         OnEffectsVolumeChanged(savedEffectsVolume);
         OnMusicVolumeChanged(savedMusicVolume);
 
+        // Set the language dropdown value
+        languageDropdown.value = savedLanguageIndex;
+
         // Add listener to resolution dropdown value change event
         resolutionDropdown.onValueChanged.AddListener(OnResolutionChanged);
+
+        // Add listener to language dropdown value change event
+        languageDropdown.onValueChanged.AddListener(OnLanguageChanged);
     }
 
     private void OnResolutionChanged(int resolutionIndex)
@@ -182,5 +190,17 @@ public class StartSettings : MonoBehaviour
     private void OnModeToggleChanged(bool isFullscreen)
     {
         SetWindowedMode(!isFullscreen);
+    }
+
+    private void OnLanguageChanged(int languageIndex)
+    {
+        // Add logic to change the language based on the selected index
+        // For example, you can use PlayerPrefs to save the language index and load it in other scenes
+        PlayerPrefs.SetInt("LanguageIndex", languageIndex);
+        PlayerPrefs.Save();
+
+        // Add code to apply language changes in your game
+        // You can use a localization system or update text components manually
+        // based on the selected language index
     }
 }
