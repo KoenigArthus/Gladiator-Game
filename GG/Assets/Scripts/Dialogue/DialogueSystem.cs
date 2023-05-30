@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
 using Yarn.Unity;
 
+[RequireComponent(typeof(TextLineProvider))]
 /// <summary>
 /// The Dialogue System is controlling various Dialogue related interactions
 /// It also holds important references and acts as a singleton
@@ -32,8 +34,8 @@ public class DialogueSystem : MonoBehaviour
     public DialogueRunner dialogueRunner;
     [SerializeField] private LineViewCustom lineViewCustom;
     private VariableStorageCustom variableStorage;
-    OptionView optionView;
-    OptionsListView options;
+    [SerializeField] private TextLineProvider textLineProvider;
+
 
     [SerializeField] private Dictionary<string, float> floatValues;
     [SerializeField] private Dictionary<string, string> stringValues;
@@ -60,6 +62,9 @@ public class DialogueSystem : MonoBehaviour
 
         // Store the found characters in the list
         characters.AddRange(characterObjects);
+
+        //get TextLineProvider for localization
+        textLineProvider = gameObject.GetComponent<TextLineProvider>();
     }
 
     private void Update()

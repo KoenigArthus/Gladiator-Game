@@ -10915,6 +10915,7 @@ MonoBehaviour:
   portaitImage: {fileID: 353530974}
   dialogueRunner: {fileID: 499321469}
   lineViewCustom: {fileID: 1322513820}
+  textLineProvider: {fileID: 0}
 --- !u!114 &499321468
 MonoBehaviour:
   m_ObjectHideFlags: 0

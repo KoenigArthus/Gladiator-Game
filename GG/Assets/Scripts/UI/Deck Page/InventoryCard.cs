@@ -20,8 +20,6 @@ public class InventoryCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         SetupCard(cardIDName);
     }
 
-
-
     private void SetupCard(string name)
     {
         CardLibrary.Setup();
@@ -31,7 +29,6 @@ public class InventoryCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         cardType.text = cardInfo.Type.ToString();
         image.sprite = cardInfo.Sprite;
         cardDescription.text = cardInfo.TranslatedDescription;
-
     }
 
     public void OnPointerEnter(PointerEventData eventData)
