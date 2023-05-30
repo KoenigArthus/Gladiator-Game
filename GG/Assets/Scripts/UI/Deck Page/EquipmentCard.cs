@@ -24,6 +24,7 @@ public class EquipmentCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     private void SetupCard()
     {
+
         cardName.text = equipment.cardSet.ToString();
         cardType.text = equipment.slotType.ToString();
     }

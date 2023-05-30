@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Localization.SmartFormat.Core.Output;
 using static UnityEngine.Rendering.DebugUI;
 
 
@@ -146,16 +147,9 @@ public class Deckbuilder : MonoBehaviour
                 deckCardEntries.Add(card.Name);
         }
     }
-    public void RemoveFromDeckEntrie(IEnumerable<CardInfo> cards)
+    public void RemoveFromDeckEntrie(CardSet cardSet)
     {
-        foreach (CardInfo card in cards)
-        {
-            if (deckCardEntries.Contains(card.Name))
-            {
-                int indexToRemove = deckCardEntries.IndexOf(card.Name);
-                deckCardEntries.RemoveAt(indexToRemove);
-            }
-        }
+        deckCardEntries = deckCardEntries.Where(x => CardLibrary.GetCardByName(x).Set != cardSet).ToList();
     }
 
     public void FillEquipmentEntrie(Equipment equipment)
@@ -182,5 +176,8 @@ public class Deckbuilder : MonoBehaviour
     public void LoadDeckPanel()
     {
         LoadPanel(inventoryCardPreFab, deckPanel, deckSlots, deckCardEntries, 5);
+
+        UserFile.SaveGame.DeckCardEntries = deckCardEntries.ToArray();
+        UserFile.SaveGame.Save();
     }
 }

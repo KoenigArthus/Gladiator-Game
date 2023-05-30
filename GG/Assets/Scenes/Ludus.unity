@@ -10558,6 +10558,7 @@ MonoBehaviour:
   portaitImage: {fileID: 353530974}
   dialogueRunner: {fileID: 499321469}
   lineViewCustom: {fileID: 1322513820}
+  textLineProvider: {fileID: 0}
 --- !u!114 &499321468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35403,8 +35404,8 @@ MonoBehaviour:
   effectsSlider: {fileID: 593104738}
   musicSlider: {fileID: 432779589}
   muteToggle: {fileID: 1331266487}
-  resolutionDropdown: {fileID: 682524717}
   modeToggle: {fileID: 271339611}
+  resolutionDropdown: {fileID: 682524717}
 --- !u!4 &1759423424 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -574607911634951530, guid: 01da8bc8af5d7984793e120095d90241,

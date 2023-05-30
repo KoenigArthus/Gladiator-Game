@@ -9,6 +9,8 @@ public class SaveGame : UserFile
 
     private string name;
     private int health = 20;
+    private string[] deckCardEntries = new string[0];
+
 
     #endregion Fields
 
@@ -20,6 +22,7 @@ public class SaveGame : UserFile
 
     public string Name { get => name; set => name = value; }
     public int Health { get => health; set => health = value; }
+    public string[] DeckCardEntries { get => deckCardEntries; set => deckCardEntries = value; }
 
     #endregion Properties
 
@@ -32,14 +35,20 @@ public class SaveGame : UserFile
 
         //Health
         SaveElement(doc, rootNode, "Health", health);
+
+        //Deck Entrie
+        SaveElement(doc, rootNode, "DeckEntrie", string.Join(',', deckCardEntries));
     }
 
     protected override void DoLoad(XmlNode rootNode)
     {
         //Name
         name = LoadElement<string>(rootNode.SelectSingleNode("Name"));
-
+        //Health
         health = LoadElement<int>(rootNode.SelectSingleNode("Health"));
+
+        //Deck Entrie
+        deckCardEntries = LoadElement<string>(rootNode.SelectSingleNode("DeckEntrie")).Split(',');
     }
 
     #endregion Save/Load
