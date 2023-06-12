@@ -12,7 +12,8 @@ public static class CardLibrary
 {
     #region Fields
 
-    private const string TRIDENT_MAIN_CARD_NAME = "Thrust";
+    public const string TRIDENT_MAIN_CARD_NAME = "Thrust";
+    public const string BLOCK_PLAY_CARD_NAME = "Panic_Attack";
 
     private static readonly CardInfo[] cards;
 
@@ -55,7 +56,7 @@ public static class CardLibrary
             new InstantCardInfo("Triple_Thrust", CardSet.Trident, CardType.Attack, 1, 1,
             (CardInfo c) => { for(int i = 0; i < 3; i++) c.Player.Attack(c.Enemy, c.DicePower); }),
 
-            #warning TODO
+            #warning TODO DISCARD
             //Fels in der Brandung - Wirf eine beliebige Anzahl an Handkarten ab. Block entsprechend Augenzahl multipliziert mit abgeworfenen Handkarten.
             new BlockCardInfo("Rock_Solid", CardSet.Trident, 1, 1,
             (CardInfo c) => c.DicePower * 1),
@@ -107,10 +108,10 @@ public static class CardLibrary
 
             #region Tier 0
 
-#warning TODO
             //Stich - Schaden entsprechend Augenzahl. Diese Runde: Andere Angriffe fügen zusätzlich 3 Verwundbarkeit zu.
             new InstantCardInfo("Sting", CardSet.Gladius, CardType.Attack, 0, 1,
-            (CardInfo c) => {c.Player.Attack(c.Enemy, c.DicePower); c.Enemy.AddStatus(StatusEffect.Vulnerable, 3); }),
+            (CardInfo c) => {c.Player.Attack(c.Enemy, c.DicePower);
+                c.Player.AddActionEffect((CardInfo ce) => { if (ce.Type == CardType.Attack) ce.Enemy.AddStatus(StatusEffect.Vulnerable, 3); }, true, c); }),
 
             //Mächtiger Schwung - Schaden entsprechend Augenzahl, multipliziert mit 2.
             new InstantCardInfo("Mighty_Sweep", CardSet.Gladius, CardType.Attack, 0, 2,
@@ -125,40 +126,44 @@ public static class CardLibrary
             #region Tier 1
 
             //Sprung Hieb - 16 Schaden. Erzeuge 2 "Verletzt" Karten in deinen Stapel.
-            new InstantCardInfo("", CardSet.Gladius, CardType.Attack, 1, 1,
+            new InstantCardInfo("Jump_Slash", CardSet.Gladius, CardType.Attack, 1, 1,
             (CardInfo c) => {c.Player.Attack(c.Enemy, 16); CardInfo info = GetCardByName("Injured"); for (int i = 0; i < 2; i++) c.Player.Deck.Add(CardObject.Instantiate(info, Vector2.zero)); }),
 
             //Doppel Stich - 2 Angriffe. Je Angriff: Schaden entsprechend Augenzahl, ziehe 1 Karte.
-            new InstantCardInfo("", CardSet.Gladius, CardType.Attack, 1, 1,
+            new InstantCardInfo("Double_Stab", CardSet.Gladius, CardType.Attack, 1, 1,
             (CardInfo c) => {c.Player.DrawCards(1); for (int i = 0; i < 2; i++) c.Player.Attack(c.Enemy, c.DicePower); }),
 
             //Schwerttanz - Permanent: Diese Runde: 1 Stärke, jedes Mal, wenn du einen Angriff aktivierst.
-            new PermanentCardInfo("", CardSet.Gladius, 1, 2,
+            new PermanentCardInfo("Sword_Dance", CardSet.Gladius, 1, 2,
             (CardInfo c) => {if (c.Type == CardType.Attack) c.Player.AddStatus(StatusEffect.FragileStrenght, 1); }, true),
 
-#warning TODO
+#warning TODO DISCARD
             //Schwertwirbel - Wirf eine beliebige Anzahl an Handkarten ab. X Angriffe, entsprechend abgeworfener Karten. Je Angriff: Schaden entsprechend Augenzahl.
-            //new InstantCardInfo("", CardSet.Gladius, CardType.Attack, 1, 2, (CardInfo c) => ),
+            new InstantCardInfo("Sword_Vortex", CardSet.Gladius, CardType.Attack, 1, 2, (CardInfo c) => { }),
 
             #endregion Tier 1
 
             #region Tier 2
 
             //Lodernder Aufschlag - Schaden entsprechend Augenzahl. 12 Verwundbarkeit.
-            new InstantCardInfo("", CardSet.Gladius, CardType.Attack, 2, 3,
+            new InstantCardInfo("Flaming_Impact", CardSet.Gladius, CardType.Attack, 2, 3,
             (CardInfo c) => {c.Player.Attack(c.Enemy, c.DicePower); c.Enemy.AddStatus(StatusEffect.Vulnerable, 12); }),
 
             //Gleißende Klinge - 16 Schaden. Entkräftet entsprechend Augenzahl.
-            new InstantCardInfo("", CardSet.Gladius, CardType.Attack, 2, 2,
+            new InstantCardInfo("Gleaming_Blade", CardSet.Gladius, CardType.Attack, 2, 2,
             (CardInfo c) => {c.Player.Attack(c.Enemy, 16); c.Enemy.AddStatus(StatusEffect.Feeble, c.DicePower);}),
 
-#warning TODO
             //Flammende Leidenschat - Permanent: Erzeuge einen 12-Würfel. Dieser Würfel wird nicht verbraucht bei der verwendung von "Stich" Karten.
-            new PermanentCardInfo("", CardSet.Gladius, 2, 3,
-            (CardGameManager m, CardInfo c) => m.Player.AddDie(new DieInfo(12))),
+            new InstantCardInfo("Flaming_Passion", CardSet.Gladius, CardType.Skill, 2, 3,
+            (CardInfo c) => {
+                GameEventAction onRoundStart = (CardGameManager m, CardInfo c) => m.Player.AddDie(new DieInfo(12) {Tag = "Refund_On_Thrust" });
+                CardAction onPlayCard = (CardInfo c) => { if (c.Name.Equals(TRIDENT_MAIN_CARD_NAME) && c.Dice.Any(x => x.Tag.Equals("Refund_On_Thrust"))) c.RefundDice(); };
+                c.Player.AddActionEffect(onRoundStart, c, true);
+                c.Player.AddActionEffect(onPlayCard, true, c, true);
+            }, true),
 
             //Perfekte Parade - Block entsprechend Augenzahl. Verteidigungsstapel: Schaden entsprechend Augenzahl, jedes Mal, wenn der Gegner angreift.
-            new PassiveBlockCardInfo("", CardSet.Gladius, 2, 2,
+            new PassiveBlockCardInfo("Perfect_Parry", CardSet.Gladius, 2, 2,
             (CardInfo c) => c.DicePower, (CardInfo c, ref int d) => c.Enemy.InstantDamage(c.RawDicePower), true),
 
             #endregion Tier 2
@@ -166,14 +171,16 @@ public static class CardLibrary
             #region Tier 3
 
             //Damokles Schwert - Schaden entsprechend Augenzahl. Diese Runde: Reduziere geg. Stärke und Schutz entsprechend Augenzahl.
-            new InstantCardInfo("", CardSet.Gladius, CardType.Attack, 3, 4,
-            (CardInfo c) => {c.Player.Attack(c.Enemy, c.DicePower);
-                c.Enemy.RemoveStatus(StatusEffect.FragileStrenght, c.DicePower, true);
-                c.Enemy.RemoveStatus(StatusEffect.FragileDefence, c.DicePower, true); }),
+            new InstantCardInfo("Damocles_Sword", CardSet.Gladius, CardType.Attack, 3, 4,
+            (CardInfo c) => {
+            c.Player.Attack(c.Enemy, c.DicePower);
+            c.Enemy.RemoveStatus(StatusEffect.FragileStrenght, c.DicePower, true);
+            c.Enemy.RemoveStatus(StatusEffect.FragileDefence, c.DicePower, true);
+            }),
 
             //Sengendes Inferno - X Angriffe, entsprechend Augenzahl. Je Angriff: 2 Schaden, 2 Verwundbarkeit.
-            new InstantCardInfo("", CardSet.Gladius, CardType.Attack, 3, 4,
-            (CardInfo c) => {for (int i = 0; i < c.DicePower; i++)  { c.Player.Attack(c.Enemy, 2); c.Enemy.AddStatus(StatusEffect.Vulnerable, 2); } }),
+            new InstantCardInfo("Searing_Inferno", CardSet.Gladius, CardType.Attack, 3, 4,
+            (CardInfo c) => { for (int i = 0; i < c.DicePower; i++) { c.Player.Attack(c.Enemy, 2); c.Enemy.AddStatus(StatusEffect.Vulnerable, 2); } }),
 
             #endregion Tier 3
 
@@ -200,69 +207,72 @@ public static class CardLibrary
             #region Tier 1
 
             //Dompteur - Schaden entspricht geg. Schwäche.
-            new InstantCardInfo("", CardSet.Rete, CardType.Attack, 1, 0,
+            new InstantCardInfo("Dompteur", CardSet.Rete, CardType.Attack, 1, 0,
             (CardInfo c) => c.Player.Attack(c.Enemy, c.Enemy.GetStatus(StatusEffect.Weak))),
 
-#warning TODO
             //Netzweber - Erzeuge 3 "Netzwurf" Karten, auf die Hand, diese verbrauchen den für die Aktivierung gewählten Würfel nicht.
-            new InstantCardInfo("", CardSet.Rete, CardType.Skill, 1, 2,
-            (CardInfo c) => {CardInfo info = GetCardByName("Cast_Net"); for (int i = 0; i < 3; i++) c.Player.Hand.Add(CardObject.Instantiate(info, Vector2.zero)); } ),
+            new InstantCardInfo("Web_Weaver", CardSet.Rete, CardType.Skill, 1, 2,
+            (CardInfo c) => {
+                CardInfo info = new InstantCardInfo("Cast_Net", CardSet.Rete, CardType.Attack, 0, 1,
+                (CardInfo c) => { c.Enemy.RemoveStatus(StatusEffect.Strenght, c.DicePower, true); c.RefundDice(); }, true);
+                for (int i = 0; i < 3; i++) c.Player.Hand.Add(CardObject.Instantiate(info, Vector2.zero));
+            } ),
 
             //Fallensteller - Block entsprechend Augenzahl. Verteidigungsstapel: wenn diese Karte durch einen Angriff entfernt wird, Schwäche entsprechend Augenzahl.
-            new PassiveBlockCardInfo("", CardSet.Rete, 1, 2,
+            new PassiveBlockCardInfo("Trapper", CardSet.Rete, 1, 2,
             (CardInfo c) => c.DicePower, (CardInfo c, ref int d) => c.Enemy.AddStatus(StatusEffect.Weak, c.DicePower), false),
 
             //Entwaffnen - Schwäche und Betäubung entsprechend Augenzahl.
-            new InstantCardInfo("", CardSet.Rete, CardType.Skill, 1, 1,
-            (CardInfo c) => {c.Enemy.AddStatus(StatusEffect.Weak, c.DiceBonus); c.Enemy.AddStatus(StatusEffect.Stun, c.DiceBonus); }),
+            new InstantCardInfo("Disarm", CardSet.Rete, CardType.Skill, 1, 1,
+            (CardInfo c) => { c.Enemy.AddStatus(StatusEffect.Weak, c.DiceBonus); c.Enemy.AddStatus(StatusEffect.Stun, c.DiceBonus); }),
 
             #endregion Tier 1
 
             #region Tier 2
 
             //Pittakos - Permanent: Jedes Mal, wenn dein Gegner angreift, füge ihm, 4 Schwäche und 4 Entkräftet zu.
-            new PermanentCardInfo("", CardSet.Rete, 2, 2,
-            (Participant attacker, Participant defender, int damage) => {if (attacker is Enemy enemy) {enemy.AddStatus(StatusEffect.Weak, 4); enemy.AddStatus(StatusEffect.Feeble, 4);}}),
+            new PermanentCardInfo("Pittakos", CardSet.Rete, 2, 2,
+            (Participant attacker, Participant defender, int damage) => { if (attacker is Enemy enemy) { enemy.AddStatus(StatusEffect.Weak, 4); enemy.AddStatus(StatusEffect.Feeble, 4); } }),
 
-#warning TODO
             //Höhnische Gewandheit - 15 Block. Verteidigungsstapel: Chance von 25 % (max. 75%), das gegnerische Angriffe verfehlen.
-            //new InstantCardInfo("", CardSet.Rete, CardType.Block, 2, 3, (CardInfo c) => ),
+            new PassiveBlockCardInfo("Scornful_Finesse", CardSet.Rete, 2, 3, (CardInfo c) => 15, (CardInfo c, ref int d) => {if (UnityEngine.Random.Range(0, 4) < 1) d = 0; }, true),
 
             //Arachne - Permanenet: Zu Rundenbeginn: erzeuge 1 "Netzwurf" Karte. Diese  Runde: die erzeugte Karte hat keine Kosten und die Grund-Augenzahl für ihre Aktivierung entspricht  der Augenzahl dieser Karte.
-            new PermanentCardInfo("", CardSet.Rete, 2, 3,
+            new PermanentCardInfo("Arachnid", CardSet.Rete, 2, 3,
             (CardGameManager m, CardInfo c) => {
-                CardInfo info = new InstantCardInfo("Cast_Net", CardSet.Rete, CardType.Attack, 0, 0,
-                    (CardInfo c) => c.Enemy.RemoveStatus(StatusEffect.Strenght, c.DicePower, true), true);
-                m.Player.Hand.Add(CardObject.Instantiate(info, Vector2.zero));
-            }),
+        CardInfo info = new InstantCardInfo("Cast_Net", CardSet.Rete, CardType.Attack, 0, 0,
+            (CardInfo c) => c.Enemy.RemoveStatus(StatusEffect.Strenght, c.DicePower, true), true);
+        m.Player.Hand.Add(CardObject.Instantiate(info, Vector2.zero));
+    }),
 
-#warning TODO
             //Schicksalsfaden - Permanent: Jedes Mal, wenn der Gegner negative Status durch Regeneration abbaut, Schaden in Höhe der abgebauten Stapel, durchstoßend.
-            //new PermanentCardInfo("", CardSet.Rete, 2, 2, (CardInfo c) => ),
+            new PermanentCardInfo("Thread_Of_Fate", CardSet.Rete, 2, 2, (CardGameManager m, CardInfo c) => m.Enemy.InstantDamage(m.Enemy.LastStatusDecayAmount)),
 
             #endregion Tier 2
 
             #region Tier 3
 
             //Kontrolle - Diese Runde: setze geg. Regeneration auf 0.
-            new InstantCardInfo("", CardSet.Rete, CardType.Skill, 3, 0,
-            (CardInfo c) => {int value = c.Enemy.GetStatus(StatusEffect.Regeneration); c.Enemy.RemoveStatus(StatusEffect.Regeneration, value);
-            c.Player.AddAction((CardGameManager m) => m.Enemy.AddStatus(StatusEffect.Regeneration, value)); }),
+            new InstantCardInfo("Control", CardSet.Rete, CardType.Skill, 3, 0,
+            (CardInfo c) => {
+            int value = c.Enemy.GetStatus(StatusEffect.Regeneration); c.Enemy.RemoveStatus(StatusEffect.Regeneration, value);
+            c.Player.AddActionEffect((CardGameManager m, CardInfo c) => m.Enemy.AddStatus(StatusEffect.Regeneration, value), c);
+            }),
 
             //Graumsames Schicksal - Entferne alle geg. negativen Status. Schaden entsprechend Anzahl der kombinierten entfernten Stapel, multipliziert mit 4, durchstoßend.
-            new InstantCardInfo("", CardSet.Rete, CardType.Attack, 3, 2,
+            new InstantCardInfo("Cruel_Fate", CardSet.Rete, CardType.Attack, 3, 2,
             (CardInfo c) =>
             {
-                int sum = 0;
-                for (int i = (int)StatusEffect.Regeneration; i < (int)StatusEffect.Vulnerable + 1; i++)
-                {
-                    StatusEffect current = (StatusEffect)i;
-                    int value = c.Enemy.GetStatus(current);
-                    sum += value;
-                    c.Enemy.RemoveStatus(current, value);
-                }
-                c.Player.Attack(c.Enemy, sum * 4, true);
-            }),
+        int sum = 0;
+        for (int i = (int)StatusEffect.Regeneration; i < (int)StatusEffect.Vulnerable + 1; i++)
+        {
+            StatusEffect current = (StatusEffect)i;
+            int value = c.Enemy.GetStatus(current);
+            sum += value;
+            c.Enemy.RemoveStatus(current, value);
+        }
+        c.Player.Attack(c.Enemy, sum * 4, true);
+    }),
 
             #endregion Tier 3
 
@@ -274,12 +284,13 @@ public static class CardLibrary
 
             //Schildblock - Block entsprechend Augenzahl, multipliziert mit 2.
             new BlockCardInfo("Shield_Block", CardSet.Scutum, 0, 2,
-            (CardInfo c) => c.DicePower * 2),
+            (CardInfo c) => c.DicePower* 2),
 
             //Testudo - 15 Block. Du kannst diese Karte nicht aktivieren wenn du in dieser Runde einen Angriff gespielt hast. Du kannst keine Angriffe nach Aktivierung dieser Karte spielen.
             new BlockCardInfo("Testudo", CardSet.Scutum, 0, 1,
             (CardInfo c) => 15 + c.DiceBonus)
-            {CostReduction = (CardInfo c) => -c.Player.PlayedCards.Count(x => x.Type == CardType.Attack),
+    {
+        CostReduction = (CardInfo c) => -c.Player.PlayedCards.Count(x => x.Type == CardType.Attack),
             InstantAction = (CardInfo c) => c.Player.LockCardType(CardType.Attack)},
 
             //Schildseele - 1 Schutz, multipliziert mit aktiven Verteidigungskarten.
@@ -290,41 +301,44 @@ public static class CardLibrary
 
             #region Tier 1
 
-#warning TODO
             //Provokation - Block entsprechend Augenzahl. Verteidigunsstapel: dein Gegner kann nur Angriffe ausführen, ändere alle Nicht-Angriffsaktionen zu Standartangriffen.
-            //new InstantCardInfo("", CardSet.Scutum, CardType.Block, 1, 1, (CardInfo c) => ),
+            new PassiveBlockCardInfo("Provocation", CardSet.Scutum, 1, 1,
+            (CardInfo c) => c.DicePower, (CardGameManager m, CardInfo c) => m.Enemy.ChangeIntension(EnemyAction.Attack)),
 
             //Schildlogik - Permanent: Zu Rundenbeginn: Ziehe 1 Karte für jede aktive Verteidigungskarte.
-            new PermanentCardInfo("", CardSet.Scutum, 1, 2,
+            new PermanentCardInfo("Shield_Logic", CardSet.Scutum, 1, 2,
             (CardGameManager m, CardInfo c) => m.Player.DrawCards(m.Player.BlockStack.Length)),
 
-#warning TODO
             //Unbewegliches Objekt - Block dieser Karte wird zu deinem doppelten aktuellen Block.
-            //new BlockCardInfo("", CardSet.Scutum, 1, 3, (CardInfo c) => ),
+            new BlockCardInfo("Immovable_Object", CardSet.Scutum, 1, 3,
+            (CardInfo c) => c.DicePower)
+            {InstantAction = (CardInfo c) => c.DiceBonus = c.Player.Block * 2 - c.DicePower },
 
             //Schildflamme - 1 Stärke, multipliziert mit aktiven Verteidigungskarten.
-            new InstantCardInfo("", CardSet.Scutum, CardType.Skill, 1, 0,
+            new InstantCardInfo("Shield_Flame", CardSet.Scutum, CardType.Skill, 1, 0,
             (CardInfo c) => c.Player.AddStatus(StatusEffect.Strenght, c.Player.BlockStack.Length)),
 
             #endregion Tier 1
 
             #region Tier 2
 
-#warning TODO
-            //Bastion - Block entsprichend Augenzahl, multipliziert mit 2. Verteidigungsstapel:  Schutz entsprechend Augenzahl.
-            //new InstantCardInfo("", CardSet.Scutum, CardType.Block, 2, 2, (CardInfo c) => ),
+            //Bastion - Block entsprichend Augenzahl, multipliziert mit 2. Verteidigungsstapel: Schutz entsprechend Augenzahl.
+            new BlockCardInfo("Bastion", CardSet.Scutum, 2, 2,
+            (CardInfo c) => c.DicePower * 2)
+            {InstantAction = (CardInfo c) => (c as BlockCardInfo).StatusMod = (StatusEffect.Defence, c.DicePower) },
 
             //Petra Solida - Block entsprichend Augenzahl multipliziert mit 3. Verteidigungsstapel: Zu Rundenbeginn: regeneriere den ursprünglichen Blockwert dieser Karte.
-            new PassiveBlockCardInfo("", CardSet.Scutum, 2, 3,
-            (CardInfo c) => c.DicePower * 3,
+            new PassiveBlockCardInfo("Petra_Solida", CardSet.Scutum, 2, 3,
+            (CardInfo c) => c.DicePower* 3,
+
             (CardGameManager m, CardInfo c) => (c as BlockCardInfo).ResetDamage()),
 
             //Scutum Vitalis - Permanent: Erhalte einen zusätzlichen Platz in deinem Verteidigungsstapel.
-            new InstantCardInfo("", CardSet.Scutum, CardType.Skill, 2, 0,
+            new InstantCardInfo("Scutum_Vitalis", CardSet.Scutum, CardType.Skill, 2, 0,
             (CardInfo c) => c.Player.BlockSlots += 1, true),
 
             //Rammbock - Schaden entsprechend Block.
-            new InstantCardInfo("", CardSet.Scutum, CardType.Attack, 2, 3,
+            new InstantCardInfo("Battering_Ram", CardSet.Scutum, CardType.Attack, 2, 3,
             (CardInfo c) => c.Player.Attack(c.Enemy, c.Player.Block)),
 
             #endregion Tier 2
@@ -332,13 +346,15 @@ public static class CardLibrary
             #region Tier 3
 
             //Mars Schirmherrschaft - Permanent: Zu Rundenbeginn:  Diese Runde: erhalte einen zusätzlichen 4-Würfel für jede aktive Verteidigungskarte.
-            new PermanentCardInfo("", CardSet.Scutum, 3, 3,
-            (CardGameManager m, CardInfo c) =>  {for (int i = 0; i < m.Player.BlockStack.Length; i++) m.Player.AddDie(new DieInfo(4)); } ),
+            new PermanentCardInfo("Mars_Patronage", CardSet.Scutum, 3, 3,
+            (CardGameManager m, CardInfo c) =>  { for (int i = 0; i < m.Player.BlockStack.Length; i++) m.Player.AddDie(new DieInfo(4)); } ),
 
             //Moloch - Permanent: Lege zum Ende deines Zuges eine Karte aus deinem Verteidigungsstapel ab und füge deinem Gegner Schaden entsprechend abgelegtem Block, multipliziert mit Augenzahl zu.
-            new PermanentCardInfo("", CardSet.Scutum, 3, 1,
-            (CardGameManager m, CardInfo c) => { CardObject[] cards = m.Player.ActiveBlock.Cards; CardObject card = cards[UnityEngine.Random.Range(0, cards.Length)];
-                m.Player.Attack(m.Enemy, c.DicePower * (card.Info as BlockCardInfo).CurrentBlock); m.Player.DiscardSingle(card); }),
+            new PermanentCardInfo("Moloch", CardSet.Scutum, 3, 1,
+            (CardGameManager m, CardInfo c) => {
+            CardObject[] cards = m.Player.ActiveBlock.Cards; CardObject card = cards[UnityEngine.Random.Range(0, cards.Length)];
+            m.Player.Attack(m.Enemy, c.DicePower * (card.Info as BlockCardInfo).CurrentBlock); m.Player.DiscardSingle(card);
+            }),
 
             #endregion Tier 3
 
@@ -354,31 +370,30 @@ public static class CardLibrary
 
             //Arterienschnitt -  Keine Wirkung auf Gegner mit Block, Blutung entsprechend Augenzahl.
             new InstantCardInfo("Artery_Cut", CardSet.Pugio, CardType.Attack, 0, 1,
-            (CardInfo c) => {if (c.Enemy.Block < 1) c.Enemy.AddStatus(StatusEffect.Bleeding, c.DicePower);}),
+            (CardInfo c) => { if (c.Enemy.Block < 1) c.Enemy.AddStatus(StatusEffect.Bleeding, c.DicePower); }),
 
             //Messerwurf - Schaden entsprechend Augenzahl. Multipliziert mit 2, falls der Gegner keinen Block hat.
             new InstantCardInfo("Knife_Throw", CardSet.Pugio, CardType.Attack, 0, 1,
-            (CardInfo c) => c.Player.Attack(c.Enemy, c.DicePower * (c.Enemy.Block < 1 ? 2 : 1))),
+            (CardInfo c) => c.Player.Attack(c.Enemy, c.DicePower* (c.Enemy.Block< 1 ? 2 : 1))),
 
             #endregion Tier 0
 
             #region Tier 1
 
-#warning ???
             //Herzsucher - 4 Schaden. Keine Wirkung auf Gegner mit Block, Blutung entsprechend Augenzahl.
-            new InstantCardInfo("", CardSet.Pugio, CardType.Attack, 1, 2,
+            new InstantCardInfo("Heart_Seeker", CardSet.Pugio, CardType.Attack, 1, 2,
             (CardInfo c) => { c.Player.Attack(c.Enemy, 4); if (c.Enemy.Block < 1) c.Enemy.AddStatus(StatusEffect.Bleeding, c.DicePower); }),
 
-#warning TODO
-            //Kehlschnitt - 2 Schaden. Diese Runde:  Der Gegner kann keine Fähigkeiten verwenden, falls er keinen Block hat.
-            //new InstantCardInfo("", CardSet.Pugio, CardType.Attack, 1, 2, (CardInfo c) => ),
+            //Kehlschnitt - 2 Schaden. Diese Runde: Der Gegner kann keine Fähigkeiten verwenden, falls er keinen Block hat.
+            new InstantCardInfo("Throat_Cut", CardSet.Pugio, CardType.Attack, 1, 2,
+            (CardInfo c) => {c.Player.Attack(c.Enemy, 2); if (c.Enemy.Block < 1) c.Enemy.BlockIntension(EnemyAction.Special); }),
 
             //Plattenbrecher - Schaden entsprechend Augenzahl. Multipliziert mit 6, falls der Gegner Block hat.
-            new InstantCardInfo("", CardSet.Pugio, CardType.Attack, 1, 1,
-            (CardInfo c) => c.Player.Attack(c.Enemy, c.DicePower * (c.Enemy.Block < 1 ? 6 : 1))),
+            new InstantCardInfo("Board_Breaker", CardSet.Pugio, CardType.Attack, 1, 1,
+            (CardInfo c) => c.Player.Attack(c.Enemy, c.DicePower* (c.Enemy.Block< 1 ? 6 : 1))),
 
             //Chirugischer Eingriff - 8 Blutung.
-            new InstantCardInfo("", CardSet.Pugio, CardType.Attack, 1, 2,
+            new InstantCardInfo("Surgical_Intervention", CardSet.Pugio, CardType.Attack, 1, 2,
             (CardInfo c) => c.Enemy.AddStatus(StatusEffect.Bleeding, 8)),
 
             #endregion Tier 1
@@ -386,31 +401,31 @@ public static class CardLibrary
             #region Tier 2
 
             //Purpurnen Flüsse - Blutung entsprechend Augenzahl. Multipliziert mit 2, falls der Gegner keinen Block hat.
-            new InstantCardInfo("", CardSet.Pugio, CardType.Attack, 2, 2,
-            (CardInfo c) => c.Enemy.AddStatus(StatusEffect.Bleeding, 8 * (c.Enemy.Block < 1 ? 2 : 1))),
+            new InstantCardInfo("Crimson_Rivers", CardSet.Pugio, CardType.Attack, 2, 2,
+            (CardInfo c) => c.Enemy.AddStatus(StatusEffect.Bleeding, 8 * (c.Enemy.Block< 1 ? 2 : 1))),
 
             //Blutschmerz - Verwundbarkeit entsprechend geg. Blutungsstapel.
-            new InstantCardInfo("", CardSet.Pugio, CardType.Attack, 2, 2,
+            new InstantCardInfo("Blood_Pain", CardSet.Pugio, CardType.Attack, 2, 2,
             (CardInfo c) => c.Enemy.AddStatus(StatusEffect.Vulnerable, c.Enemy.GetStatus(StatusEffect.Bleeding))),
 
-#warning TODO
             //Salz in die Wunde - Permanent: Jedes Mal, wenn du dem Gegner Blutung zufügst, füge zusätzliche Blutung entsprechend Augenzahl zu.
-            //new InstantCardInfo("", CardSet.Pugio, CardType.Skill, 2, 1, (CardInfo c) => ),
+            new InstantCardInfo("Salt_In_Wound", CardSet.Pugio, CardType.Skill, 2, 1,
+            (CardInfo c) => c.Player.BleedSalt += c.DicePower, true),
 
-#warning TODO
             //Ausweiden - 1 Schaden. Bonusschaden durch Blutung wird multipliziert mit 3.
-            //new InstantCardInfo("", CardSet.Pugio, CardType.Attack, 2, 2, (CardInfo c) => ),
+            new InstantCardInfo("Eviscerate", CardSet.Pugio, CardType.Attack, 2, 2,
+            (CardInfo c) => {c.Player.Attack(c.Enemy, 1); c.Enemy.InstantDamage(c.Enemy.GetStatus(StatusEffect.Bleeding) * 2); }),
 
             #endregion Tier 2
 
             #region Tier 3
 
             //Herzensbrecher - X Angriffe, entsprechend Augenzahl. Je Angriff: 1 Schaden und 1 Blutung.
-            new InstantCardInfo("", CardSet.Pugio, CardType.Attack, 3, 2,
-            (CardInfo c) => { for(int i = 0; i < c.DicePower; i++) {c.Player.Attack(c.Enemy, 1); c.Enemy.AddStatus(StatusEffect.Bleeding, 1); } }),
+            new InstantCardInfo("Heartbreaker", CardSet.Pugio, CardType.Attack, 3, 2,
+            (CardInfo c) => { for (int i = 0; i < c.DicePower; i++) { c.Player.Attack(c.Enemy, 1); c.Enemy.AddStatus(StatusEffect.Bleeding, 1); } }),
 
             //Hemokinesis - Permanent: Jeder Angriff fügt dem Gegner zusätzlich 1 Blutung zu.
-            new PermanentCardInfo("", CardSet.Pugio, 3, 2,
+            new PermanentCardInfo("Hemokinesis", CardSet.Pugio, 3, 2,
             (CardInfo c) => c.Enemy.AddStatus(StatusEffect.Bleeding, 1), true),
 
             #endregion Tier 3
@@ -432,6 +447,7 @@ public static class CardLibrary
             //Zweite Spitze - 6 Schaden. Keine Kosten wenn in dieser Runde ein Angriff gespielt wurde.
             new InstantCardInfo("Second_Tip", CardSet.Doru, CardType.Attack, 0, 1,
             (CardInfo c) => c.Player.Attack(c.Enemy, 6))
+
             { CostReduction = (CardInfo c) => c.Player.PlayedCards.Count(x => x.Type == CardType.Attack)},
 
             #endregion Tier 0
@@ -439,55 +455,57 @@ public static class CardLibrary
             #region Tier 1
 
             //Perforieren - X Angriffe, entsprechend Augenzahl. Je Angriff: 1 Schaden und 1  Blutung.
-            new InstantCardInfo("", CardSet.Doru, CardType.Attack, 1, 2,
-            (CardInfo c) => { for(int i = 0; i < c.DicePower; i++) {c.Player.Attack(c.Enemy, 1); c.Enemy.AddStatus(StatusEffect.Bleeding, 1); } }),
+            new InstantCardInfo("Perforate", CardSet.Doru, CardType.Attack, 1, 2,
+            (CardInfo c) => { for (int i = 0; i < c.DicePower; i++) { c.Player.Attack(c.Enemy, 1); c.Enemy.AddStatus(StatusEffect.Bleeding, 1); } }),
 
             //Hoplit - 8 Block. Diese Karte skaliert mit Stärke und Schutz.
-            new BlockCardInfo("", CardSet.Doru, 1, 1,
+            new BlockCardInfo("Hoplite", CardSet.Doru, 1, 1,
             (CardInfo c) => 8 + c.Player.GetStatus(StatusEffect.Strenght) + c.Player.GetStatus(StatusEffect.FragileStrenght)),
 
             //Horn des Katoblepas - 4 Schaden. Entferne alle deine Stapel Verwundbarkeit und füge dem Gegner Verwundbarkeit entsprechend der entfernten Stapel zu.
-            new InstantCardInfo("", CardSet.Doru, CardType.Attack, 1, 1,
-            (CardInfo c) => {c.Player.Attack(c.Enemy, 4);
-                int value = c.Player.GetStatus(StatusEffect.Vulnerable); c.Player.RemoveStatus(StatusEffect.Vulnerable, value); c.Enemy.AddStatus(StatusEffect.Vulnerable, value); }),
+            new InstantCardInfo("Horn_Of_Catoblepas", CardSet.Doru, CardType.Attack, 1, 1,
+            (CardInfo c) =>
+            {
+                c.Player.Attack(c.Enemy, 4);
+                int value = c.Player.GetStatus(StatusEffect.Vulnerable); c.Player.RemoveStatus(StatusEffect.Vulnerable, value); c.Enemy.AddStatus(StatusEffect.Vulnerable, value);
+            }),
 
-#warning TODO
-            //Hybris - Schaden entsprechend dreifacher Augenzahl. Die Würfel werden nicht verbraucht. Diese Karte kann nur aktiviert werden wenn du keinen  Block hast.
-            new InstantCardInfo("", CardSet.Doru, CardType.Attack, 1, 2,
-            (CardInfo c) => c.Player.Attack(c.Enemy, c.DicePower * 3)),
+            //Hybris - Schaden entsprechend dreifacher Augenzahl. Die Würfel werden nicht verbraucht. Diese Karte kann nur aktiviert werden wenn du keinen Block hast.
+            new InstantCardInfo("Hybris", CardSet.Doru, CardType.Attack, 1, 2,
+            (CardInfo c) => { c.Player.Attack(c.Enemy, c.DicePower * 3); c.RefundDice(); })
+            {CostReduction = (CardInfo c) => c.Player.Block > 0 ? -1 : 0},
 
             #endregion Tier 1
 
             #region Tier 2
 
             //Allbewaffnung - Erhöhe Stärke und Schutz um 4.
-            new InstantCardInfo("", CardSet.Doru, CardType.Skill, 2, 2,
-            (CardInfo c) => {c.Player.AddStatus(StatusEffect.Strenght, 4); c.Player.AddStatus(StatusEffect.Defence, 4); }),
+            new InstantCardInfo("Allarmament", CardSet.Doru, CardType.Skill, 2, 2,
+            (CardInfo c) => { c.Player.AddStatus(StatusEffect.Strenght, 4); c.Player.AddStatus(StatusEffect.Defence, 4); }),
 
             //Titan-Töter - Schaden entsprechend Augenzahl, multipliziert mit 4 wenn dein Gegner prozentuall mehr Vitalität besitzt als du.
-            new InstantCardInfo("", CardSet.Doru, CardType.Attack, 2, 3,
+            new InstantCardInfo("Titan_Slayer", CardSet.Doru, CardType.Attack, 2, 3,
             (CardInfo c) => c.Player.Attack(c.Enemy, c.DicePower * (c.Enemy.Health > c.Player.Health ? 4 : 1))),
 
             //Spartanische Seele - Permanent: Zu Rundenbeginn erhalte 2 Stärke und 2 Schutz.
-            new PermanentCardInfo("", CardSet.Doru, 2, 4,
-            (CardGameManager m, CardInfo c) => {m.Player.AddStatus(StatusEffect.Strenght, 2); m.Player.AddStatus(StatusEffect.Defence, 2); }),
+            new PermanentCardInfo("Spartan_Soul", CardSet.Doru, 2, 4,
+            (CardGameManager m, CardInfo c) => { m.Player.AddStatus(StatusEffect.Strenght, 2); m.Player.AddStatus(StatusEffect.Defence, 2); }),
 
             //Keres-Geist - Blutung entsprechend deiner zusätzlichen Stärke.
-            new InstantCardInfo("", CardSet.Doru, CardType.Attack, 2, 2,
+            new InstantCardInfo("Keres_Spirit", CardSet.Doru, CardType.Attack, 2, 2,
             (CardInfo c) => c.Enemy.AddStatus(StatusEffect.Bleeding, c.Player.GetStatus(StatusEffect.Strenght))),
 
             #endregion Tier 2
 
             #region Tier 3
 
-#warning TODO
             //Hepheistos Arsenal - Permanent: Zu Rundenbeginn: Diese Runde: Erhöhe die Augenzahl auf allen Würfeln um 4.
-            //new InstantCardInfo("", CardSet.Doru, CardType.Skill, 3, 3, (CardInfo c) => ),
+            new PermanentCardInfo("Hepheestus_Arsenal", CardSet.Doru, 3, 3, (CardInfo c) => c.Player.Dice.Select(x => x.Info.Bonus += 4), true),
 
             //Mächtiger Pallas - 80 Schaden. Die Augenzahl zur Aktivierung dieser Karte muss mindestens 12 betragen.
-            new InstantCardInfo("", CardSet.Doru, CardType.Attack, 3, 3,
+            new InstantCardInfo("Mighty_Pallas", CardSet.Doru, CardType.Attack, 3, 3,
             (CardInfo c) => c.Player.Attack(c.Enemy, 80))
-            {CostReduction = (CardInfo c) => c.DicePower < 12 ? -1 : 0 },
+            { CostReduction = (CardInfo c) => c.DicePower < 12 ? -1 : 0 },
 
             #endregion Tier 3
 
@@ -514,52 +532,54 @@ public static class CardLibrary
             #region Tier 1
 
             //Gepanzeter Koloss - Permanent: Zu Rundenbeginn: Diese Runde: Erhalte 3 Stärke für jede aktive Verteidigungskarte.
-            new PermanentCardInfo("", CardSet.Parmula, 1, 2,
+            new PermanentCardInfo("Armored_Colossus", CardSet.Parmula, 1, 2,
             (CardGameManager m, CardInfo c) => m.Player.AddStatus(StatusEffect.FragileStrenght, 3 * m.Player.BlockStack.Length)),
 
-#warning TODO
+#warning CHANGED
             //Titan - Wähle eine Karte aus deinem Verteidigungsstapel. Diese Runde: Stärke entsprechend dem Block, den die gewählte Karte gewährt.
-            //new InstantCardInfo("", CardSet.Parmula, CardType.Skill, 1, 2, (CardInfo c) => ),
+            new PermanentCardInfo("Titan", CardSet.Parmula, 1, 2,
+            (CardGameManager m, CardInfo c) => m.Player.AddStatus(StatusEffect.FragileStrenght, m.Player.BlockStack.Max())),
 
             //Wahre Phalanx - Permanent: Schutz entsprechend Augenzahl.
-            new InstantCardInfo("", CardSet.Parmula, CardType.Skill, 1, 2,
+            new InstantCardInfo("True_Phalanx", CardSet.Parmula, CardType.Skill, 1, 2,
             (CardInfo c) => c.Player.AddStatus(StatusEffect.Defence, c.DicePower), true),
 
-#warning TODO
             //Gleichgewicht - Block entsprechend Augenzahl. 2 Schutz.
-            //new InstantCardInfo("", CardSet.Parmula, CardType.Block, 1, 2, (CardInfo c) => ),
+            new BlockCardInfo("Equilibrium", CardSet.Parmula, 1, 2,
+            (CardInfo c) => c.DicePower) {InstantAction = (CardInfo c) => c.Player.AddStatus(StatusEffect.Defence, 2) },
 
             #endregion Tier 1
 
             #region Tier 2
 
             //Minotaurus Stampfer - Schaden entsprechend Augenzahl. Diese Runde: Erhalte Schutz entspreched dem durch diese Karte zugefügten Schaden.
-            new InstantCardInfo("", CardSet.Parmula, CardType.Attack, 2, 2, (CardInfo c) => c.Player.AddStatus(StatusEffect.Defence, c.Player.Attack(c.Enemy, c.DicePower))),
+            new InstantCardInfo("Minotaur_Stomp", CardSet.Parmula, CardType.Attack, 2, 2, (CardInfo c) => c.Player.AddStatus(StatusEffect.Defence, c.Player.Attack(c.Enemy, c.DicePower))),
 
             //Eiserner Wille - Permanent: Jedes Mal, wenn du einen geg. Angriff blockst, ziehe 1 zusätzliche Karte, zu Beginn der nächsten Runde.
-            new PermanentCardInfo("", CardSet.Parmula, 2, 4,
-            (Participant a, Participant d, int v) => {if (d is Player p && !(p.Block < v)) p.AddAction((CardGameManager m) => m.Player.DrawCards(1)); }),
+            new PermanentCardInfo("Iron_Will", CardSet.Parmula, 2, 4,
+            (Participant a, Participant d, int v) => { if (d is Player p && !(p.Block < v)) p.AddActionEffect((CardGameManager m, CardInfo c) => m.Player.DrawCards(1), null); }),
 
-#warning TODO
             //Unbeugsam - Permanent: Du kannst keine negativen Status aufbauen, solange du aktive Verteidigungskarten hast.
-            //new InstantCardInfo("", CardSet.Parmula, CardType.Skill, 2, 3, (CardInfo c) => ),
+            new InstantCardInfo("Indomitable", CardSet.Parmula, CardType.Skill, 2, 3, (CardInfo c) => c.Player.NegativeStatusShield = true, true),
 
-#warning TODO
             //Reflektieren - 1 Block. Verteidigungsstapel: Annulliere den nächsten Schaden eines Angriffs, der diese Karte betrifft. Füge deinem Gegner Schaden entsprechend dem annullierten Schaden zu. Lege diese Karte dannach auf den Ablagestapel.
-            //new InstantCardInfo("", CardSet.Parmula, CardType.Block, 2, 4, (CardInfo c) => ),
+            new PassiveBlockCardInfo("Reflect", CardSet.Parmula, 2, 4,
+            (CardInfo c) => 1,
+            (CardInfo c, ref int d) => {int value = d + 1; d = 0; c.Player.Attack(c.Enemy, value); }, false ),
 
             #endregion Tier 2
 
             #region Tier 3
 
             //Heroischer Ansturm - Schaden entsprechend Block. Die Kosten dieser Karte sinken um 1 für jede aktive Verteidigungskarte.
-            new InstantCardInfo("", CardSet.Parmula, CardType.Attack, 3, 4,
+            new InstantCardInfo("Heroic_Onslaught", CardSet.Parmula, CardType.Attack, 3, 4,
             (CardInfo c) => c.Player.Attack(c.Enemy, c.Player.Block))
-            {CostReduction = (CardInfo c) => c.Player.BlockStack.Length},
+            { CostReduction = (CardInfo c) => c.Player.BlockStack.Length },
 
-#warning ???
             //Soterias Segen - Diese Karte kann nicht gespielt werden wenn in diese Runde ein Angriff gespielt wurde. Diese Runde:es können keine Angriffe gespielt werden.
-            //new InstantCardInfo("", CardSet.Parmula, CardType.Skill, 3, 0, (CardInfo c) => ),
+            new InstantCardInfo("Soterias_Blessing", CardSet.Parmula, CardType.Skill, 3, 0,
+            (CardInfo c) => {c.Player.LockCardType(CardType.Attack); c.Enemy.BlockIntension(EnemyAction.Attack); })
+            {CostReduction = (CardInfo c) => c.Player.PlayedCards.Any(x => x.Type == CardType.Attack) ? -1 : 0},
 
             #endregion Tier 3
 
@@ -571,11 +591,11 @@ public static class CardLibrary
 
             //Stoß-Schnitt - Blutung entsprechend Augenzahl, falls der Gegner keinen Block hat.
             new InstantCardInfo("Jab_Cut", CardSet.Scindo, CardType.Attack, 0, 1,
-            (CardInfo c) => {if (c.Enemy.Block < 1) c.Enemy.AddStatus(StatusEffect.Bleeding, c.DicePower);}),
+            (CardInfo c) => { if (c.Enemy.Block < 1) c.Enemy.AddStatus(StatusEffect.Bleeding, c.DicePower); }),
 
             //Knochenschere - Schaden entsprechend Augenzahl. Diese Runde: Reduziere Schutz entsprechend Augenzahl.
             new InstantCardInfo("Bone_Shears", CardSet.Scindo, CardType.Attack, 0, 2,
-            (CardInfo c) => {c.Player.Attack(c.Enemy, c.DicePower); c.Enemy.RemoveStatus(StatusEffect.FragileDefence, c.DicePower, true); }),
+            (CardInfo c) => { c.Player.Attack(c.Enemy, c.DicePower); c.Enemy.RemoveStatus(StatusEffect.FragileDefence, c.DicePower, true); }),
 
             //Messer Wetzen - Permanent: Stärke entsprechend Augenzahl.
             new InstantCardInfo("Dagger_Whet", CardSet.Scindo, CardType.Skill, 0, 2,
@@ -585,26 +605,34 @@ public static class CardLibrary
 
             #region Tier 1
 
-#warning TODO
             //Metzger - Permanent: Zusätzliche Stärke erhöht die Anzahl an zugefügten Blutungsstapeln.
-            //new InstantCardInfo("", CardSet.Scindo, CardType.Skill, 1, 2, (CardInfo c) => ),
+            new InstantCardInfo("Butcher", CardSet.Scindo, CardType.Skill, 1, 2, (CardInfo c) => c.Player.StrengthBleedSalt = true, true),
 
             //Fleischhaken - Verwundbarkeit, Blutung und Entkräften entsprechend Augenzahl, falls der Gegner keinen Block hat.
-            new InstantCardInfo("", CardSet.Scindo, CardType.Attack, 1, 2,
-            (CardInfo c) => {if (c.Enemy.Block < 1)
+            new InstantCardInfo("Meat_Hook", CardSet.Scindo, CardType.Attack, 1, 2,
+            (CardInfo c) =>
+            {
+                if (c.Enemy.Block < 1)
                 {
                     c.Enemy.AddStatus(StatusEffect.Vulnerable, c.DicePower);
                     c.Enemy.AddStatus(StatusEffect.Bleeding, c.DicePower);
                     c.Enemy.AddStatus(StatusEffect.Feeble, c.DicePower);
-                } }),
+                }
+            }),
 
             //Reißzahn - Entferne die letzte geg. Verteidigungskarte. Falls der Gegner dannach keinen Block mehr hat, Blutung entsprechend Augenzahl.
-            new InstantCardInfo("", CardSet.Scindo, CardType.Attack, 1, 2,
-            (CardInfo c) =>  { if (c.Enemy.BlockStack.Length > 0) { c.Enemy.RemoveLastBlock();
-            if (c.Enemy.Block < 1) c.Enemy.AddStatus(StatusEffect.Bleeding, c.DicePower); } }),
+            new InstantCardInfo("Carnassial", CardSet.Scindo, CardType.Attack, 1, 2,
+            (CardInfo c) =>
+            {
+                if (c.Enemy.BlockStack.Length > 0)
+                {
+                    c.Enemy.RemoveLastBlock();
+                    if (c.Enemy.Block < 1) c.Enemy.AddStatus(StatusEffect.Bleeding, c.DicePower);
+                }
+            }),
 
             //Kritischer Treffer - 4 Schaden. 50% Chance den zugefügten Schaden mit Augenzahl zu multiplizieren.
-            new InstantCardInfo("", CardSet.Scindo, CardType.Attack, 1, 2,
+            new InstantCardInfo("Critical_Hit", CardSet.Scindo, CardType.Attack, 1, 2,
             (CardInfo c) => c.Player.Attack(c.Enemy, 4 * UnityEngine.Random.Range(0, 2) > 0 ? 4 : 1)),
 
             #endregion Tier 1
@@ -612,32 +640,38 @@ public static class CardLibrary
             #region Tier 2
 
             //Schnellschritt - Permanent: Ziehe 1 Karte, jedes Mal wenn du eine Angriffkarte mit 1 oder weniger Kosten spielst.
-            new PermanentCardInfo("", CardSet.Scindo, 2, 2,
-            (CardInfo c) => {if (c.Cost < 2 && c.Type == CardType.Attack) c.Player.DrawCards(1); }, true),
+            new PermanentCardInfo("Swift_Stride", CardSet.Scindo, 2, 2,
+            (CardInfo c) => { if (c.Cost < 2 && c.Type == CardType.Attack) c.Player.DrawCards(1); }, true),
 
             //Zerstückeln - Blutung entsprechend Augenzahl multipliziert mit 3, falls der Gegner keinen Block hat.
-            new InstantCardInfo("", CardSet.Scindo, CardType.Attack, 2, 2,
-            (CardInfo c) => {if (c.Enemy.Block < 1) c.Enemy.AddStatus(StatusEffect.Bleeding, c.DicePower * 3);}),
+            new InstantCardInfo("Dismember", CardSet.Scindo, CardType.Attack, 2, 2,
+            (CardInfo c) => { if (c.Enemy.Block < 1) c.Enemy.AddStatus(StatusEffect.Bleeding, c.DicePower * 3); }),
 
             //Merkur Trickklinge - Schaden entsprechend Augenzahl. Ziehe 1 Karte. Falls dein Gegner Verwundbarkeitsstapel hat, werden die Würfel für die Aktivierung dieser Karte nicht verbraucht.
-            new InstantCardInfo("", CardSet.Scindo, CardType.Attack, 2, 3,
-            (CardInfo c) => {c.Player.Attack(c.Enemy, c.DicePower); c.Player.DrawCards(1); if (c.Enemy.GetStatus(StatusEffect.Vulnerable) > 0) c.RefundDice(); }),
+            new InstantCardInfo("Trick_Blade", CardSet.Scindo, CardType.Attack, 2, 3,
+            (CardInfo c) => { c.Player.Attack(c.Enemy, c.DicePower); c.Player.DrawCards(1); if (c.Enemy.GetStatus(StatusEffect.Vulnerable) > 0) c.RefundDice(); }),
 
-#warning TODO
             //Schwertarm - Permanent: Stärke entsprechend Augenzahl. Jedes Mal, wenn du eine Verteidigungskarte ziehst lege diese auf den Ablagestapel, ziehe 1 Karte und erhalte 3 Stärke.
-            //new PermanentCardInfo("", CardSet.Scindo, 2, 3, (CardInfo c) => ),
+            new InstantCardInfo("Swordarm", CardSet.Scindo, CardType.Skill, 2, 3,
+            (CardInfo c) => {
+                c.Player.AddStatus(StatusEffect.Strenght, 3);
+                c.Player.AddActionEffect(
+                    (CardInfo[] cs) => {for (int i = 0; i < cs.Length; i++) {CardInfo c = cs[i];
+                        if (c.Type == CardType.Block) { c.Player.DiscardSingle(c.Card); c.Player.AddStatus(StatusEffect.Strenght, 3); c.Player.DrawCards(1); } }},
+                c, true);
+            }, true),
 
             #endregion Tier 2
 
             #region Tier 3
 
             //Janus Kehrtwende - Schaden entsprechend Augenzahl. Erhöhe deine Stärke entsprechend zugefügtem Schaden, falls der Gegner keinen Block hat. Ziehe 1 Karte.
-            new InstantCardInfo("", CardSet.Scindo, CardType.Attack, 3, 1,
-            (CardInfo c) => {bool gainStrength = c.Enemy.Block < 1; int damage = c.Player.Attack(c.Enemy, c.DicePower);if (gainStrength) c.Player.AddStatus(StatusEffect.Strenght, damage); }),
+            new InstantCardInfo("Janus_Reversal", CardSet.Scindo, CardType.Attack, 3, 1,
+            (CardInfo c) => { bool gainStrength = c.Enemy.Block < 1; int damage = c.Player.Attack(c.Enemy, c.DicePower); if (gainStrength) c.Player.AddStatus(StatusEffect.Strenght, damage); }),
 
             //Faunus Fallaxt - Entferne alle geg. Verteidigungskaren. Füge dann Schaden entsprechend Augenzahl, plus geg. Entfernten Block.
-            new InstantCardInfo("", CardSet.Scindo, CardType.Attack, 3, 4,
-            (CardInfo c) => {int block = c.Enemy.RemoveAllBlock(); c.Player.Attack(c.Enemy, c.DicePower + block); } ),
+            new InstantCardInfo("Faunus_Guillotine", CardSet.Scindo, CardType.Attack, 3, 4,
+            (CardInfo c) => { int block = c.Enemy.RemoveAllBlock(); c.Player.Attack(c.Enemy, c.DicePower + block); }),
 
             #endregion Tier 3
 
@@ -657,23 +691,22 @@ public static class CardLibrary
 
             //Kopfstoß - 2 Schaden. Betäubung entsprechend Augenzahl.
             new InstantCardInfo("Head_Thrust", CardSet.Cassis, CardType.Attack, 0, 1,
-            (CardInfo c) => {c.Player.Attack(c.Enemy, 2); c.Enemy.AddStatus(StatusEffect.Stun, c.DicePower); }),
+            (CardInfo c) => { c.Player.Attack(c.Enemy, 2); c.Enemy.AddStatus(StatusEffect.Stun, c.DicePower); }),
 
             //Kühnheit - Diese Runde: 4 Stärke und 4 Schutz.
             new InstantCardInfo("Boldness", CardSet.Cassis, CardType.Skill, 0, 1,
-            (CardInfo c) => {c.Player.AddStatus(StatusEffect.Strenght, 4); c.Player.AddStatus(StatusEffect.Defence, 4);
-            c.Player.AddAction((CardGameManager m) => {m.Player.RemoveStatus(StatusEffect.FragileStrenght, 4); m.Player.RemoveStatus(StatusEffect.FragileDefence, 4);}); }),
+            (CardInfo c) => { c.Player.AddStatus(StatusEffect.FragileStrenght, 4); c.Player.AddStatus(StatusEffect.FragileDefence, 4); }),
 
             #endregion Tier 0
 
             #region Tier 1
 
-#warning TODO
+#warning TODO DISCARD
             //Schützender Käfig - Wirf eine beliebige Anzahl an Handkarten ab. Block entsprechend Augenzahl, multipliziert mit angeworfenen Handkarten.
-            //new InstantCardInfo("", CardSet.Cassis, CardType.Block, 1, 2, (CardInfo c) => ),
+            new InstantCardInfo("Protective_Cage", CardSet.Cassis, CardType.Block, 1, 2, (CardInfo c) => {}),
 
             //Abfälschende Form - Block entsprechend Augenzahl. Verteidigungsstapel: füge dem Gegner 2 Betäubung zu,jedes Mal wenn er Angreift.
-            new PassiveBlockCardInfo("", CardSet.Cassis, 1, 2,
+            new PassiveBlockCardInfo("Deflecting_Stance", CardSet.Cassis, 1, 2,
             (CardInfo c) => c.DicePower, (CardInfo c, ref int d) => c.Enemy.AddStatus(StatusEffect.Stun, 2), true),
 
             #endregion Tier 1
@@ -681,15 +714,15 @@ public static class CardLibrary
             #region Tier 2
 
             //Symbol der Pflicht - Permanent: Zu Rundenbeginn: 2 Schutz.
-            new PermanentCardInfo("", CardSet.Cassis, 2, 3, (CardGameManager m, CardInfo c) => m.Player.AddStatus(StatusEffect.Defence, 2)),
+            new PermanentCardInfo("Symbol_Of_Duty", CardSet.Cassis, 2, 3, (CardGameManager m, CardInfo c) => m.Player.AddStatus(StatusEffect.Defence, 2)),
 
             #endregion Tier 2
 
             #region Tier 3
 
-#warning TODO
+#warning TODO PICK CARDS
             //Trotzkopf - Entferne: Wähle für jeden freien Platz in deinem Verteidigungsstapel eine Verteidigungskarte aus deinem Stapel und aktiviere sie. Verwende für die Aktivierung jeder Karte die für diese Karte aufgewendete Augenzahl.
-            //new InstantCardInfo("", CardSet.Cassis, CardType.Skill, 3, 2, (CardInfo c) => , true),
+            new InstantCardInfo("Stubborn", CardSet.Cassis, CardType.Skill, 3, 2, (CardInfo c) => {}, true),
 
             #endregion Tier 3
 
@@ -700,8 +733,8 @@ public static class CardLibrary
             #region Tier 0
 
             //Schulterangriff -  2 Schaden. Ziehe Karten entsprechend Augenzahl.
-            new InstantCardInfo("Shoulder_Attack", CardSet.Gladius, CardType.Attack,0, 1,
-            (CardInfo c) => {c.Player.Attack(c.Enemy, 2); c.Player.DrawCards(c.DicePower); }),
+            new InstantCardInfo("Shoulder_Attack", CardSet.Gladius, CardType.Attack, 0, 1,
+            (CardInfo c) => { c.Player.Attack(c.Enemy, 2); c.Player.DrawCards(c.DicePower); }),
 
             //Voll-Platte - Block entsprechend Augenzahl, multipliziert mit 2.
             new BlockCardInfo("Full_Plate", CardSet.Gladius, 0, 1,
@@ -716,20 +749,20 @@ public static class CardLibrary
             #region Tier 1
 
             //Entgehen - Block entsprechend Augenzahl. Verteidigungsstapel: 30 % Chance (max. 75%)  das geg. Angriffe verfehlen.
-            new PassiveBlockCardInfo("", CardSet.Galerus, 1, 2,
+            new PassiveBlockCardInfo("Elude", CardSet.Galerus, 1, 2,
             (CardInfo c) => c.DicePower,
-            (CardInfo c, ref int d) => {float dogeChance = 0.3f; if (UnityEngine.Random.Range(0,1) < dogeChance) d = 0; }, true),
+            (CardInfo c, ref int d) => { float dogeChance = 0.3f; if (UnityEngine.Random.Range(0, 1) < dogeChance) d = 0; }, true),
 
-            #warning TODO
             //Klein-Schild - 1 Block. Schutz entsprechend Augenzahl.
-            //new BlockCardInfo("", CardSet.Galerus, 1, 1, (CardInfo c) => 1),
+            new BlockCardInfo("Small_Shield", CardSet.Galerus, 1, 1, (CardInfo c) => 1)
+            {InstantAction = (CardInfo c) => (c as BlockCardInfo).StatusMod = (StatusEffect.Defence, c.RawDicePower)},
 
             #endregion Tier 1
 
             #region Tier 2
 
             //Präsidarius - 30 Block. Verteidigunsstapel: Zu Rundenbeginn: Diese Runde: Erhalte einen zusätzlichen Würfel entsprechend Augenzahl.
-            new PassiveBlockCardInfo("", CardSet.Galerus, 2, 3,
+            new PassiveBlockCardInfo("Praesidius", CardSet.Galerus, 2, 3,
             (CardInfo c) => 30,
             (CardGameManager m, CardInfo c) => m.Player.AddDie(new DieInfo(c.RawDicePower, c.RawDicePower, c.RawDicePower, c.RawDicePower))),
 
@@ -738,7 +771,7 @@ public static class CardLibrary
             #region Tier 3
 
             //Ausweichrolle - Diese Runde: Annuliere jeden eingehenden geg. Angriff.
-            new InstantCardInfo("", CardSet.Galerus, CardType.Skill, 3, 4,
+            new InstantCardInfo("Dodge_Roll", CardSet.Galerus, CardType.Skill, 3, 4,
             (CardInfo c) => c.Player.AddStatus(StatusEffect.Invulnerable, 1000)),
 
             #endregion Tier 3
@@ -750,16 +783,16 @@ public static class CardLibrary
             #region Tier 0
 
             //Kopfnuss - 2 Schaden. Verwundbarkeit entsprechend Augenzahl.
-            new InstantCardInfo("Headbutt", CardSet.Manica, CardType.Attack, 0,1,
-            (CardInfo c) => {c.Player.Attack(c.Enemy, 2); c.Enemy.AddStatus(StatusEffect.Vulnerable, c.DicePower); }),
+            new InstantCardInfo("Headbutt", CardSet.Manica, CardType.Attack, 0, 1,
+            (CardInfo c) => { c.Player.Attack(c.Enemy, 2); c.Enemy.AddStatus(StatusEffect.Vulnerable, c.DicePower); }),
 
             //Ableit - 1 Block. Verteidigungsstapel: Schutz entsprechend Augenzahl.
             new BlockCardInfo("Deflect", CardSet.Manica, 0, 1,
             (CardInfo c) => 1)
-            {InstantAction = (CardInfo c) => (c as BlockCardInfo).StatusMod = (StatusEffect.Defence, c.DicePower)},
+            { InstantAction = (CardInfo c) => (c as BlockCardInfo).StatusMod = (StatusEffect.Defence, c.RawDicePower) },
 
             //Keil-Hieb - 20 Schaden. Keine Wirkung auf Gegner mit Block.
-            new InstantCardInfo("Wedge_Slash", CardSet.Manica, CardType.Attack, 0,2,
+            new InstantCardInfo("Wedge_Slash", CardSet.Manica, CardType.Attack, 0, 2,
             (CardInfo c) => { if (c.Enemy.Block < 1) c.Player.Attack(c.Enemy, 20); }),
 
             #endregion Tier 0
@@ -767,26 +800,26 @@ public static class CardLibrary
             #region Tier 1
 
             //Fangen - 3 Block. Verteidigungsstapel: Reduziere jeden eingehenden Schaden durch Angriffe entsprechend Augenzahl (Nie unter 1).
-            new PassiveBlockCardInfo("", CardSet.Manica, 1, 2, (CardInfo c) => 3, (CardInfo c, ref int d) => d = Mathf.Max(d - c.DicePower, 1), true),
+            new PassiveBlockCardInfo("Catch", CardSet.Manica, 1, 2, (CardInfo c) => 3, (CardInfo c, ref int d) => d = Mathf.Max(d - c.DicePower, 1), true),
 
             //Winkel-Block - Block entsprechend Augenzahl. Verteidigungsstapel: Zu Rundenbeginn: Erhöhe den Block aller Karten im Verteidigungstapel um 5.
-            new InstantCardInfo("", CardSet.Manica, CardType.Block, 1, 3,
-            (CardInfo c) =>  {CardInfo[] blockCards = c.Player.ActiveBlock.Cards.Select(x => x.Info).ToArray(); foreach (var card in blockCards) card.DiceBonus += 5; }),
+            new InstantCardInfo("Angle_Block", CardSet.Manica, CardType.Block, 1, 3,
+            (CardInfo c) => { CardInfo[] blockCards = c.Player.ActiveBlock.Cards.Select(x => x.Info).ToArray(); foreach (var card in blockCards) card.DiceBonus += 5; }),
 
             #endregion Tier 1
 
             #region Tier 2
 
             //Umrempeln - Schaden entsprechend Augenzahl. Schwäche entsprechend Block.
-            new InstantCardInfo("", CardSet.Manica, CardType.Attack, 2, 1,
-            (CardInfo c) => {c.Player.Attack(c.Enemy, c.DicePower); c.Player.AddStatus(StatusEffect.Weak, c.Player.Block); }),
+            new InstantCardInfo("Upset", CardSet.Manica, CardType.Attack, 2, 1,
+            (CardInfo c) => { c.Player.Attack(c.Enemy, c.DicePower); c.Player.AddStatus(StatusEffect.Weak, c.Player.Block); }),
 
             #endregion Tier 2
 
             #region Tier 3
 
             //Segmentierter Panzer - Permanent: Zu Rundenbeginn: erhalte einen zusätzlichen Platz in deinem Verteidigungsstapel.
-            new PermanentCardInfo("", CardSet.Manica, 3, 2, (CardGameManager m, CardInfo c) => m.Player.BlockSlots += 1),
+            new PermanentCardInfo("Segmented_Armor", CardSet.Manica, 3, 2, (CardGameManager m, CardInfo c) => m.Player.BlockSlots += 1),
 
             #endregion Tier 3
 
@@ -797,29 +830,29 @@ public static class CardLibrary
             #region Tier 0
 
             //Tritt - Schaden entsprechend Augenzahl. Multipliziert mit 2, falls der Gegner Block hat.
-            new InstantCardInfo("Kick", CardSet.Ocrea, CardType.Attack, 0,1,
+            new InstantCardInfo("Kick", CardSet.Ocrea, CardType.Attack, 0, 1,
             (CardInfo c) => c.Player.Attack(c.Enemy, c.DicePower * (c.Enemy.Block > 0 ? 2 : 1))),
 
             //Ausweichschritt - 1 Block. Verteidigungsstapel: 5% Chance (max. 75%), multipliziert mit Augenzahl, das geg. Angriffe verfehlen.
             new PassiveBlockCardInfo("Deflect", CardSet.Manica, 0, 1,
             (CardInfo c) => 1,
-            (CardInfo c, ref int d) => {float dogeChance = Math.Min(0.05f * c.DicePower, 0.75f); if (UnityEngine.Random.Range(0,1) < dogeChance) d = 0; }, true),
+            (CardInfo c, ref int d) => { float dogeChance = Math.Min(0.05f * c.DicePower, 0.75f); if (UnityEngine.Random.Range(0, 1) < dogeChance) d = 0; }, true),
 
             //Beinarbeit - Block entsprechend Augenzahl. Verteidigungsstapel: Zu Rundenbeginn: Lege diese Karte auf den Ablagestapel, Stärke entsprechend abgelegtem Block.
             new PassiveBlockCardInfo("Footwork", CardSet.Manica, 0, 1,
             (CardInfo c) => c.DicePower,
-            (CardGameManager m, CardInfo c) => {m.Player.AddStatus(StatusEffect.Strenght, (c as BlockCardInfo).CurrentBlock); m.Player.DiscardSingle(c.Card); }),
+            (CardGameManager m, CardInfo c) => { m.Player.AddStatus(StatusEffect.Strenght, (c as BlockCardInfo).CurrentBlock); m.Player.DiscardSingle(c.Card); }),
 
             #endregion Tier 0
 
             #region Tier 1
 
             //Kniestoß - Schaden und Betäubung entsprechend Augenzahl.
-            new InstantCardInfo("", CardSet.Ocrea, CardType.Attack, 1, 2,
-            (CardInfo c) => {c.Player.Attack(c.Enemy, c.DicePower); c.Enemy.AddStatus(StatusEffect.Stun, c.DicePower); }),
+            new InstantCardInfo("Knee_Kick", CardSet.Ocrea, CardType.Attack, 1, 2,
+            (CardInfo c) => { c.Player.Attack(c.Enemy, c.DicePower); c.Enemy.AddStatus(StatusEffect.Stun, c.DicePower); }),
 
             //Kick - Schaden entsprechend Augenzahl, multipliziert mit aktiven Verteidigungskarten.
-            new InstantCardInfo("", CardSet.Ocrea, CardType.Attack, 1, 2,
+            new InstantCardInfo("Kick", CardSet.Ocrea, CardType.Attack, 1, 2,
             (CardInfo c) => c.Player.Attack(c.Enemy, c.DicePower * c.Player.BlockStack.Length)),
 
             #endregion Tier 1
@@ -827,7 +860,7 @@ public static class CardLibrary
             #region Tier 2
 
             //Sprungtritt - Schaden entsprechend Augenzahl. Multipliziert mit 3, falls der Gegner Block hat.
-            new InstantCardInfo("", CardSet.Ocrea, CardType.Attack, 2, 3,
+            new InstantCardInfo("Jump_Kick", CardSet.Ocrea, CardType.Attack, 2, 3,
             (CardInfo c) => c.Player.Attack(c.Enemy, c.DicePower * (c.Enemy.Block < 1 ? 3 : 1))),
 
             #endregion Tier 2
@@ -835,7 +868,7 @@ public static class CardLibrary
             #region Tier 3
 
             //Fliegender Dreh-Kick - Falls der Gegner keinen Block hat, werden die gewählten Würfel nicht verbraucht. Schaden entsprechend Augenzahl, multipliziert mit aktiven Verteidigungskarten.
-            new InstantCardInfo("", CardSet.Ocrea, CardType.Attack, 3, 3,
+            new InstantCardInfo("Flying_Spin_Kick", CardSet.Ocrea, CardType.Attack, 3, 3,
             (CardInfo c) => { bool refundDice = c.Enemy.Block < 1; c.Player.Attack(c.Enemy, c.DicePower * c.Player.BlockStack.Length); if (refundDice) c.RefundDice(); }),
 
             #endregion Tier 3
@@ -849,119 +882,128 @@ public static class CardLibrary
             #region Positiv
 
             //Erfrischt - Entferne: Ziehe 1 Karte. Permanent: 3 Regeneration.
-            new InstantCardInfo("", CardSet.Health, CardType.Skill, 0, 0,
-            (CardInfo c) => {c.Player.DrawCards(1); c.Player.AddStatus(StatusEffect.Regeneration, 3); }, true),
+            new InstantCardInfo("Refreshed", CardSet.Health, CardType.Skill, 0, 0,
+            (CardInfo c) => { c.Player.DrawCards(1); c.Player.AddStatus(StatusEffect.Regeneration, 3); }, true),
 
             //Gut Genährt - Entferne: Ziehe 1 Karte. Stelle 2 Vitalität wieder her.
-            new InstantCardInfo("", CardSet.Health, CardType.Skill, 0, 0,
-            (CardInfo c) => {c.Player.DrawCards(1); c.Player.Heal(2); }, true),
+            new InstantCardInfo("Well_Fed", CardSet.Health, CardType.Skill, 0, 0,
+            (CardInfo c) => { c.Player.DrawCards(1); c.Player.Heal(2); }, true),
 
             //Ausgeruht - Entferne: Ziehe 1 Karte. Diese Runde: Erzeuge einen 20-Würfel.
-            new InstantCardInfo("", CardSet.Health, CardType.Skill, 0, 0,
-            (CardInfo c) => {c.Player.DrawCards(1); c.Player.AddDie(new DieInfo(20)); }, true),
+            new InstantCardInfo("Rested", CardSet.Health, CardType.Skill, 0, 0,
+            (CardInfo c) => { c.Player.DrawCards(1); c.Player.AddDie(new DieInfo(20)); }, true),
 
             //Gladiatorstärke - Entferne: Ziehe 1 Karte. Permanent: 3 Stärke.
-            new InstantCardInfo("", CardSet.Health, CardType.Skill, 0, 0,
-            (CardInfo c) => {c.Player.DrawCards(1); c.Player.AddStatus(StatusEffect.Strenght, 3); }, true),
+            new InstantCardInfo("Gladiator_Strength", CardSet.Health, CardType.Skill, 0, 0,
+            (CardInfo c) => { c.Player.DrawCards(1); c.Player.AddStatus(StatusEffect.Strenght, 3); }, true),
 
             //Gladiatorausdauer - Entferne: Ziehe 1 Karte. Permanent: Zu Rundenbeginn: Diese Runde: Erzeuge einen 4-Würfel.
-            new InstantCardInfo("", CardSet.Health, CardType.Skill, 0, 0,
-            (CardInfo c) => {c.Player.DrawCards(1); c.Player.AddAction(
-                (CardGameManager m) => m.Player.AddDie(new DieInfo(4)), true); }, true),
+            new InstantCardInfo("Gladiator_Endurance", CardSet.Health, CardType.Skill, 0, 0,
+            (CardInfo c) =>
+            {
+                c.Player.DrawCards(1); c.Player.AddActionEffect(
+                (CardGameManager m, CardInfo c) => m.Player.AddDie(new DieInfo(4)), c, true);
+            }, true),
 
             //Gladiatorgewandtheit - Entferne: Ziehe 1 Karte. Permanent: 3 Schutz.
-            new InstantCardInfo("", CardSet.Health, CardType.Skill, 0, 0,
-            (CardInfo c) => {c.Player.DrawCards(1); c.Player.AddStatus(StatusEffect.Defence, 3); }, true),
+            new InstantCardInfo("Gladiator_Finesse", CardSet.Health, CardType.Skill, 0, 0,
+            (CardInfo c) => { c.Player.DrawCards(1); c.Player.AddStatus(StatusEffect.Defence, 3); }, true),
 
             //Motivation - Entferne: Ziehe 1 Karte. Permanent: Zu Rundenbeginn: Ziehe 1 Karte.
-            new InstantCardInfo("", CardSet.Health, CardType.Skill, 0, 0,
-            (CardInfo c) => {c.Player.DrawCards(1); c.Player.AddAction(
-                (CardGameManager m) => m.Player.DrawCards(1), true); }, true),
+            new InstantCardInfo("Motivation", CardSet.Health, CardType.Skill, 0, 0,
+            (CardInfo c) =>
+            {
+                c.Player.DrawCards(1); c.Player.AddActionEffect(
+                (CardGameManager m, CardInfo c) => m.Player.DrawCards(1), c, true);
+            }, true),
 
             //Hedonistisch - Entferne: Ziehe 1 Karte. Permanent: Zu Rundenbeginn: Wähle eine beliebige Anzahl an Handkarten. Wirf die gewählten Handkarten auf den Ablagestapel und ziehe die selbe Anzahl an Karten.
-            new InstantCardInfo("", CardSet.Health, CardType.Skill, 0, 0, (CardInfo c) => {c.Player.DrawCards(1); }, true),
+            new InstantCardInfo("Hedonistic", CardSet.Health, CardType.Skill, 0, 0,
+            (CardInfo c) => { c.Player.DrawCards(1); }, true),
 
-#warning TODO
             //Epikureimus - Entferne: Ziehe 1 Karte. Permanent: Zu Rundenbeginn: Wähle einen Würfel und erhöhe dessen Augenzahl um 2.
-            //new InstantCardInfo("", CardSet.Health, CardType.Skill, 0, 0, (CardInfo c) => {c.Player.DrawCards(1);c.Player.AddAction((CardGameManager m) => , true); }, true),
+            new InstantCardInfo("Epicurean", CardSet.Health, CardType.Skill, 0, 0,
+            (CardInfo c) => {c.Player.DrawCards(1); c.Player.AddActionEffect(
+                (CardGameManager m, CardInfo ce) => { DieInfo[] dice = m.Player.Dice.Select(x => x.Info).ToArray(); dice[UnityEngine.Random.Range(0, dice.Length)].Bonus += 2; }, c, true); }, true),
 
-#warning TODO
+#warning TODO EDIT DICE
             //Stoisch - Entferne: Ziehe 1 Karte. Permanent: Nicht verbrauchte Würfel werden nicht abgelegt.
-            //new InstantCardInfo("", CardSet.Health, CardType.Skill, 0, 0, (CardInfo c) => {c.Player.DrawCards(1); }, true),
+            new InstantCardInfo("Stoic", CardSet.Health, CardType.Skill, 0, 0, (CardInfo c) => {c.Player.DrawCards(1); }, true),
 
             #endregion Positiv
 
             #region Negative
 
-#warning TODO
             //Erschöpft - Diese Runde: Reduziere die Augenzahl aller Würfel um 1. (Nie unter 1)
-            //new InstantCardInfo("", CardSet.Health, CardType.Ailment, 0, 0, (CardInfo c) => ),
+            new InstantCardInfo("Exhausted", CardSet.Health, CardType.Ailment, 0, 0, (CardInfo c) => c.Player.Dice.Select(x => x.Info.Bonus -= 1)),
 
             //Verletzt - Entferne.
             new InstantCardInfo("Injured", CardSet.Health, CardType.Ailment, 0, 1, null, true),
 
             //Hunger - 8 Schwäche. 8 Entkräftet.
-            new InstantCardInfo("", CardSet.Health, CardType.Ailment, 0, 0, (CardInfo c) => {c.Player.AddStatus(StatusEffect.Weak, 8); c.Player.AddStatus(StatusEffect.Feeble, 8); }),
+            new InstantCardInfo("Hunger", CardSet.Health, CardType.Ailment, 0, 0, (CardInfo c) => { c.Player.AddStatus(StatusEffect.Weak, 8); c.Player.AddStatus(StatusEffect.Feeble, 8); }),
 
-#warning TODO
             //Terror - Diese Runde: 50% Chance das Karten nach ihrer Aktivierung, ohne Wirkung abgeworfen werden.
-            //new InstantCardInfo("", CardSet.Health, CardType.Ailment, 0, 0, (CardInfo c) => ),
+            new InstantCardInfo("Terror", CardSet.Health, CardType.Ailment, 0, 0, (CardInfo c) => c.Player.Terror = true),
 
-#warning TODO
             //Trauma - Diese Runde: Alle gespielten Karten werden entfernt.
-            //new InstantCardInfo("", CardSet.Health, CardType.Ailment, 0, 0, (CardInfo c) => ),
+            new InstantCardInfo("Trauma", CardSet.Health, CardType.Ailment, 0, 0,
+            (CardInfo c) => c.Player.AddActionEffect((CardInfo ce) => { if (ce.Card != null && ce.Type != CardType.Block) ce.Player.DestroyCard(ce.Card); else ce.DestroyOnDiscard = true; }, true, c)),
 
-#warning TODO
             //Fleischwunde - Diese Runde: Erhalte Blutung entsprechend Augenzahl, jedes Mal, wenn du Würfel verwendest.
-            //new InstantCardInfo("", CardSet.Health, CardType.Ailment, 0, 0, (CardInfo c) => ),
+            new InstantCardInfo("Flesh_Wound", CardSet.Health, CardType.Ailment, 0, 0,
+            (CardInfo c) => c.Player.AddActionEffect((CardInfo ce) => ce.Player.InstantDamage(ce.RawDicePower), true, c)),
 
-#warning TODO
             //Knochenbruch - 8 Betäubung. Diese Runde: 2 Vitalitäts-Schaden, jedes Mal, wenn du eine Karte spielst
-            //new InstantCardInfo("", CardSet.Health, CardType.Ailment, 0, 0, (CardInfo c) => ),
+            new InstantCardInfo("Bone_Fracture", CardSet.Health, CardType.Ailment, 0, 0,
+            (CardInfo c) => {c.Player.AddStatus(StatusEffect.Stun, 8); c.Player.AddActionEffect((CardInfo ce) => ce.Player.InstantDamage(2), true, c); }),
 
-#warning TODO
             //Toxin - Diese Runde: Löse den Würfel mit der höchsten Augenzahl auf.
-            //new InstantCardInfo("", CardSet.Health, CardType.Ailment, 0, 0, (CardInfo c) => ),
+            new InstantCardInfo("Toxin", CardSet.Health, CardType.Ailment, 0, 0,
+            (CardInfo c) => { c.ToggleDie(c.Player.Dice.OrderByDescending(x => x.Info.TrueValue).First().Info); c.DestroyDice(); }),
 
             //Hoffnungslos - Entferne alle Karten aus deinem Verteidigungsstapel.
-            new InstantCardInfo("", CardSet.Health, CardType.Ailment, 0, 0,
-            (CardInfo c) => c.Player.RemoveAllBlock() ),
+            new InstantCardInfo("Hopeless", CardSet.Health, CardType.Ailment, 0, 0,
+            (CardInfo c) => c.Player.RemoveAllBlock()),
 
             //Degeneration - Entferne: Reduziere Stärke und Schutz um 1.
-            new InstantCardInfo("", CardSet.Health, CardType.Ailment, 0, 0,
-            (CardInfo c) => {c.Player.RemoveStatus(StatusEffect.Strenght, 1, true); c.Player.RemoveStatus(StatusEffect.Defence, 1, true); }),
+            new InstantCardInfo("Degeneration", CardSet.Health, CardType.Ailment, 0, 0,
+            (CardInfo c) => { c.Player.RemoveStatus(StatusEffect.Strenght, 1, true); c.Player.RemoveStatus(StatusEffect.Defence, 1, true); }),
 
-#warning TODO
             //Mutlos - Diese Runde: Du kannst keine Angriffe spielen.
-            //new InstantCardInfo("", CardSet.Health, CardType.Ailment, 0, 0, (CardInfo c) => ),
+            new InstantCardInfo("Discouraged", CardSet.Health, CardType.Ailment, 0, 0,
+            (CardInfo c) => c.Player.LockCardType(CardType.Attack)),
 
             //Psychose - Erhöhe deine Stärke um 2. 5 Verwundbarkeit.
-            new InstantCardInfo("", CardSet.Health, CardType.Ailment, 0, 0,
-            (CardInfo c) => {c.Player.AddStatus(StatusEffect.Strenght, 2); c.Player.AddStatus(StatusEffect.Vulnerable, 5); }),
+            new InstantCardInfo("Psychosis", CardSet.Health, CardType.Ailment, 0, 0,
+            (CardInfo c) => { c.Player.AddStatus(StatusEffect.Strenght, 2); c.Player.AddStatus(StatusEffect.Vulnerable, 5); }),
 
             //Blutvergiftung - 8 Verwundbarkeit. 8 Betäubung
-            new InstantCardInfo("", CardSet.Health, CardType.Ailment, 0, 0,
-            (CardInfo c) => {c.Player.AddStatus(StatusEffect.Vulnerable, 8); c.Player.AddStatus(StatusEffect.Stun, 8); }),
+            new InstantCardInfo("Blood_Poisoning", CardSet.Health, CardType.Ailment, 0, 0,
+            (CardInfo c) => { c.Player.AddStatus(StatusEffect.Vulnerable, 8); c.Player.AddStatus(StatusEffect.Stun, 8); }),
 
-#warning TODO
             //Tobsucht - Diese Runde: 4 Stärke, du kannst nur Angriffe spielen.
-            //new InstantCardInfo("", CardSet.Health, CardType.Ailment, 0, 0, (CardInfo c) => c.Player.AddStatus(StatusEffect.FragileStrenght, 4)),
+            new InstantCardInfo("Frenzy", CardSet.Health, CardType.Ailment, 0, 0,
+            (CardInfo c) => {c.Player.AddStatus(StatusEffect.FragileStrenght, 4);
+                for (int i = (int)CardType.Block; i < (int)CardType.Quest + 1; i++)
+                c.Player.LockCardType((CardType)i); }),
 
-#warning TODO
             //Lähmender Schmerz - Diese Runde: Du kannst nicht mehr als 3 Karten spielen.
-            //new InstantCardInfo("", CardSet.Health, CardType.Ailment, 0, 0, (CardInfo c) => ),
+            new InstantCardInfo("Crippling_Pain", CardSet.Health, CardType.Ailment, 0, 0,
+            (CardInfo c) => { if (c.Player.PlayedCards.Length > 2)
+                for (int i = (int)CardType.Attack; i < (int)CardType.Quest + 1; i++)
+                c.Player.LockCardType((CardType)i);}),
 
-#warning TODO
             //Krankheit - Diese Runde: Regeneration wird nicht angewandt.
-            //new InstantCardInfo("", CardSet.Health, CardType.Ailment, 0, 0, (CardInfo c) => ),
+            new InstantCardInfo("Disease", CardSet.Health, CardType.Ailment, 0, 0,
+            (CardInfo c) => c.Player.SkipRegeneration = true),
 
-#warning TODO
             //Panikattacke - Du kannst keine anderen Karten spielen solange sich diese Karte auf deiner Hand befindet. Entferne.
-            //new InstantCardInfo("", CardSet.Health, CardType.Ailment, 0, 0, (CardInfo c) => ),
+            new InstantCardInfo(BLOCK_PLAY_CARD_NAME, CardSet.Health, CardType.Ailment, 0, 1, null, true),
 
-#warning TODO
             //Herzschwäche - Diese Runde: 4 Betäubung, jedes Mal, wenn du eine Karte spielst.
-            //new InstantCardInfo("", CardSet.Health, CardType.Ailment, 0, 0, (CardInfo c) => ),
+            new InstantCardInfo("Cardiac_Insufficiency", CardSet.Health, CardType.Ailment, 0, 0,
+            (CardInfo c) => c.Player.AddActionEffect((CardInfo ce) => ce.Player.AddStatus(StatusEffect.Stun, 4), true, c)),
 
             #endregion Negative
 
@@ -970,23 +1012,23 @@ public static class CardLibrary
             #region Items
 
             //Ei - Ziehe 1 Karte. Stelle 4 Vitalität her.
-            new InstantCardInfo("", CardSet.Item, CardType.Aid, 0, 0,
+            new InstantCardInfo("Egg", CardSet.Item, CardType.Aid, 0, 0,
             (CardInfo c) => { c.Player.DrawCards(1); c.Player.Heal(4); }),
 
             //Panacea - Ziehe 1 Karte. Entferne 20 Stapel von allen negativen Status.
-            new InstantCardInfo("", CardSet.Item, CardType.Aid, 0, 0,
+            new InstantCardInfo("Panacea", CardSet.Item, CardType.Aid, 0, 0,
             (CardInfo c) => { c.Player.DrawCards(1); for (int i = (int)StatusEffect.Regeneration + 1; i < (int)StatusEffect.Vulnerable + 1; i++) c.Player.RemoveStatus((StatusEffect)i, 20); }),
 
             //Bandage - Ziehe 1 Karte. Entferne alle Blutungsstapel.
-            new InstantCardInfo("", CardSet.Item, CardType.Aid, 0, 0,
+            new InstantCardInfo("Bandage", CardSet.Item, CardType.Aid, 0, 0,
             (CardInfo c) => { c.Player.DrawCards(1); c.Player.RemoveStatus(StatusEffect.Bleeding, c.Player.GetStatus(StatusEffect.Bleeding)); }),
 
             //Quellwasser - Ziehe 1 Karte. Stelle 8 Vitalität her.
-            new InstantCardInfo("", CardSet.Item, CardType.Aid, 0, 0,
+            new InstantCardInfo("Spring_Water", CardSet.Item, CardType.Aid, 0, 0,
             (CardInfo c) => { c.Player.DrawCards(1); c.Player.Heal(8); }),
 
             //Schleifstein - Erhöhe deine Stärke um 5.
-            new InstantCardInfo("", CardSet.Item, CardType.Aid, 0, 1,
+            new InstantCardInfo("Whetstone", CardSet.Item, CardType.Aid, 0, 1,
             (CardInfo c) => c.Player.AddStatus(StatusEffect.Strenght, 5)),
 
             //Werkzeuge
@@ -1103,9 +1145,20 @@ public static class CardLibrary
 
     #region Create
 
-    public static void CreateLanugageFile()
+    public static void CreateLanugageFile(string language = null)
     {
-        string path = $"Assets\\Resources\\XML\\Languages\\Language_Template.xml";
+        string basePath = $"Assets\\Resources\\XML\\Languages";
+        string templatePath = $"{basePath}\\Language_Template.xml";
+
+        string[] names = new string[0];
+        string[] descriptions = new string[0];
+
+        if (language != null && language.Length > 0)
+        {
+            names = File.ReadAllLines($"{basePath}\\{language}_names.txt");
+            descriptions = File.ReadAllLines($"{basePath}\\{language}_descriptions.txt");
+        }
+
         XmlDocument doc = new XmlDocument();
         XmlElement rootNode = doc.CreateElement("Language");
         doc.AppendChild(rootNode);
@@ -1115,14 +1168,27 @@ public static class CardLibrary
             if (cards[i].Name.Length < 1)
                 continue;
 
-            XmlElement cardNode = doc.CreateElement(cards[i].Name);
-            cardNode.SetAttribute("Name", cards[i].Name.Replace("_", " "));
-            cardNode.SetAttribute("Description", "");
+            string name = cards[i].Name;
+
+            XmlElement cardNode = doc.CreateElement(name);
+
+            if (i < names.Length)
+                cardNode.SetAttribute("Name", names[i]);
+            else
+                cardNode.SetAttribute("Name", name.Replace("_", " "));
+
+            if (i < descriptions.Length)
+                cardNode.SetAttribute("Description", descriptions[i]);
+            else
+                cardNode.SetAttribute("Description", "");
 
             rootNode.AppendChild(cardNode);
         }
 
-        doc.Save(path);
+        if (language != null && language.Length > 0)
+            doc.Save($"{basePath}\\{language}.xml");
+        else
+            doc.Save(templatePath);
     }
 
     public static void RenameCardImages(CardInfo[] cards)

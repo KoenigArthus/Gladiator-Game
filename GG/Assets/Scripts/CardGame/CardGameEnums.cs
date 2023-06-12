@@ -1,5 +1,7 @@
 ﻿#region System
 
+using System;
+
 public enum Language
 {
     German, English
@@ -25,7 +27,7 @@ public enum CardSet
 
 public enum CardType
 {
-    Attack, Block, Skill, Aid, Ailment, Quest
+    Attack, Block, Skill, Aid, Quest, Ailment
 }
 
 #endregion
@@ -43,12 +45,18 @@ public enum CardCollectionType
 
 public enum PermanentEffect
 {
-    OnRoundStart, OnDeck, OnDefend, OnPlay, OnTribute,
+    OnRoundStart, OnDeck, OnDraw, OnDefend, OnPlay, OnTribute,
 }
 
 public enum StatusEffect
 {
     Strenght, Defence, Invulnerable, FragileStrenght, FragileDefence, Regeneration, Stun, Weak, Feeble, Bleeding, Vulnerable
+}
+
+[Flags]
+public enum SpecialCardEffectFlags
+{
+    SkipRegeneration = 1, NegativeStatusShield = 2, StrengthBleedSalt = 4, Terror = 8
 }
 
 #endregion

@@ -90,9 +90,10 @@ public abstract class CardInfo : ICloneable
     public int DiceBonus { get => diceBonus; set => diceBonus = value; }
     public int DicePower => RawDicePower + diceBonus;
 
-    public virtual bool DestroyOnDiscard => destroyOnDiscard;
+    public virtual bool DestroyOnDiscard { get => destroyOnDiscard; set => destroyOnDiscard = value; }
 
     public CardObject Card => card;
+    public DieInfo[] Dice => dice;
     public Player Player => card?.Collection?.Player;
     public Enemy Enemy => Player?.Enemy;
 

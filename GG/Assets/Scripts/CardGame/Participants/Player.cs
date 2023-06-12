@@ -36,10 +36,22 @@ public class Player : Participant
         new Delegate[] {},
         new Delegate[] {},
         new Delegate[] {},
+        new Delegate[] {},
         new Delegate[] {}
     };
 
-    private Queue<GameEvent> eventQueue = new Queue<GameEvent>();
+    private Delegate[][] passiveEffects = new Delegate[][]
+    {
+        new Delegate[] {},
+        new Delegate[] {},
+        new Delegate[] {},
+        new Delegate[] {},
+        new Delegate[] {},
+        new Delegate[] {}
+    };
+
+    //bonus bleed stacks on applied bleed
+    private int bleedSalt = 0;
 
     #endregion Fields
 
@@ -67,6 +79,7 @@ public class Player : Participant
     public CardCollection Hand => hand;
     public CardCollection Discard => discard;
     public CardCollection ActiveBlock => block;
+    public DieObject[] Dice => dice.Where(x => x != null).ToArray();
 
     public CardInfo[] PlayedCards => playedCards.Where(x => x != null).ToArray();
 
@@ -74,12 +87,15 @@ public class Player : Participant
 
     public bool Busy => false;
 
+    public int BleedSalt { get => bleedSalt; set => bleedSalt = value; }
+
     #endregion Properties
 
     #region DrawCards
 
     public void DrawCards(int amount)
     {
+        CardInfo[] drawnCards = new CardInfo[amount];
         for (int i = 0; i < amount; i++)
         {
             if (deck.Count < 1)
@@ -93,13 +109,22 @@ public class Player : Participant
 
             CardObject drawnCard = deck.DrawCard();
             CardInfo drawnCardInfo = drawnCard.Info;
+            drawnCards[i] = drawnCardInfo;
             hand.Add(drawnCard);
 
             if (drawnCardInfo.Type == CardType.Ailment && drawnCardInfo.Cost == 0)
             {
-                prepareing = drawnCard;
-                PlayPreparedCard();
+                drawnCardInfo.Execute();
+
+                //prepareing = drawnCard;
+                //PlayPreparedCard();
             }
+        }
+
+        CardsAction[] drawActions = GetActionEffects(PermanentEffect.OnRoundStart).Cast<CardsAction>().ToArray();
+        for (int i = 0; i < drawActions.Length; i++)
+        {
+            drawActions[i](drawnCards);
         }
     }
 
@@ -120,7 +145,7 @@ public class Player : Participant
         if (hand.Changed)
         {
             CardObject[] cards = hand.Cards;
-            ChangeCard[] change = permanentEffects[(int)PermanentEffect.OnDeck].Cast<ChangeCard>().ToArray();
+            ChangeCard[] change = GetActionEffects(PermanentEffect.OnDeck).Cast<ChangeCard>().ToArray();
             for (int i = 0; i < cards.Length; i++)
             {
                 for (int j = 0; j < change.Length; j++)
@@ -145,81 +170,61 @@ public class Player : Participant
         //Destroy used dice
         card.Info.DestroyDice();
 
-        int stun = GetStatus(StatusEffect.Stun) - playedCards.Count(x => x == null);
-        if (stun < 1 || UnityEngine.Random.Range(0, 100) > 9)
+        if (Terror && UnityEngine.Random.Range(0, 2) > 0)
         {
-            CardAction[] playActions = permanentEffects[(int)PermanentEffect.OnPlay].Cast<CardAction>().ToArray();
-            for (int i = 0; i < playActions.Length; i++)
-            {
-                playActions[i](info);
-            }
-            info = card.Info;
-
-            playedCards.Add(info);
-
-            //Move card to correct collection
-            if (info is InstantCardInfo instantCard)
-            {
-                instantCard.Execute();
-                if (info is BlockCardInfo blockCard)
-                {
-                    //Apply bonus block
-                    card.Info.DiceBonus += BonusBlock;
-
-                    if (card.Info.DicePower > 0)
-                    {
-                        //Hand -> Block
-                        block.Add(card);
-
-                        //Discard if block is overfilled
-                        if (block.Count > BlockSlots)
-                            DiscardSingle(block.Cards[0]);
-
-                        //Dont discard block
-                        return;
-                    }
-                }
-            }
-            else if (info is PermanentCardInfo permanentCard)
-            {
-                PermanentEffect effect = permanentCard.Effect.Item1;
-                Delegate action = permanentCard.Effect.Item2;
-
-                if (effect == PermanentEffect.OnDeck)
-                {
-                    if (action is ChangeCardAction changeCardAction)
-                    {
-                        int power = permanentCard.DicePower;
-                        ChangeCard changeAction = (CardInfo c) => changeCardAction(c, power);
-                        action = changeAction;
-                    }
-                    else
-                    {
-                        Debug.Log($"Black Magic failed! | Card: {permanentCard.Name} | If you ever see this message, RUN!");
-                        return;
-                    }
-                }
-                else if (effect == PermanentEffect.OnRoundStart)
-                {
-                    if (action is GameEventAction gameEvent)
-                    {
-                        CardInfo snapshot = permanentCard;
-                        GameEvent eventAction = (CardGameManager m) => gameEvent(m, snapshot);
-                        action = eventAction;
-                    }
-                    else
-                    {
-                        Debug.Log($"Black Magic failed! | Card: {permanentCard.Name} | If you ever see this message, RUN!");
-                        return;
-                    }
-                }
-
-                permanentEffects[(int)effect] = permanentEffects[(int)effect].Concat(new Delegate[] { action }).ToArray();
-            }
+            playedCards.Add(null);
         }
         else
         {
-            playedCards.Add(null);
+            int stun = GetStatus(StatusEffect.Stun) - playedCards.Count(x => x == null);
+            if (!IsStuned())
+            {
+                CardAction[] playActions = GetActionEffects(PermanentEffect.OnPlay).Cast<CardAction>().ToArray();
+                for (int i = 0; i < playActions.Length; i++)
+                {
+                    playActions[i](info);
+                }
+                info = card.Info;
+
+                if (info.Type != CardType.Ailment)
+                    playedCards.Add(info);
+
+                //Move card to correct collection
+                if (info is InstantCardInfo instantCard)
+                {
+                    instantCard.Execute();
+                    if (info is BlockCardInfo blockCard)
+                    {
+                        //Apply bonus block
+                        card.Info.DiceBonus += BonusBlock;
+
+                        if (card.Info.DicePower > 0)
+                        {
+                            //Hand -> Block
+                            block.Add(card);
+
+                            //Discard if block is overfilled
+                            if (block.Count > BlockSlots)
+                                DiscardSingle(block.Cards[0]);
+
+                            //Dont discard block
+                            return;
+                        }
+                    }
+                }
+                else if (info is PermanentCardInfo permanentCard)
+                {
+                    PermanentEffect effect = permanentCard.Effect.Item1;
+                    Delegate action = permanentCard.Effect.Item2;
+
+                    AddActionEffect(effect, action, permanentCard, true);
+                }
+            }
+            else
+            {
+                playedCards.Add(null);
+                AbortPreparedCardPlay();
+            }
         }
 
         //Hand -> Discard
@@ -228,7 +233,10 @@ public class Player : Participant
 
     public void PrepareCard(CardObject card)
     {
-        if (card != null && !lockedCardTypes[(int)card.Info.Type])
+        if (!card.Info.Name.Equals(CardLibrary.BLOCK_PLAY_CARD_NAME) && hand.Cards.Any(x => x.Info.Name.Equals(CardLibrary.BLOCK_PLAY_CARD_NAME)))
+            return;
+
+        if (card != null && !lockedCardTypes[(int)card.Info.Type] && card.Info.Type != CardType.Ailment)
             prepareing = card;
     }
 
@@ -257,15 +265,81 @@ public class Player : Participant
         return !(dice.Count(x => x != null && !x.IsDestroyed()) < cost);
     }
 
-    public void AddAction(GameEvent gameAction, bool permanent = false)
+    #endregion Play
+
+    #region Effects
+
+    public void AddActionEffect(GameEventAction action, CardInfo card, bool permanent = false)
     {
-        if (permanent)
-            permanentEffects[(int)PermanentEffect.OnRoundStart] = permanentEffects[(int)PermanentEffect.OnRoundStart].Concat(new Delegate[] { gameAction }).ToArray();
-        else
-            eventQueue.Enqueue(gameAction);
+        AddActionEffect(PermanentEffect.OnRoundStart, action, card, permanent);
     }
 
-    #endregion Play
+    public void AddActionEffect(ChangeCardAction action, CardInfo card, bool permanent = false)
+    {
+        AddActionEffect(PermanentEffect.OnDeck, action, card, permanent);
+    }
+
+    public void AddActionEffect(CardsAction action, CardInfo card, bool permanent = false)
+    {
+        AddActionEffect(PermanentEffect.OnDeck, action, card, permanent);
+    }
+
+    public void AddActionEffect(AttackEvent action, CardInfo card, bool permanent = false)
+    {
+        AddActionEffect(PermanentEffect.OnDefend, action, card, permanent);
+    }
+
+    public void AddActionEffect(CardAction action, bool playNotTributeAction, CardInfo card, bool permanent = false)
+    {
+        if (playNotTributeAction)
+            AddActionEffect(PermanentEffect.OnPlay, action, card, permanent);
+        else
+            AddActionEffect(PermanentEffect.OnTribute, action, card, permanent);
+    }
+
+    protected void AddActionEffect(PermanentEffect effectType, Delegate action, CardInfo card, bool permanent = false)
+    {
+        if (effectType == PermanentEffect.OnDeck)
+        {
+            if (action is ChangeCardAction changeCardAction)
+            {
+                int power = card.DicePower;
+                ChangeCard changeAction = (CardInfo c) => changeCardAction(c, power);
+                action = changeAction;
+            }
+            else
+            {
+                Debug.Log($"Black Magic failed! | Card: {card.Name} | If you ever see this message, RUN!");
+                return;
+            }
+        }
+        else if (effectType == PermanentEffect.OnRoundStart)
+        {
+            if (action is GameEventAction gameEvent)
+            {
+                CardInfo snapshot = card;
+                GameEvent eventAction = (CardGameManager m) => gameEvent(m, snapshot);
+                action = eventAction;
+            }
+            else
+            {
+                Debug.Log($"Black Magic failed! | Card: {card.Name} | If you ever see this message, RUN!");
+                return;
+            }
+        }
+        if (permanent)
+            permanentEffects[(int)effectType] = permanentEffects[(int)effectType].Concat(new Delegate[] { action }).ToArray();
+        else
+            passiveEffects[(int)effectType] = passiveEffects[(int)effectType].Concat(new Delegate[] { action }).ToArray();
+    }
+
+    public Delegate[] GetActionEffects(PermanentEffect effectType)
+    {
+        int index = (int)effectType;
+        return permanentEffects[index].Concat(passiveEffects[index]).ToArray();
+    }
+
+    #endregion Effects
 
     #region Attack
 
@@ -273,7 +347,7 @@ public class Player : Participant
     {
         if (defender == this)
         {
-            AttackEvent[] attackEvents = permanentEffects[(int)PermanentEffect.OnDefend].Cast<AttackEvent>().ToArray();
+            AttackEvent[] attackEvents = GetActionEffects(PermanentEffect.OnDefend).Cast<AttackEvent>().ToArray();
             for (int i = 0; i < attackEvents.Length; i++)
             {
                 attackEvents[i](attacker, defender, power);
@@ -411,6 +485,21 @@ public class Player : Participant
 
     #endregion Dice
 
+    public override void AddStatus(StatusEffect effect, int count)
+    {
+        base.AddStatus(effect, count);
+
+        if (bleedSalt > 0 && effect == StatusEffect.Bleeding)
+        {
+            int amount = bleedSalt;
+            if (StrengthBleedSalt)
+                amount += Strenght;
+            bleedSalt = -1;
+            AddStatus(StatusEffect.Bleeding, amount);
+            bleedSalt = amount;
+        }
+    }
+
     public override int GetStatus(StatusEffect effect)
     {
         int bonus = 0;
@@ -422,12 +511,12 @@ public class Player : Participant
 
     protected override void OnAdvanceRound()
     {
+        //Reset card play history
         playedCards = new List<CardInfo>();
+        //Reset locked card types
         lockedCardTypes = new bool[6];
 
         //Execute queued round start events
-        while (eventQueue.Count > 0)
-            eventQueue.Dequeue()(Manager);
 
         //Execute passive block effects
         PassiveBlockCardInfo[] blockCards = block.Cards.Select(x => x.Info as PassiveBlockCardInfo).ToArray();
@@ -438,10 +527,20 @@ public class Player : Participant
         }
 
         //Execute permanent round start effects
-        GameEvent[] roundStartEvents = permanentEffects[(int)PermanentEffect.OnRoundStart].Cast<GameEvent>().ToArray();
+        GameEvent[] roundStartEvents = GetActionEffects(PermanentEffect.OnRoundStart).Cast<GameEvent>().ToArray();
         for (int i = 0; i < roundStartEvents.Length; i++)
         {
             roundStartEvents[i](Manager);
         }
+
+        //Reset passive Effects
+        passiveEffects = new Delegate[][]
+        {
+            new Delegate[] {},
+            new Delegate[] {},
+            new Delegate[] {},
+            new Delegate[] {},
+            new Delegate[] {}
+        };
     }
 }

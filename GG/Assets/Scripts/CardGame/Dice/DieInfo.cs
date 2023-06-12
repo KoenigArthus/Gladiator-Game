@@ -8,6 +8,8 @@ public class DieInfo
     #region Fields
 
     private readonly int[] validSideCounts = new int[] { 4, 6, 8, 12, 20 };
+    private int bonus = 0;
+    private string tag = "";
 
     private DieObject die;
 
@@ -71,9 +73,13 @@ public class DieInfo
     #region Properties
 
     public int[] Sides => sides;
-    public int Value => sides[index];
+    public int TrueValue => sides[index];
+    public int Value => Mathf.Max(1, sides[index] + bonus);
     public DieObject Die => die;
     public bool Rolling => die != null && die.Rolling;
+
+    public int Bonus { get => bonus; set => bonus = value; }
+    public string Tag { get => tag; set => tag = value; }
 
     #endregion Properties
 

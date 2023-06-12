@@ -106,8 +106,8 @@ public class CardGameManager : MonoBehaviour
 
     public void Debug()
     {
-        //CardLibrary.CreateLanugageFile();
+        CardLibrary.CreateLanugageFile();
 
-        CardLibrary.RenameCardImages(cards);
+        //CardLibrary.RenameCardImages(cards);
     }
 }
