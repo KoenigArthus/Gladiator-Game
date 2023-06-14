@@ -60,6 +60,6 @@ public class BlockCardInfo : InstantCardInfo
 
     public override object Clone()
     {
-        return new BlockCardInfo(Name, Set, Tier, Cost, blockPower, DestroyOnDiscard) { CostReduction = this.CostReduction };
+        return new BlockCardInfo(Name, Set, Tier, Cost, blockPower, DestroyOnDiscard) { action = this.action, CostReduction = this.CostReduction };
     }
 }

@@ -2,6 +2,8 @@
 
 public delegate void CardAction(CardInfo card);
 
+public delegate void CardsAction(CardInfo[] cards);
+
 public delegate int GetPower(CardInfo card);
 
 public delegate CardInfo ChangeCardAction(CardInfo card, int value);

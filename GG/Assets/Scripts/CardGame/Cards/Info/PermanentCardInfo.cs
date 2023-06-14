@@ -10,31 +10,37 @@ public class PermanentCardInfo : CardInfo
 
     #region ctor
 
-    public PermanentCardInfo(string name, CardSet set, int tier, int cost, bool destroyOnDiscard = false) :
-        base(name, set, CardType.Skill, tier, cost, destroyOnDiscard)
+    public PermanentCardInfo(string name, CardSet set, int tier, int cost) :
+        base(name, set, CardType.Skill, tier, cost, true)
     {
     }
 
-    public PermanentCardInfo(string name, CardSet set, int tier, int cost, GameEventAction gameEvent, bool destroyOnDiscard = false) :
-        this(name, set, tier, cost, destroyOnDiscard)
+    public PermanentCardInfo(string name, CardSet set, int tier, int cost, GameEventAction gameEvent) :
+        this(name, set, tier, cost)
     {
         effect = (PermanentEffect.OnRoundStart, gameEvent);
     }
 
-    public PermanentCardInfo(string name, CardSet set, int tier, int cost, ChangeCardAction changeCard, bool destroyOnDiscard = false) :
-        this(name, set, tier, cost, destroyOnDiscard)
+    public PermanentCardInfo(string name, CardSet set, int tier, int cost, ChangeCardAction changeCard) :
+        this(name, set, tier, cost)
     {
         effect = (PermanentEffect.OnDeck, changeCard);
     }
 
-    public PermanentCardInfo(string name, CardSet set, int tier, int cost, AttackEvent attackEvent, bool destroyOnDiscard = false) :
-        this(name, set, tier, cost, destroyOnDiscard)
+    public PermanentCardInfo(string name, CardSet set, int tier, int cost, CardsAction drawCrads) :
+        this(name, set, tier, cost)
+    {
+        effect = (PermanentEffect.OnDraw, drawCrads);
+    }
+
+    public PermanentCardInfo(string name, CardSet set, int tier, int cost, AttackEvent attackEvent) :
+        this(name, set, tier, cost)
     {
         effect = (PermanentEffect.OnDefend, attackEvent);
     }
 
-    public PermanentCardInfo(string name, CardSet set, int tier, int cost, CardAction cardAction, bool playNotTributeAction, bool destroyOnDiscard = false) :
-        this(name, set, tier, cost, destroyOnDiscard)
+    public PermanentCardInfo(string name, CardSet set, int tier, int cost, CardAction cardAction, bool playNotTributeAction) :
+        this(name, set, tier, cost)
     {
         effect = (playNotTributeAction ? PermanentEffect.OnPlay : PermanentEffect.OnTribute, cardAction);
     }
@@ -51,10 +57,6 @@ public class PermanentCardInfo : CardInfo
 
     public override object Clone()
     {
-        return new PermanentCardInfo(Name, Set, Tier, Cost, DestroyOnDiscard)
-        {
-            CostReduction = this.CostReduction,
-            effect = this.effect
-        };
+        return new PermanentCardInfo(Name, Set, Tier, Cost) { CostReduction = this.CostReduction, effect = this.effect };
     }
 }

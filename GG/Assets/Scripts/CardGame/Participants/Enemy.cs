@@ -20,7 +20,7 @@ public class Enemy : Participant
     private int health;
     private int[] blockStack = new int[0];
     private EnemyBehavior behavior;
-    private Intension[] intensions;
+    private Intension[] intensions = new Intension[0];
 
     #endregion Fields
 
@@ -58,12 +58,27 @@ public class Enemy : Participant
 
         (int, int) behaviorValues = Enemy.behaviorValues[(int)behavior];
 
-        intensions = new Intension[]
+        for (int i = 0; i < intensions.Length; i++)
         {
-            new Intension(behaviorValues.Item1, behaviorValues.Item2),
-            new Intension(behaviorValues.Item1, behaviorValues.Item2),
-            new Intension(behaviorValues.Item1, behaviorValues.Item2)
-        };
+            intensions[i] = new Intension(behaviorValues.Item1, behaviorValues.Item2);
+        }
+    }
+
+    public void ChangeIntension(EnemyAction action)
+    {
+        for (int i = 0; i < intensions.Length; i++)
+        {
+            intensions[i] = new Intension(action);
+        }
+    }
+
+    public void BlockIntension(EnemyAction action)
+    {
+        for (int i = 0; i < intensions.Length; i++)
+        {
+            if (intensions[i] != null && intensions[i].Type == action)
+                intensions[i] = null;
+        }
     }
 
     public void TakeTurn(Player target)
@@ -71,10 +86,11 @@ public class Enemy : Participant
         int stun = GetStatus(StatusEffect.Stun);
         for (int i = 0; i < intensions.Length; i++)
         {
-            if (i < stun && Random.Range(0, 100) < 10)
+            Intension current = intensions[i];
+
+            if (current == null || IsStuned())
                 continue;
 
-            Intension current = intensions[i];
             if (current.Type == EnemyAction.Attack)
                 this.Attack(target, Random.Range(1, 5));
             else if (current.Type == EnemyAction.Block)

@@ -11,6 +11,8 @@ public abstract class Participant
 
     private int blockSlots = 3;
     private int[] statusEffectStacks = new int[11];
+    private int lastStatusDecayAmount = 0;
+    private SpecialCardEffectFlags specialFlags = 0;
 
     #endregion Fields
 
@@ -23,11 +25,22 @@ public abstract class Participant
 
     protected CardGameManager Manager => manager;
     public abstract int Health { get; set; }
-    public int BonusDamage => GetStatus(StatusEffect.Strenght) + GetStatus(StatusEffect.FragileStrenght) - GetStatus(StatusEffect.Weak);
-    public int BonusBlock => GetStatus(StatusEffect.Defence) + GetStatus(StatusEffect.FragileDefence) - GetStatus(StatusEffect.Feeble);
+    public int Strenght => GetStatus(StatusEffect.Strenght) + GetStatus(StatusEffect.FragileStrenght);
+    public int BonusDamage => Strenght - GetStatus(StatusEffect.Weak);
+    public int Defence => GetStatus(StatusEffect.Feeble);
+    public int BonusBlock => Defence - GetStatus(StatusEffect.Feeble);
     public int Block => BlockStack.Sum();
     public abstract int[] BlockStack { get; }
     public int BlockSlots { get => blockSlots; set => blockSlots = value; }
+    public int LastStatusDecayAmount => lastStatusDecayAmount;
+    public bool SkipRegeneration
+    { get => specialFlags.HasFlag(SpecialCardEffectFlags.SkipRegeneration); set { if (value) specialFlags |= SpecialCardEffectFlags.SkipRegeneration; else specialFlags ^= SpecialCardEffectFlags.SkipRegeneration; } }
+    public bool NegativeStatusShield
+    { get => specialFlags.HasFlag(SpecialCardEffectFlags.NegativeStatusShield); set { if (value) specialFlags |= SpecialCardEffectFlags.NegativeStatusShield; else specialFlags ^= SpecialCardEffectFlags.NegativeStatusShield; } }
+    public bool StrengthBleedSalt
+    { get => specialFlags.HasFlag(SpecialCardEffectFlags.StrengthBleedSalt); set { if (value) specialFlags |= SpecialCardEffectFlags.StrengthBleedSalt; else specialFlags ^= SpecialCardEffectFlags.StrengthBleedSalt; } }
+    public bool Terror
+    { get => specialFlags.HasFlag(SpecialCardEffectFlags.Terror); set { if (value) specialFlags |= SpecialCardEffectFlags.Terror; else specialFlags ^= SpecialCardEffectFlags.Terror; } }
 
     #endregion Properties
 
@@ -38,8 +51,14 @@ public abstract class Participant
         //Apply status effects
         //Noting yet
 
-        //Decay status effects
-        DoRegeneration();
+        if (!SkipRegeneration)
+        {
+            //Decay status effects
+            DoRegeneration();
+        }
+        SkipRegeneration = false;
+
+        Terror = false;
     }
 
     protected virtual void OnAdvanceRound()
@@ -48,11 +67,18 @@ public abstract class Participant
 
     public void DoRegeneration()
     {
+        lastStatusDecayAmount = 0;
+
         //Decay status effects
         int regeneration = GetStatus(StatusEffect.Regeneration);
         for (int i = (int)StatusEffect.Regeneration + 1; i < statusEffectStacks.Length; i++)
         {
-            statusEffectStacks[i] = Mathf.Max(0, statusEffectStacks[i] - regeneration);
+            int decay = Mathf.Min(statusEffectStacks[i], regeneration);
+            if (decay > 0)
+            {
+                lastStatusDecayAmount += decay;
+                statusEffectStacks[i] -= decay;
+            }
         }
 
         //Reset status effects
@@ -126,17 +152,33 @@ public abstract class Participant
     {
     }
 
+    public bool IsStuned()
+    {
+        int stun = GetStatus(StatusEffect.Stun);
+        if (stun < 1)
+            return false;
+
+        float chance = 0.1f / (0.1f * stun + 1);
+        bool stuned = Random.Range(0, 1 - float.Epsilon) > chance;
+
+        return stuned;
+    }
+
     #endregion Attack
 
     #region Status
 
-    public void AddStatus(StatusEffect effect, int count)
+    public virtual void AddStatus(StatusEffect effect, int count)
     {
+        //NegativeStatusShield
+        if (effect > StatusEffect.Regeneration && count > 0 && BlockStack.Length > 0 && NegativeStatusShield)
+            return;
+
         if (count > 0)
             statusEffectStacks[(int)effect] += count;
     }
 
-    public void RemoveStatus(StatusEffect effect, int count, bool allowNegative = false)
+    public virtual void RemoveStatus(StatusEffect effect, int count, bool allowNegative = false)
     {
         if (count > 0)
             statusEffectStacks[(int)effect] -= count;
