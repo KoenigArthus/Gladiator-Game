@@ -1,6 +1,7 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using JSAM;
 
 public class CardGameManager : MonoBehaviour
 {

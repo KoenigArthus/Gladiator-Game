@@ -112,21 +112,7 @@ public class ThirdPersonController : MonoBehaviour
         forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(cam);
         forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(cam);
 
-        // footsteps sound
-        Debug.Log("forceDirection magnitude: " + forceDirection.magnitude);
-
-        if (forceDirection.sqrMagnitude <= 0 & JSAM.AudioManager.IsSoundPlaying(Sounds.SandSteps))
-        {
-
-            Debug.Log("Stopping footsteps sound.");
-            JSAM.AudioManager.StopSound(Sounds.SandSteps);
-        }
-        else if (forceDirection.sqrMagnitude > 0 & !JSAM.AudioManager.IsSoundPlaying(Sounds.SandSteps))
-        {
-            Debug.Log("Playing footsteps sound.");
-            JSAM.AudioManager.PlaySound(Sounds.SandSteps);
-        }
-       
+    
 
         // moves the player
         rb.AddForce(forceDirection, ForceMode.Impulse);

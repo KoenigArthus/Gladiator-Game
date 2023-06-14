@@ -45,6 +45,5 @@ public class CameraZoom : MonoBehaviour
         else if(cineZoom.m_Width > 15)
             cineZoom.m_Width = 15f;
 
-        Debug.Log("zoomed" + inputValue);
     }
 }

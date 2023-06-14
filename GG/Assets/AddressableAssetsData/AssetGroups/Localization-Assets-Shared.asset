@@ -17,12 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 81e4e4d24ce1059459d710262aedbbf3
   m_SerializeEntries:
-  - m_GUID: 49ecde9a4ef721a4b8b20ac07f33c3fc
-    m_Address: Assets/Dialogue/Localization/UI Text Shared Data.asset
-    m_ReadOnly: 1
-    m_SerializedLabels: []
-  - m_GUID: de94b9a5a48532e45b7b9c899dbd0078
-    m_Address: Assets/Dialogue/Localization/foryarntest Shared Data.asset
+  - m_GUID: e1a0ec236bc26b24aa4ab0a17dd51ee6
+    m_Address: "Assets/\xDCbersetzung/Tables/UI Shared Data.asset"
     m_ReadOnly: 1
     m_SerializedLabels: []
   m_ReadOnly: 1

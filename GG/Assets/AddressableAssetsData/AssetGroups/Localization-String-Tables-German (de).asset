@@ -17,14 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 7c1e25988df8b604d878addbe3ab2169
   m_SerializeEntries:
-  - m_GUID: 373f8dc4d168fee4fa95e1f7e8a7a5da
-    m_Address: UI Text_de
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-de
-    - Preload
-  - m_GUID: aa73f933b9cb7f04890f1991e8d6d7d4
-    m_Address: foryarntest_de
+  - m_GUID: e6976ab3107ac7a4690f7ae49544f45a
+    m_Address: StartSettings Text_de
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-de
