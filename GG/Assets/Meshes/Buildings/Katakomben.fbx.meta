@@ -3,7 +3,32 @@ guid: 876f169b82423e04b8c38a7d99fff4f1
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stein
+    second: {fileID: 2100000, guid: b1c10742981bfb64f9a67ce9cb40eef7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stein Dunkel
+    second: {fileID: 2100000, guid: a7bbc293aeac3e043889fd47dfa2e77c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stein Hell
+    second: {fileID: 2100000, guid: d5bac13c2a157a44a8a0c4bc4ef48541, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stein Heller
+    second: {fileID: 2100000, guid: dda03bb7c825fad4b95e0367cdb414dd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stein am Hellsten
+    second: {fileID: 2100000, guid: 130786cac44bd9640847ded214ce6e82, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
