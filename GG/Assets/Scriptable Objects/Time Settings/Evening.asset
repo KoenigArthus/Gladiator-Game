@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Evening
   m_EditorClassIdentifier: 
   lightColor: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  skyColor: {r: 0.07058824, g: 1, b: 0, a: 1}
+  equatorColor: {r: 0.5019608, g: 0.45490196, b: 0.6313726, a: 1}
+  groundColor: {r: 0.19607843, g: 0.69803923, b: 0.68235296, a: 1}
   lightTemperature: 4470
   lightIntensity: 0.6
   lightRotation: {x: 10, y: -30, z: 0}
+  skybox: {fileID: 2100000, guid: 5fe5fe9bef1b9da4db00d26a914c5a59, type: 2}

@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aff3cec4ca3f870418b63468571b4bbd, type: 3}
   m_Name: Morning
   m_EditorClassIdentifier: 
-  lightColor: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  lightColor: {r: 1, g: 0, b: 0, a: 1}
+  skyColor: {r: 0.8666667, g: 0.7647059, b: 0.87058824, a: 1}
+  equatorColor: {r: 0.5019608, g: 0.45490196, b: 0.6313726, a: 1}
+  groundColor: {r: 0.34117648, g: 0.28627452, b: 0.26666668, a: 1}
   lightTemperature: 5373
   lightIntensity: 0.6
-  lightIndicertMultiplyer: 1
   lightRotation: {x: 7, y: -210, z: 0}
+  skybox: {fileID: 2100000, guid: 120285d0c18ec1c41b7bb00992b92a20, type: 2}
