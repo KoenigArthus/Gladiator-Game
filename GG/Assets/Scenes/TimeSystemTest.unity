@@ -349,7 +349,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 902020305}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.73, y: -0.51, z: 0.06}
+  m_LocalPosition: {x: -0.646, y: -0.51, z: -0.216}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -368,6 +368,7 @@ GameObject:
   - component: {fileID: 1312799856}
   - component: {fileID: 1312799855}
   - component: {fileID: 1312799854}
+  - component: {fileID: 1312799858}
   m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
@@ -453,6 +454,59 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1312799858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312799853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3231b5ef3da805a41bbaddefc45237f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portrait: {fileID: 0}
+  characterName: A
+  englishCharacterName: A
+  startNode: N
+  activeDialogueIconOffset: {x: 0, y: 0, z: 0}
+  timeTable:
+    time1: 1
+    time2: 0
+    time3: 0
+    time4: 0
+    time5: 0
+    time6: 1
+    time7: 1
+    time8: 0
+    time9: 0
+    time10: 0
+    time11: 1
+    time12: 1
+    time13: 0
+    time14: 1
+    time15: 0
+    time16: 0
+    time17: 0
+    time18: 1
+    time19: 1
+    time20: 0
+    time21: 0
+    time22: 0
+    time23: 0
+    time24: 0
+    time25: 1
+    time26: 0
+    time27: 0
+    time28: 0
+    time29: 0
+    time30: 1
+    time31: 0
+    time32: 0
+    time33: 0
+    time34: 0
+    time35: 0
 --- !u!1 &1662810023
 GameObject:
   m_ObjectHideFlags: 0
