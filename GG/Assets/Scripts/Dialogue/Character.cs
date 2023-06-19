@@ -12,8 +12,17 @@ public class Character : MonoBehaviour
     [SerializeField]
     private Vector3 activeDialogueIconOffset;
     private bool intrigger;
-
+    public Date birthdate;
     public TimeBoolTable timeTable;
+    public Date killdate;
+
+    public void Start()
+    {
+        
+
+    }
+
+
 
     private void OnTriggerEnter(Collider other)
     {
