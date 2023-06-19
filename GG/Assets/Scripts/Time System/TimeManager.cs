@@ -5,7 +5,7 @@ using UnityEngine;
 public class TimeManager : MonoBehaviour
 {
     public GameObject lightObject;
-    [HideInInspector] public Light directionalLighting;
+    public Light directionalLighting;
 
     public Date currentDate;
 
@@ -16,7 +16,7 @@ public class TimeManager : MonoBehaviour
 
     private void Awake()
     {
-        directionalLighting = lightObject.GetComponent<Light>();
+
     }
 
     // Update is called once per frame

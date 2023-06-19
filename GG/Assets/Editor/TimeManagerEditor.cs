@@ -8,8 +8,6 @@ public class TimeManagerEditor : Editor
     {
         TimeManager timeManager = (TimeManager)target;
 
-        timeManager.directionalLighting = timeManager.lightObject.GetComponent<Light>();
-
         GUILayout.BeginHorizontal();
 
         if (GUILayout.Button("Previous Date"))
