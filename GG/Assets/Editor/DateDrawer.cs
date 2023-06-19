@@ -12,28 +12,36 @@ public class DateDrawer : PropertyDrawer
         float labelWidth = EditorGUIUtility.labelWidth;
         Rect labelRect = new Rect(position.x, position.y, labelWidth, position.height);
 
-        // Draw the label
-        EditorGUI.LabelField(labelRect, label, EditorStyles.boldLabel);
+        //Draw Label
+        Color labelColor = ColorUtility.TryParseHtmlString("#b1fd59", out Color color) ? color : Color.green; // Specify the hexadecimal color value here
+        string tooltipText = "A Date given in Day.Month.Year format";
+        GUIContent labelContent = new GUIContent(label.ToString(), tooltipText);
+        EditorGUI.LabelField(labelRect, labelContent, new GUIStyle(EditorStyles.label) { normal = { textColor = labelColor } });
+
+        // Reset the color back to default
+        GUI.color = Color.white; 
 
         // Calculate field width
-        float fieldWidth = (position.width - labelWidth - 2f) / 3f;
+        float fieldWidth = (position.width - labelWidth - 2f) / 4f;
         Rect fieldRect = new Rect(labelRect.xMax + 2f, position.y, fieldWidth, position.height);
 
         // Calculate total width of the fields and labels
         float totalWidth = fieldWidth * 3f + 2f * 10f;
-        float xOffset = position.width - totalWidth + 8f;
+        float xOffset = position.width - totalWidth - 31f;
 
         // Draw each field
         fieldRect.x = position.x + xOffset;
-        EditorGUI.PropertyField(fieldRect, property.FindPropertyRelative("date1"), GUIContent.none);
-        fieldRect.x += fieldWidth + 1f;
-        EditorGUI.LabelField(fieldRect, ".");
-        fieldRect.x += 5f;
-        EditorGUI.PropertyField(fieldRect, property.FindPropertyRelative("date2"), GUIContent.none);
-        fieldRect.x += fieldWidth + 1f;
-        EditorGUI.LabelField(fieldRect, ".");
-        fieldRect.x += 5f;
-        EditorGUI.PropertyField(fieldRect, property.FindPropertyRelative("date3"), GUIContent.none);
+        EditorGUI.LabelField(fieldRect, "D");
+        fieldRect.x += 13f;
+        EditorGUI.PropertyField(fieldRect, property.FindPropertyRelative("day"), GUIContent.none);
+        fieldRect.x += fieldWidth + 5f;
+        EditorGUI.LabelField(fieldRect, "M");
+        fieldRect.x += 16f;
+        EditorGUI.PropertyField(fieldRect, property.FindPropertyRelative("month"), GUIContent.none);
+        fieldRect.x += fieldWidth + 4f;
+        EditorGUI.LabelField(fieldRect, "Y");
+        fieldRect.x += 13f;
+        EditorGUI.PropertyField(fieldRect, property.FindPropertyRelative("year"), GUIContent.none);
 
 
 

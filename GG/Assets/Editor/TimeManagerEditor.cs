@@ -12,6 +12,25 @@ public class TimeManagerEditor : Editor
 
         GUILayout.BeginHorizontal();
 
+        if (GUILayout.Button("Previous Date"))
+        {
+            timeManager.SetPreviousDate();
+        }
+
+        if (GUILayout.Button("Set Date"))
+        {
+            timeManager.SetCurrentDate(timeManager.currentDate);
+        }
+
+        if (GUILayout.Button("Next Date"))
+        {
+            timeManager.SetNextDate();
+        }
+
+        GUILayout.EndHorizontal();
+
+        GUILayout.BeginHorizontal();
+
         if (GUILayout.Button("Previous Time"))
         {
             timeManager.SetPreviousTime();
@@ -28,6 +47,7 @@ public class TimeManagerEditor : Editor
         }
 
         GUILayout.EndHorizontal();
+
 
         base.OnInspectorGUI();
 

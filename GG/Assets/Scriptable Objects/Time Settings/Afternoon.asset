@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aff3cec4ca3f870418b63468571b4bbd, type: 3}
-  m_Name: Morning
+  m_Name: Afternoon
   m_EditorClassIdentifier: 
   lightColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
   skyColor: {r: 0.15686275, g: 0.5372549, b: 0.8392157, a: 1}
   equatorColor: {r: 0.6431373, g: 0.40392157, b: 0.30980393, a: 1}
   groundColor: {r: 0.34509805, g: 0.24313726, b: 0.21176471, a: 1}
-  lightTemperature: 4759
-  lightIntensity: 1
-  lightRotation: {x: 60, y: 200, z: 0}
+  lightTemperature: 4335
+  lightIntensity: 0.9
+  lightRotation: {x: 50, y: 300, z: 0}
   skybox: {fileID: 2100000, guid: f3747e353f448da43ae4b607a7d02c9f, type: 2}

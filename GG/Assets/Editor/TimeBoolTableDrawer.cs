@@ -28,7 +28,11 @@ public class TimeBoolTableDrawer : PropertyDrawer
 
         // Draw the title label
         Rect titleLabelRect = new Rect(position.x, cellRect.y, 100f, lineHeight);
-        EditorGUI.LabelField(titleLabelRect, label, EditorStyles.boldLabel);
+        Color labelColor = ColorUtility.TryParseHtmlString("#fcbf07", out Color color) ? color : Color.green; // Specify the hexadecimal color value here
+        string tooltipText = "This table determins if the character should be active if the current date and time line up." +
+            "\n sr = sunrise" + "\n mo = morning" + "\n af = afternoon" + "\n ev = evening" + "\n ni = night";
+        GUIContent labelContent = new GUIContent(label.ToString(), tooltipText);
+        EditorGUI.LabelField(titleLabelRect, labelContent, new GUIStyle(EditorStyles.label) { normal = { textColor = labelColor } });
 
         // Draw the column labels above the table
         for (int column = 0; column < NumColumns; column++)
