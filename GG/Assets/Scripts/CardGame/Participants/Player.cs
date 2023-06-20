@@ -185,8 +185,7 @@ public class Player : Participant
             Debug.Log("GladiusGespielt");
         }
         else
-        if (card.Info.Set == CardSet.Gladius && card.Info.Type == CardType.Attack)
-            if (card.Info.Set == CardSet.Trident)
+            if (card.Info.Set == CardSet.Trident && card.Info.Type == CardType.Attack)
             {
             cardAnimations.PlayTridentAnimation();
             Debug.Log("TridentGespielt");
