@@ -1103,11 +1103,6 @@ public static class CardLibrary
         return result.ToArray();
     }
 
-    public static CardInfo GetItemCard(CardSet set)
-    {
-        return new InstantCardInfo(set.ToString(), set, CardType.Quest, -1, -1, (CardInfo c) => { });
-    }
-
     public static XmlNode GetTranslationNode(string name)
     {
         return translationDoc.SelectSingleNode("Language/" + name);

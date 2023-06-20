@@ -30,12 +30,6 @@ public enum CardType
     Attack, Block, Skill, Aid, Quest, Ailment
 }
 
-[Flags]
-public enum EquipSlots
-{
-    RightHand = 1, LeftHand = 2, Head = 4, Shoulders = 8, Legs = 16
-}
-
 #endregion
 
 #region Collection

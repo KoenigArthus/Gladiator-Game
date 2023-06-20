@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -10,6 +11,7 @@ public class SaveGame : UserFile
     private string name;
     private int health = 20;
     private float gold = 0;
+    private float[] equipmentEXP = new float[(int)CardSet.Health];
     private int nextOpponent = 0;
     private string[] deckCardEntries = new string[0];
     private string[] equipmentCardEntries = new string[0];
@@ -26,6 +28,7 @@ public class SaveGame : UserFile
     public string Name { get => name; set => name = value; }
     public int Health { get => health; set => health = value; }
     public float Gold { get => gold; set => gold = value; }
+    public float[] EquipmentEXP { get => equipmentEXP; set => equipmentEXP = value; }
     public int NextOpponent { get => nextOpponent; set => nextOpponent = value; }
     public string[] DeckCardEntries { get => deckCardEntries; set => deckCardEntries = value; }
     public string[] EquipmentCardEntries { get => equipmentCardEntries; set => equipmentCardEntries = value; }
@@ -46,6 +49,9 @@ public class SaveGame : UserFile
         //Gold
         SaveElement(doc, rootNode, "Gold", gold);
 
+        //Equipment EXP
+        SaveElement(doc, rootNode, "EquipmentEXP", string.Join(',', equipmentEXP));
+
         //Next Opponent
         SaveElement(doc, rootNode, "NextOpponent", nextOpponent);
 
@@ -65,6 +71,13 @@ public class SaveGame : UserFile
 
         //Gold
         gold = LoadElement<float>(rootNode.SelectSingleNode("Gold"));
+
+        //Equipment EXP
+        {
+            string data = LoadElement<string>(rootNode.SelectSingleNode("EquipmentEXP"));
+            if (data != null && data.Length > 0)
+                equipmentEXP = data.Split(',').Select(x => Convert.ToSingle(x)).ToArray();
+        }
 
         //Next Opponent
         nextOpponent = LoadElement<int>(rootNode.SelectSingleNode("NextOpponent"));
