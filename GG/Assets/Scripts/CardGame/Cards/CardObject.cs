@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using JSAM;
 
 public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -177,6 +178,7 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void OnPointerEnter(PointerEventData eventData)
     {
         hoveredCard = this;
+        JSAM.AudioManager.PlaySound(Sounds.Hover);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -211,6 +213,7 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void OnEndDrag(PointerEventData eventData)
     {
         draging = false;
+        JSAM.AudioManager.PlaySound(Sounds.CardPlayed);
         if (transform.localPosition.y > 500 && collection != null && collection.Player != null)
             collection.Player.PrepareCard(this);
     }

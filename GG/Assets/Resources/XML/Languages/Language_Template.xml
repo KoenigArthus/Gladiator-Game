@@ -1,0 +1,171 @@
+<Language>
+  <Thrust Name="Thrust" Description="" />
+  <Shove Name="Shove" Description="" />
+  <Jump_Thrust Name="Jump Thrust" Description="" />
+  <Powerful_Sweep Name="Powerful Sweep" Description="" />
+  <Triple_Thrust Name="Triple Thrust" Description="" />
+  <Rock_Solid Name="Rock Solid" Description="" />
+  <Thundering_Judgment Name="Thundering Judgment" Description="" />
+  <Cataclysm Name="Cataclysm" Description="" />
+  <Finishing_Stab Name="Finishing Stab" Description="" />
+  <Royal_Tip Name="Royal Tip" Description="" />
+  <Neptuns_Judgment Name="Neptuns Judgment" Description="" />
+  <Leviathan_Fury Name="Leviathan Fury" Description="" />
+  <Siege_Attack Name="Siege Attack" Description="" />
+  <Sting Name="Sting" Description="" />
+  <Mighty_Sweep Name="Mighty Sweep" Description="" />
+  <Pommel_Strike Name="Pommel Strike" Description="" />
+  <Jump_Slash Name="Jump Slash" Description="" />
+  <Double_Stab Name="Double Stab" Description="" />
+  <Sword_Dance Name="Sword Dance" Description="" />
+  <Sword_Vortex Name="Sword Vortex" Description="" />
+  <Flaming_Impact Name="Flaming Impact" Description="" />
+  <Gleaming_Blade Name="Gleaming Blade" Description="" />
+  <Flaming_Passion Name="Flaming Passion" Description="" />
+  <Perfect_Parry Name="Perfect Parry" Description="" />
+  <Damocles_Sword Name="Damocles Sword" Description="" />
+  <Searing_Inferno Name="Searing Inferno" Description="" />
+  <Trip_Rope Name="Trip Rope" Description="" />
+  <Cast_Net Name="Cast Net" Description="" />
+  <Constrict Name="Constrict" Description="" />
+  <Dompteur Name="Dompteur" Description="" />
+  <Web_Weaver Name="Web Weaver" Description="" />
+  <Trapper Name="Trapper" Description="" />
+  <Disarm Name="Disarm" Description="" />
+  <Pittakos Name="Pittakos" Description="" />
+  <Scornful_Finesse Name="Scornful Finesse" Description="" />
+  <Arachnid Name="Arachnid" Description="" />
+  <Thread_Of_Fate Name="Thread Of Fate" Description="" />
+  <Control Name="Control" Description="" />
+  <Cruel_Fate Name="Cruel Fate" Description="" />
+  <Shield_Block Name="Shield Block" Description="" />
+  <Testudo Name="Testudo" Description="" />
+  <Shield_Soul Name="Shield Soul" Description="" />
+  <Provocation Name="Provocation" Description="" />
+  <Shield_Logic Name="Shield Logic" Description="" />
+  <Immovable_Object Name="Immovable Object" Description="" />
+  <Shield_Flame Name="Shield Flame" Description="" />
+  <Bastion Name="Bastion" Description="" />
+  <Petra_Solida Name="Petra Solida" Description="" />
+  <Scutum_Vitalis Name="Scutum Vitalis" Description="" />
+  <Battering_Ram Name="Battering Ram" Description="" />
+  <Mars_Patronage Name="Mars Patronage" Description="" />
+  <Moloch Name="Moloch" Description="" />
+  <Dagger_Thrust Name="Dagger Thrust" Description="" />
+  <Artery_Cut Name="Artery Cut" Description="" />
+  <Knife_Throw Name="Knife Throw" Description="" />
+  <Heart_Seeker Name="Heart Seeker" Description="" />
+  <Throat_Cut Name="Throat Cut" Description="" />
+  <Board_Breaker Name="Board Breaker" Description="" />
+  <Surgical_Intervention Name="Surgical Intervention" Description="" />
+  <Crimson_Rivers Name="Crimson Rivers" Description="" />
+  <Blood_Pain Name="Blood Pain" Description="" />
+  <Salt_In_Wound Name="Salt In Wound" Description="" />
+  <Eviscerate Name="Eviscerate" Description="" />
+  <Heartbreaker Name="Heartbreaker" Description="" />
+  <Hemokinesis Name="Hemokinesis" Description="" />
+  <Spear_Thrust Name="Spear Thrust" Description="" />
+  <Fend_Off Name="Fend Off" Description="" />
+  <Second_Tip Name="Second Tip" Description="" />
+  <Perforate Name="Perforate" Description="" />
+  <Hoplite Name="Hoplite" Description="" />
+  <Horn_Of_Catoblepas Name="Horn Of Catoblepas" Description="" />
+  <Hybris Name="Hybris" Description="" />
+  <Allarmament Name="Allarmament" Description="" />
+  <Titan_Slayer Name="Titan Slayer" Description="" />
+  <Spartan_Soul Name="Spartan Soul" Description="" />
+  <Keres_Spirit Name="Keres Spirit" Description="" />
+  <Hepheestus_Arsenal Name="Hepheestus Arsenal" Description="" />
+  <Mighty_Pallas Name="Mighty Pallas" Description="" />
+  <Parma Name="Parma" Description="" />
+  <Shield_Slam Name="Shield Slam" Description="" />
+  <Sweep Name="Sweep" Description="" />
+  <Armored_Colossus Name="Armored Colossus" Description="" />
+  <Titan Name="Titan" Description="" />
+  <True_Phalanx Name="True Phalanx" Description="" />
+  <Equilibrium Name="Equilibrium" Description="" />
+  <Minotaur_Stomp Name="Minotaur Stomp" Description="" />
+  <Iron_Will Name="Iron Will" Description="" />
+  <Indomitable Name="Indomitable" Description="" />
+  <Reflect Name="Reflect" Description="" />
+  <Heroic_Onslaught Name="Heroic Onslaught" Description="" />
+  <Soterias_Blessing Name="Soterias Blessing" Description="" />
+  <Jab_Cut Name="Jab Cut" Description="" />
+  <Bone_Shears Name="Bone Shears" Description="" />
+  <Dagger_Whet Name="Dagger Whet" Description="" />
+  <Butcher Name="Butcher" Description="" />
+  <Meat_Hook Name="Meat Hook" Description="" />
+  <Carnassial Name="Carnassial" Description="" />
+  <Critical_Hit Name="Critical Hit" Description="" />
+  <Swift_Stride Name="Swift Stride" Description="" />
+  <Dismember Name="Dismember" Description="" />
+  <Trick_Blade Name="Trick Blade" Description="" />
+  <Swordarm Name="Swordarm" Description="" />
+  <Janus_Reversal Name="Janus Reversal" Description="" />
+  <Faunus_Guillotine Name="Faunus Guillotine" Description="" />
+  <Head_Matter Name="Head Matter" Description="" />
+  <Head_Thrust Name="Head Thrust" Description="" />
+  <Boldness Name="Boldness" Description="" />
+  <Protective_Cage Name="Protective Cage" Description="" />
+  <Deflecting_Stance Name="Deflecting Stance" Description="" />
+  <Symbol_Of_Duty Name="Symbol Of Duty" Description="" />
+  <Stubborn Name="Stubborn" Description="" />
+  <Shoulder_Attack Name="Shoulder Attack" Description="" />
+  <Full_Plate Name="Full Plate" Description="" />
+  <Agility Name="Agility" Description="" />
+  <Elude Name="Elude" Description="" />
+  <Small_Shield Name="Small Shield" Description="" />
+  <Praesidius Name="Praesidius" Description="" />
+  <Dodge_Roll Name="Dodge Roll" Description="" />
+  <Headbutt Name="Headbutt" Description="" />
+  <Deflect Name="Deflect" Description="" />
+  <Wedge_Slash Name="Wedge Slash" Description="" />
+  <Catch Name="Catch" Description="" />
+  <Angle_Block Name="Angle Block" Description="" />
+  <Upset Name="Upset" Description="" />
+  <Segmented_Armor Name="Segmented Armor" Description="" />
+  <Kick Name="Kick" Description="" />
+  <Deflect Name="Deflect" Description="" />
+  <Footwork Name="Footwork" Description="" />
+  <Knee_Kick Name="Knee Kick" Description="" />
+  <Kick Name="Kick" Description="" />
+  <Jump_Kick Name="Jump Kick" Description="" />
+  <Flying_Spin_Kick Name="Flying Spin Kick" Description="" />
+  <Refreshed Name="Refreshed" Description="" />
+  <Well_Fed Name="Well Fed" Description="" />
+  <Rested Name="Rested" Description="" />
+  <Gladiator_Strength Name="Gladiator Strength" Description="" />
+  <Gladiator_Endurance Name="Gladiator Endurance" Description="" />
+  <Gladiator_Finesse Name="Gladiator Finesse" Description="" />
+  <Motivation Name="Motivation" Description="" />
+  <Hedonistic Name="Hedonistic" Description="" />
+  <Epicurean Name="Epicurean" Description="" />
+  <Stoic Name="Stoic" Description="" />
+  <Exhausted Name="Exhausted" Description="" />
+  <Injured Name="Injured" Description="" />
+  <Hunger Name="Hunger" Description="" />
+  <Terror Name="Terror" Description="" />
+  <Trauma Name="Trauma" Description="" />
+  <Flesh_Wound Name="Flesh Wound" Description="" />
+  <Bone_Fracture Name="Bone Fracture" Description="" />
+  <Toxin Name="Toxin" Description="" />
+  <Hopeless Name="Hopeless" Description="" />
+  <Degeneration Name="Degeneration" Description="" />
+  <Discouraged Name="Discouraged" Description="" />
+  <Psychosis Name="Psychosis" Description="" />
+  <Blood_Poisoning Name="Blood Poisoning" Description="" />
+  <Frenzy Name="Frenzy" Description="" />
+  <Crippling_Pain Name="Crippling Pain" Description="" />
+  <Disease Name="Disease" Description="" />
+  <Panic_Attack Name="Panic Attack" Description="" />
+  <Cardiac_Insufficiency Name="Cardiac Insufficiency" Description="" />
+  <Egg Name="Egg" Description="" />
+  <Panacea Name="Panacea" Description="" />
+  <Bandage Name="Bandage" Description="" />
+  <Spring_Water Name="Spring Water" Description="" />
+  <Whetstone Name="Whetstone" Description="" />
+  <Tools Name="Tools" Description="" />
+  <Log Name="Log" Description="" />
+  <Sleeping_Herbs Name="Sleeping Herbs" Description="" />
+  <Wine Name="Wine" Description="" />
+</Language>

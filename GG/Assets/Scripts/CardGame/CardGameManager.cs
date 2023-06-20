@@ -38,6 +38,7 @@ public class CardGameManager : MonoBehaviour
     private void Awake()
     {
         CardLibrary.Setup();
+        
     }
 
     private void Start()
@@ -50,6 +51,10 @@ public class CardGameManager : MonoBehaviour
 
         for (int i = 0; i < deck.Length; i++)
             player.Deck.Add(CardObject.Instantiate((CardInfo)deck[i].Clone(), this.deck.transform.position));
+
+
+        player.cardAnimations = FindObjectOfType<CardAnimations>();
+
 
         player.Deck.Shuffle();
         EndRound();

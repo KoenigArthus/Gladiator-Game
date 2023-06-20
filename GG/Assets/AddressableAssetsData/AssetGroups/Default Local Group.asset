@@ -16,7 +16,11 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 78c26e6d1ff0951428eeab21d0fe8877
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 2929cb741466d0841ac840742eff7b27
+    m_Address: Assets/Meshes/Characters/Ludus/New Avatar Mask.mask
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 7673750fcb1430947a599f84ff1161dd, type: 2}
   m_SchemaSet:
