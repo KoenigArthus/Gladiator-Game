@@ -37,6 +37,11 @@ public class CardAnimations : MonoBehaviour
             Debug.Log("player found");
         }
 
+        if ((leftHand == null) && (rightHand == null) && (head == null) && (shoulder == null) && (leg == null))
+        {
+            animator.SetBool("KampfIdle", true);           
+        }
+
         if ((leftHand == CardSet.Gladius) || (rightHand == CardSet.Gladius))
         {
             animator.SetBool("GladiusIdle", true);
