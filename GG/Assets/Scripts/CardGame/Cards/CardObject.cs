@@ -64,9 +64,8 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public Vector3 TargetPosition
     { get => targetPosition; set { startPosition = transform.position; targetPosition = value; } }
 
-    public float Width => (cardImage.transform as RectTransform).rect.width;
-    public float Height => (cardImage.transform as RectTransform).rect.height;
-    public float Scale => canvas.transform.localScale.x;
+    public float Width => cardImage.rectTransform.rect.width;
+    public float Scale => canvas.transform.lossyScale.x;
 
     public bool Draging => draging;
     public bool Prepareing => collection != null && collection.Player != null && this == collection.Player.Prepareing;
@@ -103,12 +102,15 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     private void Update()
     {
         updateCardUI();
+    }
 
+    private void FixedUpdate()
+    {
         if (!Draging)
         {
             Vector3 delta = targetPosition - transform.localPosition;
             float deltaLength = delta.magnitude;
-            float speed = this.speed * Scale;
+            float speed = this.speed;
 
             //Make card "fly" to destination
             if (!(deltaLength > 0) || deltaLength < speed)
@@ -156,6 +158,9 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
         if (Info is BlockCardInfo blockCard && blockCard.CurrentBlock > 0)
             descriptionUI.text += $"\nBlock: {blockCard.CurrentBlock}";
+
+        if (!UserFile.Settings.DisableRomanNumbursOnDice)
+            descriptionUI.text = RomanNumberHelper.ReplaceNumbersWithRoman(descriptionUI.text);
     }
 
     #endregion Main-Loop

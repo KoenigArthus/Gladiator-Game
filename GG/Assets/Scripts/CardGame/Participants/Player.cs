@@ -20,8 +20,8 @@ public class Player : Participant
     private CardCollection block;
     private CardCollection discard;
 
-    private DieObject[] dice = new DieObject[10];
-    private int diceAmount = 4;
+    private DieCollection dice;
+    private int diceAmount = 3;
     private int dicePower = 0;
 
     private List<CardInfo> playedCards = new List<CardInfo>();
@@ -63,6 +63,7 @@ public class Player : Participant
         this.hand = manager.hand;
         this.block = manager.block;
         this.discard = manager.discard;
+        this.dice = manager.dice;
 
         this.deck.Player = this;
         this.hand.Player = this;
@@ -81,7 +82,7 @@ public class Player : Participant
     public CardCollection Hand => hand;
     public CardCollection Discard => discard;
     public CardCollection ActiveBlock => block;
-    public DieObject[] Dice => dice.Where(x => x != null).ToArray();
+    public DieObject[] Dice => dice.Dice.Where(x => x != null && !x.IsDestroyed()).ToArray();
 
     public CardInfo[] PlayedCards => playedCards.Where(x => x != null).ToArray();
 
@@ -414,7 +415,7 @@ public class Player : Participant
 
         int cost = hand.Cards.Min(x => x.Info.Cost);
 
-        return !(dice.Count(x => x != null && !x.IsDestroyed()) < cost);
+        return !(Dice.Count() < cost);
     }
 
     #endregion Play
@@ -593,28 +594,17 @@ public class Player : Participant
 
     public void AddDie(DieInfo info, bool rollDie = true)
     {
-        int index = dice.IndexOf(null);
-
-        if (index > -1 && index < dice.Length)
-        {
-            Vector2 targetPosition = new Vector2(350, 600) - new Vector2(0, 150 * index);
-            dice[index] = DieObject.Instantiate(info, targetPosition);
-            dice[index].Player = this;
-            if (rollDie)
-                dice[index].Roll();
-        }
+        DieObject die = DieObject.Instantiate(info, new Vector2(-1000, -1000));
+        dice.Add(die);
+        die.Player = this;
+        if (rollDie)
+            die.Roll();
     }
 
     public void RollDice()
     {
         //Destroy old dice
-        for (int i = 0; i < dice.Length; i++)
-        {
-            if (dice[i] != null && !dice[i].IsDestroyed())
-                GameObject.Destroy(dice[i].gameObject);
-
-            dice[i] = null;
-        }
+        dice.Clear();
 
         if (diceAmount > 0)
         {

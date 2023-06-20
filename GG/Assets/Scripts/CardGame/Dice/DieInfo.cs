@@ -7,7 +7,6 @@ public class DieInfo
 {
     #region Fields
 
-    private readonly int[] validSideCounts = new int[] { 4, 6, 8, 12, 20 };
     private int bonus = 0;
     private string tag = "";
 
@@ -86,6 +85,27 @@ public class DieInfo
     public void Roll()
     {
         index = Random.Range(0, sides.Length);
+
+        switch (Sides.Length)
+        {
+            case 4:
+                index = 3;
+                break;
+
+            case 6:
+                index = 5;
+                break;
+
+            case 8:
+            case 10:
+            case 12:
+                index = 7;
+                break;
+
+            case 20:
+                index = 17;
+                break;
+        }
     }
 
     public void SpinUp(int amount)
