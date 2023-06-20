@@ -15,7 +15,7 @@ public class SaveGame : UserFile
     private int nextOpponent = 0;
     private string[] deckCardEntries = new string[0];
     private string[] equipmentCardEntries = new string[0];
-    private string[] equipt = new string[0];
+    private string[] equipped = new string[0];
 
     #endregion Fields
 
@@ -32,7 +32,7 @@ public class SaveGame : UserFile
     public int NextOpponent { get => nextOpponent; set => nextOpponent = value; }
     public string[] DeckCardEntries { get => deckCardEntries; set => deckCardEntries = value; }
     public string[] EquipmentCardEntries { get => equipmentCardEntries; set => equipmentCardEntries = value; }
-    public string[] Equipt { get => equipt; set => equipt = value; }
+    public string[] Equipped { get => equipped; set => equipped = value; }
 
     #endregion Properties
 
@@ -58,7 +58,7 @@ public class SaveGame : UserFile
         //Deck Entrie
         SaveElement(doc, rootNode, "DeckEntrie", string.Join(',', deckCardEntries));
         SaveElement(doc, rootNode, "EquipmentEntrie", string.Join(',', equipmentCardEntries));
-        SaveElement(doc, rootNode, "Equipt", string.Join(',', equipt));
+        SaveElement(doc, rootNode, "Equipped", string.Join(',', equipped));
     }
 
     protected override void DoLoad(XmlNode rootNode)
@@ -85,7 +85,7 @@ public class SaveGame : UserFile
         //Deck Entrie
         deckCardEntries = LoadElement<string>(rootNode.SelectSingleNode("DeckEntrie")).Split(',');
         equipmentCardEntries = LoadElement<string>(rootNode.SelectSingleNode("EquipmentEntrie")).Split(',');
-        equipt = LoadElement<string>(rootNode.SelectSingleNode("Equipt")).Split(',');
+        equipped = LoadElement<string>(rootNode.SelectSingleNode("Equipped")).Split(',');
     }
 
     #endregion Save/Load

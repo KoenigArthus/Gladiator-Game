@@ -5,7 +5,7 @@
   <Gold>0</Gold>
   <EquipmentEXP>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</EquipmentEXP>
   <NextOpponent>0</NextOpponent>
-  <DeckEntrie>Sting,Mighty_Sweep,Pommel_Strike,Jump_Slash,Double_Stab,Sword_Dance,Sword_Vortex,Flaming_Impact,Gleaming_Blade,Flaming_Passion,Perfect_Parry,Damocles_Sword,Searing_Inferno,Shoulder_Attack,Full_Plate,Agility</DeckEntrie>
-  <EquipmentEntrie>Manica (Equipment),Ocrea (Equipment),Scutum (Equipment),Cassis (Equipment),Trident (Equipment)</EquipmentEntrie>
-  <Equipt>none,none,none,Gladius,none</Equipt>
+  <DeckEntrie>Head_Matter,Head_Thrust,Boldness,Protective_Cage,Deflecting_Stance,Symbol_Of_Duty,Stubborn</DeckEntrie>
+  <EquipmentEntrie>Cestust (Equipment),Doru (Equipment),Galerus (Equipment),Gladius (Equipment),Laqueus (Equipment),Manica (Equipment),Ocrea (Equipment),Parmula (Equipment),Pilum (Equipment),Pugio (Equipment),Rete (Equipment),Scindo (Equipment),Scutum (Equipment),Spartha (Equipment),Trident (Equipment),Item (Equipment),Health (Equipment)</EquipmentEntrie>
+  <Equipped>Cassis,none,none,none,none</Equipped>
 </UserFile>

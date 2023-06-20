@@ -24,18 +24,22 @@ public class CardAnimations : MonoBehaviour
     public GameObject galerus;
     public GameObject ocrea;
 
-    public CardSet leftHand;
-    public CardSet rightHand;
     public CardSet head;
     public CardSet shoulder;
     public CardSet leg;
+    public CardSet leftHand;
+    public CardSet rightHand;
 
     public void Awake()
     {
-
-        
-
-
+        //load equipped CardSets
+        string[] equipped = new string[5];
+        UserFile.SaveGame.Equipped.ToArray().CopyTo(equipped, 0);
+        head = Enum.TryParse(equipped[0], out CardSet headParsed) ? headParsed : CardSet.None;
+        shoulder = Enum.TryParse(equipped[1], out CardSet shoulderParsed) ? shoulderParsed : CardSet.None;
+        leg = Enum.TryParse(equipped[2], out CardSet legParsed) ? legParsed : CardSet.None;
+        leftHand = Enum.TryParse(equipped[3], out CardSet leftParsed) ? leftParsed : CardSet.None;
+        rightHand = Enum.TryParse(equipped[4], out CardSet rightParsed) ? rightParsed : CardSet.None;
 
 
 

@@ -13,7 +13,7 @@ public class Deckbuilder : MonoBehaviour
     [HideInInspector] public static Deckbuilder instance;
     public GameObject slotArea, tooltip;
     [Tooltip("check if the slots are in the right order: 0 = head, 1 = shoulder, 2 = leg, 3 = left, 4 = right")]
-    public EquipmentSlot[] equiptSlots;
+    public EquipmentSlot[] equippedSlots;
     [SerializeField] private Transform equipmentPanel, deckPanel;
     [SerializeField] private GameObject equipmentCardPreFab, inventoryCardPreFab;
     [SerializeField] private GameObject rowPreFabFourColumns, rowPreFabFiveColumns;
@@ -51,7 +51,7 @@ public class Deckbuilder : MonoBehaviour
         ClearPanel(equipmentPanel, equipmentSlots);
         ClearPanel(deckPanel, deckSlots);
         SaveDeck();
-        SaveEquipt();
+        SaveEquipped();
         SaveEquipment();
         UserFile.SaveGame.Save();
     }
@@ -198,26 +198,26 @@ public class Deckbuilder : MonoBehaviour
         UserFile.SaveGame.EquipmentCardEntries = equipmentCardEntriesAsString;
     }
 
-    public void SaveEquipt()
+    public void SaveEquipped()
     {
-        List<string> equipt = new List<string>();
+        List<string> equipped = new List<string>();
 
-        for (int i = 0; i < equiptSlots.Length; i++)
+        for (int i = 0; i < equippedSlots.Length; i++)
         {
-            if (equiptSlots[i].equipment != null & equiptSlots[i].equipment != "" )
+            if (equippedSlots[i].equipment != null & equippedSlots[i].equipment != "" )
             {
-                equipt.Add(equiptSlots[i].equipment);
+                equipped.Add(equippedSlots[i].equipment);
             }
             else
             {
                 string s = "none";
-                equipt.Add(s);
+                equipped.Add(s);
             }
         }
 
-        Debug.Log(equipt.ToArray()[0] +","+ equipt.ToArray()[1] + "," + equipt.ToArray()[2] + "," + equipt.ToArray()[3] + "," + equipt.ToArray()[4]);
+        Debug.Log(equipped.ToArray()[0] +","+ equipped.ToArray()[1] + "," + equipped.ToArray()[2] + "," + equipped.ToArray()[3] + "," + equipped.ToArray()[4]);
 
-        UserFile.SaveGame.Equipt = equipt.ToArray();
+        UserFile.SaveGame.Equipped = equipped.ToArray();
         // UserFile.SaveGame.Save();
     }
 
