@@ -1,5 +1,6 @@
 <UserFile>
-  <Name />
+  <Name>
+  </Name>
   <Health>20</Health>
-  <DeckEntrie>Shield_Block,Testudo,Shield_Soul,Sting,Mighty_Sweep,Pommel_Strike,Shoulder_Attack,Full_Plate,Agility</DeckEntrie>
+  <DeckEntrie>Kick,Knee_Kick,Jump_Kick,Flying_Spin_Kick</DeckEntrie>
 </UserFile>

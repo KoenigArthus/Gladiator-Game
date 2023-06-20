@@ -48,6 +48,7 @@ public class Deckbuilder : MonoBehaviour
     {
         ClearPanel(equipmentPanel, equipmentSlots);
         ClearPanel(deckPanel, deckSlots);
+        SaveDeck();
     }
 
     private void LoadPanel(GameObject cardPreFab, Transform panel, List<Transform> slotList, List<string> entries, int columnCount)
@@ -177,8 +178,24 @@ public class Deckbuilder : MonoBehaviour
     public void LoadDeckPanel()
     {
         LoadPanel(inventoryCardPreFab, deckPanel, deckSlots, deckCardEntries, 5);
-
-        UserFile.SaveGame.DeckCardEntries = deckCardEntries.ToArray();
-        UserFile.SaveGame.Save();
     }
+    
+    public void SaveDeck()
+    {
+        UserFile.SaveGame.DeckCardEntries = deckCardEntries.ToArray();
+       // UserFile.SaveGame.Save();
+    }
+
+    public void SaveEquipment()
+    {
+        //UserFile.SaveGame.DeckCardEntries = deckCardEntries.ToArray();
+       // UserFile.SaveGame.Save();
+    }
+
+    public void SaveEquipt()
+    {
+       // UserFile.SaveGame.DeckCardEntries = deckCardEntries.ToArray();
+       // UserFile.SaveGame.Save();
+    }
+
 }
