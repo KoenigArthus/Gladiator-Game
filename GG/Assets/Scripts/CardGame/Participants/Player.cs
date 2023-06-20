@@ -55,8 +55,6 @@ public class Player : Participant
 
     #endregion Fields
 
-    
-
     public Player(CardGameManager manager) : base(manager)
     {
         this.deck = manager.deck;
@@ -141,9 +139,8 @@ public class Player : Participant
 
     #region Play
 
-   private void Awake()
+    private void Awake()
     {
-       
     }
 
     public void Update()
@@ -180,145 +177,97 @@ public class Player : Participant
         CardObject card = prepareing;
         CardInfo info = card.Info;
 
-
-        
-        
-
-
         if (card.Info.Set == CardSet.Gladius)
         {
-
             cardAnimations.PlayGladiusAnimation();
             Debug.Log("GladiusGespielt");
-
         }
         else
             if (card.Info.Set == CardSet.Trident)
         {
-
             cardAnimations.PlayTridentAnimation();
             Debug.Log("TridentGespielt");
-
         }
         else
             if (card.Info.Set == CardSet.Scutum && card.Info.Type == CardType.Attack)
         {
-
             cardAnimations.PlayScutumAnimation();
             Debug.Log("ScutumGespielt");
-
         }
         else
             if (card.Info.Set == CardSet.Pugio)
         {
-
             cardAnimations.PlayPugiuAnimation();
             Debug.Log("PugioGespielt");
-
         }
         else
             if (card.Info.Set == CardSet.Spartha)
         {
-
             cardAnimations.PlaySparthaAnimation();
             Debug.Log("SparthaGespielt");
-            
-
         }
         else
             if (card.Info.Set == CardSet.Doru)
-            {
-
-                cardAnimations.PlayDoruAnimation();
-                Debug.Log("DoruGespielt");
-
-
-            }
+        {
+            cardAnimations.PlayDoruAnimation();
+            Debug.Log("DoruGespielt");
+        }
         else
             if (card.Info.Set == CardSet.Pilum)
-            {
-
-                cardAnimations.PlayPilumAnimation();
-                Debug.Log("PilumGespielt");
-
-
-            }
+        {
+            cardAnimations.PlayPilumAnimation();
+            Debug.Log("PilumGespielt");
+        }
         else
             if (card.Info.Set == CardSet.Parmula)
         {
-
             cardAnimations.PlayParmulaAnimation();
             Debug.Log("ParmulaGespielt");
-
-
         }
         else
             if (card.Info.Set == CardSet.Scindo)
         {
-
             cardAnimations.PlayScindoAnimation();
             Debug.Log("ScindoGespielt");
-
-
         }
         else
             if (card.Info.Set == CardSet.Cestus)
         {
-
             cardAnimations.PlayCestusAnimation();
             Debug.Log("CestusGespielt");
-
-
         }
         else
             if (card.Info.Set == CardSet.Laqueus)
         {
-
             cardAnimations.PlayLaqueusAnimation();
             Debug.Log("LaqueusGespielt");
-
-
         }
         else
             if (card.Info.Set == CardSet.Laqueus)
         {
-
             cardAnimations.PlayLaqueusAnimation();
             Debug.Log("LaqueusGespielt");
-
-
         }
         else
             if (card.Info.Set == CardSet.Rete)
         {
-
             cardAnimations.PlayReteAnimation();
             Debug.Log("ReteGespielt");
-
-
         }
         else
             if (card.Info.Set == CardSet.Parmula && card.Info.Type == CardType.Block)
         {
-
             cardAnimations.PlayParmulaBlockAnimation();
             Debug.Log("Parmula Block");
-
-
         }
         else
             if (card.Info.Set == CardSet.Scutum && card.Info.Type == CardType.Block)
         {
-
             cardAnimations.PlayScutumBlockAnimation();
             Debug.Log("Scutum Block");
-
-
         }
 
-
         prepareing = null;
-        
 
         //Destroy used dice
         card.Info.DestroyDice();
@@ -585,6 +534,9 @@ public class Player : Participant
         if (card.Info.Set == CardSet.Item)
         {
             //Remove item from inventory
+            List<string> cards = new List<string>(UserFile.SaveGame.DeckCardEntries);
+            cards.Remove(card.Info.Name);
+            UserFile.SaveGame.DeckCardEntries = cards.ToArray();
         }
     }
 

@@ -39,23 +39,32 @@ public class CardGameManager : MonoBehaviour
     private void Awake()
     {
         CardLibrary.Setup();
-        
     }
 
     private void Start()
     {
         player = new Player(this);
-        enemy = new Enemy(this, 40, EnemyBehavior.Tactical);
 
-        CardSet[] sets = new CardSet[] { CardSet.Gladius, CardSet.Scutum, CardSet.Cassis, CardSet.Manica, CardSet.Ocrea };
-        CardInfo[] deck = cards.Where(x => x.Tier == 0 && sets.Contains(x.Set)).ToArray();
+        //Select Opponent
+        int nextOpponent = UserFile.SaveGame.NextOpponent;
+        if (nextOpponent > 0)
+        {
+            //Special Fight
+            enemy = new Enemy(this, 150 * nextOpponent, EnemyBehavior.Aggressive);
+        }
+        else
+        {
+            //Normal/Random Fight
+            enemy = new Enemy(this, 70 * -nextOpponent, EnemyBehavior.Defensive);
+        }
+
+        //CardSet[] sets = new CardSet[] { CardSet.Gladius, CardSet.Scutum, CardSet.Cassis, CardSet.Manica, CardSet.Ocrea };
+        CardInfo[] deck = CardLibrary.GetCardsByNames(UserFile.SaveGame.DeckCardEntries); //cards.Where(x => x.Tier == 0 && sets.Contains(x.Set)).ToArray();
 
         for (int i = 0; i < deck.Length; i++)
             player.Deck.Add(CardObject.Instantiate((CardInfo)deck[i].Clone(), this.deck.transform.position));
 
-
         player.cardAnimations = FindObjectOfType<CardAnimations>();
-
 
         player.Deck.Shuffle();
         EndRound();
@@ -63,6 +72,7 @@ public class CardGameManager : MonoBehaviour
 
     private void Update()
     {
+        //Stop updateing after battle
         if (battleEnded) return;
 
         if (player.Health > 0 && enemy.Health > 0)
@@ -80,7 +90,13 @@ public class CardGameManager : MonoBehaviour
         }
         else
         {
+            //Give Rewards
+            if (player.Health > 0)
+                UserFile.SaveGame.Gold += 100 * Mathf.Abs(UserFile.SaveGame.NextOpponent);
+
+            //Go back to overwolrd
             LevelLoader.i.LoadScene("Ludus");
+
             battleEnded = true;
         }
     }

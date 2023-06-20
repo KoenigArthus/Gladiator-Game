@@ -9,9 +9,12 @@ public class SaveGame : UserFile
 
     private string name;
     private int health = 20;
+    private float gold = 0;
+    private int nextOpponent = 0;
     private string[] deckCardEntries = new string[0];
     private string[] equipmentCardEntries = new string[0];
     private string[] equipt = new string[0];
+
     #endregion Fields
 
     public SaveGame(string filename) : base(filename)
@@ -22,9 +25,12 @@ public class SaveGame : UserFile
 
     public string Name { get => name; set => name = value; }
     public int Health { get => health; set => health = value; }
+    public float Gold { get => gold; set => gold = value; }
+    public int NextOpponent { get => nextOpponent; set => nextOpponent = value; }
     public string[] DeckCardEntries { get => deckCardEntries; set => deckCardEntries = value; }
     public string[] EquipmentCardEntries { get => equipmentCardEntries; set => equipmentCardEntries = value; }
     public string[] Equipt { get => equipt; set => equipt = value; }
+
     #endregion Properties
 
     #region Save/Load
@@ -37,6 +43,12 @@ public class SaveGame : UserFile
         //Health
         SaveElement(doc, rootNode, "Health", health);
 
+        //Gold
+        SaveElement(doc, rootNode, "Gold", gold);
+
+        //Next Opponent
+        SaveElement(doc, rootNode, "NextOpponent", nextOpponent);
+
         //Deck Entrie
         SaveElement(doc, rootNode, "DeckEntrie", string.Join(',', deckCardEntries));
         SaveElement(doc, rootNode, "EquipmentEntrie", string.Join(',', equipmentCardEntries));
@@ -47,8 +59,15 @@ public class SaveGame : UserFile
     {
         //Name
         name = LoadElement<string>(rootNode.SelectSingleNode("Name"));
+
         //Health
         health = LoadElement<int>(rootNode.SelectSingleNode("Health"));
+
+        //Gold
+        gold = LoadElement<float>(rootNode.SelectSingleNode("Gold"));
+
+        //Next Opponent
+        nextOpponent = LoadElement<int>(rootNode.SelectSingleNode("NextOpponent"));
 
         //Deck Entrie
         deckCardEntries = LoadElement<string>(rootNode.SelectSingleNode("DeckEntrie")).Split(',');
