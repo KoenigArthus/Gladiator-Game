@@ -15,8 +15,6 @@ MonoBehaviour:
   file: {fileID: 0}
   files:
   - {fileID: 8300000, guid: 3e237fe9643a29d40bdd09f54449565d, type: 3}
-  - {fileID: 8300000, guid: ae1682169c453e744ae9a8c5330f2c95, type: 3}
-  - {fileID: 8300000, guid: 749072e67041b5d49a3f06c63ccb2b20, type: 3}
   useLibrary: 1
   neverRepeat: 0
   lastClipIndex: -1
