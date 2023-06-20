@@ -50,12 +50,12 @@ public class CardGameManager : MonoBehaviour
         if (nextOpponent > 0)
         {
             //Special Fight
-            enemy = new Enemy(this, 150 * nextOpponent, EnemyBehavior.Aggressive);
+            enemy = new Enemy(this, Mathf.Max(100, 150 * nextOpponent), EnemyBehavior.Aggressive);
         }
         else
         {
             //Normal/Random Fight
-            enemy = new Enemy(this, 70 * -nextOpponent, EnemyBehavior.Defensive);
+            enemy = new Enemy(this, Mathf.Max(50, 70 * -nextOpponent), EnemyBehavior.Defensive);
         }
 
         //CardSet[] sets = new CardSet[] { CardSet.Gladius, CardSet.Scutum, CardSet.Cassis, CardSet.Manica, CardSet.Ocrea };
