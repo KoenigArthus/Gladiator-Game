@@ -11,7 +11,7 @@ public class EquipmentCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 {
     [CustomAttributes.ReadOnly]
     public Equipment equipment;
-
+    public EquipmentSlot slot;
     public Image image;
     public TMP_Text cardName;
     public TMP_Text cardType;
@@ -34,7 +34,7 @@ public class EquipmentCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnBeginDrag(PointerEventData eventData)
     {
         afterDragParent = transform.parent;
-        transform.SetParent(transform.root);
+        transform.SetParent(transform.root.Find("UI Canvas"));
         transform.SetAsLastSibling();
         image.raycastTarget = false;
         Deckbuilder.instance.slotArea.SetActive(true);
@@ -56,7 +56,8 @@ public class EquipmentCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        //  Debug.Log("over");
+       // Deckbuilder.instance.tooltip.GetComponent<TooltipCard>().cardName = cardName;
+       // Deckbuilder.instance.tooltip.SetActive(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
