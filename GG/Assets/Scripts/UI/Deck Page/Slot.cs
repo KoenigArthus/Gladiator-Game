@@ -23,11 +23,6 @@ public class Slot : MonoBehaviour, IDropHandler
             GameObject dropped = eventData.pointerDrag;
             DraggableCard draggableCard = dropped.GetComponent<DraggableCard>();
             draggableCard.afterDragParent = transform;
-           //Equipment equipmentInfo = dropped.GetComponent<EquipmentCard>().equipment;
-           //Deckbuilder.instance.RemoveFromDeckEntrie(CardLibrary.Cards.Where(x => x.Set == equipmentInfo.cardSet)); Deckbuilder.instance.LoadDeckPanel();
-           ////Deckbuilder.instance.FillEquipmentEntrie(equipmentInfo);
-           //Deckbuilder.instance.LoadDeckPanel();
-           //Deckbuilder.instance.LoadEquipmentPanel();
         }
     }
 }

@@ -15,7 +15,6 @@ public class SlotArea : MonoBehaviour, IDropHandler
             GameObject dropped = eventData.pointerDrag;
             Equipment equipmentInfo = dropped.GetComponent<EquipmentCard>().equipment;
             Deckbuilder.instance.RemoveFromDeckEntrie(equipmentInfo.cardSet);
-            Deckbuilder.instance.LoadDeckPanel();
             Deckbuilder.instance.FillEquipmentEntrie(equipmentInfo);
             Deckbuilder.instance.LoadDeckPanel();
             Deckbuilder.instance.LoadEquipmentPanel();

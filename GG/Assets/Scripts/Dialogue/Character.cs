@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Yarn.Unity;
+using CustomAttributes;
 
 public class Character : MonoBehaviour
 {
@@ -12,6 +12,9 @@ public class Character : MonoBehaviour
     [SerializeField]
     private Vector3 activeDialogueIconOffset;
     private bool intrigger;
+    public Date spawnDate;
+    public TimeBoolTable spawnTable;
+    public Date killDate;
 
 
     private void OnTriggerEnter(Collider other)
@@ -54,7 +57,7 @@ public class Character : MonoBehaviour
     {
         Vector3 pos = DialogueSystem.i.cam.WorldToScreenPoint(transform.position + offset);
 
-        if(uiObject.transform.position != pos)
+        if (uiObject.transform.position != pos)
             uiObject.transform.position = pos;
     }
 
