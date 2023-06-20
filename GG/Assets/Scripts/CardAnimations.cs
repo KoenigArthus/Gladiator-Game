@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using UnityEngine;
 
 public class CardAnimations : MonoBehaviour
@@ -30,14 +32,14 @@ public class CardAnimations : MonoBehaviour
 
     public void Awake()
     {
+
         
 
 
 
 
 
-
-       // player = GetComponent<Player>();
+        // player = GetComponent<Player>();
         if (player != null)
         {
             Debug.Log("player found");
