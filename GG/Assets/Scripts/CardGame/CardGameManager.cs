@@ -90,14 +90,16 @@ public class CardGameManager : MonoBehaviour
         }
         else
         {
+            UnityEngine.Debug.Log(enemy.Health);
+            UnityEngine.Debug.Log(player.Health);
             //Give Rewards
             if (player.Health > 0)
                 UserFile.SaveGame.Gold += 100 * Mathf.Abs(UserFile.SaveGame.NextOpponent);
 
             //Go back to overwolrd
+            battleEnded = true;
             LevelLoader.i.LoadScene("Ludus");
 
-            battleEnded = true;
         }
     }
 

@@ -30,7 +30,7 @@ public class CardAnimations : MonoBehaviour
 
     public void Awake()
     {
-        UserFile.SaveGame.Equipt
+        
 
 
 

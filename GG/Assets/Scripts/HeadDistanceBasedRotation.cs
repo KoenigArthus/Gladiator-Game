@@ -36,7 +36,6 @@ public class HeadDistanceBasedRotation : MonoBehaviour
 
             // Interpolate between the current weight and the target weight
             currentWeight = Mathf.Lerp(currentWeight, targetWeight, smoothSpeed * Time.deltaTime);
-            Debug.Log(currentWeight);
             // Update the weight of the Multi-Aim Constraint
             WeightedTransform weightedTransform = multiAimConstraint.data.sourceObjects.Where(x => x.transform == closestTarget).FirstOrDefault();
             int index = multiAimConstraint.data.sourceObjects.IndexOf(weightedTransform);
