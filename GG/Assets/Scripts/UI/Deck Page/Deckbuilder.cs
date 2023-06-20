@@ -12,6 +12,8 @@ public class Deckbuilder : MonoBehaviour
 {
     [HideInInspector] public static Deckbuilder instance;
     public GameObject slotArea, tooltip;
+    [Tooltip("check if the slots are in the right order: 0 = head, 1 = shoulder, 2 = leg, 3 = left, 4 = right")]
+    public EquipmentSlot[] equiptSlots;
     [SerializeField] private Transform equipmentPanel, deckPanel;
     [SerializeField] private GameObject equipmentCardPreFab, inventoryCardPreFab;
     [SerializeField] private GameObject rowPreFabFourColumns, rowPreFabFiveColumns;
@@ -49,6 +51,8 @@ public class Deckbuilder : MonoBehaviour
         ClearPanel(equipmentPanel, equipmentSlots);
         ClearPanel(deckPanel, deckSlots);
         SaveDeck();
+        SaveEquipt();
+        SaveEquipment();
         UserFile.SaveGame.Save();
     }
 
@@ -180,24 +184,41 @@ public class Deckbuilder : MonoBehaviour
     {
         LoadPanel(inventoryCardPreFab, deckPanel, deckSlots, deckCardEntries, 5);
     }
-    
+
     public void SaveDeck()
     {
         UserFile.SaveGame.DeckCardEntries = deckCardEntries.ToArray();
         //deckCardEntries = UserFile.SaveGame.DeckCardEntries.ToList(); 
-       // UserFile.SaveGame.Save();
+        // UserFile.SaveGame.Save();
     }
 
     public void SaveEquipment()
     {
-        //UserFile.SaveGame.DeckCardEntries = deckCardEntries.ToArray();
-       // UserFile.SaveGame.Save();
+        string[] equipmentCardEntriesAsString = equipmentCardEntries.ConvertAll(equipment => equipment.ToString()).ToArray();
+        UserFile.SaveGame.EquipmentCardEntries = equipmentCardEntriesAsString;
     }
 
     public void SaveEquipt()
     {
-       // UserFile.SaveGame.DeckCardEntries = deckCardEntries.ToArray();
-       // UserFile.SaveGame.Save();
+        List<string> equipt = new List<string>();
+
+        for (int i = 0; i < equiptSlots.Length; i++)
+        {
+            if (equiptSlots[i].equipment != null & equiptSlots[i].equipment != "" )
+            {
+                equipt.Add(equiptSlots[i].equipment);
+            }
+            else
+            {
+                string s = "none";
+                equipt.Add(s);
+            }
+        }
+
+        Debug.Log(equipt.ToArray()[0] +","+ equipt.ToArray()[1] + "," + equipt.ToArray()[2] + "," + equipt.ToArray()[3] + "," + equipt.ToArray()[4]);
+
+        UserFile.SaveGame.Equipt = equipt.ToArray();
+        // UserFile.SaveGame.Save();
     }
 
 }

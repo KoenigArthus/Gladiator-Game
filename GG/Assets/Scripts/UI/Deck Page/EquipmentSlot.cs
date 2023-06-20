@@ -8,7 +8,8 @@ using UnityEngine.EventSystems;
 public class EquipmentSlot : MonoBehaviour, IDropHandler
 {
     public SlotType slotType;
-
+    public string equipment = "none";
+   
 
     public void OnDrop(PointerEventData eventData)
     {
@@ -20,6 +21,8 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler
             Deckbuilder.instance.LoadDeckPanel();
             Deckbuilder.instance.RemoveFromEquipmentEntrie(equipmentCard.equipment);
             Deckbuilder.instance.LoadEquipmentPanel();
+            equipment = equipmentCard.cardName.text;
+            equipmentCard.slot = this;
         }
     }
 }

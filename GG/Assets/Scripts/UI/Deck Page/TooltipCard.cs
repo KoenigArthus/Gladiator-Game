@@ -13,12 +13,6 @@ public class TooltipCard : MonoBehaviour
     public TMP_Text cardType;
     public TMP_Text cardDescription;
 
-    private void Awake()
-    {
-        cardIDName = "Sting";
-    }
-
-
 
     private void OnEnable()
     {
