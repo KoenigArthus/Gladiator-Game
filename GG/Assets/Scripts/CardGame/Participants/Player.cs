@@ -177,14 +177,17 @@ public class Player : Participant
         CardObject card = prepareing;
         CardInfo info = card.Info;
 
-        if (card.Info.Set == CardSet.Gladius)
+        Debug.Log(info.Type.ToString());
+
+        if (card.Info.Set == CardSet.Gladius && card.Info.Type == CardType.Attack)
         {
             cardAnimations.PlayGladiusAnimation();
             Debug.Log("GladiusGespielt");
         }
         else
+        if (card.Info.Set == CardSet.Gladius && card.Info.Type == CardType.Attack)
             if (card.Info.Set == CardSet.Trident)
-        {
+            {
             cardAnimations.PlayTridentAnimation();
             Debug.Log("TridentGespielt");
         }
@@ -195,61 +198,61 @@ public class Player : Participant
             Debug.Log("ScutumGespielt");
         }
         else
-            if (card.Info.Set == CardSet.Pugio)
+            if (card.Info.Set == CardSet.Pugio && card.Info.Type == CardType.Attack)
         {
             cardAnimations.PlayPugiuAnimation();
             Debug.Log("PugioGespielt");
         }
         else
-            if (card.Info.Set == CardSet.Spartha)
+            if (card.Info.Set == CardSet.Spartha && card.Info.Type == CardType.Attack)
         {
             cardAnimations.PlaySparthaAnimation();
             Debug.Log("SparthaGespielt");
         }
         else
-            if (card.Info.Set == CardSet.Doru)
+            if (card.Info.Set == CardSet.Doru && card.Info.Type == CardType.Attack)
         {
             cardAnimations.PlayDoruAnimation();
             Debug.Log("DoruGespielt");
         }
         else
-            if (card.Info.Set == CardSet.Pilum)
+            if (card.Info.Set == CardSet.Pilum && card.Info.Type == CardType.Attack)
         {
             cardAnimations.PlayPilumAnimation();
             Debug.Log("PilumGespielt");
         }
         else
-            if (card.Info.Set == CardSet.Parmula)
+            if (card.Info.Set == CardSet.Parmula && card.Info.Type == CardType.Attack)
         {
             cardAnimations.PlayParmulaAnimation();
             Debug.Log("ParmulaGespielt");
         }
         else
-            if (card.Info.Set == CardSet.Scindo)
+            if (card.Info.Set == CardSet.Scindo && card.Info.Type == CardType.Attack)
         {
             cardAnimations.PlayScindoAnimation();
             Debug.Log("ScindoGespielt");
         }
         else
-            if (card.Info.Set == CardSet.Cestus)
+            if (card.Info.Set == CardSet.Cestus && card.Info.Type == CardType.Attack)
         {
             cardAnimations.PlayCestusAnimation();
             Debug.Log("CestusGespielt");
         }
         else
-            if (card.Info.Set == CardSet.Laqueus)
+            if (card.Info.Set == CardSet.Laqueus && card.Info.Type == CardType.Attack)
         {
             cardAnimations.PlayLaqueusAnimation();
             Debug.Log("LaqueusGespielt");
         }
         else
-            if (card.Info.Set == CardSet.Laqueus)
+            if (card.Info.Set == CardSet.Laqueus && card.Info.Type == CardType.Attack)
         {
             cardAnimations.PlayLaqueusAnimation();
             Debug.Log("LaqueusGespielt");
         }
         else
-            if (card.Info.Set == CardSet.Rete)
+            if (card.Info.Set == CardSet.Rete && card.Info.Type == CardType.Attack)
         {
             cardAnimations.PlayReteAnimation();
             Debug.Log("ReteGespielt");
