@@ -64,7 +64,7 @@ public class DialogueSystem : MonoBehaviour
         characters.AddRange(characterObjects);
 
         //get TextLineProvider for localization
-        textLineProvider = gameObject.GetComponent<TextLineProvider>();
+        textLineProvider = gameObject.GetComponent<TextLineProvider>(); //TODO
     }
 
     private void Update()
