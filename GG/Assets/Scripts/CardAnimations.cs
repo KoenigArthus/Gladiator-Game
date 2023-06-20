@@ -31,6 +31,12 @@ public class CardAnimations : MonoBehaviour
     public void Awake()
     {
         
+
+
+
+
+
+
        // player = GetComponent<Player>();
         if (player != null)
         {

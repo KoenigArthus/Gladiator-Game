@@ -28,7 +28,6 @@ public class LevelLoader : MonoBehaviour
     {
 
         loadingScreen.gameObject.SetActive(true);
-        Debug.Log("a");
 
 
         var scene = SceneManager.LoadSceneAsync(sceneName);
@@ -36,11 +35,11 @@ public class LevelLoader : MonoBehaviour
 
 
        // StartCoroutine(Loading());
-        await Task.Delay(1000);
+        await Task.Delay(500);
 
 
         scene.allowSceneActivation = true;
-
+        await Task.Delay(500);
         loadingScreen.gameObject.SetActive(false);
     }
 
