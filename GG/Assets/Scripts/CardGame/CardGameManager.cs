@@ -15,6 +15,7 @@ public class CardGameManager : MonoBehaviour
     public CardCollection hand;
     public CardCollection block;
     public CardCollection discard;
+    public DieCollection dice;
 
     private Player player;
     private Enemy enemy;
@@ -102,6 +103,13 @@ public class CardGameManager : MonoBehaviour
 
         player.AdvanceRound();
         enemy.AdvanceRound();
+
+        player.AddDie(new DieInfo(4));
+        player.AddDie(new DieInfo(6));
+        player.AddDie(new DieInfo(8));
+        player.AddDie(new DieInfo(10));
+        player.AddDie(new DieInfo(12));
+        player.AddDie(new DieInfo(20));
     }
 
     public void Debug()

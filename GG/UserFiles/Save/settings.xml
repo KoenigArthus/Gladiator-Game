@@ -1,3 +1,4 @@
 <UserFile>
   <Language>German</Language>
+  <DisableRomanNumburs OnCards="True" OnDice="True" />
 </UserFile>

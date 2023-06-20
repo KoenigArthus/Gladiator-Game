@@ -282,9 +282,9 @@ public static class CardLibrary
 
             #region Tier 0
 
-            //Schildblock - Block entsprechend Augenzahl, multipliziert mit 2.
+            //Schildblock - Block entsprechend Augenzahl
             new BlockCardInfo("Shield_Block", CardSet.Scutum, 0, 2,
-            (CardInfo c) => c.DicePower* 2),
+            (CardInfo c) => c.DicePower),
 
             //Testudo - 15 Block. Du kannst diese Karte nicht aktivieren wenn du in dieser Runde einen Angriff gespielt hast. Du kannst keine Angriffe nach Aktivierung dieser Karte spielen.
             new BlockCardInfo("Testudo", CardSet.Scutum, 0, 1,

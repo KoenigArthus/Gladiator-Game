@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactable: 1
-  speed: 50
+  speed: 100
   arcAngle: 0.3
 --- !u!1 &5901101641072846710
 GameObject:

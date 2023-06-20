@@ -90,6 +90,9 @@ public abstract class UserFile
 
     protected T LoadElement<T>(XmlNode loadNode, string attributeName = null)
     {
+        if (loadNode == null)
+            return default;
+
         string data;
 
         if (attributeName != null)
