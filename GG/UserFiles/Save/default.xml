@@ -2,5 +2,9 @@
   <Name>
   </Name>
   <Health>20</Health>
-  <DeckEntrie>Kick,Knee_Kick,Jump_Kick,Flying_Spin_Kick</DeckEntrie>
+  <DeckEntrie>Sting,Mighty_Sweep,Pommel_Strike,Jump_Slash,Double_Stab,Sword_Dance,Sword_Vortex,Flaming_Impact,Gleaming_Blade,Flaming_Passion,Perfect_Parry,Damocles_Sword,Searing_Inferno,Shoulder_Attack,Full_Plate,Agility,Headbutt,Deflect,Wedge_Slash,Catch,Angle_Block,Upset,Segmented_Armor,Footwork,Shield_Block,Testudo,Shield_Soul,Provocation,Shield_Logic,Immovable_Object,Shield_Flame,Bastion,Petra_Solida,Scutum_Vitalis,Battering_Ram,Mars_Patronage,Moloch,Head_Matter,Head_Thrust,Boldness,Protective_Cage,Deflecting_Stance,Symbol_Of_Duty,Stubborn,Kick,Knee_Kick,Jump_Kick,Flying_Spin_Kick</DeckEntrie>
+  <EquipmentEntrie>
+  </EquipmentEntrie>
+  <Equipt>
+  </Equipt>
 </UserFile>
