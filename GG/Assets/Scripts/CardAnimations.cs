@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using UnityEngine;
 
 public class CardAnimations : MonoBehaviour
@@ -22,16 +24,26 @@ public class CardAnimations : MonoBehaviour
     public GameObject galerus;
     public GameObject ocrea;
 
-    public CardSet leftHand;
-    public CardSet rightHand;
     public CardSet head;
     public CardSet shoulder;
     public CardSet leg;
+    public CardSet leftHand;
+    public CardSet rightHand;
 
     public void Awake()
     {
-        
-       // player = GetComponent<Player>();
+        //load equipped CardSets
+        string[] equipped = new string[5];
+        UserFile.SaveGame.Equipped.ToArray().CopyTo(equipped, 0);
+        head = Enum.TryParse(equipped[0], out CardSet headParsed) ? headParsed : CardSet.None;
+        shoulder = Enum.TryParse(equipped[1], out CardSet shoulderParsed) ? shoulderParsed : CardSet.None;
+        leg = Enum.TryParse(equipped[2], out CardSet legParsed) ? legParsed : CardSet.None;
+        leftHand = Enum.TryParse(equipped[3], out CardSet leftParsed) ? leftParsed : CardSet.None;
+        rightHand = Enum.TryParse(equipped[4], out CardSet rightParsed) ? rightParsed : CardSet.None;
+
+
+
+        // player = GetComponent<Player>();
         if (player != null)
         {
             Debug.Log("player found");
@@ -57,7 +69,6 @@ public class CardAnimations : MonoBehaviour
         if ((leftHand == CardSet.Scutum) || (rightHand == CardSet.Scutum))
         {
             animator.SetBool("ScutumIdle", true);
-            animator.SetBool("ScutumIdleForBlock", true);
             scutum.SetActive(true);
         }
 
@@ -95,7 +106,6 @@ public class CardAnimations : MonoBehaviour
         if ((leftHand == CardSet.Parmula) || (rightHand == CardSet.Parmula))
         {
             animator.SetBool("ParmulaIdle", true);
-            animator.SetBool("ParmulaIdleForBlock", true);
             parmula.SetActive(true);
         }
 
@@ -129,7 +139,7 @@ public class CardAnimations : MonoBehaviour
             cassis.SetActive(true);
         }
 
-        if ((shoulder == CardSet.Galerus))
+        if ((head == CardSet.Galerus))
         {
             galerus.SetActive(true);
         }

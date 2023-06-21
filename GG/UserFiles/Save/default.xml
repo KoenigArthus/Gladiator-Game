@@ -2,7 +2,11 @@
   <Name>
   </Name>
   <Health>20</Health>
-  <DeckEntrie>Sting,Mighty_Sweep,Pommel_Strike,Jump_Slash,Double_Stab,Sword_Dance,Sword_Vortex,Flaming_Impact,Gleaming_Blade,Flaming_Passion,Perfect_Parry,Damocles_Sword,Searing_Inferno,Shoulder_Attack,Full_Plate,Agility</DeckEntrie>
-  <EquipmentEntrie>Manica (Equipment),Ocrea (Equipment),Scutum (Equipment),Cassis (Equipment),Trident (Equipment)</EquipmentEntrie>
-  <Equipt>none,none,none,Gladius,none</Equipt>
+  <Gold>0</Gold>
+  <EquipmentEXP>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</EquipmentEXP>
+  <NextOpponent>0</NextOpponent>
+  <DeckEntrie>Thrust,Shove,Jump_Thrust,Powerful_Sweep,Triple_Thrust,Rock_Solid,Thundering_Judgment,Cataclysm,Finishing_Stab,Royal_Tip,Neptuns_Judgment,Leviathan_Fury,Siege_Attack,Jab_Cut,Bone_Shears,Dagger_Whet,Butcher,Meat_Hook,Carnassial,Critical_Hit,Swift_Stride,Dismember,Trick_Blade,Swordarm,Janus_Reversal,Faunus_Guillotine</DeckEntrie>
+  <EquipmentEntrie>Cassis (Equipment),Doru (Equipment),Galerus (Equipment),Gladius (Equipment),Health (Equipment),Item (Equipment),Manica (Equipment),Ocrea (Equipment),Parmula (Equipment),Pilum (Equipment),Pugio (Equipment),Rete (Equipment),Scutum (Equipment),Spartha (Equipment),Cestust (Equipment),Laqueus (Equipment)</EquipmentEntrie>
+  <Equipped>none,none,none,Trident,Scindo</Equipped>
+  <FightingLocation>0</FightingLocation>
 </UserFile>

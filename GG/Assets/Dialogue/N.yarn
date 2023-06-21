@@ -15,5 +15,5 @@ N: Willst du ein Träningskampf machen mein Gladiator Bro ?
 	//<<set_time to {get_time()} + 1>>
 	//<<if get_time() is 2>>
 	//<<endif>>
-	<<start_fight>>
+	<<start_fight 0>>
 ===
