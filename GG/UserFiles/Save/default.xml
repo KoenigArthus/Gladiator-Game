@@ -5,7 +5,11 @@
   <Gold>0</Gold>
   <EquipmentEXP>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</EquipmentEXP>
   <NextOpponent>0</NextOpponent>
-  <DeckEntrie>Head_Matter,Head_Thrust,Boldness,Protective_Cage,Deflecting_Stance,Symbol_Of_Duty,Stubborn</DeckEntrie>
-  <EquipmentEntrie>Cestust (Equipment),Doru (Equipment),Galerus (Equipment),Gladius (Equipment),Laqueus (Equipment),Manica (Equipment),Ocrea (Equipment),Parmula (Equipment),Pilum (Equipment),Pugio (Equipment),Rete (Equipment),Scindo (Equipment),Scutum (Equipment),Spartha (Equipment),Trident (Equipment),Item (Equipment),Health (Equipment)</EquipmentEntrie>
-  <Equipped>Cassis,none,none,none,none</Equipped>
+  <DeckEntrie>
+  </DeckEntrie>
+  <EquipmentEntrie>
+  </EquipmentEntrie>
+  <Equipped>
+  </Equipped>
+  <FightingLocation>1</FightingLocation>
 </UserFile>

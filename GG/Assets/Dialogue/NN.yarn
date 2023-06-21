@@ -1,19 +1,19 @@
-﻿title: N
+﻿title: NN
 group: Cool 
 colorID: 12
 position: 871,78
 ---
-Hi
-<<jump Node>>
+Salve
+<<jump NodeNode>>
 ===
-title: Node
+title: NodeNode
 position: 988,322
 ---
-N: Willst du ein Träningskampf machen mein Gladiator Bro ?
+N: Willst du ein richigen Kampf in der Katakombe machen ?
 -> Nein
 -> Ja
 	//<<set_time to {get_time()} + 1>>
 	//<<if get_time() is 2>>
 	//<<endif>>
-	<<start_fight 0>>
+	<<start_fight 1>>
 ===

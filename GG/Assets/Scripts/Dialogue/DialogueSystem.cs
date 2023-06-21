@@ -141,8 +141,10 @@ public class DialogueSystem : MonoBehaviour
 
 
     [YarnCommand("start_fight")]
-    public static void Fight()
+    public static void Fight(int scene)
     {
+        UserFile.SaveGame.FightingLocation = scene;
+        UserFile.SaveGame.Save();
         LevelLoader.i.LoadScene("CardGameTest");
     }
 

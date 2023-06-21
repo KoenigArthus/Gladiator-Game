@@ -4,10 +4,6 @@ using UnityEngine;
 using System.Linq;
 using Unity.VisualScripting;
 using System;
-using Yarn.Unity;
-using UnityEngine.Android;
-using System.Threading.Tasks;
-using UnityEditor.Animations;
 
 public class Player : Participant
 {
