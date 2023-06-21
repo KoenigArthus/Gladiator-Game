@@ -279,6 +279,10 @@ public class Player : Participant
 
     public void PlayCardAnimation(CardInfo info)
     {
+        //If Card is not Attack or Block dont play animation
+        if (!(info.Type == CardType.Attack || (info.Type == CardType.Block && (info.Set == CardSet.Scutum || info.Set == CardSet.Parmula))))
+            return;
+
         switch (info.Set)
         {
             case CardSet.Trident:
