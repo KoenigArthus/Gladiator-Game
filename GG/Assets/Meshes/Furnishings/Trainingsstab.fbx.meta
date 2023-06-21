@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Holz
-    second: {fileID: 2100000, guid: f0f9c22c45fbb1c489442af608887cea, type: 2}
+    second: {fileID: 2100000, guid: e11b5e1a0bfe5e74baeece1ba6154a1d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -73,8 +73,8 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
-    normalSmoothAngle: 0
-    normalImportMode: 0
+    normalSmoothAngle: 180
+    normalImportMode: 1
     tangentImportMode: 3
     normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
