@@ -7,6 +7,31 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Black
+    second: {fileID: 2100000, guid: e47700be5d6ac9c4d863df70d29023c6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Marble
+    second: {fileID: 2100000, guid: f46a1f6519c8144449a713056421677c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Marble under Water
+    second: {fileID: 2100000, guid: f46a1f6519c8144449a713056421677c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: STOFF.001
+    second: {fileID: 2100000, guid: 251b87da0283b4e4fb0020ec912fc5cd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stoff2.001
+    second: {fileID: 2100000, guid: f46a1f6519c8144449a713056421677c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Water Bottom
     second: {fileID: 2100000, guid: 9e09a43339fb55c42b84956f87b4babc, type: 2}
   - first:
@@ -19,6 +44,16 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Water Top
     second: {fileID: 2100000, guid: ea2df9540655b96429bcaa5555f64528, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: schwarzehaare.002
+    second: {fileID: 2100000, guid: e47700be5d6ac9c4d863df70d29023c6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: schwarzehautfarbe.001
+    second: {fileID: 2100000, guid: 0d8fd4b3aae640e47ba26b6872f9e724, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
