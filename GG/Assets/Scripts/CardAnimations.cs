@@ -69,7 +69,6 @@ public class CardAnimations : MonoBehaviour
         if ((leftHand == CardSet.Scutum) || (rightHand == CardSet.Scutum))
         {
             animator.SetBool("ScutumIdle", true);
-            animator.SetBool("ScutumIdleForBlock", true);
             scutum.SetActive(true);
         }
 
@@ -107,7 +106,6 @@ public class CardAnimations : MonoBehaviour
         if ((leftHand == CardSet.Parmula) || (rightHand == CardSet.Parmula))
         {
             animator.SetBool("ParmulaIdle", true);
-            animator.SetBool("ParmulaIdleForBlock", true);
             parmula.SetActive(true);
         }
 
@@ -141,7 +139,7 @@ public class CardAnimations : MonoBehaviour
             cassis.SetActive(true);
         }
 
-        if ((shoulder == CardSet.Galerus))
+        if ((head == CardSet.Galerus))
         {
             galerus.SetActive(true);
         }
