@@ -86,26 +86,26 @@ public class DieInfo
     {
         index = Random.Range(0, sides.Length);
 
-        switch (Sides.Length)
-        {
-            case 4:
-                index = 3;
-                break;
+        //switch (Sides.Length)
+        //{
+        //    case 4:
+        //        index = 3;
+        //        break;
 
-            case 6:
-                index = 5;
-                break;
+        //    case 6:
+        //        index = 5;
+        //        break;
 
-            case 8:
-            case 10:
-            case 12:
-                index = 7;
-                break;
+        //    case 8:
+        //    case 10:
+        //    case 12:
+        //        index = 7;
+        //        break;
 
-            case 20:
-                index = 17;
-                break;
-        }
+        //    case 20:
+        //        index = 17;
+        //        break;
+        //}
     }
 
     public void SpinUp(int amount)

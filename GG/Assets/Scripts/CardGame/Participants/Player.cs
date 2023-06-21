@@ -177,96 +177,6 @@ public class Player : Participant
         CardObject card = prepareing;
         CardInfo info = card.Info;
 
-        if (card.Info.Set == CardSet.Gladius)
-        {
-            cardAnimations.PlayGladiusAnimation();
-            Debug.Log("GladiusGespielt");
-        }
-        else
-            if (card.Info.Set == CardSet.Trident)
-        {
-            cardAnimations.PlayTridentAnimation();
-            Debug.Log("TridentGespielt");
-        }
-        else
-            if (card.Info.Set == CardSet.Scutum && card.Info.Type == CardType.Attack)
-        {
-            cardAnimations.PlayScutumAnimation();
-            Debug.Log("ScutumGespielt");
-        }
-        else
-            if (card.Info.Set == CardSet.Pugio)
-        {
-            cardAnimations.PlayPugiuAnimation();
-            Debug.Log("PugioGespielt");
-        }
-        else
-            if (card.Info.Set == CardSet.Spartha)
-        {
-            cardAnimations.PlaySparthaAnimation();
-            Debug.Log("SparthaGespielt");
-        }
-        else
-            if (card.Info.Set == CardSet.Doru)
-        {
-            cardAnimations.PlayDoruAnimation();
-            Debug.Log("DoruGespielt");
-        }
-        else
-            if (card.Info.Set == CardSet.Pilum)
-        {
-            cardAnimations.PlayPilumAnimation();
-            Debug.Log("PilumGespielt");
-        }
-        else
-            if (card.Info.Set == CardSet.Parmula)
-        {
-            cardAnimations.PlayParmulaAnimation();
-            Debug.Log("ParmulaGespielt");
-        }
-        else
-            if (card.Info.Set == CardSet.Scindo)
-        {
-            cardAnimations.PlayScindoAnimation();
-            Debug.Log("ScindoGespielt");
-        }
-        else
-            if (card.Info.Set == CardSet.Cestus)
-        {
-            cardAnimations.PlayCestusAnimation();
-            Debug.Log("CestusGespielt");
-        }
-        else
-            if (card.Info.Set == CardSet.Laqueus)
-        {
-            cardAnimations.PlayLaqueusAnimation();
-            Debug.Log("LaqueusGespielt");
-        }
-        else
-            if (card.Info.Set == CardSet.Laqueus)
-        {
-            cardAnimations.PlayLaqueusAnimation();
-            Debug.Log("LaqueusGespielt");
-        }
-        else
-            if (card.Info.Set == CardSet.Rete)
-        {
-            cardAnimations.PlayReteAnimation();
-            Debug.Log("ReteGespielt");
-        }
-        else
-            if (card.Info.Set == CardSet.Parmula && card.Info.Type == CardType.Block)
-        {
-            cardAnimations.PlayParmulaBlockAnimation();
-            Debug.Log("Parmula Block");
-        }
-        else
-            if (card.Info.Set == CardSet.Scutum && card.Info.Type == CardType.Block)
-        {
-            cardAnimations.PlayScutumBlockAnimation();
-            Debug.Log("Scutum Block");
-        }
-
         prepareing = null;
 
         //Destroy used dice
@@ -309,6 +219,8 @@ public class Player : Participant
                             if (block.Count > BlockSlots)
                                 DiscardSingle(block.Cards[0]);
 
+                            PlayCardAnimation(info);
+
                             //Dont discard block
                             return;
                         }
@@ -328,6 +240,8 @@ public class Player : Participant
                 AbortPreparedCardPlay();
             }
         }
+
+        PlayCardAnimation(info);
 
         //Hand -> Discard
         DiscardSingle(card);
@@ -365,6 +279,86 @@ public class Player : Participant
         int cost = hand.Cards.Min(x => x.Info.Cost);
 
         return !(Dice.Count() < cost);
+    }
+
+    public void PlayCardAnimation(CardInfo info)
+    {
+        switch (info.Set)
+        {
+            case CardSet.Trident:
+                cardAnimations.PlayTridentAnimation();
+                Debug.Log("TridentGespielt");
+                break;
+
+            case CardSet.Gladius:
+                cardAnimations.PlayGladiusAnimation();
+                Debug.Log("GladiusGespielt");
+                break;
+
+            case CardSet.Rete:
+                cardAnimations.PlayReteAnimation();
+                Debug.Log("ReteGespielt");
+                break;
+
+            case CardSet.Scutum:
+                if (info.Type == CardType.Block)
+                {
+                    cardAnimations.PlayScutumBlockAnimation();
+                    Debug.Log("Scutum Block");
+                }
+                else
+                {
+                    cardAnimations.PlayScutumAnimation();
+                    Debug.Log("ScutumGespielt");
+                }
+                break;
+
+            case CardSet.Pugio:
+                cardAnimations.PlayPugiuAnimation();
+                Debug.Log("PugioGespielt");
+                break;
+
+            case CardSet.Doru:
+                cardAnimations.PlayDoruAnimation();
+                Debug.Log("DoruGespielt");
+                break;
+
+            case CardSet.Parmula:
+                if (info.Type == CardType.Block)
+                {
+                    cardAnimations.PlayParmulaBlockAnimation();
+                    Debug.Log("Parmula Block");
+                }
+                else
+                {
+                    cardAnimations.PlayParmulaAnimation();
+                    Debug.Log("ParmulaGespielt");
+                }
+                break;
+
+            case CardSet.Scindo:
+                cardAnimations.PlayScindoAnimation();
+                Debug.Log("ScindoGespielt");
+                break;
+
+            case CardSet.Cassis:
+                break;
+
+            case CardSet.Galerus:
+                break;
+
+            case CardSet.Manica:
+                break;
+
+            case CardSet.Ocrea:
+                break;
+
+            case CardSet.Health:
+                break;
+
+            case CardSet.Item:
+                break;
+        }
     }
 
     #endregion Play

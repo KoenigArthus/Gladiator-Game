@@ -19,10 +19,24 @@ namespace Assets.Scripts.UI.Deck_Page
 
         #endregion Fields
 
+        #region ctor
+
         public EquipmentInfo(CardSet equipmentType)
         {
             this.equipmentType = equipmentType;
+
+            checkEquipmentValid();
         }
+
+        public EquipmentInfo(string eqipmentName)
+        {
+            if (!Enum.TryParse(eqipmentName, out equipmentType))
+                throw new ArgumentException("Not valid equipment name");
+
+            checkEquipmentValid();
+        }
+
+        #endregion ctor
 
         #region Properties
 
@@ -44,6 +58,12 @@ namespace Assets.Scripts.UI.Deck_Page
                 return sprite;
 
             return Resources.Load<Sprite>($"Textures/CardGame/Equipment/Debug");
+        }
+
+        private void checkEquipmentValid()
+        {
+            if (!(this.equipmentType < CardSet.Health))
+                throw new ArgumentException("Not valid equipment set");
         }
 
         public override bool Equals(object obj)

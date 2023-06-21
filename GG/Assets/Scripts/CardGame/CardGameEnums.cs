@@ -16,7 +16,7 @@ public enum CardSet
     None = -1,
 
     //Weapons
-    Trident, Gladius, Rete, Scutum, Pugio, Spartha, Doru, Pilum, Parmula, Scindo, Cestus, Laqueus,
+    Trident, Gladius, Rete, Scutum, Pugio, Doru, Parmula, Scindo,
 
     //Armor
     Cassis, Galerus, Manica, Ocrea,
