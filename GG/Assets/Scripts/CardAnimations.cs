@@ -79,11 +79,6 @@ public class CardAnimations : MonoBehaviour
             pugiu.SetActive(true);
         }
 
-        if ((leftHand == CardSet.Spartha) || (rightHand == CardSet.Spartha))
-        {
-            animator.SetBool("SparthaIdle", true);
-            spartha.SetActive(true);
-        }
 
         if ((leftHand == CardSet.Doru) || (rightHand == CardSet.Doru))
         {
@@ -91,17 +86,6 @@ public class CardAnimations : MonoBehaviour
             doru.SetActive(true);
         }
 
-        if ((leftHand == CardSet.Pilum) || (rightHand == CardSet.Pilum))
-        {
-            animator.SetBool("PilumIdle", true);
-            pilum.SetActive(true);
-        }
-
-        if ((leftHand == CardSet.Pilum) || (rightHand == CardSet.Pilum))
-        {
-            animator.SetBool("PilumIdle", true);
-            pilum.SetActive(true);
-        }
 
         if ((leftHand == CardSet.Parmula) || (rightHand == CardSet.Parmula))
         {
@@ -113,18 +97,6 @@ public class CardAnimations : MonoBehaviour
         {
             animator.SetBool("ScindoIdle", true);
             scindo.SetActive(true);
-        }
-
-        if ((leftHand == CardSet.Cestus) || (rightHand == CardSet.Cestus))
-        {
-            animator.SetBool("CestusIdle", true);
-            cestus.SetActive(true);
-        }
-
-        if ((leftHand == CardSet.Laqueus) || (rightHand == CardSet.Laqueus))
-        {
-            animator.SetBool("LaqueusIdle", true);
-            laqueus.SetActive(true);
         }
 
 

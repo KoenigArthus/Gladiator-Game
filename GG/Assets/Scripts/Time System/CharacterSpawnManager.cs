@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CharacterSpawnManager : MonoBehaviour
@@ -9,6 +10,16 @@ public class CharacterSpawnManager : MonoBehaviour
     private void Awake()
     {
         // Find all objects with the type "Character" in the scene
-        Character[] characterObjects = FindObjectsOfType<Character>();
+        Character[] charactersAsArray = FindObjectsOfType<Character>();
+        characters = charactersAsArray.ToList();
+
+        foreach(Character character in characters)
+        {
+            character.gameObject.SetActive(false);
+            
+        
+        }
+
+
     }
 }

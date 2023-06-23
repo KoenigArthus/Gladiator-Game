@@ -5448,9 +5448,9 @@ MonoBehaviour:
   lightObject: {fileID: 1662810023}
   directionalLighting: {fileID: 1662810024}
   currentDate:
-    day: 12
-    month: 12
-    year: 301
+    day: 1
+    month: 1
+    year: 1
   _currentTime: 4
   timeSettings:
   - {fileID: 11400000, guid: 358d157e223016946ae9c676ebe2ceea, type: 2}
