@@ -8,6 +8,8 @@ public class CardAnimations : MonoBehaviour
     public Player player;
     public Player Player => player;
 
+    public CharacterRotation characterRotation;
+
     public GameObject gladius;
     public GameObject trident;
     public GameObject scutum;
@@ -23,6 +25,8 @@ public class CardAnimations : MonoBehaviour
     public GameObject cassis;
     public GameObject galerus;
     public GameObject ocrea;
+
+   
 
     public CardSet head;
     public CardSet shoulder;
@@ -222,5 +226,10 @@ public class CardAnimations : MonoBehaviour
     {
         animator.SetTrigger("ScutumBlock");
     }
+
+    
+    
+
+
 }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using Unity.VisualScripting;
 using System;
+using Yarn.Unity;
 
 public class Player : Participant
 {
@@ -91,6 +92,7 @@ public class Player : Participant
     #region Animators
 
     public CardAnimations cardAnimations;
+    public CharacterRotation characterRotation;
 
     #endregion Animators
 
@@ -170,6 +172,8 @@ public class Player : Participant
         if (prepareing == null)
             return;
 
+        
+
         CardObject card = prepareing;
         CardInfo info = card.Info;
 
@@ -177,6 +181,8 @@ public class Player : Participant
 
         //Destroy used dice
         card.Info.DestroyDice();
+
+        
 
         if (Terror && UnityEngine.Random.Range(0, 2) > 0)
         {
@@ -282,6 +288,8 @@ public class Player : Participant
         //If Card is not Attack or Block dont play animation
         if (!(info.Type == CardType.Attack || (info.Type == CardType.Block && (info.Set == CardSet.Scutum || info.Set == CardSet.Parmula))))
             return;
+
+        
 
         switch (info.Set)
         {

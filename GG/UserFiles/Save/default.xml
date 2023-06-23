@@ -5,8 +5,8 @@
   <Gold>0</Gold>
   <EquipmentEXP>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</EquipmentEXP>
   <NextOpponent>0</NextOpponent>
-  <DeckEntrie>Sting,Mighty_Sweep,Pommel_Strike,Jump_Slash,Double_Stab,Sword_Dance,Sword_Vortex,Flaming_Impact,Gleaming_Blade,Flaming_Passion,Perfect_Parry,Damocles_Sword,Searing_Inferno,Shoulder_Attack,Full_Plate,Agility,Shield_Block,Testudo,Shield_Soul,Provocation,Shield_Logic,Immovable_Object,Shield_Flame,Bastion,Petra_Solida,Scutum_Vitalis,Battering_Ram,Mars_Patronage,Moloch</DeckEntrie>
-  <EquipmentEntrie>Cassis (Equipment),Cestust (Equipment),Doru (Equipment),Galerus (Equipment),Health (Equipment),Item (Equipment),Laqueus (Equipment),Manica (Equipment),Ocrea (Equipment),Parmula (Equipment),Pilum (Equipment),Pugio (Equipment),Rete (Equipment),Scindo (Equipment),Spartha (Equipment),Trident (Equipment)</EquipmentEntrie>
-  <Equipped>none,none,none,Gladius,Scutum</Equipped>
+  <DeckEntrie>Headbutt,Deflect,Wedge_Slash,Catch,Angle_Block,Upset,Segmented_Armor,Footwork</DeckEntrie>
+  <EquipmentEntrie>Cassis (Equipment),Doru (Equipment),Galerus (Equipment),Gladius (Equipment),Health (Equipment),Item (Equipment),Laqueus (Equipment),Manica (Equipment),Ocrea (Equipment),Parmula (Equipment),Pilum (Equipment),Pugio (Equipment),Rete (Equipment),Scindo (Equipment),Scutum (Equipment),Spartha (Equipment),Trident (Equipment)</EquipmentEntrie>
+  <Equipped>none,none,none,Manica,none</Equipped>
   <FightingLocation>0</FightingLocation>
 </UserFile>
