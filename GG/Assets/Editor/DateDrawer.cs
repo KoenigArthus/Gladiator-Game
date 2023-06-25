@@ -22,15 +22,20 @@ public class DateDrawer : PropertyDrawer
         GUI.color = Color.white; 
 
         // Calculate field width
-        float fieldWidth = (position.width - labelWidth - 2f) / 4f;
+        float fieldWidth = (position.width - labelWidth - 2f) / 8f;
         Rect fieldRect = new Rect(labelRect.xMax + 2f, position.y, fieldWidth, position.height);
 
         // Calculate total width of the fields and labels
-        float totalWidth = fieldWidth * 3f + 2f * 10f;
-        float xOffset = position.width - totalWidth - 31f;
+        float totalWidth = fieldWidth * 4f + 2f * 10f;
+        float xOffset = position.width - totalWidth - 66f;
 
         // Draw each field
         fieldRect.x = position.x + xOffset;
+        fieldRect.x += 13f;
+        EditorGUI.LabelField(fieldRect, "W");
+        fieldRect.x += 16f;
+        EditorGUI.PropertyField(fieldRect, property.FindPropertyRelative("weekday"), GUIContent.none);
+        fieldRect.x += fieldWidth + 5f;
         EditorGUI.LabelField(fieldRect, "D");
         fieldRect.x += 13f;
         EditorGUI.PropertyField(fieldRect, property.FindPropertyRelative("day"), GUIContent.none);
