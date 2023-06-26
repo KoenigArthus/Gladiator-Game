@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Yarn.Unity;
 
@@ -145,7 +146,7 @@ public class DialogueSystem : MonoBehaviour
     {
         UserFile.SaveGame.FightingLocation = scene;
         UserFile.SaveGame.Save();
-        LevelLoader.i.LoadScene("CardGameTest");
+        SceneManager.LoadScene("CardGameTest");
     }
 
     [YarnCommand("log")]

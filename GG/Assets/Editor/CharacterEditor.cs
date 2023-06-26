@@ -1,4 +1,4 @@
-/*using UnityEditor;
+using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(Character))]
@@ -21,4 +21,3 @@ public class CharacterEditor : Editor
 
     }
 }
-*/
