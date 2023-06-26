@@ -51,4 +51,7 @@ public struct TimeBoolTable
     public bool time33;  // Afternoon
     public bool time34;  // Evening
     public bool time35;  // Night
+
+
+
 }

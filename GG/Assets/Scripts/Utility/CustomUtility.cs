@@ -28,4 +28,33 @@ public static class CustomUtility
         // Replace all spaces in the given string with underscores in place.
         text = text.Replace(' ', '_');
     }
+
+    public static int ToPassedDays(Date date)
+    {
+        // Calculate the total number of days passed since the starting date
+        int yearsPassed = date.year - 1;
+        int monthsPassed = (yearsPassed * 365) + ((yearsPassed + 3) / 4) - ((yearsPassed + 99) / 100) + ((yearsPassed + 399) / 400);
+        int daysPassed = monthsPassed;
+
+        // Calculate the days passed for each month
+        int[] monthDays = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+        for (int i = 1; i < date.month; i++)
+        {
+            daysPassed += monthDays[i - 1];
+        }
+
+        // Add the remaining days of the current month
+        daysPassed += date.day - 1;
+
+        return daysPassed;
+    }
+
+    public static void ToggleBool(ref bool value)
+    {
+        value = !value;
+    }
+
+
+
+
 }

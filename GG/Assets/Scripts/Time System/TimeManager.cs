@@ -8,7 +8,6 @@ public class TimeManager : MonoBehaviour
 {
     UnityEvent timeHasChanged;
     CharacterSpawnManager characterSpawner;
-
     public GameObject lightObject;
     public Light directionalLighting;
     [ReadOnly] public int passedDays;
@@ -23,15 +22,15 @@ public class TimeManager : MonoBehaviour
     private void Awake()
     {
         characterSpawner = GetComponent<CharacterSpawnManager>();
+        if (timeHasChanged == null)
+            timeHasChanged = new UnityEvent();
+
+        timeHasChanged.AddListener(characterSpawner.SceduleCharacters);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        if (timeHasChanged == null)
-            timeHasChanged = new UnityEvent();
-
-        timeHasChanged.AddListener(characterSpawner.SceduleCharacters);
     }
 
 
