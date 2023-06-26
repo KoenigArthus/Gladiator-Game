@@ -279,86 +279,65 @@ public class Player : Participant
 
     public void PlayCardAnimation(CardInfo info)
     {
-        //If Card is not Attack or Block dont play animation
-        if (!(info.Type == CardType.Attack || (info.Type == CardType.Block && (info.Set == CardSet.Scutum || info.Set == CardSet.Parmula))))
-            return;
+        if (info.Type == CardType.Attack)
+            switch (info.Set)
+            {
+                case CardSet.Trident:
+                    cardAnimations.PlayTridentAnimation();
+                    Debug.Log("TridentGespielt");
+                    break;
 
-        switch (info.Set)
-        {
-            case CardSet.Trident:
-                cardAnimations.PlayTridentAnimation();
-                Debug.Log("TridentGespielt");
-                break;
+                case CardSet.Gladius:
+                    cardAnimations.PlayGladiusAnimation();
+                    Debug.Log("GladiusGespielt");
+                    break;
 
-            case CardSet.Gladius:
-                cardAnimations.PlayGladiusAnimation();
-                Debug.Log("GladiusGespielt");
-                break;
+                case CardSet.Rete:
+                    cardAnimations.PlayReteAnimation();
+                    Debug.Log("ReteGespielt");
+                    break;
 
-            case CardSet.Rete:
-                cardAnimations.PlayReteAnimation();
-                Debug.Log("ReteGespielt");
-                break;
-
-            case CardSet.Scutum:
-                if (info.Type == CardType.Block)
-                {
-                    cardAnimations.PlayScutumBlockAnimation();
-                    Debug.Log("Scutum Block");
-                }
-                else
-                {
+                case CardSet.Scutum:
                     cardAnimations.PlayScutumAnimation();
                     Debug.Log("ScutumGespielt");
-                }
-                break;
 
-            case CardSet.Pugio:
-                cardAnimations.PlayPugiuAnimation();
-                Debug.Log("PugioGespielt");
-                break;
+                    break;
 
-            case CardSet.Doru:
-                cardAnimations.PlayDoruAnimation();
-                Debug.Log("DoruGespielt");
-                break;
+                case CardSet.Pugio:
+                    cardAnimations.PlayPugiuAnimation();
+                    Debug.Log("PugioGespielt");
+                    break;
 
-            case CardSet.Parmula:
-                if (info.Type == CardType.Block)
-                {
-                    cardAnimations.PlayParmulaBlockAnimation();
-                    Debug.Log("Parmula Block");
-                }
-                else
-                {
+                case CardSet.Doru:
+                    cardAnimations.PlayDoruAnimation();
+                    Debug.Log("DoruGespielt");
+                    break;
+
+                case CardSet.Parmula:
                     cardAnimations.PlayParmulaAnimation();
                     Debug.Log("ParmulaGespielt");
-                }
-                break;
 
-            case CardSet.Scindo:
-                cardAnimations.PlayScindoAnimation();
-                Debug.Log("ScindoGespielt");
-                break;
+                    break;
 
-            case CardSet.Cassis:
-                break;
+                case CardSet.Scindo:
+                    cardAnimations.PlayScindoAnimation();
+                    Debug.Log("ScindoGespielt");
+                    break;
+            }
 
-            case CardSet.Galerus:
-                break;
+        if (info.Type == CardType.Block)
+            switch (info.Set)
+            {
+                case CardSet.Scutum:
+                    cardAnimations.PlayScutumBlockAnimation();
+                    Debug.Log("Scutum Block");
+                    break;
 
-            case CardSet.Manica:
-                break;
-
-            case CardSet.Ocrea:
-                break;
-
-            case CardSet.Health:
-                break;
-
-            case CardSet.Item:
-                break;
-        }
+                case CardSet.Parmula:
+                    cardAnimations.PlayParmulaBlockAnimation();
+                    Debug.Log("Parmula Block");
+                    break;
+            }
     }
 
     #endregion Play
