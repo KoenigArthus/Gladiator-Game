@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using CustomAttributes;
 
 public class Character : MonoBehaviour
 {
@@ -9,12 +6,12 @@ public class Character : MonoBehaviour
     public string characterName;
     public string englishCharacterName;
     public string startNode;
-    [SerializeField]
-    private Vector3 activeDialogueIconOffset;
-    private bool intrigger;
+    [SerializeField] private Vector3 activeDialogueIconOffset;
     public Date spawnDate;
     public TimeBoolTable spawnTable;
     public Date killDate;
+
+    private bool intrigger;
 
 
     private void OnTriggerEnter(Collider other)
@@ -34,7 +31,7 @@ public class Character : MonoBehaviour
 
     private void Update()
     {
-        if (intrigger)
+        if (intrigger && DialogueSystem.i != null)
         {
             recenterUIElement(DialogueSystem.i.activeDialogueIcon, activeDialogueIconOffset);
             if (Input.GetKeyDown(KeyCode.F))
@@ -59,6 +56,50 @@ public class Character : MonoBehaviour
 
         if (uiObject.transform.position != pos)
             uiObject.transform.position = pos;
+    }
+
+    public void ToggleSpawnTable()
+    {
+        CustomUtility.ToggleBool(ref spawnTable.time1);
+        CustomUtility.ToggleBool(ref spawnTable.time2);
+        CustomUtility.ToggleBool(ref spawnTable.time3);
+        CustomUtility.ToggleBool(ref spawnTable.time4);
+        CustomUtility.ToggleBool(ref spawnTable.time5);
+        CustomUtility.ToggleBool(ref spawnTable.time6);
+        CustomUtility.ToggleBool(ref spawnTable.time7);
+        CustomUtility.ToggleBool(ref spawnTable.time8);
+        CustomUtility.ToggleBool(ref spawnTable.time9);
+
+        CustomUtility.ToggleBool(ref spawnTable.time10);
+        CustomUtility.ToggleBool(ref spawnTable.time11);
+        CustomUtility.ToggleBool(ref spawnTable.time12);
+        CustomUtility.ToggleBool(ref spawnTable.time13);
+        CustomUtility.ToggleBool(ref spawnTable.time14);
+        CustomUtility.ToggleBool(ref spawnTable.time15);
+        CustomUtility.ToggleBool(ref spawnTable.time16);
+        CustomUtility.ToggleBool(ref spawnTable.time17);
+        CustomUtility.ToggleBool(ref spawnTable.time18);
+        CustomUtility.ToggleBool(ref spawnTable.time19);
+
+        CustomUtility.ToggleBool(ref spawnTable.time20);
+        CustomUtility.ToggleBool(ref spawnTable.time21);
+        CustomUtility.ToggleBool(ref spawnTable.time22);
+        CustomUtility.ToggleBool(ref spawnTable.time23);
+        CustomUtility.ToggleBool(ref spawnTable.time24);
+        CustomUtility.ToggleBool(ref spawnTable.time25);
+        CustomUtility.ToggleBool(ref spawnTable.time26);
+        CustomUtility.ToggleBool(ref spawnTable.time27);
+        CustomUtility.ToggleBool(ref spawnTable.time28);
+        CustomUtility.ToggleBool(ref spawnTable.time29);
+
+        CustomUtility.ToggleBool(ref spawnTable.time30);
+        CustomUtility.ToggleBool(ref spawnTable.time31);
+        CustomUtility.ToggleBool(ref spawnTable.time32);
+        CustomUtility.ToggleBool(ref spawnTable.time33);
+        CustomUtility.ToggleBool(ref spawnTable.time34);
+        CustomUtility.ToggleBool(ref spawnTable.time35);
+
+
     }
 
 

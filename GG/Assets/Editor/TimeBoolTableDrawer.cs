@@ -1,5 +1,5 @@
-using UnityEditor;
 using UnityEngine;
+using UnityEditor;
 
 [CustomPropertyDrawer(typeof(TimeBoolTable))]
 public class TimeBoolTableDrawer : PropertyDrawer
@@ -11,6 +11,7 @@ public class TimeBoolTableDrawer : PropertyDrawer
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
+
         EditorGUI.BeginProperty(position, label, property);
 
         // Shorthand to make writing easier
