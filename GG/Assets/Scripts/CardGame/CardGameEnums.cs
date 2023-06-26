@@ -50,7 +50,7 @@ public enum PermanentEffect
 
 public enum StatusEffect
 {
-    Strenght, Defence, Invulnerable, FragileStrenght, FragileDefence, Regeneration, Stun, Weak, Feeble, Bleeding, Vulnerable
+    Strength, Defence, Invulnerable, FragileStrength, FragileDefence, Regeneration, Stun, Weak, Feeble, Bleeding, Vulnerable
 }
 
 [Flags]

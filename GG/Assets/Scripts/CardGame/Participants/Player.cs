@@ -200,7 +200,8 @@ public class Player : Participant
                 //Move card to correct collection
                 if (info is InstantCardInfo instantCard)
                 {
-                    instantCard.Execute();
+                    bool dontDiscard = false;
+
                     if (info is BlockCardInfo blockCard)
                     {
                         //Apply bonus block
@@ -215,12 +216,21 @@ public class Player : Participant
                             if (block.Count > BlockSlots)
                                 DiscardSingle(block.Cards[0]);
 
-                            PlayCardAnimation(info);
-
                             //Dont discard block
-                            return;
+                            dontDiscard = true;
                         }
                     }
+
+                    for (int i = 0; i < instantCard.Repeat; i++)
+                    {
+                        instantCard.Execute();
+                        PlayCardAnimation(info);
+                        Manager.NotifyStatsChange();
+                    }
+
+                    //Dont discard block
+                    if (dontDiscard)
+                        return;
                 }
                 else if (info is PermanentCardInfo permanentCard)
                 {
@@ -236,8 +246,6 @@ public class Player : Participant
                 AbortPreparedCardPlay();
             }
         }
-
-        PlayCardAnimation(info);
 
         //Hand -> Discard
         DiscardSingle(card);
@@ -570,7 +578,7 @@ public class Player : Participant
     public override int GetStatus(StatusEffect effect)
     {
         int bonus = 0;
-        if (effect != StatusEffect.FragileStrenght && effect != StatusEffect.FragileDefence)
+        if (effect != StatusEffect.FragileStrength && effect != StatusEffect.FragileDefence)
             bonus = this.block.Cards.Where(x => x.Info is BlockCardInfo blocInfo && blocInfo.StatusMod.Item1 == effect).Sum(x => (x.Info as BlockCardInfo).StatusMod.Item2);
 
         return base.GetStatus(effect) + bonus;

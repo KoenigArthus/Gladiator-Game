@@ -25,6 +25,8 @@ public abstract class CardInfo : ICloneable
     private DieInfo[] dice = new DieInfo[0];
     private int diceBonus = 0;
 
+    private int repeat = 1;
+
     private bool destroyOnDiscard;
 
     #endregion Fields
@@ -58,8 +60,10 @@ public abstract class CardInfo : ICloneable
     public string Name => name;
     public string TranslatedName => CardLibrary.GetTranslatedName(Name);
     public string TranslatedDescription => CardLibrary.GetTranslatedDescription(Name);
+
     public Sprite Sprite
     { get { if (!cardSprites.ContainsKey(name)) cardSprites.Add(name, CardLibrary.GetSprite(name)); return cardSprites[name]; } }
+
     public CardSet Set => set;
     public CardType Type => type;
     public int Tier => tier;
@@ -87,6 +91,8 @@ public abstract class CardInfo : ICloneable
     public int RawDicePower => dice.Sum(x => x.Value);
     public int DiceBonus { get => diceBonus; set => diceBonus = value; }
     public int DicePower => RawDicePower + diceBonus;
+
+    public int Repeat { get => repeat; set => repeat = value; }
 
     public virtual bool DestroyOnDiscard { get => destroyOnDiscard; set => destroyOnDiscard = value; }
 

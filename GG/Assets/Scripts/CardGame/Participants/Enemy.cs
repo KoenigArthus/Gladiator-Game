@@ -99,7 +99,9 @@ public class Enemy : Participant
                 if (blockStack.Length > BlockSlots)
                     blockStack = blockStack.Skip(1).ToArray();
             }
+#warning TODO: Play Enemy Animations
         }
+        Manager.NotifyStatsChange();
     }
 
     #endregion Play

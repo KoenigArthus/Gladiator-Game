@@ -2,6 +2,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using JSAM;
+using System.Collections.Generic;
 
 public class CardGameManager : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class CardGameManager : MonoBehaviour
     private int drawAmount = 4;
 
     private bool battleEnded = false;
+
+    private List<UIValues> uiChanges = new List<UIValues>();
 
     #endregion Fields
 
@@ -99,11 +102,27 @@ public class CardGameManager : MonoBehaviour
             //Go back to overwolrd
             battleEnded = true;
             LevelLoader.i.LoadScene("Ludus");
-
         }
     }
 
     #endregion Main-Loop
+
+    #region UI
+
+    public void NotifyStatsChange()
+    {
+        uiChanges.Add(new UIValues(player, enemy));
+    }
+
+    public UIValues[] CollectUIChanges()
+    {
+        UIValues[] changes = uiChanges.ToArray();
+        uiChanges.Clear();
+
+        return changes;
+    }
+
+    #endregion UI
 
     public void DrawCards(int amount)
     {

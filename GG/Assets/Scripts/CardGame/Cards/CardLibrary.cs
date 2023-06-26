@@ -54,7 +54,8 @@ public static class CardLibrary
 
             //Dreistoß - 3 Angriffe. Je Angriff: Schaden entsprechend Augenzahl.
             new InstantCardInfo("Triple_Thrust", CardSet.Trident, CardType.Attack, 1, 1,
-            (CardInfo c) => { for(int i = 0; i < 3; i++) c.Player.Attack(c.Enemy, c.DicePower); }),
+            (CardInfo c) => c.Player.Attack(c.Enemy, c.DicePower))
+            {Repeat = 3},
 
             #warning TODO DISCARD
             //Fels in der Brandung - Wirf eine beliebige Anzahl an Handkarten ab. Block entsprechend Augenzahl multipliziert mit abgeworfenen Handkarten.
@@ -63,7 +64,9 @@ public static class CardLibrary
 
             //Donnerndes Gericht - Erzeuge 4 "Stoß" Karten. Nimm alle "Stoß" Karten aus deinem Ablagestapel und  deinem Stapel auf die Hand.
             new InstantCardInfo("Thundering_Judgment", CardSet.Trident, CardType.Skill, 1, 2,
-            (CardInfo c) => {for(int i = 0; i < 4; i++) c.Player.Hand.Add(CardObject.Instantiate((CardInfo)cards[0].Clone(), Vector2.zero)); CardObject[] tmCards = c.Player.Deck.Cards.Concat(c.Player.Discard.Cards).Where(x => x.Info.Name.Equals(TRIDENT_MAIN_CARD_NAME)).ToArray(); for (int i = 0; i < tmCards.Length; i++) c.Player.Hand.Add(tmCards[i]); }),
+            (CardInfo c) => {for(int i = 0; i < 4; i++) c.Player.Hand.Add(CardObject.Instantiate((CardInfo)cards[0].Clone(), Vector2.zero));
+                CardObject[] tmCards = c.Player.Deck.Cards.Concat(c.Player.Discard.Cards).Where(x => x.Info.Name.Equals(TRIDENT_MAIN_CARD_NAME)).ToArray();
+                for (int i = 0; i < tmCards.Length; i++) c.Player.Hand.Add(tmCards[i]); }),
 
             #endregion Tier 1
 
@@ -71,7 +74,7 @@ public static class CardLibrary
 
             //Kataklysmus - X Angriffe, entsprechen Augenzahl. Je Angriff: 4 Schaden und 1 Schwäche.
             new InstantCardInfo("Cataclysm", CardSet.Trident, CardType.Attack, 2, 2,
-            (CardInfo c) => { for(int i = 0; i < c.DicePower; i++)  { c.Player.Attack(c.Enemy, 4); c.Enemy.AddStatus(StatusEffect.Weak, 1); } }),
+            (CardInfo c) => { c.Repeat = c.DicePower; c.Player.Attack(c.Enemy, 4); c.Enemy.AddStatus(StatusEffect.Weak, 1); }),
 
             //Schluss Stich - 10 Schaden. Die Kosten dieser Karte sinken um 1 für jede "Stoß" Karte, die diese Runde gespielt wurden.
             new InstantCardInfo("Finishing_Stab", CardSet.Trident, CardType.Attack, 2, 2,
@@ -85,7 +88,7 @@ public static class CardLibrary
             //Neptuns Gericht - Permanent: Zu Rundenbeginn wirf einen 12-Würfel, erhalte,bis zum Rundenende, einen zusätzlichen Würfel und Stärke in Höhe dieses Würfels.
             new PermanentCardInfo("Neptuns_Judgment", CardSet.Trident, 2, 4,
             (CardGameManager m, CardInfo c) => { var bonusDie = new DieInfo(12); m.Player.AddDie(bonusDie);
-            Task.Run(async () => {while(bonusDie.Rolling) await Task.Delay(42); int amount = bonusDie.Value; m.Player.AddStatus(StatusEffect.FragileStrenght, amount); }); }),
+            Task.Run(async () => {while(bonusDie.Rolling) await Task.Delay(42); int amount = bonusDie.Value; m.Player.AddStatus(StatusEffect.FragileStrength, amount); }); }),
 
             #endregion Tier 2
 
@@ -129,13 +132,14 @@ public static class CardLibrary
             new InstantCardInfo("Jump_Slash", CardSet.Gladius, CardType.Attack, 1, 1,
             (CardInfo c) => {c.Player.Attack(c.Enemy, 16); CardInfo info = GetCardByName("Injured"); for (int i = 0; i < 2; i++) c.Player.Deck.Add(CardObject.Instantiate(info, Vector2.zero)); }),
 
+#warning TODO: Set Repeat
             //Doppel Stich - 2 Angriffe. Je Angriff: Schaden entsprechend Augenzahl, ziehe 1 Karte.
             new InstantCardInfo("Double_Stab", CardSet.Gladius, CardType.Attack, 1, 1,
             (CardInfo c) => {c.Player.DrawCards(1); for (int i = 0; i < 2; i++) c.Player.Attack(c.Enemy, c.DicePower); }),
 
             //Schwerttanz - Permanent: Diese Runde: 1 Stärke, jedes Mal, wenn du einen Angriff aktivierst.
             new PermanentCardInfo("Sword_Dance", CardSet.Gladius, 1, 2,
-            (CardInfo c) => {if (c.Type == CardType.Attack) c.Player.AddStatus(StatusEffect.FragileStrenght, 1); }, true),
+            (CardInfo c) => {if (c.Type == CardType.Attack) c.Player.AddStatus(StatusEffect.FragileStrength, 1); }, true),
 
 #warning TODO DISCARD
             //Schwertwirbel - Wirf eine beliebige Anzahl an Handkarten ab. X Angriffe, entsprechend abgeworfener Karten. Je Angriff: Schaden entsprechend Augenzahl.
@@ -174,13 +178,13 @@ public static class CardLibrary
             new InstantCardInfo("Damocles_Sword", CardSet.Gladius, CardType.Attack, 3, 4,
             (CardInfo c) => {
             c.Player.Attack(c.Enemy, c.DicePower);
-            c.Enemy.RemoveStatus(StatusEffect.FragileStrenght, c.DicePower, true);
+            c.Enemy.RemoveStatus(StatusEffect.FragileStrength, c.DicePower, true);
             c.Enemy.RemoveStatus(StatusEffect.FragileDefence, c.DicePower, true);
             }),
 
             //Sengendes Inferno - X Angriffe, entsprechend Augenzahl. Je Angriff: 2 Schaden, 2 Verwundbarkeit.
             new InstantCardInfo("Searing_Inferno", CardSet.Gladius, CardType.Attack, 3, 4,
-            (CardInfo c) => { for (int i = 0; i < c.DicePower; i++) { c.Player.Attack(c.Enemy, 2); c.Enemy.AddStatus(StatusEffect.Vulnerable, 2); } }),
+            (CardInfo c) => { c.Repeat = c.DicePower; { c.Player.Attack(c.Enemy, 2); c.Enemy.AddStatus(StatusEffect.Vulnerable, 2); } }),
 
             #endregion Tier 3
 
@@ -196,7 +200,7 @@ public static class CardLibrary
 
             //Netzwurf - Entferne: Reduziere Stärke entsprechend Augenzahl.
             new InstantCardInfo("Cast_Net", CardSet.Rete, CardType.Attack, 0, 1,
-            (CardInfo c) => c.Enemy.RemoveStatus(StatusEffect.Strenght, c.DicePower, true), true),
+            (CardInfo c) => c.Enemy.RemoveStatus(StatusEffect.Strength, c.DicePower, true), true),
 
             //Einschnüren - Entferne: Reduziere Schutz entsprechend Augenzahl.
             new InstantCardInfo("Constrict", CardSet.Rete, CardType.Attack, 0, 1,
@@ -214,7 +218,7 @@ public static class CardLibrary
             new InstantCardInfo("Web_Weaver", CardSet.Rete, CardType.Skill, 1, 2,
             (CardInfo c) => {
                 CardInfo info = new InstantCardInfo("Cast_Net", CardSet.Rete, CardType.Attack, 0, 1,
-                (CardInfo c) => { c.Enemy.RemoveStatus(StatusEffect.Strenght, c.DicePower, true); c.RefundDice(); }, true);
+                (CardInfo c) => { c.Enemy.RemoveStatus(StatusEffect.Strength, c.DicePower, true); c.RefundDice(); }, true);
                 for (int i = 0; i < 3; i++) c.Player.Hand.Add(CardObject.Instantiate(info, Vector2.zero));
             } ),
 
@@ -241,7 +245,7 @@ public static class CardLibrary
             new PermanentCardInfo("Arachnid", CardSet.Rete, 2, 3,
             (CardGameManager m, CardInfo c) => {
         CardInfo info = new InstantCardInfo("Cast_Net", CardSet.Rete, CardType.Attack, 0, 0,
-            (CardInfo c) => c.Enemy.RemoveStatus(StatusEffect.Strenght, c.DicePower, true), true);
+            (CardInfo c) => c.Enemy.RemoveStatus(StatusEffect.Strength, c.DicePower, true), true);
         m.Player.Hand.Add(CardObject.Instantiate(info, Vector2.zero));
     }),
 
@@ -316,7 +320,7 @@ public static class CardLibrary
 
             //Schildflamme - 1 Stärke, multipliziert mit aktiven Verteidigungskarten.
             new InstantCardInfo("Shield_Flame", CardSet.Scutum, CardType.Skill, 1, 0,
-            (CardInfo c) => c.Player.AddStatus(StatusEffect.Strenght, c.Player.BlockStack.Length)),
+            (CardInfo c) => c.Player.AddStatus(StatusEffect.Strength, c.Player.BlockStack.Length)),
 
             #endregion Tier 1
 
@@ -422,7 +426,7 @@ public static class CardLibrary
 
             //Herzensbrecher - X Angriffe, entsprechend Augenzahl. Je Angriff: 1 Schaden und 1 Blutung.
             new InstantCardInfo("Heartbreaker", CardSet.Pugio, CardType.Attack, 3, 2,
-            (CardInfo c) => { for (int i = 0; i < c.DicePower; i++) { c.Player.Attack(c.Enemy, 1); c.Enemy.AddStatus(StatusEffect.Bleeding, 1); } }),
+            (CardInfo c) => { c.Repeat = c.DicePower; { c.Player.Attack(c.Enemy, 1); c.Enemy.AddStatus(StatusEffect.Bleeding, 1); } }),
 
             //Hemokinesis - Permanent: Jeder Angriff fügt dem Gegner zusätzlich 1 Blutung zu.
             new PermanentCardInfo("Hemokinesis", CardSet.Pugio, 3, 2,
@@ -456,11 +460,11 @@ public static class CardLibrary
 
             //Perforieren - X Angriffe, entsprechend Augenzahl. Je Angriff: 1 Schaden und 1  Blutung.
             new InstantCardInfo("Perforate", CardSet.Doru, CardType.Attack, 1, 2,
-            (CardInfo c) => { for (int i = 0; i < c.DicePower; i++) { c.Player.Attack(c.Enemy, 1); c.Enemy.AddStatus(StatusEffect.Bleeding, 1); } }),
+            (CardInfo c) => { c.Repeat = c.DicePower; { c.Player.Attack(c.Enemy, 1); c.Enemy.AddStatus(StatusEffect.Bleeding, 1); } }),
 
             //Hoplit - 8 Block. Diese Karte skaliert mit Stärke und Schutz.
             new BlockCardInfo("Hoplite", CardSet.Doru, 1, 1,
-            (CardInfo c) => 8 + c.Player.GetStatus(StatusEffect.Strenght) + c.Player.GetStatus(StatusEffect.FragileStrenght)),
+            (CardInfo c) => 8 + c.Player.GetStatus(StatusEffect.Strength) + c.Player.GetStatus(StatusEffect.FragileStrength)),
 
             //Horn des Katoblepas - 4 Schaden. Entferne alle deine Stapel Verwundbarkeit und füge dem Gegner Verwundbarkeit entsprechend der entfernten Stapel zu.
             new InstantCardInfo("Horn_Of_Catoblepas", CardSet.Doru, CardType.Attack, 1, 1,
@@ -481,7 +485,7 @@ public static class CardLibrary
 
             //Allbewaffnung - Erhöhe Stärke und Schutz um 4.
             new InstantCardInfo("Allarmament", CardSet.Doru, CardType.Skill, 2, 2,
-            (CardInfo c) => { c.Player.AddStatus(StatusEffect.Strenght, 4); c.Player.AddStatus(StatusEffect.Defence, 4); }),
+            (CardInfo c) => { c.Player.AddStatus(StatusEffect.Strength, 4); c.Player.AddStatus(StatusEffect.Defence, 4); }),
 
             //Titan-Töter - Schaden entsprechend Augenzahl, multipliziert mit 4 wenn dein Gegner prozentuall mehr Vitalität besitzt als du.
             new InstantCardInfo("Titan_Slayer", CardSet.Doru, CardType.Attack, 2, 3,
@@ -489,11 +493,11 @@ public static class CardLibrary
 
             //Spartanische Seele - Permanent: Zu Rundenbeginn erhalte 2 Stärke und 2 Schutz.
             new PermanentCardInfo("Spartan_Soul", CardSet.Doru, 2, 4,
-            (CardGameManager m, CardInfo c) => { m.Player.AddStatus(StatusEffect.Strenght, 2); m.Player.AddStatus(StatusEffect.Defence, 2); }),
+            (CardGameManager m, CardInfo c) => { m.Player.AddStatus(StatusEffect.Strength, 2); m.Player.AddStatus(StatusEffect.Defence, 2); }),
 
             //Keres-Geist - Blutung entsprechend deiner zusätzlichen Stärke.
             new InstantCardInfo("Keres_Spirit", CardSet.Doru, CardType.Attack, 2, 2,
-            (CardInfo c) => c.Enemy.AddStatus(StatusEffect.Bleeding, c.Player.GetStatus(StatusEffect.Strenght))),
+            (CardInfo c) => c.Enemy.AddStatus(StatusEffect.Bleeding, c.Player.GetStatus(StatusEffect.Strength))),
 
             #endregion Tier 2
 
@@ -533,12 +537,12 @@ public static class CardLibrary
 
             //Gepanzeter Koloss - Permanent: Zu Rundenbeginn: Diese Runde: Erhalte 3 Stärke für jede aktive Verteidigungskarte.
             new PermanentCardInfo("Armored_Colossus", CardSet.Parmula, 1, 2,
-            (CardGameManager m, CardInfo c) => m.Player.AddStatus(StatusEffect.FragileStrenght, 3 * m.Player.BlockStack.Length)),
+            (CardGameManager m, CardInfo c) => m.Player.AddStatus(StatusEffect.FragileStrength, 3 * m.Player.BlockStack.Length)),
 
 #warning CHANGED
             //Titan - Wähle eine Karte aus deinem Verteidigungsstapel. Diese Runde: Stärke entsprechend dem Block, den die gewählte Karte gewährt.
             new PermanentCardInfo("Titan", CardSet.Parmula, 1, 2,
-            (CardGameManager m, CardInfo c) => m.Player.AddStatus(StatusEffect.FragileStrenght, m.Player.BlockStack.Max())),
+            (CardGameManager m, CardInfo c) => m.Player.AddStatus(StatusEffect.FragileStrength, m.Player.BlockStack.Max())),
 
             //Wahre Phalanx - Permanent: Schutz entsprechend Augenzahl.
             new InstantCardInfo("True_Phalanx", CardSet.Parmula, CardType.Skill, 1, 2,
@@ -599,7 +603,7 @@ public static class CardLibrary
 
             //Messer Wetzen - Permanent: Stärke entsprechend Augenzahl.
             new InstantCardInfo("Dagger_Whet", CardSet.Scindo, CardType.Skill, 0, 2,
-            (CardInfo c) => c.Player.AddStatus(StatusEffect.Strenght, c.DicePower)),
+            (CardInfo c) => c.Player.AddStatus(StatusEffect.Strength, c.DicePower)),
 
             #endregion Tier 0
 
@@ -654,10 +658,10 @@ public static class CardLibrary
             //Schwertarm - Permanent: Stärke entsprechend Augenzahl. Jedes Mal, wenn du eine Verteidigungskarte ziehst lege diese auf den Ablagestapel, ziehe 1 Karte und erhalte 3 Stärke.
             new InstantCardInfo("Swordarm", CardSet.Scindo, CardType.Skill, 2, 3,
             (CardInfo c) => {
-                c.Player.AddStatus(StatusEffect.Strenght, 3);
+                c.Player.AddStatus(StatusEffect.Strength, 3);
                 c.Player.AddActionEffect(
                     (CardInfo[] cs) => {for (int i = 0; i < cs.Length; i++) {CardInfo c = cs[i];
-                        if (c.Type == CardType.Block) { c.Player.DiscardSingle(c.Card); c.Player.AddStatus(StatusEffect.Strenght, 3); c.Player.DrawCards(1); } }},
+                        if (c.Type == CardType.Block) { c.Player.DiscardSingle(c.Card); c.Player.AddStatus(StatusEffect.Strength, 3); c.Player.DrawCards(1); } }},
                 c, true);
             }, true),
 
@@ -667,7 +671,7 @@ public static class CardLibrary
 
             //Janus Kehrtwende - Schaden entsprechend Augenzahl. Erhöhe deine Stärke entsprechend zugefügtem Schaden, falls der Gegner keinen Block hat. Ziehe 1 Karte.
             new InstantCardInfo("Janus_Reversal", CardSet.Scindo, CardType.Attack, 3, 1,
-            (CardInfo c) => { bool gainStrength = c.Enemy.Block < 1; int damage = c.Player.Attack(c.Enemy, c.DicePower); if (gainStrength) c.Player.AddStatus(StatusEffect.Strenght, damage); }),
+            (CardInfo c) => { bool gainStrength = c.Enemy.Block < 1; int damage = c.Player.Attack(c.Enemy, c.DicePower); if (gainStrength) c.Player.AddStatus(StatusEffect.Strength, damage); }),
 
             //Faunus Fallaxt - Entferne alle geg. Verteidigungskaren. Füge dann Schaden entsprechend Augenzahl, plus geg. Entfernten Block.
             new InstantCardInfo("Faunus_Guillotine", CardSet.Scindo, CardType.Attack, 3, 4,
@@ -695,7 +699,7 @@ public static class CardLibrary
 
             //Kühnheit - Diese Runde: 4 Stärke und 4 Schutz.
             new InstantCardInfo("Boldness", CardSet.Cassis, CardType.Skill, 0, 1,
-            (CardInfo c) => { c.Player.AddStatus(StatusEffect.FragileStrenght, 4); c.Player.AddStatus(StatusEffect.FragileDefence, 4); }),
+            (CardInfo c) => { c.Player.AddStatus(StatusEffect.FragileStrength, 4); c.Player.AddStatus(StatusEffect.FragileDefence, 4); }),
 
             #endregion Tier 0
 
@@ -841,7 +845,7 @@ public static class CardLibrary
             //Beinarbeit - Block entsprechend Augenzahl. Verteidigungsstapel: Zu Rundenbeginn: Lege diese Karte auf den Ablagestapel, Stärke entsprechend abgelegtem Block.
             new PassiveBlockCardInfo("Footwork", CardSet.Manica, 0, 1,
             (CardInfo c) => c.DicePower,
-            (CardGameManager m, CardInfo c) => { m.Player.AddStatus(StatusEffect.Strenght, (c as BlockCardInfo).CurrentBlock); m.Player.DiscardSingle(c.Card); }),
+            (CardGameManager m, CardInfo c) => { m.Player.AddStatus(StatusEffect.Strength, (c as BlockCardInfo).CurrentBlock); m.Player.DiscardSingle(c.Card); }),
 
             #endregion Tier 0
 
@@ -895,7 +899,7 @@ public static class CardLibrary
 
             //Gladiatorstärke - Entferne: Ziehe 1 Karte. Permanent: 3 Stärke.
             new InstantCardInfo("Gladiator_Strength", CardSet.Health, CardType.Skill, 0, 0,
-            (CardInfo c) => { c.Player.DrawCards(1); c.Player.AddStatus(StatusEffect.Strenght, 3); }, true),
+            (CardInfo c) => { c.Player.DrawCards(1); c.Player.AddStatus(StatusEffect.Strength, 3); }, true),
 
             //Gladiatorausdauer - Entferne: Ziehe 1 Karte. Permanent: Zu Rundenbeginn: Diese Runde: Erzeuge einen 4-Würfel.
             new InstantCardInfo("Gladiator_Endurance", CardSet.Health, CardType.Skill, 0, 0,
@@ -968,7 +972,7 @@ public static class CardLibrary
 
             //Degeneration - Entferne: Reduziere Stärke und Schutz um 1.
             new InstantCardInfo("Degeneration", CardSet.Health, CardType.Ailment, 0, 0,
-            (CardInfo c) => { c.Player.RemoveStatus(StatusEffect.Strenght, 1, true); c.Player.RemoveStatus(StatusEffect.Defence, 1, true); }),
+            (CardInfo c) => { c.Player.RemoveStatus(StatusEffect.Strength, 1, true); c.Player.RemoveStatus(StatusEffect.Defence, 1, true); }),
 
             //Mutlos - Diese Runde: Du kannst keine Angriffe spielen.
             new InstantCardInfo("Discouraged", CardSet.Health, CardType.Ailment, 0, 0,
@@ -976,7 +980,7 @@ public static class CardLibrary
 
             //Psychose - Erhöhe deine Stärke um 2. 5 Verwundbarkeit.
             new InstantCardInfo("Psychosis", CardSet.Health, CardType.Ailment, 0, 0,
-            (CardInfo c) => { c.Player.AddStatus(StatusEffect.Strenght, 2); c.Player.AddStatus(StatusEffect.Vulnerable, 5); }),
+            (CardInfo c) => { c.Player.AddStatus(StatusEffect.Strength, 2); c.Player.AddStatus(StatusEffect.Vulnerable, 5); }),
 
             //Blutvergiftung - 8 Verwundbarkeit. 8 Betäubung
             new InstantCardInfo("Blood_Poisoning", CardSet.Health, CardType.Ailment, 0, 0,
@@ -984,7 +988,7 @@ public static class CardLibrary
 
             //Tobsucht - Diese Runde: 4 Stärke, du kannst nur Angriffe spielen.
             new InstantCardInfo("Frenzy", CardSet.Health, CardType.Ailment, 0, 0,
-            (CardInfo c) => {c.Player.AddStatus(StatusEffect.FragileStrenght, 4);
+            (CardInfo c) => {c.Player.AddStatus(StatusEffect.FragileStrength, 4);
                 for (int i = (int)CardType.Block; i < (int)CardType.Quest + 1; i++)
                 c.Player.LockCardType((CardType)i); }),
 
@@ -1029,7 +1033,7 @@ public static class CardLibrary
 
             //Schleifstein - Erhöhe deine Stärke um 5.
             new InstantCardInfo("Whetstone", CardSet.Item, CardType.Aid, 0, 1,
-            (CardInfo c) => c.Player.AddStatus(StatusEffect.Strenght, 5)),
+            (CardInfo c) => c.Player.AddStatus(StatusEffect.Strength, 5)),
 
             //Werkzeuge
             new TokenCardInfo("Tools", CardSet.Item, CardType.Quest),

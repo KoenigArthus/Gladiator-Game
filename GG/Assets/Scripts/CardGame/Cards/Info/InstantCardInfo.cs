@@ -6,6 +6,8 @@ public class InstantCardInfo : CardInfo
 {
     protected CardAction action;
 
+    #region ctor
+
     public InstantCardInfo(string name, CardSet set, CardType type, int tier, int cost, CardAction action, bool destroyOnDiscard = false) :
         base(name, set, type, tier, cost, destroyOnDiscard)
     {
@@ -16,6 +18,8 @@ public class InstantCardInfo : CardInfo
         base(name, set, type, tier, cost, destroyOnDiscard)
     {
     }
+
+    #endregion ctor
 
     public override void Execute()
     {

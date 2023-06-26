@@ -8,7 +8,7 @@ public class BlockCardInfo : InstantCardInfo
 
     private GetPower blockPower;
     private int damage = 0;
-    private (StatusEffect, int) statusMod = (StatusEffect.FragileStrenght, -1);
+    private (StatusEffect, int) statusMod = (StatusEffect.FragileStrength, -1);
 
     #endregion Fields
 

@@ -10,7 +10,7 @@ public abstract class Participant
     private CardGameManager manager;
 
     private int blockSlots = 3;
-    private int[] statusEffectStacks = new int[11];
+    private int[] statusEffectStacks = new int[CardGameConstants.STATUS_EFFECT_COUNT];
     private int lastStatusDecayAmount = 0;
     private SpecialCardEffectFlags specialFlags = 0;
 
@@ -25,7 +25,7 @@ public abstract class Participant
 
     protected CardGameManager Manager => manager;
     public abstract int Health { get; set; }
-    public int Strenght => GetStatus(StatusEffect.Strenght) + GetStatus(StatusEffect.FragileStrenght);
+    public int Strenght => GetStatus(StatusEffect.Strength) + GetStatus(StatusEffect.FragileStrength);
     public int BonusDamage => Strenght - GetStatus(StatusEffect.Weak);
     public int Defence => GetStatus(StatusEffect.Feeble);
     public int BonusBlock => Defence - GetStatus(StatusEffect.Feeble);
@@ -33,12 +33,16 @@ public abstract class Participant
     public abstract int[] BlockStack { get; }
     public int BlockSlots { get => blockSlots; set => blockSlots = value; }
     public int LastStatusDecayAmount => lastStatusDecayAmount;
+
     public bool SkipRegeneration
     { get => specialFlags.HasFlag(SpecialCardEffectFlags.SkipRegeneration); set { if (value) specialFlags |= SpecialCardEffectFlags.SkipRegeneration; else specialFlags ^= SpecialCardEffectFlags.SkipRegeneration; } }
+
     public bool NegativeStatusShield
     { get => specialFlags.HasFlag(SpecialCardEffectFlags.NegativeStatusShield); set { if (value) specialFlags |= SpecialCardEffectFlags.NegativeStatusShield; else specialFlags ^= SpecialCardEffectFlags.NegativeStatusShield; } }
+
     public bool StrengthBleedSalt
     { get => specialFlags.HasFlag(SpecialCardEffectFlags.StrengthBleedSalt); set { if (value) specialFlags |= SpecialCardEffectFlags.StrengthBleedSalt; else specialFlags ^= SpecialCardEffectFlags.StrengthBleedSalt; } }
+
     public bool Terror
     { get => specialFlags.HasFlag(SpecialCardEffectFlags.Terror); set { if (value) specialFlags |= SpecialCardEffectFlags.Terror; else specialFlags ^= SpecialCardEffectFlags.Terror; } }
 
