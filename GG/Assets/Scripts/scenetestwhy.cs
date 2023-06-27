@@ -15,4 +15,10 @@ public class scenetestwhy : MonoBehaviour
             SceneManager.LoadScene("CardGameTest");
         }
     }
+
+    public void AAAAAAAA(int a)
+    {
+
+    }
+
 }

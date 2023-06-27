@@ -9,12 +9,11 @@ public class CharacterRotation : MonoBehaviour
     public bool isClockwise = true;
     public Transform pivotPoint;
     public Transform otherCharacter;
-    public GameObject rotatingObject;
     public Animator animator;
 
     private void Update()
     {
-        if (pivotPoint == null || otherCharacter == null || rotatingObject == null || animator == null)
+        if (pivotPoint == null || otherCharacter == null || animator == null)
         {
             Debug.LogError("Missing references in CharacterMovement script.");
             return;
@@ -33,7 +32,7 @@ public class CharacterRotation : MonoBehaviour
         transform.position = (transform.position - pivotPoint.position).normalized * radius + pivotPoint.position;
 
         // Rotate the rotating object in the same speed and direction but on the same spot
-        rotatingObject.transform.Rotate(Vector3.up, angle);
+        //rotatingObject.transform.Rotate(Vector3.up, angle);
 
         // Set walking animation parameter based on movement
        // bool isMoving = Mathf.Abs(angle) > 0.01f;
@@ -44,7 +43,7 @@ public class CharacterRotation : MonoBehaviour
     {
         // Set the speed to zero to stop rotation
         speed = 0f;
-        Debug.Log("Speed = 0");
+        //Debug.Log("Speed = 0");
         // Set the IsWalking parameter to false to stop the walking animation
         animator.SetBool("Walking", false);
         animator.SetBool("Idle", true);

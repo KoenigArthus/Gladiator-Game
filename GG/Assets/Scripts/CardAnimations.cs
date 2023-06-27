@@ -49,7 +49,7 @@ public class CardAnimations : MonoBehaviour
             Debug.Log("player found");
         }
 
-        if ((leftHand == null) && (rightHand == null) && (head == null) && (shoulder == null) && (leg == null))
+        if ((leftHand == CardSet.None) && (rightHand == CardSet.None) && (head == CardSet.None) && (shoulder == CardSet.None) && (leg == CardSet.None))
         {
             animator.SetBool("KampfIdle", true);           
         }

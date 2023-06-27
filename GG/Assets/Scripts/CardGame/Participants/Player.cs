@@ -88,9 +88,10 @@ public class Player : Participant
 
     #endregion Properties
 
-    #region Animators
+    #region Animators 
 
     public CardAnimations cardAnimations;
+    public Focus camFocus;
 
     #endregion Animators
 
@@ -135,9 +136,6 @@ public class Player : Participant
 
     #region Play
 
-    private void Awake()
-    {
-    }
 
     public void Update()
     {
@@ -225,6 +223,7 @@ public class Player : Participant
                     {
                         instantCard.Execute();
                         PlayCardAnimation(info);
+                        
                         Manager.NotifyStatsChange();
                     }
 
@@ -288,6 +287,8 @@ public class Player : Participant
     public void PlayCardAnimation(CardInfo info)
     {
         if (info.Type == CardType.Attack)
+        {
+
             switch (info.Set)
             {
                 case CardSet.Trident:
@@ -333,7 +334,12 @@ public class Player : Participant
                     break;
             }
 
+            camFocus.DecideFocus(info.Type);
+        }
+
         if (info.Type == CardType.Block)
+        {
+
             switch (info.Set)
             {
                 case CardSet.Scutum:
@@ -346,6 +352,9 @@ public class Player : Participant
                     Debug.Log("Parmula Block");
                     break;
             }
+
+            camFocus.DecideFocus(info.Type);
+        }
     }
 
     #endregion Play
