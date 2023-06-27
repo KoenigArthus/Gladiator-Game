@@ -18,11 +18,22 @@ public class CardAnimations : MonoBehaviour
     public GameObject parmula;
     public GameObject scindo;
     public GameObject cestus;
-    public GameObject laqueus;
     public GameObject rete;
     public GameObject cassis;
     public GameObject galerus;
     public GameObject ocrea;
+
+    public GameObject gladiusleft;
+    public GameObject tridentleft;
+    public GameObject scutumleft;
+    public GameObject pugiuleft;
+    public GameObject sparthaleft;
+    public GameObject doruleft;
+    public GameObject pilumleft;
+    public GameObject parmulaleft;
+    public GameObject scindoleft;
+    public GameObject cestusleft;
+    public GameObject reteleft;
 
     public CardSet head;
     public CardSet shoulder;
