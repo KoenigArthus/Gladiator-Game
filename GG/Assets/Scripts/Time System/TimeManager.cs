@@ -107,7 +107,7 @@ public class TimeManager : MonoBehaviour
             passedDays = TotalDaysPassed(_currentDate);
             // Invoke timeHasChanged Event
             timeHasChanged?.Invoke();
-            Debug.Log("Set Date to: " + _currentDate.day + "/" + currentDate.month + "/" + currentDate.year + " (Weekday: " + currentDate.weekday + ")");
+            //Debug.Log("Set Date to: " + _currentDate.day + "/" + currentDate.month + "/" + currentDate.year + " (Weekday: " + currentDate.weekday + ")");
         }
         else
         {
