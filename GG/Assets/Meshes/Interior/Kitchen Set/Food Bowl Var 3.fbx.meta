@@ -3,7 +3,12 @@ guid: 55a0bcf99f21d27429ec0bc7ed3cd718
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stoff
+    second: {fileID: 2100000, guid: f7647ec3b0139f342af42fe30a39da2d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

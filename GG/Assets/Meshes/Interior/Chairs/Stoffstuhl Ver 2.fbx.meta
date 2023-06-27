@@ -3,7 +3,17 @@ guid: dd2af132c02d6c04fabf2d3454fc97b2
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Holz Hell
+    second: {fileID: 2100000, guid: d3cc65e2f94e1914585635e9ed4d2eb1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Leather
+    second: {fileID: 2100000, guid: c2a1df338c7d1c84a9c4cac5b3c624ff, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

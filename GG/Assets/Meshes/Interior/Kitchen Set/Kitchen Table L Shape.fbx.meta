@@ -3,7 +3,17 @@ guid: 427b5bc7a050b7848a57783c3c0271c2
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Holz Hell
+    second: {fileID: 2100000, guid: d3cc65e2f94e1914585635e9ed4d2eb1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sanstone Hell
+    second: {fileID: 2100000, guid: 65ebcd3c8cf693b4f9f652a3e97146d7, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

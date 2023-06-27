@@ -3,7 +3,17 @@ guid: 89fad773423147143addec9fe62019bd
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Void
+    second: {fileID: 2100000, guid: 6798764311ba25b439d52c9493a4e4e1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wachs
+    second: {fileID: 2100000, guid: 79d6eb91a785c8a4a8cc7ecb5bc55fe5, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

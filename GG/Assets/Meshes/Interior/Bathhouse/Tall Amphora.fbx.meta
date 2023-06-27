@@ -3,7 +3,17 @@ guid: 63091556460cee241905f5948ef11d57
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bronze Monocolor
+    second: {fileID: 2100000, guid: 9158df89b3c904b4b990f7647f0ea8d8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Void
+    second: {fileID: 2100000, guid: 6798764311ba25b439d52c9493a4e4e1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -3,7 +3,18 @@ guid: 236a84e358ad315468463fc3856a50a0
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metall Monocolor
+    second: {fileID: 6590653583432719750, guid: 617f838aed2565147b2bd97e35b56444,
+      type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Void
+    second: {fileID: 2100000, guid: 6798764311ba25b439d52c9493a4e4e1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
