@@ -152,10 +152,10 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         setUI.text = $"{cardInfo.Set}";
         typeUI.text = cardInfo.Type.ToString();
         descriptionUI.text =
-            $"{(Info.Cost > -1 ? $"Cost: {Info.Cost}" : "[Unspielbar]")}\n" +
+            $"{(Info.Cost > -1 + (Info.Type == CardType.Ailment ? 1 : 0) ? $"{CardLibrary.GetTranslatedName("Cost")}: {Info.Cost}" : $"[{CardLibrary.GetTranslatedName("Cost")}]")}\n" +
             $"{Info.TranslatedDescription}";
 
-        if (Info is BlockCardInfo blockCard && blockCard.CurrentBlock > 0)
+        if (Info is BlockCardInfo blockCard && blockCard.CurrentBlock > 0 && blockCard.Player != null)
             descriptionUI.text += $"\nBlock: {blockCard.CurrentBlock}";
 
         if (!UserFile.Settings.DisableRomanNumbursOnDice)
