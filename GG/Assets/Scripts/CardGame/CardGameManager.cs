@@ -35,6 +35,8 @@ public class CardGameManager : MonoBehaviour
     public Player Player => player;
     public Enemy Enemy => enemy;
 
+    
+
     #endregion Properties
 
     #region Main-Loop

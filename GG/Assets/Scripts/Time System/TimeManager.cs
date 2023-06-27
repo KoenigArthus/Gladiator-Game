@@ -25,12 +25,7 @@ public class TimeManager : MonoBehaviour
         if (timeHasChanged == null)
             timeHasChanged = new UnityEvent();
 
-        timeHasChanged.AddListener(characterSpawner.SceduleCharacters);
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
+        timeHasChanged.AddListener(characterSpawner.ScheduleCharacters);
     }
 
 
@@ -112,7 +107,7 @@ public class TimeManager : MonoBehaviour
             passedDays = TotalDaysPassed(_currentDate);
             // Invoke timeHasChanged Event
             timeHasChanged?.Invoke();
-            Debug.Log("Set Date to: " + _currentDate.day + "/" + currentDate.month + "/" + currentDate.year + " (Weekday: " + currentDate.weekday + ")");
+            //Debug.Log("Set Date to: " + _currentDate.day + "/" + currentDate.month + "/" + currentDate.year + " (Weekday: " + currentDate.weekday + ")");
         }
         else
         {
@@ -329,7 +324,6 @@ public class TimeManager : MonoBehaviour
     }
 
     #endregion Date functions
-
 
     #region Date & Time functions
     public void MoveInTime()

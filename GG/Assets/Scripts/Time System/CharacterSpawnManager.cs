@@ -30,10 +30,10 @@ public class CharacterSpawnManager : MonoBehaviour
 
     private void Start()
     {
-       SceduleCharacters();
+       ScheduleCharacters();
     }
 
-    public void SceduleCharacters()
+    public void ScheduleCharacters()
     {
         int weekday = timeManager.currentDate.weekday;
         int time = timeManager.currentTime;
@@ -151,7 +151,7 @@ public class CharacterSpawnManager : MonoBehaviour
     /// <returns>Returns true if the date in the <paramref name="passedDays"/> is between the two dates; otherwise, false.</returns>
     private bool IsInSpawnTime(Date spawnDate, int passedDays, Date killDate)
     {
-        Debug.Log(CustomUtility.ToPassedDays(spawnDate) + ", " + passedDays + ", " + CustomUtility.ToPassedDays(killDate));
+        //Debug.Log(CustomUtility.ToPassedDays(spawnDate) + ", " + passedDays + ", " + CustomUtility.ToPassedDays(killDate));
             
         if (CustomUtility.ToPassedDays(spawnDate) <= passedDays && passedDays < CustomUtility.ToPassedDays(killDate))
         {

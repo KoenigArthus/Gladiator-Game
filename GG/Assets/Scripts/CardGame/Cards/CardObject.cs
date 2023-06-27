@@ -14,6 +14,7 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public bool interactable = true;
     public float speed;
     public float arcAngle;
+    public CharacterRotation characterRotation;
 
     private static GameObject cardPrefab;
     private static Sprite cardBack;
@@ -21,6 +22,8 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     private CardInfo cardInfo = null;
     private CardCollection collection = null;
+
+    public CharacterRotation CharacterRotation => characterRotation;
 
     private Canvas canvas;
     private Sprite cardFront;
@@ -88,6 +91,8 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         descriptionUI = texts[3];
 
         cardImage = GetComponentInChildren<Image>();
+
+        characterRotation = FindObjectOfType<CharacterRotation>();
     }
 
     private void Start()
@@ -219,8 +224,18 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         draging = false;
         JSAM.AudioManager.PlaySound(Sounds.CardPlayed);
+
+
         if (transform.localPosition.y > 500 && collection != null && collection.Player != null)
+        {
+
             collection.Player.PrepareCard(this);
+            characterRotation.StopMovement();
+            Debug.Log("Stopped Movement");
+
+        }
+
+
     }
 
     #endregion Drag
