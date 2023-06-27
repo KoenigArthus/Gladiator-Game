@@ -8,47 +8,48 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Bronze
-    second: {fileID: 2100000, guid: 738d641dba4e1104f9967065d2b54eb4, type: 2}
+    second: {fileID: 2100000, guid: 9158df89b3c904b4b990f7647f0ea8d8, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Gold
-    second: {fileID: 2100000, guid: 738d641dba4e1104f9967065d2b54eb4, type: 2}
+    second: {fileID: 2100000, guid: 9cf6504a78eeca4458f05971be815f98, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Holz
-    second: {fileID: 2100000, guid: 50aaf3d6503743b488855aa8f92e56cf, type: 2}
+    second: {fileID: 2100000, guid: e11b5e1a0bfe5e74baeece1ba6154a1d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Marble
-    second: {fileID: 2100000, guid: 8f8cc6e3bb6744d458e2e68431bba004, type: 2}
+    second: {fileID: -5758955834144789715, guid: 8aa7d6f242209534caf113052ab73015,
+      type: 3}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Stone
-    second: {fileID: 2100000, guid: 8f8cc6e3bb6744d458e2e68431bba004, type: 2}
+    second: {fileID: 963798294112862009, guid: 8aa7d6f242209534caf113052ab73015, type: 3}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Void
-    second: {fileID: 2100000, guid: b0ef23eb984e84f499403da38f04dad2, type: 2}
+    second: {fileID: 2100000, guid: 6798764311ba25b439d52c9493a4e4e1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: White.001
-    second: {fileID: 2100000, guid: 8f8cc6e3bb6744d458e2e68431bba004, type: 2}
+    second: {fileID: 2100000, guid: 15ac7316dc4abb941a78264f8106ba5d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Wood Dark
-    second: {fileID: 2100000, guid: 4148792cd41369f4c9295882f606a121, type: 2}
+    second: {fileID: 2100000, guid: afd371b86d6b8b645bdcd1b32c8e6e19, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Ziegel Farbe
-    second: {fileID: 2100000, guid: bf50d00ae89645e40b264f3ad7a23b76, type: 2}
+    second: {fileID: 2100000, guid: 202808bcd3ed8a7458fafb24363ec281, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
