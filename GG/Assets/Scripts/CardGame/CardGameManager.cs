@@ -2,6 +2,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using JSAM;
+using UnityEngine.SceneManagement;
 
 public class CardGameManager : MonoBehaviour
 {
@@ -100,7 +101,7 @@ public class CardGameManager : MonoBehaviour
 
             //Go back to overwolrd
             battleEnded = true;
-            LevelLoader.i.LoadScene("Ludus");
+            SceneManager.LoadScene("Ludus");
 
         }
     }
