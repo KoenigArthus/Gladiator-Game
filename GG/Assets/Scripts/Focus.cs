@@ -8,6 +8,8 @@ public class Focus : MonoBehaviour
 
     [SerializeField] CinemachineVirtualCamera defaultCam, zoomCam;
     [SerializeField] GameObject[] activationObjects;
+    [SerializeField] GameObject player, enemy;
+    [SerializeField] Rotator rotator;
 
     public void DecideFocus(string notification)
     {
@@ -46,6 +48,8 @@ public class Focus : MonoBehaviour
         {
             activationObjects[i].SetActive(false);
         }
+
+        rotator.StartMovement();
     }
 
     private void StartFocus()
@@ -66,5 +70,9 @@ public class Focus : MonoBehaviour
         StartFocus();
         activationObjects[3].SetActive(true);
     }
+
+
+
+
 
 }
