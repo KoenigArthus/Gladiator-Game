@@ -3,7 +3,127 @@ guid: c5e929d3b3e0d354095e77405838d95c
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Beans
+    second: {fileID: 2100000, guid: 70e9c1e0796ebfb4aae5c3c28584fa67, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Beans2
+    second: {fileID: 2100000, guid: e7282b0fb5d880741b852d98f9e585df, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Beans3
+    second: {fileID: 2100000, guid: 8050f2e591b66604684687c4a019d123, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Beans4
+    second: {fileID: 2100000, guid: 3f164a04fa47b454f8a1c78d00202d41, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Blatt
+    second: {fileID: 2100000, guid: 2496093505eee3440a27f791182b7594, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Brot
+    second: {fileID: 2100000, guid: b3d39bbc77c55c64587463c641c85bc9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Eierschale
+    second: {fileID: 2100000, guid: 74cc943a0bc250f4e9434a60c2c19d82, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Holz dunkel
+    second: {fileID: 2100000, guid: afd371b86d6b8b645bdcd1b32c8e6e19, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Holz hell
+    second: {fileID: 2100000, guid: d3cc65e2f94e1914585635e9ed4d2eb1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Holz1
+    second: {fileID: 2100000, guid: e11b5e1a0bfe5e74baeece1ba6154a1d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stoff
+    second: {fileID: 2100000, guid: f7647ec3b0139f342af42fe30a39da2d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stoff1
+    second: {fileID: 2100000, guid: 35f15d20880b4184fa81ff767329c650, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stoff2
+    second: {fileID: 2100000, guid: 632965d6176687c479e94f75b94234e9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stoff3
+    second: {fileID: 2100000, guid: ac1ba825a8cb74d49840089b8a5c52e1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stoff4
+    second: {fileID: 2100000, guid: af0eb713098cc754691640deca2c4f93, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ton
+    second: {fileID: 2100000, guid: c54f2d8613cf1524ab7a34cc6ad22209, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ton2
+    second: {fileID: 2100000, guid: ba1863f65a407c74fafa0e80f36fb2d3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ton3
+    second: {fileID: 2100000, guid: f24a1bf158b730540a59d4252412bc41, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ton4
+    second: {fileID: 2100000, guid: 2cef01862d68d1a4ebdb52643da768f7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Traube
+    second: {fileID: 2100000, guid: 653472589561c5f438945ab557e2c3a4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: gelb
+    second: {fileID: 2100000, guid: eae974c3a639fe0469d0c395bbed4d8c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "gr\xFCn"
+    second: {fileID: 2100000, guid: 49bf176ca05f9014ba32993174d75546, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: orange
+    second: {fileID: 2100000, guid: c35d81e282bafcc468f6f0209a8b7c67, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rot
+    second: {fileID: 2100000, guid: 4c0f5ee673c162145b45f977b4592ce1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

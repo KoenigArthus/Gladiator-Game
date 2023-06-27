@@ -20,7 +20,7 @@ public class BlockCardInfo : InstantCardInfo
 
     #region Properties
 
-    public int CurrentBlock => blockPower(this) - this.damage;
+    public int CurrentBlock => 42;// blockPower(this) - this.damage;
     protected GetPower BlockPower => blockPower;
     public (StatusEffect, int) StatusMod { get => statusMod; set => statusMod = value; }
     public CardAction InstantAction { get => action; set => action = value; }

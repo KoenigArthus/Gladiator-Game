@@ -1,171 +1,173 @@
 <Language>
-  <Thrust Name="Stoß" Description="Schaden entsprechend Augenzahl." />
-  <Shove Name="Schub" Description="Entferne die letzte geg. Verteidigungskarte." />
-  <Jump_Thrust Name="Sprungstoß" Description="Schaden entsprechend Augenzahl, multipliziert mit 2. Füge 2 Schwach zu." />
-  <Powerful_Sweep Name="Wuchtiger Schwung" Description="Schaden und Betäubung entsprechend Augenzahl." />
-  <Triple_Thrust Name="Dreistoß" Description="3 Angriffe. Je Angriff: Schaden entsprechend Augenzahl." />
-  <Rock_Solid Name="Fels in der Brandung" Description="Wirf eine beliebige Anzahl an Handkarten ab. Block entsprechend Augenzahl, multipliziert mit abgeworfenen Handkarten." />
-  <Thundering_Judgment Name="Donnerndes Gericht" Description="Erzeuge 4 &quot;Stoß&quot; Karten auf die Hand. Nimm alle &quot;Stoß&quot; Karten aus deinem Ablagestapel und  deinem Stapel auf die Hand." />
-  <Cataclysm Name="Kataklysmus" Description="X Angriffe, entsprechen Augenzahl. Je Angriff: 2 Schaden und 1 Schwäche." />
-  <Finishing_Stab Name="Schluss Stich" Description="10 Schaden. Diese Runde: senke die Kosten dieser Karte um 1 für jede &quot;Stoß&quot; Karte die gespielt wird." />
-  <Royal_Tip Name="Krönende Spitze" Description="Erzeuge &quot;Stoß&quot; Karten auf die Hand, entsprechend der Augenzahl." />
-  <Neptuns_Judgment Name="Neptuns Gericht" Description="Permanent: Zu Rundenbeginn: Diese Runde: wirf einen 12-Würfel, erhalte einen zusätzlichen Würfel  und Stärke in Höhe dieses Würfels." />
-  <Leviathan_Fury Name="Leviathanischer Zorn" Description="Permanent: Entferne die Kosten von allen &quot;Stoß&quot; Karten. Der Grund-Schaden von &quot;Stoß&quot; Karten wird zu der für diese Karte aufgewendeten Augenzahl." />
-  <Siege_Attack Name="Belagerungsangriff" Description="Permanent: Ziehe jedes mal 1 Karte, wenn du eine &quot;Stoß&quot; Karte aktivierst." />
-  <Sting Name="Stich" Description="Schaden entsprechend Augenzahl. Diese Runde: Andere Angriffe fügen zusätzlich 3 Verwundbarkeit zu." />
-  <Mighty_Sweep Name="Mächtiger Schwung" Description="Schaden entsprechend Augenzahl, multipliziert mit 2." />
-  <Pommel_Strike Name="Knaufschlag" Description="Schaden entsprechend Augenzahl. Ziehe 1 Karte, Ziehe 2 Karten wenn diese Karte der erste gespielte Angriff in dieser Runde ist." />
-  <Jump_Slash Name="Sprung Hieb" Description="16 Schaden. Erzeuge 2 &quot;Verletzt&quot; Karten in deinen Stapel." />
-  <Double_Stab Name="Doppel Stich" Description="2 Angriffe. Je Angriff: Schaden entsprechend Augenzahl, ziehe 1 Karte." />
-  <Sword_Dance Name="Schwerttanz" Description="Permanent: Diese Runde: 1 Stärke, jedes Mal, wenn du einen Angriff aktivierst." />
-  <Sword_Vortex Name="Schwertwirbel" Description="Wirf eine beliebige Anzahl an Handkarten ab. X Angriffe, entsprechend abgeworfener Karten. Je Angriff: Schaden entsprechend Augenzahl." />
-  <Flaming_Impact Name="Lodernder Aufschlag" Description="Schaden entsprechend Augenzahl. 12 Verwundbarkeit." />
-  <Gleaming_Blade Name="Gleißende Klinge" Description="16 Schaden. Entkräftet entsprechend Augenzahl." />
-  <Flaming_Passion Name="Flammende Leidenschat" Description="Permanent: Erzeuge einen 12-Würfel. Dieser Würfel wird nicht verbraucht bei der verwendung von &quot;Stich&quot; Karten." />
-  <Perfect_Parry Name="Perfekte Parade" Description="Block entsprechend Augenzahl. Verteidigungsstapel: Schaden entsprechend Augenzahl, jedes Mal, wenn der Gegner angreift." />
-  <Damocles_Sword Name="Damokles Schwert" Description="Schaden entsprechend Augenzahl. Diese Runde: Reduziere geg. Stärke und Schutz entsprechend Augenzahl." />
-  <Searing_Inferno Name="Sengendes Inferno" Description="X Angriffe, entsprechend Augenzahl. Je Angriff: 2 Schaden, 2 Verwundbarkeit." />
-  <Trip_Rope Name="Stolperstrick" Description="Schwäche entsprechend Augenzahl." />
-  <Cast_Net Name="Netzwurf" Description="Entferne: Reduziere Stärke entsprechend Augenzahl." />
-  <Constrict Name="Einschnüren" Description="Entferne: Reduziere Schutz entsprechend Augenzahl." />
-  <Dompteur Name="Dompteur" Description="Schaden entspricht geg. Schwäche." />
-  <Web_Weaver Name="Netzweber" Description="Erzeuge 3 &quot;Netzwurf&quot; Karten, auf die Hand, diese verbrauchen den für die Aktivierung gewählten Würfel nicht." />
-  <Trapper Name="Fallensteller" Description="Block entsprechend Augenzahl. Verteidigungsstapel: wenn diese Karte durch einen Angriff entfernt wird, Schwäche entsprechend Augenzahl." />
-  <Disarm Name="Entwaffnen" Description="Schwäche und Betäubung entsprechend Augenzahl." />
-  <Pittakos Name="Pittakos" Description="Permanent: Jedes Mal, wenn dein Gegner angreift, füge ihm, 4 Schwäche und 4 Entkräftet zu." />
-  <Scornful_Finesse Name="Höhnische Gewandheit" Description="15 Block. Verteidigungsstapel: Chance von 25 % (max. 75%), das gegnerische Angriffe verfehlen." />
-  <Arachnid Name="Arachne" Description="Permanenet: Zu Rundenbeginn: erzeuge 1 &quot;Netzwurf&quot; Karte. Diese  Runde: die erzeugte Karte hat keine Kosten und die Grund-Augenzahl für ihre Aktivierung entspricht  der Augenzahl dieser Karte." />
-  <Thread_Of_Fate Name="Schicksalsfaden" Description="Permanent: Jedes Mal, wenn der Gegner negative Status durch Regeneration abbaut, Schaden in Höhe der abgebauten Stapel, durchstoßend. " />
-  <Control Name="Kontrolle" Description="Diese Runde: setze geg. Regeneration auf 0." />
-  <Cruel_Fate Name="Graumsames Schicksal" Description="Entferne alle geg. negativen Status. Schaden entsprechend Anzahl der kombinierten entfernten Stapel, multipliziert mit 4, durchstoßend." />
-  <Shield_Block Name="Schildblock" Description="Block entsprechend Augenzahl." />
-  <Testudo Name="Testudo" Description="15 Block. Du kannst diese Karte nicht aktivieren wenn du in dieser Runde einen Angriff gespielt hast. Du kannst keine Angriffe nach Aktivierung dieser Karte spielen. " />
-  <Shield_Soul Name="Schildseele" Description="1 Schutz, multipliziert mit aktiven Verteidigungskarten." />
-  <Provocation Name="Provokation" Description="Block entsprechend Augenzahl. Verteidigunsstapel: dein Gegner kann nur Angriffe ausführen, ändere alle Nicht-Angriffsaktionen zu Standartangriffen." />
-  <Shield_Logic Name="Schildlogik" Description="Permanent: Zu Rundenbeginn: Ziehe 1 Karte für jede aktive Verteidigungskarte." />
-  <Immovable_Object Name="Unbewegliches Objekt" Description="Block dieser Karte wird zu deinem doppelten aktuellen Block." />
-  <Shield_Flame Name="Schildflamme" Description="1 Stärke, multipliziert mit aktiven Verteidigungskarten." />
-  <Bastion Name="Bastion" Description="Block entsprichend Augenzahl, multipliziert mit 2. Verteidigungsstapel:  Schutz entsprechend Augenzahl." />
-  <Petra_Solida Name="Petra Solida" Description="Block entsprichend Augenzahl multipliziert mit 3. Verteidigungsstapel: Zu Rundenbeginn: regeneriere den ursprünglichen Blockwert dieser Karte. " />
-  <Scutum_Vitalis Name="Scutum Vitalis" Description="Permanent: Erhalte einen zusätzlichen Platz in deinem Verteidigungsstapel." />
-  <Battering_Ram Name="Rammbock" Description="Schaden entsprechend Block." />
-  <Mars_Patronage Name="Mars Schirmherrschaft" Description="Permanent: Zu Rundenbeginn:  Diese Runde: erhalte einen zusätzlichen 4-Würfel für jede aktive Verteidigungskarte." />
-  <Moloch Name="Moloch" Description="Permanent: Lege zum Ende deines Zuges eine Karte aus deinem Verteidigungsstapel ab und füge deinem Gegner Schaden entsprechend abgelegtem Block, multipliziert mit Augenzahl zu." />
-  <Dagger_Thrust Name="Dolchstoß" Description="2 Schaden. Blutung entsprechend Augenzahl, falls der Gegner keinen Block hat." />
-  <Artery_Cut Name="Arterienschnitt" Description="Blutung entsprechend Augenzahl, multipliziert mit 2, falls der Gegner keinen Block hat." />
-  <Knife_Throw Name="Messerwurf" Description="Schaden entsprechend Augenzahl. Multipliziert mit 2, falls der Gegner keinen Block hat." />
-  <Heart_Seeker Name="Herzsucher" Description="4 Schaden. Blutung entsprechend Augenzahl, falls der Gegner keinen Block hat." />
-  <Throat_Cut Name="Kehlschnitt" Description="2 Schaden. Diese Runde:  Der Gegner kann keine Fähigkeiten verwenden, falls er keinen Block hat." />
-  <Board_Breaker Name="Plattenbrecher" Description="Schaden entsprechend Augenzahl. Multipliziert mit 6, falls der Gegner Block hat." />
-  <Surgical_Intervention Name="Chirugischer Eingriff" Description="8 Blutung." />
-  <Crimson_Rivers Name="Purpurnen Flüsse" Description="Blutung entsprechend Augenzahl. Multipliziert mit 2, falls der Gegner keinen Block hat." />
-  <Blood_Pain Name="Blutschmerz" Description="Verwundbarkeit entsprechend geg. Blutungsstapel." />
-  <Salt_In_Wound Name="Salz in die Wunde" Description="Permanent: Jedes Mal, wenn du dem Gegner Blutung zufügst, füge zusätzliche Blutung entsprechend Augenzahl zu." />
-  <Eviscerate Name="Ausweiden" Description="1 Schaden. Bonusschaden durch Blutung wird multipliziert mit 3." />
-  <Heartbreaker Name="Herzensbrecher" Description="X Angriffe, entsprechend Augenzahl. Je Angriff: 1 Schaden und 1 Blutung." />
-  <Hemokinesis Name="Hemokinesis" Description="Permanent: Jeder Angriff fügt dem Gegner zusätzlich 1 Blutung zu." />
-  <Spear_Thrust Name="Speer Stoß" Description="Schaden entsprechend Augenzahl." />
-  <Fend_Off Name="Abwehren" Description="Block entsprechend Augenzahl." />
-  <Second_Tip Name="Zweite Spitze" Description="6 Schaden. Keine Kosten wenn in dieser Runde ein Angriff gespielt wurde." />
-  <Perforate Name="Perforieren" Description="X Angriffe, entsprechend Augenzahl. Je Angriff: 1 Schaden und 1  Blutung.." />
-  <Hoplite Name="Hoplit" Description="8 Block. Diese Karte skaliert mit Stärke und Schutz." />
-  <Horn_Of_Catoblepas Name="Horn des Katoblepas" Description="4 Schaden. Entferne alle deine Stapel Verwundbarkeit und füge dem Gegner Verwundbarkeit entsprechend der entfernten Stapel zu." />
-  <Hybris Name="Hybris" Description="Schaden entsprechend dreifacher Augenzahl. Die Würfel werden nicht verbraucht. Diese Karte kann nur aktiviert werden wenn du keinen  Block hast." />
-  <Allarmament Name="Allbewaffnung" Description="Erhöhe Stärke und Schutz um 4." />
-  <Titan_Slayer Name="Titan-Töter" Description="Schaden entsprechend Augenzahl, multipliziert mit 4 wenn dein Gegner prozentuall mehr Vitalität besitzt als du." />
-  <Spartan_Soul Name="Spartanische Seele" Description="Permanent: Zu Rundenbeginn erhalte 2 Stärke und 2 Schutz." />
-  <Keres_Spirit Name="Keres-Geist" Description="Blutung entsprechend deiner zusätzlichen Stärke." />
-  <Hepheestus_Arsenal Name="Hepheistos Arsenal" Description="Permanent: Zu Rundenbeginn: Diese Runde: Erhöhe die Augenzahl auf allen Würfeln um 4." />
-  <Mighty_Pallas Name="Mächtiger Pallas" Description="80 Schaden. Die Augenzahl zur Aktivierung dieser Karte muss mindestens 12 betragen." />
-  <Parma Name="Parma" Description="Block entsprechend Augenzahl." />
-  <Shield_Slam Name="Schildschlag" Description="Schaden entsprechend Augenzahl, skaliert mit Stärke und Schutz." />
-  <Sweep Name="Umfegen" Description="Schwäche entsprechend Block." />
-  <Armored_Colossus Name="Gepanzeter Koloss" Description="Permanent: Zu Rundenbeginn: Diese Runde: Erhalte 3 Stärke für jede aktive Verteidigungskarte. " />
-  <Titan Name="Titan" Description="Wähle eine Karte aus deinem Verteidigungsstapel. Diese Runde: Stärke entsprechend dem Block, den die gewählte Karte gewährt." />
-  <True_Phalanx Name="Wahre Phalanx" Description="Permanent: Schutz entsprechend Augenzahl." />
-  <Equilibrium Name="Gleichgewicht" Description="Block entsprechend Augenzahl. 2 Schutz." />
-  <Minotaur_Stomp Name="Minotaurus Stampfer" Description="Schaden entsprechend Augenzahl. Diese Runde: Erhalte Schutz entspreched dem durch diese Karte zugefügten Schaden." />
-  <Iron_Will Name="Eiserner Wille" Description="Permanent: Jedes Mal, wenn du einen geg. Angriff blockst, ziehe 1  zusätzliche Karte, zu Beginn der nächsten Runde." />
-  <Indomitable Name="Unbeugsam" Description="Permanent: Du kannst keine negativen Status aufbauen, solange du aktive Verteidigungskarten hast." />
-  <Reflect Name="Reflektieren" Description="1 Block. Verteidigungsstapel: Annulliere den nächsten Schaden eines Angriffs, der diese Karte betrifft. Füge deinem Gegner Schaden entsprechend dem annullierten Schaden zu. Lege diese Karte dannach auf den Ablagestapel." />
-  <Heroic_Onslaught Name="Heroischer Ansturm" Description="Schaden entsprechend Block. Die Kosten dieser Karte sinken um 1 für jede aktive Verteidigungskarte." />
-  <Soterias_Blessing Name="Soterias Segen" Description="Diese Karte kann nicht gespielt werden wenn in diese Runde ein Angriff gespielt wurde. Diese Runde:es können keine Angriffe gespielt werden." />
-  <Jab_Cut Name="Stoß-Schnitt" Description="Blutung entsprechend Augenzahl, falls der Gegner keinen Block hat." />
-  <Bone_Shears Name="Knochenschere" Description="Schaden entsprechend Augenzahl. Diese Runde: Reduziere Schutz entsprechend Augenzahl." />
-  <Dagger_Whet Name="Messer Wetzen" Description="Permanent: Stärke entsprechend Augenzahl." />
-  <Butcher Name="Metzger" Description="Permanent: Zusätzliche Stärke erhöht die Anzahl an zugefügten Blutungsstapeln." />
-  <Meat_Hook Name="Fleischhaken" Description="Verwundbarkeit, Blutung und Entkräften entsprechend Augenzahl, falls der Gegner keinen Block hat." />
-  <Carnassial Name="Reißzahn" Description="Entferne die letzte geg. Verteidigungskarte. Falls der Gegner dannach keinen Block mehr hat, Blutung entsprechend Augenzahl." />
-  <Critical_Hit Name="Kritischer Treffer" Description="4 Schaden. 50% Chance den zugefügten Schaden mit Augenzahl zu multiplizieren." />
-  <Swift_Stride Name="Schnellschritt" Description="Permanent: Ziehe 1 Karte, jedes Mal wenn du eine Angriffkarte mit 1 oder weniger Kosten spielst." />
-  <Dismember Name="Zerstückeln" Description="Blutung entsprechend Augenzahl multipliziert mit 3, falls der Gegner keinen Block hat." />
-  <Trick_Blade Name="Merkur Trickklinge" Description="Schaden entsprechend Augenzahl. Ziehe 1 Karte. Falls dein Gegner Verwundbarkeitsstapel hat, werden die Würfel für die Aktivierung dieser Karte nicht verbraucht." />
-  <Swordarm Name="Schwertarm" Description="Permanent: Stärke entsprechend Augenzahl. Jedes Mal, wenn du eine Verteidigungskarte ziehst lege diese auf den Ablagestapel, ziehe 1 Karte und erhalte 3 Stärke." />
-  <Janus_Reversal Name="Janus Kehrtwende" Description="Schaden entsprechend Augenzahl. Erhöhe deine Stärke entsprechend zugefügtem Schaden, falls der Gegner keinen Block hat. Ziehe 1 Karte." />
-  <Faunus_Guillotine Name="Faunus Fallaxt" Description="Entferne alle geg. Verteidigungskaren. Füge dann Schaden entsprechend Augenzahl, plus geg. Entfernten Block." />
-  <Head_Matter Name="Kopfsache" Description="Führe sofort eine Regeneration durch." />
-  <Head_Thrust Name="Kopfstoß" Description="2 Schaden. Betäubung entsprechend Augenzahl." />
-  <Boldness Name="Kühnheit" Description="Diese Runde: 4 Stärke und 4 Schutz." />
-  <Protective_Cage Name="Schützender Käfig" Description="Wirf eine beliebige Anzahl an Handkarten ab. Block entsprechend Augenzahl, multipliziert mit angeworfenen Handkarten." />
-  <Deflecting_Stance Name="Abfälschende Form" Description="Block entsprechend Augenzahl. Verteidigungsstapel: füge dem Gegner 2 Betäubung zu,jedes Mal wenn er Angreift." />
-  <Symbol_Of_Duty Name="Symbol der Pflicht" Description="Permanent: Zu Rundenbeginn: 2 Schutz." />
-  <Stubborn Name="Trotzkopf" Description="Entferne: Wähle für jeden freien Platz in deinem Verteidigungsstapel eine Verteidigungskarte aus deinem Stapel und aktiviere sie. Verwende für die Aktivierung jeder Karte die für diese Karte aufgewendete Augenzahl." />
-  <Shoulder_Attack Name="Schulterangriff" Description="2 Schaden. Ziehe Karten entsprechend Augenzahl." />
-  <Full_Plate Name="Voll-Platte" Description="Block entsprechend Augenzahl, multipliziert mit 2." />
-  <Agility Name="Agilität" Description="Block entsprechend Augenzahl. Verteidigungsstapel: Zu Rundenbeginn: Ziehe 2 zusätzliche Karten." />
-  <Elude Name="Entgehen" Description="Block entsprechend Augenzahl. Verteidigungsstapel: 30 % Chance (max. 75%)  das geg. Angriffe verfehlen." />
-  <Small_Shield Name="Klein-Schild" Description="1 Block. Schutz entsprechend Augenzahl." />
-  <Praesidius Name="Präsidarius" Description="30 Block. Verteidigunsstapel: Zu Rundenbeginn: Diese Runde: Erhalte einen zusätzlichen Würfel entsprechend Augenzahl." />
-  <Dodge_Roll Name="Ausweichrolle" Description="Diese Runde: Annuliere jeden eingehenden geg. Angriff." />
-  <Headbutt Name="Kopfnuss" Description="2 Schaden. Verwundbarkeit entsprechend Augenzahl." />
-  <Deflect Name="Ableit" Description="1 Block. Verteidigungsstapel: Schutz entsprechend Augenzahl." />
-  <Wedge_Slash Name="Keil-Hieb" Description="20 Schaden. Keine Wirkung auf Gegner mit Block." />
-  <Catch Name="Fangen" Description="3 Block. Verteidigungsstapel: Reduziere jeden eingehenden Schaden durch Angriffe entsprechend Augenzahl (Nie unter 1)." />
-  <Angle_Block Name="Winkel-Block" Description="Block entsprechend Augenzahl. Verteidigungsstapel: Zu Rundenbeginn: Erhöhe den Block aller Karten im Verteidigungstapel um 5." />
-  <Upset Name="Umrempeln" Description="Schaden entsprechend Augenzahl. Schwäche entsprechend Block." />
-  <Segmented_Armor Name="Segmentierter Panzer" Description="Permanent: Zu Rundenbeginn: erhalte einen zusätzlichen Platz in deinem Verteidigungsstapel. " />
-  <Kick Name="Tritt" Description="Schaden entsprechend Augenzahl. Multipliziert mit 2, falls der Gegner Block hat." />
-  <Deflect Name="Ausweichschritt" Description="1 Block. Verteidigungsstapel: 5% Chance (max. 75%), multipliziert mit Augenzahl, das geg. Angriffe verfehlen." />
-  <Footwork Name="Beinarbeit" Description="Block entsprechend Augenzahl. Verteidigungsstapel: Zu Rundenbeginn: Lege diese Karte auf den Ablagestapel, Stärke entsprechend abgelegtem Block." />
-  <Knee_Kick Name="Kniestoß" Description="Schaden und Betäubung entsprechend Augenzahl. " />
-  <Kick Name="Kick" Description="Schaden entsprechend Augenzahl, multipliziert mit aktiven Verteidigungskarten." />
-  <Jump_Kick Name="Sprungtritt" Description="Schaden entsprechend Augenzahl. Multipliziert mit 3, falls der Gegner Block hat." />
-  <Flying_Spin_Kick Name="Fliegender Dreh-Kick" Description="Falls der Gegner keinen Block hat, werden die gewählten Würfel nicht verbraucht. Schaden entsprechend Augenzahl, multipliziert mit aktiven Verteidigungskarten. " />
-  <Refreshed Name="Erfrischt" Description="Entferne: Ziehe 1 Karte. Permanent: 3 Regeneration." />
-  <Well_Fed Name="Gut Genährt" Description="Entferne: Ziehe 1 Karte. Stelle 2 Vitalität wieder her." />
-  <Rested Name="Ausgeruht" Description="Entferne: Ziehe 1 Karte. Diese Runde: Erzeuge einen 20-Würfel." />
-  <Gladiator_Strength Name="Gladiatorstärke" Description="Entferne: Ziehe 1 Karte. Permanent: 3 Stärke." />
-  <Gladiator_Endurance Name="Gladiatorausdauer" Description="Entferne: Ziehe 1 Karte. Permanent: Zu Rundenbeginn: Diese Runde: Erzeuge einen 4-Würfel." />
-  <Gladiator_Finesse Name="Gladiatorgewandtheit" Description="Entferne: Ziehe 1 Karte. Permanent: 3 Schutz." />
-  <Motivation Name="Motivation" Description="Entferne: Ziehe 1 Karte. Permanent: Zu Rundenbeginn: Ziehe 1 Karte." />
-  <Hedonistic Name="Hedonistisch" Description="Entferne: Ziehe 1 Karte. Permanent: Zu Rundenbeginn: Wähle eine beliebige Anzahl an Handkarten. Wirf die gewählten Handkarten auf den Ablagestapel und ziehe die selbe Anzahl an Karten." />
-  <Epicurean Name="Epikureimus" Description="Entferne: Ziehe 1 Karte. Permanent: Zu Rundenbeginn: Wähle einen Würfel und erhöhe dessen Augenzahl um 2." />
-  <Stoic Name="Stoisch" Description="Entferne: Ziehe 1 Karte. Permanent: Nicht verbrauchte Würfel werden nicht abgelegt. " />
-  <Exhausted Name="Erschöpft" Description="Diese Runde: Reduziere die Augenzahl aller Würfel um 1. (Nie unter 1)" />
-  <Injured Name="Verletzt" Description="Entferne." />
-  <Hunger Name="Hunger" Description="8 Schwäche. 8 Entkräftet." />
-  <Terror Name="Terror" Description="Diese Runde: 50% Chance das Karten nach ihrer Aktivierung, ohne Wirkung abgeworfen werden." />
-  <Trauma Name="Trauma" Description="Diese Runde: Alle gespielten Karten werden entfernt." />
-  <Flesh_Wound Name="Fleischwunde" Description="Diese Runde: Erhalte Blutung entsprechend Augenzahl, jedes Mal, wenn du Würfel verwendest." />
-  <Bone_Fracture Name="Knochenbruch" Description="8 Betäubung. Diese Runde: 2 Vitalitäts-Schaden, jedes Mal, wenn du eine Karte spielst" />
-  <Toxin Name="Toxin" Description="Diese Runde: Löse den Würfel mit der höchsten Augenzahl auf." />
-  <Hopeless Name="Hoffnungslos" Description="Entferne alle Karten aus deinem Verteidigungsstapel." />
-  <Degeneration Name="Degeneration" Description="Entferne: Reduziere Stärke und Schutz um 1." />
-  <Discouraged Name="Mutlos" Description="Diese Runde: Du kannst keine Angriffe spielen." />
-  <Psychosis Name="Psychose" Description="Erhöhe deine Stärke um 2. 5 Verwundbarkeit." />
-  <Blood_Poisoning Name="Blutvergiftung" Description="8 Verwundbarkeit. 8 Betäubung" />
-  <Frenzy Name="Tobsucht" Description="Diese Runde: 4 Stärke, du kannst nur Angriffe spielen." />
-  <Crippling_Pain Name="Lähmender Schmerz" Description="Diese Runde: Du kannst nicht mehr als 3 Karten spielen." />
-  <Disease Name="Krankheit" Description="Diese Runde: Regeneration wird nicht angewandt." />
-  <Panic_Attack Name="Panikattacke" Description="Du kannst keine anderen Karten spielen solange sich diese Karte auf deiner Hand befindet. Entferne." />
-  <Cardiac_Insufficiency Name="Herzschwäche" Description="Diese Runde: 4 Betäubung, jedes Mal, wenn du eine Karte spielst." />
-  <Egg Name="Ei" Description="Ziehe 1 Karte. Stelle 4 Vitalität her." />
-  <Panacea Name="Panacea" Description="Ziehe 1 Karte. Entferne 20 Stapel von allen negativen Status." />
-  <Bandage Name="Bandage" Description="Ziehe 1 Karte. Entferne alle Blutungsstapel." />
-  <Spring_Water Name="Quellwasser" Description="Ziehe 1 Karte. Stelle 8 Vitalität her." />
-  <Whetstone Name="Schleifstein" Description="Erhöhe deine Stärke um 5." />
-  <Tools Name="Werkzeuge" Description="Ziemlich Schwer." />
-  <Log Name="Baumstamm" Description="Super um zu trainieren. Oder um Hozbretter zu erzeugen." />
-  <Sleeping_Herbs Name="Schlafkräuter" Description="Helfen einen ruhigen Schalf zu finden." />
-  <Wine Name="Wein" Description="Ein Wein, herstellt nach römischen Bräuchen." />
+	<Unplayable Name="Unspielbar" Description="" />
+	<Cost Name="Kosten" Description="" />
+	<Thrust Name="Stoß" Description="Schaden entsprechend Augenzahl." />
+	<Shove Name="Schub" Description="Entferne die letzte geg. Verteidigungskarte." />
+	<Jump_Thrust Name="Sprungstoß" Description="Schaden entsprechend Augenzahl, multipliziert mit 2. Füge 2 Schwach zu." />
+	<Powerful_Sweep Name="Wuchtiger Schwung" Description="Schaden und Betäubung entsprechend Augenzahl." />
+	<Triple_Thrust Name="Dreistoß" Description="3 Angriffe. Je Angriff: Schaden entsprechend Augenzahl." />
+	<Rock_Solid Name="Fels in der Brandung" Description="Wirf eine beliebige Anzahl an Handkarten ab. Block entsprechend Augenzahl, multipliziert mit abgeworfenen Handkarten." />
+	<Thundering_Judgement Name="Donnerndes Gericht" Description="Erzeuge 4 &quot;Stoß&quot; Karten auf die Hand. Nimm alle &quot;Stoß&quot; Karten aus deinem Ablagestapel und  deinem Stapel auf die Hand." />
+	<Cataclysm Name="Kataklysmus" Description="X Angriffe, entsprechen Augenzahl. Je Angriff: 2 Schaden und 1 Schwäche." />
+	<Finishing_Stab Name="Schluss Stich" Description="10 Schaden. Diese Runde: senke die Kosten dieser Karte um 1 für jede &quot;Stoß&quot; Karte die gespielt wird." />
+	<Royal_Tip Name="Krönende Spitze" Description="Erzeuge &quot;Stoß&quot; Karten auf die Hand, entsprechend der Augenzahl." />
+	<Neptuns_Judgement Name="Neptuns Gericht" Description="Permanent: Zu Rundenbeginn: Diese Runde: wirf einen 12-Würfel, erhalte einen zusätzlichen Würfel  und Stärke in Höhe dieses Würfels." />
+	<Leviathan_Fury Name="Leviathanischer Zorn" Description="Permanent: Entferne die Kosten von allen &quot;Stoß&quot; Karten. Der Grund-Schaden von &quot;Stoß&quot; Karten wird zu der für diese Karte aufgewendeten Augenzahl." />
+	<Siege_Attack Name="Belagerungsangriff" Description="Permanent: Ziehe jedes mal 1 Karte, wenn du eine &quot;Stoß&quot; Karte aktivierst." />
+	<Sting Name="Stich" Description="Schaden entsprechend Augenzahl. Diese Runde: Andere Angriffe fügen zusätzlich 3 Verwundbarkeit zu." />
+	<Mighty_Sweep Name="Mächtiger Schwung" Description="Schaden entsprechend Augenzahl, multipliziert mit 2." />
+	<Pommel_Strike Name="Knaufschlag" Description="Schaden entsprechend Augenzahl. Ziehe 1 Karte, Ziehe 2 Karten wenn diese Karte der erste gespielte Angriff in dieser Runde ist." />
+	<Jump_Slash Name="Sprung Hieb" Description="16 Schaden. Erzeuge 2 &quot;Verletzt&quot; Karten in deinen Stapel." />
+	<Double_Stab Name="Doppel Stich" Description="2 Angriffe. Je Angriff: Schaden entsprechend Augenzahl, ziehe 1 Karte." />
+	<Sword_Dance Name="Schwerttanz" Description="Permanent: Diese Runde: 1 Stärke, jedes Mal, wenn du einen Angriff aktivierst." />
+	<Sword_Vortex Name="Schwertwirbel" Description="Wirf eine beliebige Anzahl an Handkarten ab. X Angriffe, entsprechend abgeworfener Karten. Je Angriff: Schaden entsprechend Augenzahl." />
+	<Flaming_Impact Name="Lodernder Aufschlag" Description="Schaden entsprechend Augenzahl. 12 Verwundbarkeit." />
+	<Gleaming_Blade Name="Gleißende Klinge" Description="16 Schaden. Entkräftet entsprechend Augenzahl." />
+	<Flaming_Passion Name="Flammende Leidenschat" Description="Permanent: Erzeuge einen 12-Würfel. Dieser Würfel wird nicht verbraucht bei der verwendung von &quot;Stich&quot; Karten." />
+	<Perfect_Parry Name="Perfekte Parade" Description="Block entsprechend Augenzahl. Verteidigungsstapel: Schaden entsprechend Augenzahl, jedes Mal, wenn der Gegner angreift." />
+	<Damocles_Sword Name="Damokles Schwert" Description="Schaden entsprechend Augenzahl. Diese Runde: Reduziere geg. Stärke und Schutz entsprechend Augenzahl." />
+	<Searing_Inferno Name="Sengendes Inferno" Description="X Angriffe, entsprechend Augenzahl. Je Angriff: 2 Schaden, 2 Verwundbarkeit." />
+	<Trip_Rope Name="Stolperstrick" Description="Schwäche entsprechend Augenzahl." />
+	<Cast_Net Name="Netzwurf" Description="Entferne: Reduziere Stärke entsprechend Augenzahl." />
+	<Constrict Name="Einschnüren" Description="Entferne: Reduziere Schutz entsprechend Augenzahl." />
+	<Dompteur Name="Dompteur" Description="Schaden entspricht geg. Schwäche." />
+	<Web_Weaver Name="Netzweber" Description="Erzeuge 3 &quot;Netzwurf&quot; Karten, auf die Hand, diese verbrauchen den für die Aktivierung gewählten Würfel nicht." />
+	<Trapper Name="Fallensteller" Description="Block entsprechend Augenzahl. Verteidigungsstapel: wenn diese Karte durch einen Angriff entfernt wird, Schwäche entsprechend Augenzahl." />
+	<Disarm Name="Entwaffnen" Description="Schwäche und Betäubung entsprechend Augenzahl." />
+	<Pittakos Name="Pittakos" Description="Permanent: Jedes Mal, wenn dein Gegner angreift, füge ihm, 4 Schwäche und 4 Entkräftet zu." />
+	<Scornful_Finesse Name="Höhnische Gewandheit" Description="15 Block. Verteidigungsstapel: Chance von 25 % (max. 75%), das gegnerische Angriffe verfehlen." />
+	<Arachnid Name="Arachne" Description="Permanenet: Zu Rundenbeginn: erzeuge 1 &quot;Netzwurf&quot; Karte. Diese  Runde: die erzeugte Karte hat keine Kosten und die Grund-Augenzahl für ihre Aktivierung entspricht  der Augenzahl dieser Karte." />
+	<Thread_Of_Fate Name="Schicksalsfaden" Description="Permanent: Jedes Mal, wenn der Gegner negative Status durch Regeneration abbaut, Schaden in Höhe der abgebauten Stapel, durchstoßend. " />
+	<Control Name="Kontrolle" Description="Diese Runde: setze geg. Regeneration auf 0." />
+	<Cruel_Fate Name="Graumsames Schicksal" Description="Entferne alle geg. negativen Status. Schaden entsprechend Anzahl der kombinierten entfernten Stapel, multipliziert mit 4, durchstoßend." />
+	<Shield_Block Name="Schildblock" Description="Block entsprechend Augenzahl." />
+	<Testudo Name="Testudo" Description="15 Block. Du kannst diese Karte nicht aktivieren wenn du in dieser Runde einen Angriff gespielt hast. Du kannst keine Angriffe nach Aktivierung dieser Karte spielen. " />
+	<Shield_Soul Name="Schildseele" Description="1 Schutz, multipliziert mit aktiven Verteidigungskarten." />
+	<Provocation Name="Provokation" Description="Block entsprechend Augenzahl. Verteidigunsstapel: dein Gegner kann nur Angriffe ausführen, ändere alle Nicht-Angriffsaktionen zu Standartangriffen." />
+	<Shield_Logic Name="Schildlogik" Description="Permanent: Zu Rundenbeginn: Ziehe 1 Karte für jede aktive Verteidigungskarte." />
+	<Immovable_Object Name="Unbewegliches Objekt" Description="Block dieser Karte wird zu deinem doppelten aktuellen Block." />
+	<Shield_Flame Name="Schildflamme" Description="1 Stärke, multipliziert mit aktiven Verteidigungskarten." />
+	<Bastion Name="Bastion" Description="Block entsprichend Augenzahl, multipliziert mit 2. Verteidigungsstapel:  Schutz entsprechend Augenzahl." />
+	<Petra_Solida Name="Petra Solida" Description="Block entsprichend Augenzahl multipliziert mit 3. Verteidigungsstapel: Zu Rundenbeginn: regeneriere den ursprünglichen Blockwert dieser Karte. " />
+	<Scutum_Vitalis Name="Scutum Vitalis" Description="Permanent: Erhalte einen zusätzlichen Platz in deinem Verteidigungsstapel." />
+	<Battering_Ram Name="Rammbock" Description="Schaden entsprechend Block." />
+	<Mars_Patronage Name="Mars Schirmherrschaft" Description="Permanent: Zu Rundenbeginn:  Diese Runde: erhalte einen zusätzlichen 4-Würfel für jede aktive Verteidigungskarte." />
+	<Moloch Name="Moloch" Description="Permanent: Lege zum Ende deines Zuges eine Karte aus deinem Verteidigungsstapel ab und füge deinem Gegner Schaden entsprechend abgelegtem Block, multipliziert mit Augenzahl zu." />
+	<Dagger_Thrust Name="Dolchstoß" Description="2 Schaden. Blutung entsprechend Augenzahl, falls der Gegner keinen Block hat." />
+	<Artery_Cut Name="Arterienschnitt" Description="Blutung entsprechend Augenzahl, multipliziert mit 2, falls der Gegner keinen Block hat." />
+	<Knife_Throw Name="Messerwurf" Description="Schaden entsprechend Augenzahl. Multipliziert mit 2, falls der Gegner keinen Block hat." />
+	<Heart_Seeker Name="Herzsucher" Description="4 Schaden. Blutung entsprechend Augenzahl, falls der Gegner keinen Block hat." />
+	<Throat_Cut Name="Kehlschnitt" Description="2 Schaden. Diese Runde:  Der Gegner kann keine Fähigkeiten verwenden, falls er keinen Block hat." />
+	<Board_Breaker Name="Plattenbrecher" Description="Schaden entsprechend Augenzahl. Multipliziert mit 6, falls der Gegner Block hat." />
+	<Surgical_Intervention Name="Chirugischer Eingriff" Description="8 Blutung." />
+	<Crimson_Rivers Name="Purpurnen Flüsse" Description="Blutung entsprechend Augenzahl. Multipliziert mit 2, falls der Gegner keinen Block hat." />
+	<Blood_Pain Name="Blutschmerz" Description="Verwundbarkeit entsprechend geg. Blutungsstapel." />
+	<Salt_In_Wound Name="Salz in die Wunde" Description="Permanent: Jedes Mal, wenn du dem Gegner Blutung zufügst, füge zusätzliche Blutung entsprechend Augenzahl zu." />
+	<Eviscerate Name="Ausweiden" Description="1 Schaden. Bonusschaden durch Blutung wird multipliziert mit 3." />
+	<Heartbreaker Name="Herzensbrecher" Description="X Angriffe, entsprechend Augenzahl. Je Angriff: 1 Schaden und 1 Blutung." />
+	<Hemokinesis Name="Hemokinesis" Description="Permanent: Jeder Angriff fügt dem Gegner zusätzlich 1 Blutung zu." />
+	<Spear_Thrust Name="Speer Stoß" Description="Schaden entsprechend Augenzahl." />
+	<Fend_Off Name="Abwehren" Description="Block entsprechend Augenzahl." />
+	<Second_Tip Name="Zweite Spitze" Description="6 Schaden. Keine Kosten wenn in dieser Runde ein Angriff gespielt wurde." />
+	<Perforate Name="Perforieren" Description="X Angriffe, entsprechend Augenzahl. Je Angriff: 1 Schaden und 1  Blutung.." />
+	<Hoplite Name="Hoplit" Description="8 Block. Diese Karte skaliert mit Stärke und Schutz." />
+	<Horn_Of_Catoblepas Name="Horn des Katoblepas" Description="4 Schaden. Entferne alle deine Stapel Verwundbarkeit und füge dem Gegner Verwundbarkeit entsprechend der entfernten Stapel zu." />
+	<Hybris Name="Hybris" Description="Schaden entsprechend dreifacher Augenzahl. Die Würfel werden nicht verbraucht. Diese Karte kann nur aktiviert werden wenn du keinen  Block hast." />
+	<Allarmament Name="Allbewaffnung" Description="Erhöhe Stärke und Schutz um 4." />
+	<Titan_Slayer Name="Titan-Töter" Description="Schaden entsprechend Augenzahl, multipliziert mit 4 wenn dein Gegner prozentuall mehr Vitalität besitzt als du." />
+	<Spartan_Soul Name="Spartanische Seele" Description="Permanent: Zu Rundenbeginn erhalte 2 Stärke und 2 Schutz." />
+	<Keres_Spirit Name="Keres-Geist" Description="Blutung entsprechend deiner zusätzlichen Stärke." />
+	<Hepheestus_Arsenal Name="Hepheistos Arsenal" Description="Permanent: Zu Rundenbeginn: Diese Runde: Erhöhe die Augenzahl auf allen Würfeln um 4." />
+	<Mighty_Pallas Name="Mächtiger Pallas" Description="80 Schaden. Die Augenzahl zur Aktivierung dieser Karte muss mindestens 12 betragen." />
+	<Parma Name="Parma" Description="Block entsprechend Augenzahl." />
+	<Shield_Slam Name="Schildschlag" Description="Schaden entsprechend Augenzahl, skaliert mit Stärke und Schutz." />
+	<Sweep Name="Umfegen" Description="Schwäche entsprechend Block." />
+	<Armored_Colossus Name="Gepanzeter Koloss" Description="Permanent: Zu Rundenbeginn: Diese Runde: Erhalte 3 Stärke für jede aktive Verteidigungskarte. " />
+	<Titan Name="Titan" Description="Wähle eine Karte aus deinem Verteidigungsstapel. Diese Runde: Stärke entsprechend dem Block, den die gewählte Karte gewährt." />
+	<True_Phalanx Name="Wahre Phalanx" Description="Permanent: Schutz entsprechend Augenzahl." />
+	<Equilibrium Name="Gleichgewicht" Description="Block entsprechend Augenzahl. 2 Schutz." />
+	<Minotaur_Stomp Name="Minotaurus Stampfer" Description="Schaden entsprechend Augenzahl. Diese Runde: Erhalte Schutz entspreched dem durch diese Karte zugefügten Schaden." />
+	<Iron_Will Name="Eiserner Wille" Description="Permanent: Jedes Mal, wenn du einen geg. Angriff blockst, ziehe 1  zusätzliche Karte, zu Beginn der nächsten Runde." />
+	<Indomitable Name="Unbeugsam" Description="Permanent: Du kannst keine negativen Status aufbauen, solange du aktive Verteidigungskarten hast." />
+	<Reflect Name="Reflektieren" Description="1 Block. Verteidigungsstapel: Annulliere den nächsten Schaden eines Angriffs, der diese Karte betrifft. Füge deinem Gegner Schaden entsprechend dem annullierten Schaden zu. Lege diese Karte dannach auf den Ablagestapel." />
+	<Heroic_Onslaught Name="Heroischer Ansturm" Description="Schaden entsprechend Block. Die Kosten dieser Karte sinken um 1 für jede aktive Verteidigungskarte." />
+	<Soterias_Blessing Name="Soterias Segen" Description="Diese Karte kann nicht gespielt werden wenn in diese Runde ein Angriff gespielt wurde. Diese Runde:es können keine Angriffe gespielt werden." />
+	<Jab_Cut Name="Stoß-Schnitt" Description="Blutung entsprechend Augenzahl, falls der Gegner keinen Block hat." />
+	<Bone_Shears Name="Knochenschere" Description="Schaden entsprechend Augenzahl. Diese Runde: Reduziere Schutz entsprechend Augenzahl." />
+	<Dagger_Whet Name="Messer Wetzen" Description="Permanent: Stärke entsprechend Augenzahl." />
+	<Butcher Name="Metzger" Description="Permanent: Zusätzliche Stärke erhöht die Anzahl an zugefügten Blutungsstapeln." />
+	<Meat_Hook Name="Fleischhaken" Description="Verwundbarkeit, Blutung und Entkräften entsprechend Augenzahl, falls der Gegner keinen Block hat." />
+	<Carnassial Name="Reißzahn" Description="Entferne die letzte geg. Verteidigungskarte. Falls der Gegner dannach keinen Block mehr hat, Blutung entsprechend Augenzahl." />
+	<Critical_Hit Name="Kritischer Treffer" Description="4 Schaden. 50% Chance den zugefügten Schaden mit Augenzahl zu multiplizieren." />
+	<Swift_Stride Name="Schnellschritt" Description="Permanent: Ziehe 1 Karte, jedes Mal wenn du eine Angriffkarte mit 1 oder weniger Kosten spielst." />
+	<Dismember Name="Zerstückeln" Description="Blutung entsprechend Augenzahl multipliziert mit 3, falls der Gegner keinen Block hat." />
+	<Trick_Blade Name="Merkur Trickklinge" Description="Schaden entsprechend Augenzahl. Ziehe 1 Karte. Falls dein Gegner Verwundbarkeitsstapel hat, werden die Würfel für die Aktivierung dieser Karte nicht verbraucht." />
+	<Swordarm Name="Schwertarm" Description="Permanent: Stärke entsprechend Augenzahl. Jedes Mal, wenn du eine Verteidigungskarte ziehst lege diese auf den Ablagestapel, ziehe 1 Karte und erhalte 3 Stärke." />
+	<Janus_Reversal Name="Janus Kehrtwende" Description="Schaden entsprechend Augenzahl. Erhöhe deine Stärke entsprechend zugefügtem Schaden, falls der Gegner keinen Block hat. Ziehe 1 Karte." />
+	<Faunus_Guillotine Name="Faunus Fallaxt" Description="Entferne alle geg. Verteidigungskaren. Füge dann Schaden entsprechend Augenzahl, plus geg. Entfernten Block." />
+	<Head_Matter Name="Kopfsache" Description="Führe sofort eine Regeneration durch." />
+	<Head_Thrust Name="Kopfstoß" Description="2 Schaden. Betäubung entsprechend Augenzahl." />
+	<Boldness Name="Kühnheit" Description="Diese Runde: 4 Stärke und 4 Schutz." />
+	<Protective_Cage Name="Schützender Käfig" Description="Wirf eine beliebige Anzahl an Handkarten ab. Block entsprechend Augenzahl, multipliziert mit angeworfenen Handkarten." />
+	<Deflecting_Stance Name="Abfälschende Form" Description="Block entsprechend Augenzahl. Verteidigungsstapel: füge dem Gegner 2 Betäubung zu,jedes Mal wenn er Angreift." />
+	<Symbol_Of_Duty Name="Symbol der Pflicht" Description="Permanent: Zu Rundenbeginn: 2 Schutz." />
+	<Stubborn Name="Trotzkopf" Description="Entferne: Wähle für jeden freien Platz in deinem Verteidigungsstapel eine Verteidigungskarte aus deinem Stapel und aktiviere sie. Verwende für die Aktivierung jeder Karte die für diese Karte aufgewendete Augenzahl." />
+	<Shoulder_Attack Name="Schulterangriff" Description="2 Schaden. Ziehe Karten entsprechend Augenzahl." />
+	<Full_Plate Name="Voll-Platte" Description="Block entsprechend Augenzahl, multipliziert mit 2." />
+	<Agility Name="Agilität" Description="Block entsprechend Augenzahl. Verteidigungsstapel: Zu Rundenbeginn: Ziehe 2 zusätzliche Karten." />
+	<Elude Name="Entgehen" Description="Block entsprechend Augenzahl. Verteidigungsstapel: 30 % Chance (max. 75%)  das geg. Angriffe verfehlen." />
+	<Small_Shield Name="Klein-Schild" Description="1 Block. Schutz entsprechend Augenzahl." />
+	<Praesidius Name="Präsidarius" Description="30 Block. Verteidigunsstapel: Zu Rundenbeginn: Diese Runde: Erhalte einen zusätzlichen Würfel entsprechend Augenzahl." />
+	<Dodge_Roll Name="Ausweichrolle" Description="Diese Runde: Annuliere jeden eingehenden geg. Angriff." />
+	<Headbutt Name="Kopfnuss" Description="2 Schaden. Verwundbarkeit entsprechend Augenzahl." />
+	<Deflect Name="Ableit" Description="1 Block. Verteidigungsstapel: Schutz entsprechend Augenzahl." />
+	<Wedge_Slash Name="Keil-Hieb" Description="20 Schaden. Keine Wirkung auf Gegner mit Block." />
+	<Catch Name="Fangen" Description="3 Block. Verteidigungsstapel: Reduziere jeden eingehenden Schaden durch Angriffe entsprechend Augenzahl (Nie unter 1)." />
+	<Angle_Block Name="Winkel-Block" Description="Block entsprechend Augenzahl. Verteidigungsstapel: Zu Rundenbeginn: Erhöhe den Block aller Karten im Verteidigungstapel um 5." />
+	<Upset Name="Umrempeln" Description="Schaden entsprechend Augenzahl. Schwäche entsprechend Block." />
+	<Segmented_Armor Name="Segmentierter Panzer" Description="Permanent: Zu Rundenbeginn: erhalte einen zusätzlichen Platz in deinem Verteidigungsstapel. " />
+	<Kick Name="Tritt" Description="Schaden entsprechend Augenzahl. Multipliziert mit 2, falls der Gegner Block hat." />
+	<Evasive_Step Name="Ausweichschritt" Description="1 Block. Verteidigungsstapel: 5% Chance (max. 75%), multipliziert mit Augenzahl, das geg. Angriffe verfehlen." />
+	<Footwork Name="Beinarbeit" Description="Block entsprechend Augenzahl. Verteidigungsstapel: Zu Rundenbeginn: Lege diese Karte auf den Ablagestapel, Stärke entsprechend abgelegtem Block." />
+	<Knee_Kick Name="Kniestoß" Description="Schaden und Betäubung entsprechend Augenzahl. " />
+	<Kick Name="Kick" Description="Schaden entsprechend Augenzahl, multipliziert mit aktiven Verteidigungskarten." />
+	<Jump_Kick Name="Sprungtritt" Description="Schaden entsprechend Augenzahl. Multipliziert mit 3, falls der Gegner Block hat." />
+	<Flying_Spin_Kick Name="Fliegender Dreh-Kick" Description="Falls der Gegner keinen Block hat, werden die gewählten Würfel nicht verbraucht. Schaden entsprechend Augenzahl, multipliziert mit aktiven Verteidigungskarten. " />
+	<Refreshed Name="Erfrischt" Description="Entferne: Ziehe 1 Karte. Permanent: 3 Regeneration." />
+	<Well_Fed Name="Gut Genährt" Description="Entferne: Ziehe 1 Karte. Stelle 2 Vitalität wieder her." />
+	<Rested Name="Ausgeruht" Description="Entferne: Ziehe 1 Karte. Diese Runde: Erzeuge einen 20-Würfel." />
+	<Gladiator_Strength Name="Gladiatorstärke" Description="Entferne: Ziehe 1 Karte. Permanent: 3 Stärke." />
+	<Gladiator_Endurance Name="Gladiatorausdauer" Description="Entferne: Ziehe 1 Karte. Permanent: Zu Rundenbeginn: Diese Runde: Erzeuge einen 4-Würfel." />
+	<Gladiator_Finesse Name="Gladiatorgewandtheit" Description="Entferne: Ziehe 1 Karte. Permanent: 3 Schutz." />
+	<Motivation Name="Motivation" Description="Entferne: Ziehe 1 Karte. Permanent: Zu Rundenbeginn: Ziehe 1 Karte." />
+	<Hedonistic Name="Hedonistisch" Description="Entferne: Ziehe 1 Karte. Permanent: Zu Rundenbeginn: Wähle eine beliebige Anzahl an Handkarten. Wirf die gewählten Handkarten auf den Ablagestapel und ziehe die selbe Anzahl an Karten." />
+	<Epicurean Name="Epikureimus" Description="Entferne: Ziehe 1 Karte. Permanent: Zu Rundenbeginn: Wähle einen Würfel und erhöhe dessen Augenzahl um 2." />
+	<Stoic Name="Stoisch" Description="Entferne: Ziehe 1 Karte. Permanent: Nicht verbrauchte Würfel werden nicht abgelegt. " />
+	<Exhausted Name="Erschöpft" Description="Diese Runde: Reduziere die Augenzahl aller Würfel um 1. (Nie unter 1)" />
+	<Injured Name="Verletzt" Description="Entferne." />
+	<Hunger Name="Hunger" Description="8 Schwäche. 8 Entkräftet." />
+	<Terror Name="Terror" Description="Diese Runde: 50% Chance das Karten nach ihrer Aktivierung, ohne Wirkung abgeworfen werden." />
+	<Trauma Name="Trauma" Description="Diese Runde: Alle gespielten Karten werden entfernt." />
+	<Flesh_Wound Name="Fleischwunde" Description="Diese Runde: Erhalte Blutung entsprechend Augenzahl, jedes Mal, wenn du Würfel verwendest." />
+	<Bone_Fracture Name="Knochenbruch" Description="8 Betäubung. Diese Runde: 2 Vitalitäts-Schaden, jedes Mal, wenn du eine Karte spielst" />
+	<Toxin Name="Toxin" Description="Diese Runde: Löse den Würfel mit der höchsten Augenzahl auf." />
+	<Hopeless Name="Hoffnungslos" Description="Entferne alle Karten aus deinem Verteidigungsstapel." />
+	<Degeneration Name="Degeneration" Description="Entferne: Reduziere Stärke und Schutz um 1." />
+	<Discouraged Name="Mutlos" Description="Diese Runde: Du kannst keine Angriffe spielen." />
+	<Psychosis Name="Psychose" Description="Erhöhe deine Stärke um 2. 5 Verwundbarkeit." />
+	<Blood_Poisoning Name="Blutvergiftung" Description="8 Verwundbarkeit. 8 Betäubung" />
+	<Frenzy Name="Tobsucht" Description="Diese Runde: 4 Stärke, du kannst nur Angriffe spielen." />
+	<Crippling_Pain Name="Lähmender Schmerz" Description="Diese Runde: Du kannst nicht mehr als 3 Karten spielen." />
+	<Disease Name="Krankheit" Description="Diese Runde: Regeneration wird nicht angewandt." />
+	<Panic_Attack Name="Panikattacke" Description="Du kannst keine anderen Karten spielen solange sich diese Karte auf deiner Hand befindet. Entferne." />
+	<Cardiac_Insufficiency Name="Herzschwäche" Description="Diese Runde: 4 Betäubung, jedes Mal, wenn du eine Karte spielst." />
+	<Egg Name="Ei" Description="Ziehe 1 Karte. Stelle 4 Vitalität her." />
+	<Panacea Name="Panacea" Description="Ziehe 1 Karte. Entferne 20 Stapel von allen negativen Status." />
+	<Bandage Name="Bandage" Description="Ziehe 1 Karte. Entferne alle Blutungsstapel." />
+	<Spring_Water Name="Quellwasser" Description="Ziehe 1 Karte. Stelle 8 Vitalität her." />
+	<Whetstone Name="Schleifstein" Description="Erhöhe deine Stärke um 5." />
+	<Tools Name="Werkzeuge" Description="Ziemlich Schwer." />
+	<Log Name="Baumstamm" Description="Super um zu trainieren. Oder um Hozbretter zu erzeugen." />
+	<Sleeping_Herbs Name="Schlafkräuter" Description="Helfen einen ruhigen Schalf zu finden." />
+	<Wine Name="Wein" Description="Ein Wein, herstellt nach römischen Bräuchen." />
 </Language>
