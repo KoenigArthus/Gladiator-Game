@@ -254,9 +254,12 @@ public class Player : Participant
     public void PrepareCard(CardObject card)
     {
         if (!card.Info.Name.Equals(CardLibrary.BLOCK_PLAY_CARD_NAME) && hand.Cards.Any(x => x.Info.Name.Equals(CardLibrary.BLOCK_PLAY_CARD_NAME)))
+        {
+            Debug.Log($"{card.Info.Name} can not be played! Play {CardLibrary.BLOCK_PLAY_CARD_NAME} instead.");
             return;
+        }
 
-        if (card != null && !lockedCardTypes[(int)card.Info.Type] && card.Info.Type != CardType.Ailment)
+        if (card != null && !lockedCardTypes[(int)card.Info.Type] && (card.Info.Type != CardType.Ailment || card.Info.Cost > 0))
             prepareing = card;
     }
 
@@ -271,7 +274,6 @@ public class Player : Participant
 
     public void LockCardType(CardType type)
     {
-        Debug.Log($"{type} locked");
         lockedCardTypes[(int)type] = true;
     }
 

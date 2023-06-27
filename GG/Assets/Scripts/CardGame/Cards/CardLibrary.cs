@@ -63,7 +63,7 @@ public static class CardLibrary
             (CardInfo c) => c.DicePower * 1),
 
             //Donnerndes Gericht - Erzeuge 4 "Stoß" Karten. Nimm alle "Stoß" Karten aus deinem Ablagestapel und  deinem Stapel auf die Hand.
-            new InstantCardInfo("Thundering_Judgment", CardSet.Trident, CardType.Skill, 1, 2,
+            new InstantCardInfo("Thundering_Judgement", CardSet.Trident, CardType.Skill, 1, 2,
             (CardInfo c) => {for(int i = 0; i < 4; i++) c.Player.Hand.Add(CardObject.Instantiate((CardInfo)cards[0].Clone(), Vector2.zero));
                 CardObject[] tmCards = c.Player.Deck.Cards.Concat(c.Player.Discard.Cards).Where(x => x.Info.Name.Equals(TRIDENT_MAIN_CARD_NAME)).ToArray();
                 for (int i = 0; i < tmCards.Length; i++) c.Player.Hand.Add(tmCards[i]); }),
@@ -86,7 +86,7 @@ public static class CardLibrary
             (CardInfo c) => {for(int i = 0; i < c.DicePower; i++) c.Player.Hand.Add(CardObject.Instantiate((CardInfo)cards[0].Clone(), Vector2.zero)); }),
 
             //Neptuns Gericht - Permanent: Zu Rundenbeginn wirf einen 12-Würfel, erhalte,bis zum Rundenende, einen zusätzlichen Würfel und Stärke in Höhe dieses Würfels.
-            new PermanentCardInfo("Neptuns_Judgment", CardSet.Trident, 2, 4,
+            new PermanentCardInfo("Neptuns_Judgement", CardSet.Trident, 2, 4,
             (CardGameManager m, CardInfo c) => { var bonusDie = new DieInfo(12); m.Player.AddDie(bonusDie);
             Task.Run(async () => {while(bonusDie.Rolling) await Task.Delay(42); int amount = bonusDie.Value; m.Player.AddStatus(StatusEffect.FragileStrength, amount); }); }),
 
@@ -737,15 +737,15 @@ public static class CardLibrary
             #region Tier 0
 
             //Schulterangriff -  2 Schaden. Ziehe Karten entsprechend Augenzahl.
-            new InstantCardInfo("Shoulder_Attack", CardSet.Gladius, CardType.Attack, 0, 1,
+            new InstantCardInfo("Shoulder_Attack", CardSet.Galerus, CardType.Attack, 0, 1,
             (CardInfo c) => { c.Player.Attack(c.Enemy, 2); c.Player.DrawCards(c.DicePower); }),
 
             //Voll-Platte - Block entsprechend Augenzahl, multipliziert mit 2.
-            new BlockCardInfo("Full_Plate", CardSet.Gladius, 0, 1,
+            new BlockCardInfo("Full_Plate", CardSet.Galerus, 0, 1,
             (CardInfo c) => c.DicePower * 2),
 
             //Agilität - Block entsprechend Augenzahl. Verteidigungsstapel: Zu Rundenbeginn: Ziehe 2 zusätzliche Karten.
-            new PassiveBlockCardInfo("Agility", CardSet.Gladius, 0, 1,
+            new PassiveBlockCardInfo("Agility", CardSet.Galerus, 0, 1,
             (CardInfo c) => c.DicePower, (CardGameManager m, CardInfo c) => m.Player.DrawCards(2)),
 
             #endregion Tier 0
@@ -838,12 +838,12 @@ public static class CardLibrary
             (CardInfo c) => c.Player.Attack(c.Enemy, c.DicePower * (c.Enemy.Block > 0 ? 2 : 1))),
 
             //Ausweichschritt - 1 Block. Verteidigungsstapel: 5% Chance (max. 75%), multipliziert mit Augenzahl, das geg. Angriffe verfehlen.
-            new PassiveBlockCardInfo("Deflect", CardSet.Manica, 0, 1,
+            new PassiveBlockCardInfo("Evasive_Step", CardSet.Ocrea, 0, 1,
             (CardInfo c) => 1,
             (CardInfo c, ref int d) => { float dogeChance = Math.Min(0.05f * c.DicePower, 0.75f); if (UnityEngine.Random.Range(0, 1) < dogeChance) d = 0; }, true),
 
             //Beinarbeit - Block entsprechend Augenzahl. Verteidigungsstapel: Zu Rundenbeginn: Lege diese Karte auf den Ablagestapel, Stärke entsprechend abgelegtem Block.
-            new PassiveBlockCardInfo("Footwork", CardSet.Manica, 0, 1,
+            new PassiveBlockCardInfo("Footwork", CardSet.Ocrea, 0, 1,
             (CardInfo c) => c.DicePower,
             (CardGameManager m, CardInfo c) => { m.Player.AddStatus(StatusEffect.Strength, (c as BlockCardInfo).CurrentBlock); m.Player.DiscardSingle(c.Card); }),
 
@@ -1130,9 +1130,9 @@ public static class CardLibrary
         return "";
     }
 
-    public static Sprite GetSprite(string name)
+    public static Sprite GetSprite(string name, string set)
     {
-        Sprite sprite = Resources.Load<Sprite>($"Textures/CardGame/Images/{name}");
+        Sprite sprite = Resources.Load<Sprite>($"Textures/CardGame/Images/{set}/{name}");
         if (sprite != null)
             return sprite;
 

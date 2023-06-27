@@ -62,7 +62,7 @@ public abstract class CardInfo : ICloneable
     public string TranslatedDescription => CardLibrary.GetTranslatedDescription(Name);
 
     public Sprite Sprite
-    { get { if (!cardSprites.ContainsKey(name)) cardSprites.Add(name, CardLibrary.GetSprite(name)); return cardSprites[name]; } }
+    { get { if (!cardSprites.ContainsKey(name)) cardSprites.Add(name, CardLibrary.GetSprite(name, set.ToString())); return cardSprites[name]; } }
 
     public CardSet Set => set;
     public CardType Type => type;
