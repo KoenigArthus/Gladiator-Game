@@ -14,6 +14,7 @@ namespace JSAM {
         Music,
         SandSteps,
         SpearAttack,
+        SplashTest,
         Stable,
         steps,
         StoneSteps,
