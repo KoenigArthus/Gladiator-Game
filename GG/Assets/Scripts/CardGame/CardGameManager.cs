@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using JSAM;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class CardGameManager : MonoBehaviour
 {
@@ -70,6 +71,7 @@ public class CardGameManager : MonoBehaviour
             player.Deck.Add(CardObject.Instantiate((CardInfo)deck[i].Clone(), this.deck.transform.position));
 
         player.cardAnimations = FindObjectOfType<CardAnimations>();
+        player.camFocus = FindObjectOfType<Focus>();
 
         player.Deck.Shuffle();
         EndRound();
@@ -103,7 +105,7 @@ public class CardGameManager : MonoBehaviour
 
             //Go back to overwolrd
             battleEnded = true;
-            LevelLoader.i.LoadScene("Ludus");
+            SceneManager.LoadScene("Ludus");
         }
     }
 

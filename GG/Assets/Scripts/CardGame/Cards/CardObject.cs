@@ -14,7 +14,7 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public bool interactable = true;
     public float speed;
     public float arcAngle;
-    public CharacterRotation characterRotation;
+    public Rotator characterRotation;
 
     private static GameObject cardPrefab;
     private static Sprite cardBack;
@@ -23,7 +23,7 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     private CardInfo cardInfo = null;
     private CardCollection collection = null;
 
-    public CharacterRotation CharacterRotation => characterRotation;
+    public Rotator CharacterRotation => characterRotation;
 
     private Canvas canvas;
     private Sprite cardFront;
@@ -92,7 +92,7 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
         cardImage = GetComponentInChildren<Image>();
 
-        characterRotation = FindObjectOfType<CharacterRotation>();
+        characterRotation = FindObjectOfType<Rotator>();
     }
 
     private void Start()
