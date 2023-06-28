@@ -14,8 +14,8 @@
     },
     {
       "YarnName": "start_fight",
-      "DefinitionName": "starts the fighting Scene in Unity",
-      "Documentation": "Despacito",
+      "DefinitionName": "Fight",
+      "Documentation": "starts the fighting Scene in Unity",
       "Language": "csharp"
     },
     {
@@ -49,7 +49,7 @@
       "Language": "csharp"
     },
     {
-      "YarnName": "hastime",
+      "YarnName": "$hastime",
       "DefinitionName": "HasTime",
       "Documentation": "Returna a bool | False: The action the player is about to perform would take too much time.| True: The player has enough time to perform an action",
       "Language": "csharp"

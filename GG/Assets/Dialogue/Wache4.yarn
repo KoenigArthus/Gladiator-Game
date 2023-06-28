@@ -1,0 +1,87 @@
+﻿title: wa4_0
+tags:
+---
+<<if visited("wa4_1")>>
+    <<jump wa4_1a>>
+<<else>>
+    <<jump wa4_1>>
+<<endif>>
+===
+title: wa4_1
+position: 0,0
+---
+Wache: In der Tat...
+Wache: Wer hat dir davon... Egal,
+Wache: Wenn du an den Bestienkämpfen teilnehmen möchtest musst du dich zuersts beweisen.
+Wache: Wir können nicht jeden einfach so teilnehemen lassen,
+Wache: Bestien kennen kein Mitgefühl, keine Gnade, keine Symphatie.
+Wache: Es ist besonders einfach in so einem Kampf den Tod zu finden.
+Wache: Es würde den Lanista sehr verärgern, wenn unsere Gladiatoren so verenden würden.
+Wache: Also musst du mir beweisen das du eine realistische Überlebenschance hast.
+-> Wie mache ich das?
+    <<jump wa4_2>>
+-> (Verlassen) Ich habe doch keine Interesse...
+    Wache: Ich denke es ist besser so.
+===
+title: wa4_2
+position: 10,10
+---
+Wache: Es ist ganz einfach, du musst lediglich einen Trainingskampf gegen einen besonderen Gladiator gewinnen,
+Wache: Und das ohne getroffen zu werden.
+-> Verstehe, klingt machbar
+    <<jump wa4_ENDE>>
+-> gegen wenn?
+    <<jump wa4_3>>
+-> (Verlassen) Ich denke nicht das ich das will...
+    Wache: Musst du selbst wissen.
+===
+title: wa4_1a
+position: -119,20
+---
+Wache: Möchtest du dich doch beweisen?
+-> Ja, wie mache ich das?
+    <<jump wa4_2>>
+-> (Verlassen) Nein eigentlich nicht...
+    Wache: Musst du selbst wissen.
+===
+title: wa4_3
+position: -109,30
+---
+Wache: Gehe zum Ausbilder und sage ihm du willst die besondere Herausforderung annehemen.
+Wache: er wird wissen was zu tuen ist und den richtigen Herausforderer für dich raussuchen.
+-> Ich werde die Herausforderung annehmen!
+    <<jump wa4_ENDE>>
+-> Was ist damit gemeint ohne getroffen zu werden?
+    <<jump wa4_4>>
+-> (Verlassen) Ich denke nicht das ich möchte.
+    Wache: Musst du selbst wissen.
+===
+title: wa4_ENDE
+position: -99,40
+---
+Wache: Großartig ich werde die notwendigen Vorkehrungen treffen,
+Wache: Wenn du bereit bist melde dich beim Ausbilder, und sag du willst dich der Herausforderung stellen.
+Wache: viel Glück!
+//Es muss die Herausforderung beim Ausbilder freigeschaltet werden.
+===
+title: wa4_4
+position: -89,50
+---
+Wache: nichts allzu dramatisches...
+Wache: Blocken und Parrieren ist möglich,
+Wache: aber dein Gegner darf deinen Körper nicht verletzen.
+Wache: Du darfst nicht bluten, keine blauen Flecken, du musst eindrucksvoll
+Wache: beweisen können, dass du nicht leichtsinning bist und auf dich aufpassen kannst.
+-> Ich werde die Herausforderung annehmen!
+    <<jump wa4_ENDE>>
+-> (Verlassen) Das klingt mir zu heikel
+    Wache: Musst du selbst wissen.
+===
+title: wa4_DONE
+position: -69,70
+---
+Wache: Der Ort hier ist klein... ich weis bereits bescheid.
+Wache: Sprich in der Stadt mit dem Mann rechts zu Beginn des Forums,
+Wache: Er führt dich in die Katakomben.
+Wache: Viel Erfolg und pass auf dich auf.
+===

@@ -27,12 +27,17 @@ position: -321,-77
 ---
 Ausbilder: Die Reise hierher hat euch bestimmt erschöpft, 
 Ausbilder: wir haben hier Betten für euch vorbereitet,
+//<<camera>>
+Ausbilder: heute Nacht werdet ihr hier schlafen. 
 Ausbilder: und hier könnt ihr essen.
-Ausbilder: Ich empfehle euch wärmstens, erstmal etwas zu essen
-Ausbilder: und euch dann etwas auszuschlafen.
+//<<camera>>
+Ausbilder: Ich empfehle euch wärmstens, erstmal etwas zu essen!
+Ausbilder: Außerdem solltet ihr die Bäder aufzusuchen, um euch von den Strapazen der Reise zu erholen.
+//<<camera>>
 Ausbilder: Heute Abend, werden wir euch in der Arena Testen!
 Ausbilder: Ha! Ich freue mich bereits auf eure Darbietung!
 Ausbilder: Keine Angst, ist nur ein Trainingskampf, ich werd auf euch aufpassen!
+Ausbilder: Wir sammeln uns dann am Abend hier im Innenhof.
 ===
 title: Aus3
 position: -451,-387
@@ -59,6 +64,7 @@ Ausbilder: Das ist die beste zweite Chance die du kriegen kannst!
 title: Aus4
 position: -592,-166
 ---
-Ausbilder: Komm schon! Du brauchst Nahrung und Schlaf.
+Ausbilder: Komm schon! Du brauchst Essen und Erholung.
 Ausbilder: Fang besser an dich Einzuleben, HA!
 ===
+

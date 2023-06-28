@@ -1,0 +1,63 @@
+﻿title: wa3_0
+tags:
+---
+<<declare $challenge = false>>
+<<if $challenge == true && !visited("wa4_DONE")>>
+    <<jump wa4_DONE>>
+<<endif>>
+<<if visited("wa4_1") && $hastime == true>>
+    <<jump wa3_1a>>
+<<endif>>
+<<if $hastime == true>>
+    <<jump wa3_1>>
+<<elseif $hastime == false>>
+    <<jump wa2_2>>
+<<endif>>
+===
+title: wa3_1
+position: 0,0
+---
+Wache: Möchtest du zurück in den Ludus?
+<<if visited("ws6")>>
+-> Ich habe gehört es gibt hier eine Untergrundkampfarena, ist das wahr?
+    <<jump wa4_0>>
+-> Natürlich
+    Wache: Großartig, die Karawanne zieht gleich los.
+    //Hier muss die Ludusszene laden.
+-> (Verlassen) Ich möchte noch etwas bleiben
+    Wache: Verstehe.
+<<endif>>
+-> Natürlich
+    Wache: Großartig, die Karawanne zieht gleich los.
+    //Hier muss die Ludusszene laden.
+-> (Verlassen) Ich möchte noch etwas bleiben
+    Wache: Verstehe.
+===
+title: wa3_1a
+position: 97,20
+---
+Möchtest du zurück in den Ludus?
+<<if visited("ws6") && !visited("wa4_ENDE")>>
+-> Nochmal wegen der Bestienkämpfe.
+    <<jump wa4_0>>
+-> Natürlich
+    Wache: Großartig, die Karawanne zieht gleich los.
+    //Hier muss die Ludusszene laden.
+-> (Verlassen) Nein, ich habe gerade keinen Bedarf.
+    Wache: Wie du möchtest.
+<<endif>>
+<<if visited("wa4_DONE")>>
+-> Wo finde ich nochmal den Eingang zu den Katakomben?
+    Wache: Beim Eintritt in das Forum gleich rechts, sprich mit dem Mann dort in der Ecke.
+-> Natürlich
+    Wache: Großartig, die Karawanne zieht gleich los.
+    //Hier muss die Ludusszene laden.
+-> (Verlassen) Nein, ich habe gerade keinen Bedarf.
+    Wache: Wie du möchtest.
+<<endif>>
+-> Natürlich
+    Wache: Großartig, die Karawanne zieht gleich los.
+    //Hier muss die Ludusszene laden.
+-> (Verlassen) Nein, ich habe gerade keinen Bedarf.
+    Wache: Wie du möchtest.
+===

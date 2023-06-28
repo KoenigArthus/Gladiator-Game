@@ -1,43 +1,43 @@
-﻿title: pb1
+﻿title: pb5_1
 position: 89,-10
 ---
-<<if visited("pb2")>>
-    <<jump pb4>>
+<<if visited("pb5_2")>>
+    <<jump pb5_4>>
 <<endif>>
-Ein Buch mit der Aufschrift "Plicht und Glückseligkeit"
+Ein Buch mit der Aufschrift "Die Kunst der Rhetorik"
 -> (Zeitaufwand) Lesen?
 <<if $hastime == true>>
     <<set_time = get_time + 1>>
-    <<jump pb2>>
+    <<jump pb5_2>>
 <<else>>
-    <<jump pb2_hasnotime>>
+    <<jump pb5_hasnotime>>
 <<endif>>
 -> (Verlassen) Liegen lassen
-    <<jump pb3>>
+    <<jump pb5_3>>
 ===
-title: pb2
+title: pb5_2
 position: -183,-248
 ---
 <<set $player_rhetoric = $player_rhetoric + 1>> 
 Interessant (Rhetorik plus 1)
-    <<jump pb5>>
+    <<jump pb5_5>>
 ===
-title: pb3
+title: pb5_3
 position: 149,-228
 ---
 Mir ist gerade nicht nach lesen.
 ===
-title: pb4
+title: pb5_4
 position: -191,160
 ---
 Ich habe das bereits gelesen.
 ===
-title: pb5
+title: pb5_5
 position: 11,288
 ---
 
 ===
-title: pb_hasnotime
+title: pb5_hasnotime
 position: 89,-10
 ---
 Es lohnt sich jetzt nicht anzufagen, ich muss bald weiter.

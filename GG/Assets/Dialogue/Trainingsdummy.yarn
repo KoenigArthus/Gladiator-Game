@@ -1,0 +1,76 @@
+﻿title: Tra0
+position: 0,0
+---
+<<declare $hastime to true>> //nachfragen ob und wie dieser Bool überschrieben wird
+<<declare $player_strength to 0>>
+<<declare $player_endurance to 0>>
+<<declare $player_finesse to 0>>
+<<if $hastime == true>>
+    <<jump Tra1>>
+<<else>>
+    <<jump Tra_hasnotime>>
+<<endif>>
+===
+title: Tra1
+tags:
+---
+Vielleicht sollte ich etwas an mir arbeiten?
+// Muss zuerst in der Tutorialwoche vorgestellt werden, bevor diese ausgewählt werden können
+-> (Zeitaufwand) Ausdauer
+    <<jump Tra_Ausdauer>>
+-> (Zeitaufwand) Kraft
+    <<jump Tra_Kraft>>
+-> (Zeitaufwand) Gewandtheit
+    <<jump Tra_Gewandtheit>>
+-> (Verlassen) Jetzt nicht...
+    <<jump Tra_ENDE>>
+===
+
+title: Tra_hasnotime
+position: 10,10
+---
+Es ist jetzt nicht die Zeit um zu trainieren.
+===
+title: Tra_ENDE
+position: 20,20
+---
+Vielleicht ein anderes Mal.
+===
+title: Tra_Kraft
+position: 30,30
+---
+//Fadeout
+//Fadein
+<<set $player_strength = $player_strength + 1>>
+<<add_card "strength">>
+<<add_card "exhausted">> //kannst du machen das sich die Karte mit Erholt dann neutralisiert
+<<set_time to {get_time()} + 1>>
+<<jump Tra_1>>
+===
+title: Tra_Ausdauer
+position: 40,40
+---
+//Fadeout
+//Fadein
+<<set $player_strength = $player_strength + 1>>
+<<add_card "endurance">>
+<<add_card "exhausted">> //kannst du machen das sich die Karte mit Erholt dann neutralisiert
+<<set_time to {get_time()} + 1>>
+<<jump Tra_1>>
+===
+title: Tra_Gewandtheit
+position: 50,50
+---
+//Fadeout
+//Fadein
+<<set $player_strength = $player_strength + 1>>
+<<add_card "finesse">>
+<<add_card "exhausted">> //kannst du machen das sich die Karte mit Erholt dann neutralisiert
+<<set_time to {get_time()} + 1>>
+<<jump Tra_1>>
+===
+title: Tra_1
+position: 60,60
+---
+Du fühlst dich erschöpft, doch aus deinem Leiden wird neue Stärke erwachsen...
+===

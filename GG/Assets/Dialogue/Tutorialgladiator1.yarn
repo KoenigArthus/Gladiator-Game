@@ -1,4 +1,34 @@
-﻿title: tg1
+﻿title: tg0
+position: -215,586
+---
+
+<<declare $tgday = 0>>
+//<<log_int $tgday>>
+//<<declare $tgtime = 0>>
+<<if $tgday == 0>>
+   <<if visited("tg7")>>
+        <<jump tg10>>
+    <<elseif visited("tgENDE2")>>
+        <<jump tg7>>
+    <<elseif $tgday != 0>>
+        <<jump tgENDE2>>
+    <<elseif $tgday == 0>>
+        <<jump tg1>>
+    <<endif>>
+<<endif>>
+<<if $tgday != 0>>
+    <<if visited("tgENDE") && visited_count("tg12") == 0>>
+        <<jump tg11>>
+    <<elseif visited ("tg10")>>
+        <<jump tg10b>>
+    <<elseif visited ("tg7")>>
+        <<jump tg8>>
+    <<elseif visited ("tgENDE2")>>
+        <<jump tgENDE2>>
+    <<endif>>
+<<endif>>
+===
+title: tg1
 tags:
 position: -222,807
 ---
@@ -73,9 +103,9 @@ Tutorialgladiator: ICH bin nicht anders! Und DU bist nicht anders!
 title: tg6
 position: -766,404
 ---
-Tutorialgladiator: Und du solltest dir vor Augen führen was, du dir einbildest wer du bist!
+Tutorialgladiator: Und du solltest dir vor Augen führen, was du dir den einbildest wer du bist!
 Tutorialgladiator: Hör auf zu philosophieren und sieh dich um!
-Tutorialgladiator: Wir sind hier damit wir zur Unterhaltung irgendwelcher Adliger draufgehen
+Tutorialgladiator: Wir sind hier, damit wir zur Unterhaltung irgendwelcher Adliger draufgehen!
 <<jump tgENDE2>>
 
 ===
@@ -92,25 +122,137 @@ Tutorialgladiator: Was macht uns den anders?...
 -> Ich weis wofür ich Kämpfe
     <<jump tgENDE2>>
 ===
-
-
-
-title: tg0
-position: -215,586
+title: tg7
+position: -222,807
 ---
-
-<<declare $tgday = 0>>
-//<<log_int $tgday>>
-//<<declare $tgtime = 0>>
-<<if $tgday == 0>>
-    <<if visited("tgENDE2")>>
-        <<jump tg7>>
-    <<elseif $tgday == 0>>
-        <<jump tg1>>
-    <<endif>>
+<<if visited("tg7")>>
+    <<jump tg8>>
 <<endif>>
-<<if $tgday != 0>>
-    <<jump tgENDE2>>
-<<endif>>
+<<set $tgday to 1>>
+Tutorialgladiator: Ich habe über das was du gesagt hast nachgedacht...
+Tutorialgladiator: Du hast Recht!
+Tutorialgladiator: Das ist eine zweite Chance! Wir sind nicht zum sterben hier!
+Tutorialgladiator: Ich WAR gefangen,
+Tutorialgladiator: doch nun erbarmt sich mir das Schicksal! Ich darf FREI sein!
+Tutorialgladiator: Ich muss dafür kämpfen! 
+Tutorialgladiator: Und das werde ich auch!
+-> Großartig!
+    Tutorialgladiator: Jawohl!
+    <<jump tg8>>
+-> (Verlassen) Welch eindrucksvoller Sinneswandel! Doch bin ich gerade in Eile, bis später.
+    <<jump tg9>>
+===
+title: tg8
+position: -417,817
+---
+Tutorialgladiator: Jederzeit, wann immer du trainieren möchtest, ich werde bereitstehen!
+Tutorialgladiator: Wir werden gemeinsam die Strapazen der Gladiatur durchstehen
+Tutorialgladiator: Wir werden gemeinsam nicht nur überleben, nein
+Tutorialgladiator: wir werden LEBEN!
+-> (Zeitaufwand) Dann lass uns Kämpfen 
+    <<set_time to {get_time()} + 1>>
+    <<set $tgday to 1>>
+    <<start_fight>> //bei Sieg sollte der Passive Skill "Though Love" hinzugefügt werden. //nach dem Kampf muss der Spieler hierher zurückkehren! (also zum tgENDE)
+    <<jump tgENDE>>
+-> (Verlassen) Welch eindrucksvoller Sinneswandel! Doch bin ich gerade in Eile, bis später.
+    <<jump tg9>>
 
+===
+title: tg9
+position: -663,960
+---
+Tutorialgladiator: Ich verstehe, mein Freund, bis ein andermal.
+===
+title: tg10
+position: -544,1294
+---
+Tutorialgladiator: Ein weiterer wunderschöner Tag um zu trainieren, denkst du nicht auch?
+-> (Zeitaufwand) Dann lass uns Kämpfen 
+<<if $hastime == true>>
+    <<set_time = {get_time()} + 1>>
+    <<set $tgday to 1>>
+    <<start_fight>> //nach dem Kampf muss der Spieler hierher zurückkehren! (also zum tgENDE)
+    <<jump tgENDE>>
+<<else>>
+    <<jump tgHasNoTime>>
+<<endif>>
+-> (Verlassen) Gewiss, doch bin ich gerade in Eile, bis später.
+    <<jump tg9>>
+===
+title: tg10b
+position: -211,1094
+---
+Tutorialgladiator: Für heute bin ich durch.
+-> (Verlassen) Ok, bis morgen.
+    <<jump tgENDE>>
+===
+title: tgENDE
+position: -11,1243
+---
+Tutorialgladiator: War ein großartiger Kampf, ich freue mich auf das nächsten Mal!
+===
+title: tg11
+position: -66,674
+---
+Tutorialgladiator: Ein weiterer wunderschöner Tag um zu trainieren, denkst du nicht auch?
+-> (Zeitaufwand) Dann lass uns Kämpfen 
+<<if $hastime == true>>
+    <<set_time = get_time + 1>>
+    <<set $tgday to 1>>
+    <<start_fight>> //nach dem Kampf muss der Spieler hierher zurückkehren! (also zum tgENDE)
+    <<jump tgENDE>>
+<<else>>
+    <<jump tgHasNoTime>>
+<<endif>>
+-> (Zeitaufwand/Rhetorik V) Du hast wohl deine Bestimmung gefunden? <<if $player_rhetoric >= 5>>
+<<if $hastime == true>>
+    <<set_time = get_time + 1>>
+    <<jump tg12>>
+<<else>>
+    <<jump tgENDE>>
+<<endif>>
+-> (Verlassen) Gewiss, doch bin ich gerade in Eile, bis später.
+    <<jump tg9>>
+===
+title: tgHasNoTime
+position: -56,684
+---
+Leider habe ich gerade keine Zeit...
+===
+title: tg12
+position: 339,939
+---
+Tutorialgladiator: Ja das habe ich...
+Tutorialgladiator: Freiheit...
+Tutorialgladiator: Ich habe viel über die Natur der Freiheit nachgedacht,
+Tutorialgladiator: Es war stets mein allerhöchster Wunsch "wahrlich" frei zu sein,
+Tutorialgladiator: frei von Bürde, frei von Pflichten, frei von Konsequenzen...
+Tutorialgladiator: Eine derartige Freiheit ist eine Täuschung.
+Tutorialgladiator: Wer oder was, besitzt diese Freiheit?
+Tutorialgladiator: All jenes das nicht existent ist! Oder besser, Tod!
+Tutorialgladiator: Beinahe habe ich diese Freiheit aufgedrückt bekommen!
+Tutorialgladiator: Doch, Ich will leben, ich will existieren
+Tutorialgladiator: und das bedeutet seine Ketten aufzuheben und zu tragen,
+Tutorialgladiator: soweit du kannst! Ich weis jetzt wofür ich kämpfe!
+Tutorialgladiator: Ich werde die Bürde des Schicksals tragen, ja ich werde sie tragen!
+Tutorialgladiator: Solange ich kann, soweit ich kann!
+Tutorialgladiator: Ich habe eine Familie, ich möchte dir davon erzählen...
+Tutorialgladiator: Setzen wir uns besser, es ist eine lange Geschichte,
+Tutorialgladiator: Aber du wirst daran wachsen davon zu hören
+Tutorialgladiator: und ich werde daran wachsen davon zu erzählen...
+//fadeout
+//wait 2
+//fadein
+Er erzählte mir von seiner Frau und seinem Kind
+seiner stettigen Flucht vor Pflichten
+seiner Angst vor Konsequenzen
+Wie Wein und Glückspiel ihn zum Dieb machten
+Warum der Wunsch nach Freiheit ihn dazu trieb
+und wie er sich nun, wissentlich und willentlich, seinem Schicksal stellt
+um nun wirklich am Leben zu sein.
+//add_skill "Determination"
+Tutorialgladiator: Danke, mein Freund
+Tutorialgladiator: es schwierig darüber zu reden, doch ich spüre wie neue Kraft durch meinen Körper fließt.
+Tutorialgladiator: Es war notwendig, darüber zu reden.
+Tutorialgladiator: Danke.
 ===

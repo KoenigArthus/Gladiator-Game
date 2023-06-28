@@ -1,0 +1,47 @@
+﻿title: TestDayskiper
+tags:
+---
+Ein Tag ist vergangen.
+<<if visited("TestDayskiper") == true>>
+Den Waffenschmiedialog testen
+    -> ja klar!
+        <<jump Testerws>>
+    -> nein danke.
+<<endif>>
+<<set $tgday -= 1>>
+===
+title: IfTester
+position: -21,235
+---
+<<if visited("IfTester") == false>>
+Soll ein Tag vergeehen? oder nicht?
+<<endif>>
+<<jump TestDayskiper>>
+===
+title: Testerws
+position: 0,0
+---
+
+<<if $wsday == 1>>
+    <<set $wsdayText = "einem Tag">>
+<<elseif $wsday == 2>>
+    <<set $wsdayText = "zwei Tagen">>
+<<elseif $wsday == 3>>
+    <<set $wsdayText = "drei Tagen">>
+<<elseif $wsday == 4>>
+    <<set $wsdayText = "vier Tagen">>
+<<elseif $wsday == 5>>
+    <<set $wsdayText = "fünf Tagen">>
+<<elseif $wsday == 6>>
+    <<set $wsdayText = "sechs Tagen">>
+<<elseif $wsday == 7>>
+    <<set $wsdayText = "sieben Tagen">>
+<<endif>>
+
+Schmied: Ich werde in {$wsdayText} richtig losarbeiten können.
+<<if $wsday == 1>>
+Schmied: Bist du auch so gespannt wie ich?
+Schmied: Ich freue mich richtig!
+<<endif>>
+Schmied: Bis dahin hab ich noch mein sonstiges Angebot.
+===

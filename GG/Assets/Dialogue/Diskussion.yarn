@@ -1,0 +1,126 @@
+﻿title: nwa1
+tags:
+position: -16,-398
+---
+//Diese Textbox plopt in völliger Dunkelheit auf, erst später wird der Spieler sehen wo und was
+???: Aufstehen! 
+->?
+    <<jump nwa2>>
+    //wait1
+    //fadein
+===
+title: nwa2
+position: 26,-216
+---
+Wache: Mitkommen!
+-> Jawohl!
+    <<jump nwa3>>
+-> Warum, was ist passiert!?
+    <<jump nwa4>>
+===
+title: nwa3
+position: -112,18
+---
+Wache: Der Lanista und ein paar Ägypter wollen dich sprechen.
+-> Ägypter?!
+    <<jump nwa5>>
+-> Verstehe...
+    //fadeout
+    //Der Spieleravatar muss in den Innenhof teleportiert werden
+    //wait1
+    //fadein
+    <<jump la1>>
+===
+title: nwa4
+position: 253,151
+---
+Wache: Kann ich dir nicht sagen...
+Wache: hab selber keine Ahnung, der Lanista und ein paar Ägypter wollen mit dir reden.
+-> Ägypter?!
+    <<jump nwa5>>
+-> Verstehe...
+    //fadeout
+    //Der Spieleravatar muss in den Innenhof teleportiert werden
+    //wait1
+    //fadein
+    <<jump la1>>
+===
+title: nwa5
+position: 330,428
+---
+Wache: Ja, irgendwelche ganz hohe Tiere, oder sowas...
+Wache: Der Lanista wird die Situation gleich klären.
+-> Verstehe...
+    //fadeout
+    //Der Spieleravatar muss in den Innenhof teleportiert werden
+    //wait1
+    //fadein
+    <<jump la1>>
+===
+title: la1
+position: -195,499
+---
+Lanista: Ist das der Mann?
+Imiut: Ja, das ist er,
+Imiut: Der Todgeweihte.
+Lanista: Dieser Mann, er ist also ihren heiligen Gesetzen entflohen und versteckt sich hier in meinem Ludus?
+Imiut: So ist es.
+Lanista: Das ist jetzt ärgerlich, aber laut Dokumenten und Kaufbelegen ist dieser Mann nun römischer Gladiator.
+Lanista: Nicht nur das, er ist auch Privatbesitz des Imperators.
+Lanista: Und somit habe ich keine Entscheidungsgewalt über den Besitzer dieses Gladiators.
+Imiut: Wie bitte?
+Lanista: Ich muss einen Antrag an den Imperator stellen und dieser muss ihn bewilligen.
+Lanista: Erst dann kann ich den Galdiator aushändigen, ohne meine Pflichten zu verletzen.
+Imiut: Ich bin ein Hohepriester der Götter, ich handle nach dem Willen der Götter.
+Imiut: Dieser Mann muss sterben, je bälder desto besser.
+Lanista: Ich verstehe ihre Regeln und Gesetze, Hohepriester, und ich weis was es bedeutet seine Plicht zu erfüllen.
+Lanista: Allerdings, ist das hier römischer Boden, hier gelten römische Gesetze,
+Lanista: Ich unterstehe einer Hierarchie von Loyalitäten, 
+Lanista: Der Imperator steht an der Spitze dieser Hierarchie.
+Lanista: Es wäre Hochverrat wenn ich ihnen diesen Gladiator ausliefere.
+Lanista: Ein solcher Akt würde desweiteren die römisch-ägyptischen Beziehungen unnötig strapazieren.
+Imiut: Ich verstehe, wie lange dauert es diesen Antrag zu stellen.
+Lanista: Die Direktverbindung zum Imperator ist hier inmitten der Wüste etwas träge...
+Lanista: Wir kommunizieren jährlich einmal nach Rom.
+Lanista: Die letzte Unterhaltung über einen Dienstboten fand beim letzen Einkauf neuer Gladiatoren statt,
+Lanista: Was ziemlich genau eine Woche her ist.
+Imiut: Frechheit!
+Lanista: Ich bitte um Verzeihung Hohepriester.
+Imiut: Können sie den Vorgang nicht beschleunigen?
+Lanista: Wenn es ihnen nur um den Tod des Gladiators geht,
+Lanista: Können sie ihren eigen Gladiator in die Arena stellen,
+Lanista: In neuen Wochen hat ihr "Todgeweihter" den nächsten freien Kampftermin,
+Lanista: Wenn sie bis dahin einen Kämpfer organisiert haben, kann er gleich hier im Amphitheater, selbstständig
+Lanista: für das Ableben des "Todgeweihten" sorgen.
+Imiut: Eine ausgezeichnete Idee!
+Imiut: Kein Papierkramm, keine Pflichten werden verletzt, niemandem auf die Füße getretten!
+Imiur: Scharfrichter? Was hälst du von der Idee?
+//wait1
+//Es soll ein wenig gewartet werden bevor Nemesis angwortet
+Nemesis: Großartig.
+Nemesis: Ein richtiger Kampf? Ein Opfer das sich wehrt?
+Nemesis: Ich liebe diese Idee.
+Lanista: Sehr gut ich setze sie dann auf die Liste!
+Imiut: Wir sehen uns dann in neuen Wochen, Todgeweihter.
+Imiut: Der richtenden Macht der Götter kann sich niemand entziehen.
+Imiut: Nichtmal die Macht des Imperators kann dich beschützen.
+Imiut: Genieße deine unverdiente restliche Lebenszeit.
+//fadeout
+//wait1
+//Nemesis und Imiut sind weg
+//Spieleravater und Lanista
+//fadein  (Innenhof)
+Lanista: Ich weis nicht was du getan hast und will es auch nicht wissen.
+Lanista: Ich möchte aber das du verstehst: das hier ist deine zweite Chance.
+Lanista: Es wird nicht einfach, aber wenn du den Scharfrichter besiegst,
+Lanista: Bist du frei von deinen Verfolgern.
+Lanista: nach zehn bestandenen Kämpfen,
+Lanista: So ist es hier Brauch, setze ich mich für deine Staatsbürgerschaft ein,
+Lanista: Damit darfst du gehen wohin du willst, weit weg von den Gesetzen und Regeln der Ägypter,
+Lanista: Irgendwo tief im sicheren Landesinneren des römischen Reiches.
+Lanista: So ich bin jetzt müde, zurück in die Baracke Gladiator!
+-> Danke, Herr Lanista!
+    //fadeout
+    //wait1
+    //fadein (nächster Morgen, der erste richtige Morgen an dem der Spieler völlig frei ist)
+===
