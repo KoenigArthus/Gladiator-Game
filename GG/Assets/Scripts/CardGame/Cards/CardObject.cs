@@ -14,6 +14,7 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public bool interactable = true;
     public float speed;
     public float arcAngle;
+    [HideInInspector] public Rotator rotator;
 
     private static GameObject cardPrefab;
     private static Sprite cardBack;
@@ -21,6 +22,9 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     private CardInfo cardInfo = null;
     private CardCollection collection = null;
+
+
+    public Rotator Rotator => rotator;
 
     private Canvas canvas;
     private Sprite cardFront;
@@ -72,6 +76,8 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public static CardObject HoveredCard => hoveredCard;
 
+
+
     #endregion Properties
 
     #region Main-Loop
@@ -88,6 +94,9 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         descriptionUI = texts[3];
 
         cardImage = GetComponentInChildren<Image>();
+
+        // This part definetly needs refractoring if we get Lag-Spikes when we spawn cards.
+        rotator = FindObjectOfType<Rotator>();
     }
 
     private void Start()
@@ -223,10 +232,8 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
         if (transform.localPosition.y > 500 && collection != null && collection.Player != null)
         {
-
             collection.Player.PrepareCard(this);
-            Debug.Log("Stopped Movement");
-
+            rotator.StopMovement();
         }
 
 

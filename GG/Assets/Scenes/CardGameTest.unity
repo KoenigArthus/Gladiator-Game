@@ -30444,6 +30444,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
+--- !u!198 &825046550 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6710139492206580334, guid: 95b8d3d65b5d7f1409c4ed1723887826,
+    type: 3}
+  m_PrefabInstance: {fileID: 1281108820}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &839380781
 GameObject:
   m_ObjectHideFlags: 0
@@ -65780,7 +65786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523e92176e9bba842a97c179c9370e30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swordParticleSystem: {fileID: 0}
+  swordParticleSystem: {fileID: 825046550}
 --- !u!114 &2042966148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71610,7 +71616,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &5816534507650105787
 MeshFilter:
   m_ObjectHideFlags: 0
