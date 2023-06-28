@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using JSAM;
+using TMPro;
 
 public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -28,11 +29,11 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     private Canvas canvas;
     private Sprite cardFront;
-    private Image cardImage;
-    private Text nameUI;
-    private Text setUI;
-    private Text typeUI;
-    private Text descriptionUI;
+    [SerializeField] private Image cardImage;
+    [SerializeField] private TextMeshProUGUI nameUI;
+    [SerializeField] private TextMeshProUGUI setUI;
+    [SerializeField] private TextMeshProUGUI typeUI;
+    [SerializeField] private TextMeshProUGUI descriptionUI;
 
     private Vector3 startPosition = Vector3.zero;
     private Vector3 targetPosition;
@@ -84,17 +85,6 @@ public class CardObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     private void Awake()
     {
-        canvas = GetComponentInParent<Canvas>();
-
-        Text[] texts = this.GetComponentsInChildren<Text>();
-
-        nameUI = texts[0];
-        setUI = texts[1];
-        typeUI = texts[2];
-        descriptionUI = texts[3];
-
-        cardImage = GetComponentInChildren<Image>();
-
         // This part definetly needs refractoring if we get Lag-Spikes when we spawn cards.
         rotator = FindObjectOfType<Rotator>();
     }
