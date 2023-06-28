@@ -21,11 +21,14 @@ public class TimeManager : MonoBehaviour
 
     private void Awake()
     {
-        characterSpawner = GetComponent<CharacterSpawnManager>();
         if (timeHasChanged == null)
             timeHasChanged = new UnityEvent();
 
-        timeHasChanged.AddListener(characterSpawner.ScheduleCharacters);
+        if (this.gameObject.GetComponent<CharacterSpawnManager>() == null)
+        {
+            characterSpawner = GetComponent<CharacterSpawnManager>();
+            timeHasChanged.AddListener(characterSpawner.ScheduleCharacters);
+        }
     }
 
 
@@ -330,14 +333,14 @@ public class TimeManager : MonoBehaviour
     {
         SetNextTime();
 
-        if( currentTime == 0)
+        if (currentTime == 0)
             SetNextDate();
     }
     public void MoveBackInTime()
     {
         SetPreviousTime();
 
-        if(currentTime == 4)
+        if (currentTime == 4)
             SetPreviousDate();
     }
 
