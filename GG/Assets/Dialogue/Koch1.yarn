@@ -1,0 +1,201 @@
+﻿title: ko0
+position: -340,-88
+---
+//<<set $player_rhetoric  to 3>> //Test
+//<<set $wood to false>>
+//<<set $tools to false>>
+//<<set $rooster = false>>
+//<<declare $repaired = true>> //Test ende
+
+<<if $repaired == true && $rooster == true>>
+        <<jump ko12>>
+    <<elseif $rooster == true>>
+        <<jump ko13>>
+    <<elseif $repaired == true>>
+        <<jump ko14>>
+    <<elseif $tools == true && $wood == true>>
+        <<jump ko15>>
+    <<else>>
+        <<jump ko1>>
+<<endif>>
+<<declare $koday = 0>>
+<<declare $money to 0>>
+    //<<jump ko1>>
+===
+title: ko1
+position: -234,-439
+---
+Koch: Hey hast du hunger?
+Koch: Wir haben Bohnen und ehhh Linsen,
+Koch: ich mach gleich was warm, wenn du magst
+-> (Zeitaufwand) Klar.
+    //<<set $player_actualvitality = $player_actualvitality + (1/2)* $player_maxvitality>>
+    <<add_card "Well Nourished">> //Der Name passt bestimmt noch nicht; Notiz an mich selbst: Jojo fragen ob er eine Abfrage machen kann: Hunger sollte entfernt werden anstelle Gut Gesättigt hinzugefügt zu werden
+    <<set_time to {get_time()} + 1>>
+    //Fadeout
+    //wait1
+    //Fadein
+    <<jump koENDE2>>
+-> Du siehst unglücklich aus stimmt etwas nicht? <<if $player_rhetoric >= 2>>
+    <<jump ko2>>
+-> (Verlassen) Ich möchte gerade nichts.
+    <<jump koENDE1>>
+===
+title: koENDE1
+position: 228,-604
+---
+Koch: Alles klar, bis später.
+===
+title: koENDE2
+position: 179,-762
+---
+Koch: Ich hoffe es hat geschmeckt!
+===
+title: ko2
+position: 127,-178
+---
+Koch: Ich entschuldige mich... das man es ehhm... so offensichtlich ist.
+Koch: Ja,ich ... unser...
+Koch: Um es auf den Punkt zu bringen, unser Ludusmaskottchen
+Koch: der "Kampfhahn" ist abgehauen, 
+Koch: und um genau zu seien nicht zum ersten Mal... Ich muss ihn jetzt wieder einfangen.
+-> Ist das alles? Ist doch nicht schlimm?
+    <<jump ko3>>
+-> soll ich ihn dir zurückbringen?
+    <<jump ko4>>
+-> (Verlassen) Das klingt nach deinem Problem.
+    <<jump koENDE3>>
+===
+
+title: ko3
+position: 389,-184
+---
+Koch: DOCH! Ist es...ehhh, oder eigentlich nicht...
+Koch: Der Lanista hält mich für unfähig...
+Koch: und ich fürchte er hat recht. Ich kann nichtmal diesen dummen Hahn im Stall halten!
+-> Nur wegen dem Hahn? Ist nich der Stall das Problem?
+    <<jump ko5>>
+-> (Verlassen) Das klingt nach deinem Problem.
+    <<jump koENDE3>>
+===
+title: ko4
+position: 34,29
+---
+Koch: Ja, umbedingt!
+Koch: Würdest du das für mich machen?
+-> Klar
+    <<jump ko8>>
+-> (Verlassen) Lieber nicht, es ist deine Sache.
+    <<jump koENDE3>>
+===
+title: koENDE3
+position: 44,39
+---
+Koch: Du hast Recht ich sollte mich zusammenreißen...
+===
+title: ko5
+position: 54,49
+---
+Koch: Ja! eigentlich schon... aber ich kriege den nicht wieder hin,
+Koch: Ich habe ehhh, wie soll ich sagen... die Reparatur ehhm nicht ganz hinbekommen.
+Koch: Damit meine ich, alle Ressourcen die zur Reperatur notwendig waren...
+Koch: sind jetzt weg, kaputt... der Lanista sagt es ist mein Versagen,
+Koch: und da hat er natürlich Recht,
+Koch: aber es ändert nichts daran das der Stall immernoch ein Loch hat und der Hahn ständig abhaut.
+-> Soll ich mit dem Lanista reden?
+    <<jump ko6>>
+-> Soll ich den Hahn für dich wieder einfangen?
+    <<jump ko8>>
+-> Kann ich dir bei der Reperatur helfen?
+    <<jump ko9>>
+-> (Verlassen) Du solltest dich selbst darum kümmern.
+    <<jump koENDE3>>
+===
+title: ko6
+position: -225,258
+---
+Koch: NEIN! Auf keinen Fall!
+Koch: Wie stehe ich den da, wenn ich jemanden in meiner Sache zum Lanista schicke?!
+-> Du hast recht, wird dich nicht wirklich fähig aussehen lassen.
+    <<jump ko7>>
+===
+title: ko7
+position: -56,-189
+---
+Koch: ja...
+-> Soll ich den Hahn trotzdem für dich einfangen?
+    <<jump ko8>>
+-> (Verlassen) Du wirst schon irgendwie klarkommen.
+    <<jump koENDE3>>
+===
+title: ko8
+position: -46,-179
+---
+Koch: Ich wäre dir unendlich dankbar wenn du das tuen könntest!
+//Quest beginnt "Fange den Kampfhahn"
+===
+title: ko9
+position: -36,-169
+---
+Koch: Man braucht Werkzeug und Holz!
+Koch: Wenn du das organisieren könntest, wäre bereits viel getan!
+Koch: Aber erstmal sollte dieser Hahn eingefangen werden...
+-> Ich kümmere mich erstmal um den Hahn.
+    <<jump ko8>>
+-> Ich schaue mal nach dem Werkzeug und dem Holz!
+    <<jump ko10>>
+-> (Verlassen) Du solltest damit auch alleine fertig werden.
+    <<jump koENDE3>>
+===
+title: ko10
+position: -26,-159
+---
+Koch: Nein, noch nicht...
+Koch: Zuerst muss der Hahn eingefangen werden.
+-> Verstanden ich bringe den Hahn zurück.
+    <<jump ko8>>
+-> Das bringt doch nichts, du musst zuerst den Stall flicken. <<if $player_rhetoric == 3>>
+    <<jump ko11>>
+-> (Verlassen) Du solltest dich selbst darum kümmern.
+    <<jump koENDE3>>
+===
+title: ko11
+position: -16,-149
+---
+Koch: Nein... Du hast Recht.
+Koch: Ich kümmere mich um den Hahn und du organisierst das Werkzeug.
+//Quest beginnt "Reparaturarbeiten"
+===
+title: ko12
+position: -465,-830
+---
+Koch: Wow, du hast alles erledigt
+Koch: Der Hahn ist zurück im Stall und er ist auch noch repariert!
+Koch: Hier, das hast du dir verdient!
+//<<add_skill "Extra Serving">>
+<<set $money = $money + 100>>
+<<add_card "egg">>
+<<set $rooster to false>>
+<<set $repaired to false>>
+===
+title: ko13
+position: -67,-198
+---
+Koch: Oha! Der Hahn ist zurück im Stall
+Koch: Hier, es ist nicht viel, aber ich will das du es animmst!
+<<add_card "egg">>
+<<set $rooster to false>>
+===
+title: ko14
+position: -57,-188
+---
+Koch: Unglaublich der Stall it repariert!
+Koch: Hier, das schulde ich dir!
+<<set $money to $money + 100>>
+<<set $repaired to false>>
+===
+title: ko15
+position: -47,-178
+---
+Koch: Platzhaltertext
+===

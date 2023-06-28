@@ -1,0 +1,71 @@
+﻿title: lv0
+tags:
+---
+<<declare $lvday = 0>>
+<<if $lvday == 0>>
+    <<if visited ("lv4")>>
+        <<jump lv2b>>
+    <<elseif visited ("lv1")>>
+        <<jump lv2>>
+    <<elseif $lvday == 0>>
+        <<jump lv1>>
+    <<endif>>    
+<<endif>>
+===
+title: lv1
+position: -24,-152
+---
+Lagerverwalter: Hehe, ein Neuer!
+Lagerverwalter: Von den Alten ist schon keiner mehr da...
+Lagerverwalter: Aber ihre Ausrüstung in prima Zustand, hehe
+Lagerverwalter: Möchtest du dich von der Qualität überzeugen?
+-> Zeig mal was du hast
+    <<jump lv3>>
+-> Was machst du hier?
+    <<jump lv4>>
+-> (Verlassen) Nein danke
+    <<jump lvENDE>>
+===
+title: lvENDE
+position: 31,0
+---
+Lagerverwalter: Wir werden uns wiedersehen, hehe
+===
+title: lv3
+position: 41,10
+---
+Lagerverwalter: Schau dich ruhig um, hehe
+    <<open_shop>> //Inventarmenü des Spielercharakters, sowie seine gelagerten Gegenstände
+===
+title: lv4
+position: 51,20
+---
+Lagerverwalter: Ich verwalte all das Zeug der Gladiatoren hier
+Lagerverwalter: Waffen, Rüstungen, Gegenstände aller Art, pflege und verware ich hier.
+Lagerverwalter: Wenn du etwas hast, was du nicht mit dir rumschlepen möchtest,
+Lagerverwalter: dann bring es einfach zu mir, ich kümmere mich, für dich, darum, hehe
+-> Zeig mal was du hast
+    <<jump lv3>>
+-> (Verlassen) Verstehe
+    <<jump lvENDE>>
+===
+title: lv2
+position: 61,30
+---
+Lagerverwalter: Wie darf ich dir weiterhelfen?
+-> Lass mich mal mein Zeug sehen
+    <<jump lv3>>
+-> Was machst du hier?
+    <<jump lv4>>
+->(Verlassen) Ich brauch nichts
+    <<jump lvENDE>>
+===
+title: lv2b
+position: 71,40
+---
+Lagerverwalter: Wie darf ich dir weiterhelfen?
+-> Lass mich mal mein Zeug sehen
+    <<jump lv3>>
+->(Verlassen) Ich brauch nichts
+    <<jump lvENDE>>
+===

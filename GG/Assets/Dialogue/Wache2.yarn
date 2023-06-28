@@ -1,0 +1,86 @@
+﻿title: wa2_0
+tags:
+---
+<<if $challenge == true && !visited("wa4_DONE")>>
+    <<jump wa4_DONE>>
+<<endif>>
+<<if visited("wa4_1") && $hastime == true>>
+    <<jump wa2_1a>>
+<<endif>>
+<<if $hastime == true>>
+    <<jump wa2_1>>
+<<elseif $hastime == false>>
+    <<jump wa2_2>>
+<<endif>>
+===
+title: wa2_1
+position: -43,78
+---
+<<if visited("wa2_1") == false>>
+Wache: Du bist jetzt ein richtiger Gladiator, herzlichen Glückwunsch!
+Wache: Du darfst jetzt wann immer du möchtest in die Stadt.
+<<endif>>
+Möchtest du in die Stadt?
+<<if visited("ws6") && !visited("wa4_ENDE")>>
+-> Ich habe gehört es gibt hier eine Untergrundkampfarena, ist das wahr?
+    <<jump wa4_0>>
+-> Natürlich
+    Wache: Großartig, die Karawanne zieht gleich los.
+    //Hier muss die Stadtszene laden.
+-> (Verlassen) Nein, ich habe gerade keinen Bedarf.
+    Wache: Wie du möchtest.
+<<endif>>
+-> Natürlich
+    Wache: Großartig, die Karawanne zieht gleich los.
+    //Hier muss die Stadtszene laden.
+-> (Verlassen) Nein, ich habe gerade keinen Bedarf.
+    Wache: Wie du möchtest.
+===
+title: wa2_2
+position: 10,10
+---
+Wache: Du wirst in der Arena erwartet, wir sollten los!
+-> Ich bin bereit
+    <<jump wa2_4>>
+-> Noch einen Moment
+    <<jump wa2_3>>
+===
+title: wa2_3
+position: 20,20
+---
+Wache: Beeil dich!
+===
+title: wa2_4
+position: 30,30
+---
+Wache: Viel Glück in der Arena!
+//Hier muss die Arenaszene laden.
+===
+title: wa2_1a
+position: 117,40
+---
+Möchtest du in die Stadt?
+<<if visited("ws6") && !visited("wa4_ENDE")>>
+-> Nochmal wegen der Bestienkämpfe.
+    <<jump wa4_0>>
+-> Natürlich
+    Wache: Großartig, die Karawanne zieht gleich los.
+    //Hier muss die Stadtszene laden.
+-> (Verlassen) Nein, ich habe gerade keinen Bedarf.
+    Wache: Wie du möchtest.
+<<endif>>
+<<if visited("wa4_DONE")>>
+-> Wo finde ich nochmal den Eingang zu den Katakomben?
+    Wache: Beim Eintritt in das Forum gleich rechts, sprich mit dem Mann dort in der Ecke.
+-> Natürlich
+    Wache: Großartig, die Karawanne zieht gleich los.
+    //Hier muss die Stadtszene laden.
+-> (Verlassen) Nein, ich habe gerade keinen Bedarf.
+    Wache: Wie du möchtest.
+<<endif>>
+-> Natürlich
+    Wache: Großartig, die Karawanne zieht gleich los.
+    //Hier muss die Stadtszene laden.
+-> (Verlassen) Nein, ich habe gerade keinen Bedarf.
+    Wache: Wie du möchtest.
+===

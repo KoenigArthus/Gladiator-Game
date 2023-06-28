@@ -1,0 +1,221 @@
+fileFormatVersion: 2
+guid: 5285104852979524f900773fc746459e
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 053561912b1654d80a424bb0696a74ae, type: 3}
+  sourceScripts:
+  - {fileID: 6391573757903218779, guid: 74b18c2887236f747b529c6a3ec4713e, type: 3}
+  - {fileID: 6391573757903218779, guid: 5a82801d27805464da3fc5d7e60877a1, type: 3}
+  - {fileID: 6391573757903218779, guid: d9b0729f4fd79494b9f380f38d5ca979, type: 3}
+  - {fileID: 6391573757903218779, guid: ce8f88a1abad42f4eb3f24a14c219d1f, type: 3}
+  - {fileID: 6391573757903218779, guid: fd0038d44e1a2494386139dea3c559b1, type: 3}
+  - {fileID: 6391573757903218779, guid: f9a05ac016e502547b27f672a1a08ac9, type: 3}
+  - {fileID: 6391573757903218779, guid: e568dc801c1e5a94bbbfc191955a3f43, type: 3}
+  - {fileID: 6391573757903218779, guid: 74edf5ca20e90004b800ecf0b716b274, type: 3}
+  - {fileID: 6391573757903218779, guid: 682f41571b26f724fa214c50a5918195, type: 3}
+  - {fileID: 6391573757903218779, guid: 031f8aa748c394340a3e1301fe5c5eaf, type: 3}
+  - {fileID: 6391573757903218779, guid: 40cd7a88fae3d0a45bd6dcaf31f39b1a, type: 3}
+  - {fileID: 6391573757903218779, guid: 60eabf0d75da08543bbc5c34ef878e3c, type: 3}
+  - {fileID: 6391573757903218779, guid: 2d4ce2f56705a574e91bff58dc5474ef, type: 3}
+  - {fileID: 6391573757903218779, guid: 980c6cf04d231fb4eb585dcdc8d15738, type: 3}
+  - {fileID: 6391573757903218779, guid: f44de20bac00ac348a220dbbfd44d2a0, type: 3}
+  - {fileID: 6391573757903218779, guid: 8be7a7a9b9bfdfa4bbc5b439de2d5fca, type: 3}
+  - {fileID: 6391573757903218779, guid: 436d804d00407ca4aa4725d49eeac4d9, type: 3}
+  - {fileID: 6391573757903218779, guid: bd856918100276348869cff65e812ba5, type: 3}
+  - {fileID: 6391573757903218779, guid: 6a486aa99430eca4aaad6b3920ce5215, type: 3}
+  - {fileID: 6391573757903218779, guid: d8ae7ada301b70d4d9ca46781a882728, type: 3}
+  - {fileID: 6391573757903218779, guid: 2e0882338b11ebc45b77dff522413935, type: 3}
+  - {fileID: 6391573757903218779, guid: d9f2ec98020594c4b8b593fdbc51e6b7, type: 3}
+  - {fileID: 6391573757903218779, guid: b3b31bd0fe788c6439e16fab9ee18ff2, type: 3}
+  - {fileID: 6391573757903218779, guid: b9a4c742e0d7ea94e967a42d0db662a9, type: 3}
+  - {fileID: 6391573757903218779, guid: 3520cddf6ba0bb04cb8446d64e30bfa2, type: 3}
+  compileErrors: []
+  serializedDeclarations:
+  - name: $lvday
+    typeName: Number
+    defaultValueBool: 0
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: 
+    isImplicit: 0
+    sourceYarnAsset: {fileID: 6391573757903218779, guid: d9b0729f4fd79494b9f380f38d5ca979,
+      type: 3}
+  - name: $player_coins
+    typeName: Number
+    defaultValueBool: 0
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: 
+    isImplicit: 0
+    sourceYarnAsset: {fileID: 6391573757903218779, guid: fd0038d44e1a2494386139dea3c559b1,
+      type: 3}
+  - name: $second_coins
+    typeName: Number
+    defaultValueBool: 0
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: 
+    isImplicit: 0
+    sourceYarnAsset: {fileID: 6391573757903218779, guid: fd0038d44e1a2494386139dea3c559b1,
+      type: 3}
+  - name: $tgday
+    typeName: Number
+    defaultValueBool: 0
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: 
+    isImplicit: 0
+    sourceYarnAsset: {fileID: 6391573757903218779, guid: e568dc801c1e5a94bbbfc191955a3f43,
+      type: 3}
+  - name: $player_rhetoric
+    typeName: Number
+    defaultValueBool: 0
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: 
+    isImplicit: 0
+    sourceYarnAsset: {fileID: 6391573757903218779, guid: e568dc801c1e5a94bbbfc191955a3f43,
+      type: 3}
+  - name: $meday
+    typeName: Number
+    defaultValueBool: 0
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: 
+    isImplicit: 0
+    sourceYarnAsset: {fileID: 6391573757903218779, guid: 74edf5ca20e90004b800ecf0b716b274,
+      type: 3}
+  - name: $koday
+    typeName: Number
+    defaultValueBool: 0
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: 
+    isImplicit: 0
+    sourceYarnAsset: {fileID: 6391573757903218779, guid: 682f41571b26f724fa214c50a5918195,
+      type: 3}
+  - name: $money
+    typeName: Number
+    defaultValueBool: 0
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: 
+    isImplicit: 0
+    sourceYarnAsset: {fileID: 6391573757903218779, guid: 682f41571b26f724fa214c50a5918195,
+      type: 3}
+  - name: $hastime
+    typeName: Bool
+    defaultValueBool: 1
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: 
+    isImplicit: 0
+    sourceYarnAsset: {fileID: 6391573757903218779, guid: 031f8aa748c394340a3e1301fe5c5eaf,
+      type: 3}
+  - name: $player_strength
+    typeName: Number
+    defaultValueBool: 0
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: 
+    isImplicit: 0
+    sourceYarnAsset: {fileID: 6391573757903218779, guid: 031f8aa748c394340a3e1301fe5c5eaf,
+      type: 3}
+  - name: $player_endurance
+    typeName: Number
+    defaultValueBool: 0
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: 
+    isImplicit: 0
+    sourceYarnAsset: {fileID: 6391573757903218779, guid: 031f8aa748c394340a3e1301fe5c5eaf,
+      type: 3}
+  - name: $player_finesse
+    typeName: Number
+    defaultValueBool: 0
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: 
+    isImplicit: 0
+    sourceYarnAsset: {fileID: 6391573757903218779, guid: 031f8aa748c394340a3e1301fe5c5eaf,
+      type: 3}
+  - name: $repaired
+    typeName: Bool
+    defaultValueBool: 1
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: 
+    isImplicit: 0
+    sourceYarnAsset: {fileID: 6391573757903218779, guid: 2d4ce2f56705a574e91bff58dc5474ef,
+      type: 3}
+  - name: $rooster
+    typeName: Bool
+    defaultValueBool: 1
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: 
+    isImplicit: 0
+    sourceYarnAsset: {fileID: 6391573757903218779, guid: 980c6cf04d231fb4eb585dcdc8d15738,
+      type: 3}
+  - name: $tools
+    typeName: Bool
+    defaultValueBool: 1
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: 
+    isImplicit: 0
+    sourceYarnAsset: {fileID: 6391573757903218779, guid: f44de20bac00ac348a220dbbfd44d2a0,
+      type: 3}
+  - name: $wood
+    typeName: Bool
+    defaultValueBool: 1
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: 
+    isImplicit: 0
+    sourceYarnAsset: {fileID: 6391573757903218779, guid: 8be7a7a9b9bfdfa4bbc5b439de2d5fca,
+      type: 3}
+  - name: $beastmasternoprize
+    typeName: Bool
+    defaultValueBool: 0
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: 
+    isImplicit: 0
+    sourceYarnAsset: {fileID: 6391573757903218779, guid: bd856918100276348869cff65e812ba5,
+      type: 3}
+  - name: $wsdayText
+    typeName: String
+    defaultValueBool: 0
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: 
+    isImplicit: 0
+    sourceYarnAsset: {fileID: 6391573757903218779, guid: bd856918100276348869cff65e812ba5,
+      type: 3}
+  - name: $wsday
+    typeName: Number
+    defaultValueBool: 0
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: 
+    isImplicit: 0
+    sourceYarnAsset: {fileID: 6391573757903218779, guid: bd856918100276348869cff65e812ba5,
+      type: 3}
+  - name: $challenge
+    typeName: Bool
+    defaultValueBool: 0
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: 
+    isImplicit: 0
+    sourceYarnAsset: {fileID: 6391573757903218779, guid: 2e0882338b11ebc45b77dff522413935,
+      type: 3}
+  defaultLanguage: de-DE
+  languagesToSourceAssets: []
+  useAddressableAssets: 0

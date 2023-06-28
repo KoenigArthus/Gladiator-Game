@@ -1,0 +1,451 @@
+﻿title: ws0
+position: -174,-247
+---
+<<declare $beastmasternoprize = false>>
+<<if $wsday == 0>> //nicht vegessen!: BEASTMASTERNOPRIZE ROUTE EINPFELGEN!
+    <<if visited("ws7")>>
+        <<jump ws1e>>
+    <<elseif visited("wsQStart")>>
+        <<jump ws1c>>
+    <<elseif visited("ws1")>>
+        <<jump ws1b>>
+    <<else>>
+        <<jump ws1>>
+    <<endif>>
+<<elseif $wsday == 0 && $beastmasternoprize is true>>
+    <<jump ws17>>
+<<else>>
+    <<jump ws1d>>
+<<endif>>
+
+===
+title: ws1
+position: -100,303
+---
+Schmied: Ah, ein neues Gesicht!
+Schmied: Du brauchst sicher eine neue Waffe? Hab ich recht?
+Schmied: Lass uns mal schauen was ich für dich tuen kann.
+-> Zeig mal dein Angebot.
+    <<jump ws2>>
+-> (Rhetorik IV) Deine Werkzeuge sind aber nicht gerade von bester Qualität, oder? <<if $player_rhetoric >= 4>>
+    <<jump ws3>>
+-> (Zeitaufwand/Rhetorik I) Kann man hier noch was am Preis machen? <<if $player_rhetoric >= 1>> //nochmal zu handeln überschreibt den vorherigen Rabatt, ansonsten bleiben Rabatte bis eine Nacht vergangen ist.
+    <<set_time to {get_time()} + 1>>
+    <<jump ws4>>
+-> (Verlassen) Ich habe noch etwas zu erledigen.
+    <<jump wsENDE>>
+===
+title: wsENDE
+position: 89,-247
+---
+Schmied: Wir sehen uns bestimmt bald wieder, Gladiator!
+===
+title: ws2
+position: 142,68
+---
+<<open_shop>>
+===
+title: ws3
+position: 40,40
+---
+Schmied: Was meinst du?
+Schmied: ...
+Schmied: Offengestanden, ja du hast recht, es ist alles etwas abgenutzt.
+Schmied: Aber, was will ich machen? Ich habe nunmal kein Geld.
+-> Wie viel brauchst du?
+    <<jump ws5>>
+-> (Verlassen) Uh, da kann ich leider nicht aushelfen
+    <<jump wsENDE1>>
+===
+title: ws4
+position: 50,50
+---
+Schmied: Was soll das heißen, Am Preis Machen?
+Schmied: Hä, ist doch alles beste Ware!
+//fadeout
+//wait1
+//Preise sollten hier um biszu 75% reduziert werden. Je höher die Rhetorik desto besser der Rabatt (20% + (Rhetorik*5)% = Preisnachlass)
+//fadein
+Schmied: puhhhh, na gut, aber nicht billiger als so!
+    <<jump ws2>> //es sollte jeder Preis so ausgezeichnet sein: Normalpreis - Rabatt = Deinpreis
+===
+title: ws1b
+position: 60,60
+---
+Schmied: Lass uns mal schauen was ich für dich tuen kann.
+-> Zeig mal dein Angebot.
+    <<jump ws2>>
+-> (Rhetorik IV) Deine Werkzeuge sind aber nicht gerade von bester Qualität, oder? <<if $player_rhetoric >= 4>>
+    <<jump ws3>>
+-> (Zeitaufwand/Rhetorik I) Kann man hier noch was am Preis machen? <<if $player_rhetoric >= 1>> //nochmal zu handeln überschreibt den vorherigen Rabatt, ansonsten bleiben Rabatte bis eine Nacht vergangen ist.
+    <<set_time to {get_time()} + 1>>
+    <<jump ws4>>
+-> (Verlassen) Ich habe noch etwas zu erledigen.
+    <<jump wsENDE>>
+===
+title: wsENDE1
+position: 92,100
+---
+Schmied: HaHa, hab ich mir gedacht! Aber, komm wieder wenn du was brauchst!
+===
+title: ws5
+position: 102,110
+---
+Schmied: 10000 Gold, sollte fürs erste reichen, HaHa.
+-> Das ist eine Menge, kann ich dir nicht anders aushelfen?
+    <<jump ws6>>
+-> (Bezahlen) Soviel sollte ich noch irgendwo rumliegen haben <<if $money >= 10000>>
+    <<set $money = $money - 10000>>
+    <<jump ws7>>
+-> (Verlassen) Vergiss es, das kann sich doch niemand leisten.
+    <<jump wsENDE1>>
+===
+title: ws6
+position: 112,120
+---
+Schmied: In der Tat...
+Schmied: Es gibt eine Untergrund-Kampfarena
+Schmied: Extra angelegt für Tierkämpfe.
+Schmied: Du kannst eine der Wachen im Ludus fragen, die sollten in der Lage sein dir eintritt zu verschaffen.
+Schmied: Die Champions in dieser Arena werden reich belohnt.
+Schmied: Es gibt einen Preistopf in den alle Zuschauer hineinzahlen, dieser wird dann
+Schmied: an den siegreichen Gladiator ausgezahlt.
+-> Interessant, und wie hilft dir das genau?
+    <<jump ws8>>
+-> Du willst das ich dort teilnehme und dir das Geld beschaffe?
+    <<jump ws9>>
+-> Untergrund-Tierkampf-Arena? Was muss ich dazu wissen?
+    <<jump ws10>>
+-> (Verlassen) Klingt gefährlich.
+    <<jump wsENDE1>>
+===
+title: ws7
+position: 122,130
+---
+Schmied: Unglaublich!
+Schmied: Ein Geschenk der Götter!
+Schmied: Das gesamte göttliche Pantheon muss mir wohl zulächeln!
+Schmied: Komm in einer Woche wieder und ich werde dir meine besten Werke schenken!
+Schmied: Hörst du? Ich schenke sie dir!
+Schmied: Ich kann diese Güte kaum fassen, mögen Jupiter, Mars und alle, einfach alle!
+Schmied: über dich wachen, dich ehren lieben und beschützen!
+<<set $wsday to 7>>
+===
+title: ws8
+position: 132,140
+---
+Schmied: Das Preisgeld beträgt ungefähr 2500 Gold, selbst wenn du es mir geben würdest,
+Schmied: Das würde nicht reichen um meine Geschäfte ins Rollen zu bringen.
+Schmied: Einer der Kaufmänner hat mir sein Wort gegeben, die notwendigen Ressourcen zu beschaffen
+Schmied: und somit mein Geschäft aufblühen zu lassen.
+Schmied: Aber nur, wenn ich einen Glaidator dazu bringen kann auf das Preisgeld zu verzichten, 
+Schmied: HaHa... ziemlich seltsam, oder?
+-> Wie ist das gemeint? Was ist der Sinn dahinter?
+    <<jump ws11>>
+-> Wie war das mit der Untergrund-Arena?
+    <<jump ws10>>
+-> (Verlassen) Das ist mir nicht ganz geheuer.
+    <<jump wsENDE1>>
+===
+title: ws9
+position: 142,150
+---
+Schmied: Hahahaha
+Schmied: Es ist etwas absurder als das!
+Schmied: Du musst alle Bestien besiegen, Champion werden und anschließend auf das Preisgeld verzichten!
+-> Traust du dem?
+    <<jump ws12>>
+-> Alles klar, ich werde mich dem annehmen.
+    <<jump ws11>>
+-> (Verlassen) Das ist mir nicht ganz geheuer.
+    <<jump wsENDE1>>
+===
+title: ws12
+position: -296,682
+---
+Schmied: HaHaHa, 
+Schmied: Spielt das eine Rolle? Ich habe nichts zu verlieren!
+Schmied: Ich muss auf nichts verzichten und habe keinen Einsatz!
+Schmied: Die bessere Frage wäre traust du dem?
+Schmied: Haha, seltsam, wahrlich seltsam...
+-> (Verlassen) Genau, warum sollte ich soetwas riskieren?
+    <<jump wsENDE1>>
+-> Mir scheint ich müsste dem trauen, es ist die beste Option für deine Zukunft.
+    <<jump ws11>>
+===
+title: ws10
+position: -378,429
+---
+Schmied: Ja Einigen aus dem Publikum ist ein Kampf zwischen Gladiatoren nicht "extrem" genug.
+Schmied: Im Tierkampf kämpft man immer auf Leben und Tod... 
+Schmied: Es besteht gar nicht die Chance das jemand verschohnt wird...
+Schmied: Leben und Tod... Bestie gegen Bestie
+Schmied: Einige der Gäste hier scheinen, in Anbetracht dieser Umstände, richtig in Wallung zu kommen!
+Schmied: Allerdings darf nicht jeder Gladiator einfach gegen Tiere antretten,
+Schmied: man muss zuerst einen Test bestehen, um zu beweisen das man die Stärke besitzt solche Kämpfe zu überleben
+Schmied: Immerhin gibt es riesigen Ärger für alle Beteiligten, falls ein Gladiator nicht in einem offiziellen
+Schmied: sondern in einem heimlichen Kampf stirbt...
+-> Spielt es eine Rolle wo ein Gladiator stirbt.
+    <<jump ws15>>
+-> Verstehe, also muss ich die Wachen um eine Teilnahmeerlaubnis bitten
+    <<jump ws16>>
+===
+title: ws15
+position: 318,245
+---
+Schmied: Selbstverständlich!
+Schmied: Hohe Gäste aus dem ganzen Reich reisen hierher um besonder Gladiatorenkämpfe zu sehen.
+Schmied: Stell dir vor, alle deine Kämpfer sind völlig schlapp oder schlimmernoch Tod
+Schmied: und du kriegst gar keine Show zu sehen!
+Schmied: Die meisten wollen einfach Gladiator gegen Gladiator sehen...
+Schmied: Alles darüber hinaus, muss heimlich und unauffällig aufgeführt werden,
+Schmied: Sonst werden einige mächtige Männer mächtig sauer.
+-> Verstehe
+    <<jump ws11>>
+-> (Verlassen) Das ist mir nicht ganz geheuer.
+    <<jump wsENDE1>>
+===
+title: ws11
+position: 9,763
+---
+Schmied: Also die Sache sieht so aus,
+Schmied: Mir scheint der Kaufmann sieht in jedem einen Menschen der Vernunft
+Schmied: Es gibt keine Beweise für die Geschichte die ich dir erzähle.
+Schmied: Aber einen nachvollziehbaren Grund mir zu misstrauen und das Preisgeld zu nehmen.
+Schmied: Man hat es sich ja verdient!
+Schmied: Immerhin hat man sein Leben dann für etws, dass durch Tatsachen gestütz ist, aufs Spiel gesetzt, HaHa
+Schmied: Das Spiel das der Kaufmann spielt sieht also so aus:
+Schmied: ich muss jemandem überzeugen, seinen rechtmäßig zustehenden Preis abzulehnen, im Gegenzug 
+Schmied: wird er mir teure Materialien zukommen lassen, Werkzeuge geben und so weiter.
+Schmied: Ich werde natürlich durch meine Dienste dein Opfer wertschätzen!
+Schmied: Die letzte Facette dieses Spielchens ist natürlich, ob der Kaufmann selbst sein Wort hält...
+Schmied: Oder mich und auch dich für unser unvernünftiges Handeln auslacht...
+-> (Verlassen) Ich denke, du wirst betrogen oder versuchst mich zu betrügen.
+    <<jump wsENDE1>>
+-> Weist du was, ich bin dabei!
+    <<jump wsQStart>>
+===
+title: wsQStart
+position: -38,928
+---
+Schmied: Großartig!
+Schmied: Also, vergiss nicht du lehnst das Preisgeld in meinem Namen ab.
+Schmied: Sobald dies geschehen ist wird sich zeigen ob unser Kaufmann seinen Teil der Abmachung einhält!
+===
+title: ws16
+position: 312,483
+---
+Schmied: Ja, sozusagen!
+-> Wie sieht also der Plan aus?
+    <<jump ws11>>
+-> (Verlassen) Das ist mir nicht ganz geheuer.
+    <<jump wsENDE1>>
+
+===
+title: ws1c
+position: 21,176
+---
+Schmied: Lass uns mal schauen was ich für dich tuen kann.
+-> Zeig mal dein Angebot.
+    <<jump ws2>>
+-> (Zeitaufwand/Rhetorik I) Kann man hier noch was am Preis machen? <<if $player_rhetoric >= 1>> //nochmal zu handeln überschreibt den vorherigen Rabatt, ansonsten bleiben Rabatte bis eine Nacht vergangen ist.
+    <<set_time to {get_time()} + 1>>
+    <<jump ws4>>
+-> (Verlassen) Ich habe noch etwas zu erledigen.
+    <<jump wsENDE>>
+===
+title: ws1d
+position: 31,186
+---
+Schmied: Wie geht es meinem Wohltäter heute? Schau dich ruhig um!
+-> Zeig mal dein Angebot. //maximaler Rabatt von 75%
+    <<jump ws2>>
+-> (Verlassen) Ich habe noch etwas zu erledigen.
+    <<jump wsENDE>>
+===
+title: ws1e
+position: 41,196
+---
+<<if visited("ws1e") == false>>
+Schmied: Es ist mir eine Freude zu verkünden, das mine neuen Werkzeuge und Materialen endlich angekommen sind!
+Schmied: Natürlich ist meine neue Dienstleistung völlig kostenfrei für dich!
+Schmied: Ich bin nun in der Lage maßgeschneiderte Rütungen und Waffen zu produzieren!
+<<endif>>
+Schmied: Schau dich ruhig um! Begutachte das Handwerk, all das ist dir zu verdanken!
+-> Zeig mal dein Angebot. //maximaler Rabatt von 75%
+    <<jump ws2>>
+-> (Zeitaufwand) Anpassen. (Entferne eine Karte von einer Rüstung/Waffe)
+    <<if $hastime == true>>
+        <<set_time = get_time + 1>>
+        <<open_shop>>
+    <<else>>
+        <<jump wsnotime>>
+    <<endif>>
+-> (Zeitaufwand) Verstärken. (Bringe eine Rüstung/Waffe auf das nächste Level) <<if $wsday == 0>>
+    <<if $hastime == true>>
+        <<set $wsday = $wsday + 1>>
+        <<set_time = get_time + 1>>
+        <<open_shop>>
+    <<else>>
+        <<jump wsnotime>>
+    <<endif>>
+===
+title: wsnotime
+position: 51,206
+---
+Ich habe gerade keine Zeit.
+===
+
+title: ws17
+position: -174,-247
+---
+<<if visited("ws17") == false>>
+Schmied: Ich habe bereits davon gehört!
+Schmied: Der Kaufmann hat sofort Wort gehalten!
+Schmied: In einer Woche werde ich alle notwendigen Mittel erhalten, um in voller Kapazität zu arbeiten!
+Schmied: Bald wirst du der am besten ausgerüstete Gladiator im ganzen Ludus sein! Haha!
+<<endif>>
+<<jump ws1f>>
+===
+title: ws1f
+position: -1,-200
+---
+<<declare $wsdayText to "">>
+<<declare $wsday to 0>>
+
+<<if $wsday == 0>>
+    <<jump ws18>>
+<<elseif $wsday == 1>>
+    <<set $wsdayText = "einem Tag">>
+<<elseif $wsday == 2>>
+    <<set $wsdayText = "zwei Tagen">>
+<<elseif $wsday == 3>>
+    <<set $wsdayText = "drei Tagen">>
+<<elseif $wsday == 4>>
+    <<set $wsdayText = "vier Tagen">>
+<<elseif $wsday == 5>>
+    <<set $wsdayText = "fünf Tagen">>
+<<elseif $wsday == 6>>
+    <<set $wsdayText = "sechs Tagen">>
+<<elseif $wsday == 7>>
+    <<set $wsdayText = "sieben Tagen">>
+<<endif>>
+
+Schmied: Ich werde in {$wsdayText} richtig losarbeiten können.
+<<if $wsday == 1>>
+Schmied: Bist du auch so gespannt wie ich?
+Schmied: Ich freue mich richtig!
+<<endif>>
+Schmied: Bis dahin biete ich noch mein sonstiges Angebot an.
+-> Zeig mal dein Angebot. 
+    <<jump ws2>>
+-> (Zeitaufwand/Rhetorik I) Eigentlich solltest du mir noch einen Rabatt anbieten. Oder? <<if $player_rhetoric >= 1>>
+    <<if $hastime == true>>
+        <<set_time to {get_time()} + 1>>
+            <<jump ws21>>
+    <<else>>
+        <<jump wsnotime>>
+    <<endif>>
+-> (Verlassen) Ich habe noch etwas zu erledigen.
+    <<jump wsENDE>>
+===
+title: ws18
+position: -174,-247
+---
+<<if visited("ws19a") == false || visited("ws20a") == false>>
+<<if visited("ws18") == false>>
+Schmied: HA, da bist du ja! Komm her schau es dir an und staune!
+Schmied: Beeindruckend, nicht wahr?
+Schmied: Lass uns nicht sinnlose Worte über all das Handwerk und diese beeindruckenden neuen Möglichkeiten verlieren.
+<<endif>>
+Schmied: Haha, lass uns gleich anfangen!
+Schmied: Ich kann nun passgenaue Rüstung und perfekt balancierte Waffen herstellen,
+Schmied: selbstverständlich mithilfe des besten Erz Romes.
+Schmied: Das erste Mal geht aufs Haus!
+-> Zeig nochmal dein reguläres Angebot. 
+    <<jump ws2>>
+-> (Zeitaufwand) Anpassen. (Entferne eine Karte von einer Rüstung/Waffe)
+    <<if $hastime == true>>
+        <<set_time = get_time + 1>>
+        <<jump ws19a>>
+    <<else>>
+        <<jump wsnotime>>
+    <<endif>>
+-> (Zeitaufwand) Verstärken. (Bringe eine Rüstung/Waffe auf das nächste Level) <<if $wsday == 0>>
+    <<if $hastime == true>>
+        <<set $wsday = $wsday + 1>>
+        <<set_time = get_time + 1>>
+        <<jump ws20a>>
+    <<else>>
+        <<jump wsnotime>>
+    <<endif>>
+<<else>>
+    <<jump ws18a>>
+<<endif>>
+===
+title: ws19
+position: -164,-237
+---
+Schmied: Also gut lass uns deine Ausrüstung an dich anpassen!
+<<set $money = $money - 100>>
+<<open_shop>>
+===
+title: ws20
+position: -154,-227
+---
+Schmied: Schön, dann lass uns die Ausrüstung verstärken!
+<<set $money = $money - 100>>
+<<open_shop>>
+===
+title: ws21
+position: -298,-217
+---
+Schmied: Ich kann ja fast nicht nein sagen, oder? Haha!
+//fadeout
+//wait1
+//Preise sollten hier um biszu 75% reduziert werden. Je höher die Rhetorik desto besser der Rabatt (40% + (Rhetorik*5)% = Preisnachlass)
+//fadein
+Schmied: puhhhh, na gut, aber nicht billiger als so!
+    <<jump ws2>> //es sollte jeder Preis so ausgezeichnet sein: Normalpreis - Rabatt = Deinpreis
+===
+title: ws18a
+position: -560,-641
+---
+Schmied: Mein bestester Kunde, bereit dich an wahrem Handwerk zu ergötzen, Haha?
+-> Zeig mal dein Angebot. 
+    <<jump ws2>>
+-> (Zeitaufwand/Rhetorik I) Eigentlich solltest du mir noch einen Rabatt anbieten. Oder? <<if $player_rhetoric >= 1>>
+    <<if $hastime == true>>
+        <<set_time to {get_time()} + 1>>
+            <<jump ws21>>
+    <<else>>
+        <<jump wsnotime>>
+    <<endif>>
+-> (Zeitaufwand/Bezahlen) für 100 Gold Anpassen. (Entferne eine Karte von einer Rüstung/Waffe)
+    <<if $hastime == true && $money >= 100>>
+        <<set_time = get_time + 1>>
+        <<jump ws19>>
+    <<else>>
+        <<jump wsnotime>>
+    <<endif>>
+-> (Zeitaufwand/Bezahlen) für 100 Gold Verstärken. (Bringe eine Rüstung/Waffe auf das nächste Level) <<if $wsday == 0>>
+    <<if $hastime == true && $money >= 100>>
+        <<set $wsday = $wsday + 1>>
+        <<set_time = get_time + 1>>
+        <<jump ws20>>
+    <<else>>
+        <<jump wsnotime>>
+    <<endif>>
+===
+title: ws19a
+position: -174,-247
+---
+Schmied: Also gut lass uns deine Ausrüstung an dich anpassen!
+<<open_shop>>
+===
+title: ws20a
+position: -164,-237
+---
+Schmied: Schön, dann lass uns die Ausrüstung verstärken!
+<<open_shop>>
+===

@@ -1,0 +1,80 @@
+﻿title: wa0
+tags:
+position: -158,366
+---
+<<if visited ("wa1") && visited ("wa2") && visited ("wa3")>>
+        <<jump wa4>>
+    <<elseif visited ("wa1") && visited ("wa2")>>
+        <<jump wa5>>
+    <<elseif visited ("wa1") && visited ("wa3")>>
+        <<jump wa6>>
+<<else>>
+    <<jump wa1>>
+<<endif>>
+===
+title: wa1
+position: -159,82
+---
+Wache: HALT!
+Wache: Arenakämpfer dürfen den Ludus nicht verlassen! Anweisung des Imperators.
+Wache: Du musst zuerst den Titel des wahren Kriegers verdienen,
+Wache: Dann darfst du in die Stadt.
+-> Wiso?
+    <<jump wa2>>
+-> "Wahrer Krieger"?
+    <<jump wa3>>
+-> (Verlassen) Verstehe
+    <<jump waENDE>>
+===
+title: waENDE
+
+position: -190,-188
+---
+Wache: Vale!
+===
+title: wa2
+position: 188,81
+---
+Wache: Respekt und Pflichtbewusstsein!
+Wache: Ist doch ganz einfach. Je besser du dem Imperator dienst, desto besser wirst du behandelt!
+Wache: Beweise das du deinen Körper dem Imperium ergeben hast, indem du in die Arena steigst.
+Wache: Im Gegenzug wird das Imperium seine Pflicht wahrnehmen und dir Privilegien zuschreiben.
+Wache: Wie die Nutzung des Forums in der Stadt!
+-> (Verlassen) Verstehe
+    <<jump waENDE>>
+===
+title: wa3
+position: -519,84
+---
+Wache: Rom respektiert Krieger, daher erhalten sie besondere Privilegien.
+Wache: Noch bist du ein Sklave in einer Arena,
+Wache: Wenn du aber vor Publikum in einem echten Amphitheater um dein Leben kämpfst!
+Wache: Dann bist du ein Krieger!
+Wache: Und wenn du überlebst, sogar ein Wahrer Krieger!
+-> (Verlassen) Verstehe
+    <<jump waENDE>>
+===
+title: wa4
+position: -106,646
+---
+Wache: HALT!
+Wache: Du darfst den Ludus nicht verlassen!
+===
+title: wa5
+position: 361,362
+---
+Wache: Ich habe dir doch gesagt, ich kann dich nicht durchlassen!
+-> Du sagtest noch was wegen "Wahrer Krieger"?
+    <<jump wa3>>
+-> (Verlassen) Verstehe!
+    <<jump waENDE>>
+===
+title: wa6
+position: -550,359
+---
+Wache: Ich sagte, ich kann dich nicht durchlassen!
+-> Wiso?
+    <<jump wa2>>
+-> (Verlassen) Verstehe!
+    <<jump waENDE>>
+===

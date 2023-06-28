@@ -1,0 +1,14 @@
+﻿title: Test0
+tags:
+---
+Gladiator: Kämpfen?
+-> Ja, los gehts.
+    <<start_fight>>
+-> Noch nicht.
+    <<jump Test1>>
+===
+title: Test1
+position: 0,0
+---
+Gladiator: Ok, komm wieder wenn du bereit bist.
+===
