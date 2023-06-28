@@ -12,7 +12,6 @@ ScriptedImporter:
   - {fileID: 6391573757903218779, guid: 74b18c2887236f747b529c6a3ec4713e, type: 3}
   - {fileID: 6391573757903218779, guid: 5a82801d27805464da3fc5d7e60877a1, type: 3}
   - {fileID: 6391573757903218779, guid: d9b0729f4fd79494b9f380f38d5ca979, type: 3}
-  - {fileID: 6391573757903218779, guid: ce8f88a1abad42f4eb3f24a14c219d1f, type: 3}
   - {fileID: 6391573757903218779, guid: fd0038d44e1a2494386139dea3c559b1, type: 3}
   - {fileID: 6391573757903218779, guid: f9a05ac016e502547b27f672a1a08ac9, type: 3}
   - {fileID: 6391573757903218779, guid: e568dc801c1e5a94bbbfc191955a3f43, type: 3}
@@ -34,6 +33,7 @@ ScriptedImporter:
   - {fileID: 6391573757903218779, guid: b3b31bd0fe788c6439e16fab9ee18ff2, type: 3}
   - {fileID: 6391573757903218779, guid: b9a4c742e0d7ea94e967a42d0db662a9, type: 3}
   - {fileID: 6391573757903218779, guid: 3520cddf6ba0bb04cb8446d64e30bfa2, type: 3}
+  - {fileID: 6391573757903218779, guid: ce8f88a1abad42f4eb3f24a14c219d1f, type: 3}
   compileErrors: []
   serializedDeclarations:
   - name: $lvday

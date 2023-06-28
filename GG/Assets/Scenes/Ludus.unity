@@ -16549,7 +16549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bec29c0a230741bdac901dba8da47ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yarnProject: {fileID: 7545569452688597077, guid: 3d39a6dd331a8b74c8635ae818e60aab,
+  yarnProject: {fileID: 7545569452688597077, guid: 5285104852979524f900773fc746459e,
     type: 3}
   _variableStorage: {fileID: 499321468}
   dialogueViews:
@@ -52754,7 +52754,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 82f5dd166d24a80479cea791ceadc777, type: 2}
+  - {fileID: 2100000, guid: 69ed2a3079e33bd499a8879daabb7b88, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
