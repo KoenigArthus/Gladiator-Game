@@ -79,6 +79,7 @@ public class CardGameManager : MonoBehaviour
 
     private void Start()
     {
+      
     }
 
     private void Update()

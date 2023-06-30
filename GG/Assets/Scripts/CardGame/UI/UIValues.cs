@@ -36,6 +36,8 @@
     public float PlayerBlock => playerBlock;
     public float EnemyHealth => enemyHealth;
     public float EnemyBlock => enemyBlock;
+    public int[] PlayerStatusEffectStacks => playerStatusEffectStacks;
+    public int[] EnemyStatusEffectStacks => enemyStatusEffectStacks; 
 
     #endregion Properties
 }
