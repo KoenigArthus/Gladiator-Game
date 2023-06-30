@@ -143,7 +143,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5410213786670287005}
+  - component: {fileID: 5705547823562561020}
   - component: {fileID: 5410213786670287006}
   m_Layer: 5
   m_Name: Card
@@ -152,8 +152,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5410213786670287005
-Transform:
+--- !u!224 &5705547823562561020
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -162,12 +162,17 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5410213787020833196}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5410213786670287006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,13 +364,13 @@ RectTransform:
   - {fileID: 5410213787497693355}
   - {fileID: 5410213786718508941}
   - {fileID: 5410213787099874865}
-  m_Father: {fileID: 5410213786670287005}
+  m_Father: {fileID: 5705547823562561020}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -95.328964, y: -133.12907}
-  m_SizeDelta: {x: 231.2349, y: 322.9247}
+  m_AnchoredPosition: {x: -73.19945, y: -102.2247}
+  m_SizeDelta: {x: 279, y: 389.625}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5410213787020833198
 CanvasRenderer:
