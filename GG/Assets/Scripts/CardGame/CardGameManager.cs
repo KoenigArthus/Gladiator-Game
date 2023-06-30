@@ -4,6 +4,8 @@ using UnityEngine.UI;
 using JSAM;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 public class CardGameManager : MonoBehaviour
 {
@@ -19,6 +21,9 @@ public class CardGameManager : MonoBehaviour
     public CardCollection block;
     public CardCollection discard;
     public DieCollection dice;
+    public List<UIValues> uiChanges = new List<UIValues>();
+    public UnityEvent uiHasChanged;
+
 
     private Player player;
     private Enemy enemy;
@@ -27,7 +32,6 @@ public class CardGameManager : MonoBehaviour
 
     private bool battleEnded = false;
 
-    private List<UIValues> uiChanges = new List<UIValues>();
 
     #endregion Fields
 
@@ -35,7 +39,6 @@ public class CardGameManager : MonoBehaviour
 
     public Player Player => player;
     public Enemy Enemy => enemy;
-
     
 
     #endregion Properties
@@ -45,10 +48,6 @@ public class CardGameManager : MonoBehaviour
     private void Awake()
     {
         CardLibrary.Setup();
-    }
-
-    private void Start()
-    {
         player = new Player(this);
 
         //Select Opponent
@@ -75,6 +74,11 @@ public class CardGameManager : MonoBehaviour
 
         player.Deck.Shuffle();
         EndRound();
+        NotifyStatsChange();
+    }
+
+    private void Start()
+    {
     }
 
     private void Update()
@@ -116,15 +120,27 @@ public class CardGameManager : MonoBehaviour
     public void NotifyStatsChange()
     {
         uiChanges.Add(new UIValues(player, enemy));
+        uiHasChanged?.Invoke();
+
     }
 
-    public UIValues[] CollectUIChanges()
-    {
-        UIValues[] changes = uiChanges.ToArray();
-        uiChanges.Clear();
+    /* public UIValues[] CollectUIChanges()
+     {
+         UIValues[] changes =  uiChanges.ToArray();
+         uiChanges.Clear();
 
-        return changes;
-    }
+         return changes;
+     }
+     public UIValues[] CollectUIChanges(bool clearValues)
+     {
+         UIValues[] changes = uiChanges.ToArray();
+
+         if (clearValues)
+         uiChanges.Clear();
+
+         return changes;
+     }*/
+
 
     #endregion UI
 
