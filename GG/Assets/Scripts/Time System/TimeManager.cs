@@ -24,7 +24,7 @@ public class TimeManager : MonoBehaviour
         if (timeHasChanged == null)
             timeHasChanged = new UnityEvent();
 
-        if (this.gameObject.GetComponent<CharacterSpawnManager>() == null)
+        if (this.gameObject.GetComponent<CharacterSpawnManager>() != null)
         {
             characterSpawner = GetComponent<CharacterSpawnManager>();
             timeHasChanged.AddListener(characterSpawner.ScheduleCharacters);

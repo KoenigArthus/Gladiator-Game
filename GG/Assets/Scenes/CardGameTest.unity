@@ -43469,6 +43469,10 @@ MonoBehaviour:
   block: {fileID: 1545096211}
   discard: {fileID: 447440510}
   dice: {fileID: 1303318694}
+  uiHasChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  rewardScreen: {fileID: 0}
 --- !u!1 &1420523339
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ public class Focus : MonoBehaviour
     [SerializeField] GameObject player, enemy;
     [SerializeField] Rotator rotator;
 
+
     public void DecideFocus(string notification)
     {
         switch (notification)
@@ -31,7 +32,7 @@ public class Focus : MonoBehaviour
                 StartAttackFocus();
                 break;
             case CardType.Block:
-                StartBlockFocus();
+                //StartBlockFocus();
                 break;
             default:
                 Debug.LogWarning("Invalid string recieved");
@@ -39,7 +40,6 @@ public class Focus : MonoBehaviour
         }
     }
 
-    
 
     private void StopFocus()
     {
