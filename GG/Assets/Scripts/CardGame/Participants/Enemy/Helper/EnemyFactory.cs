@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using UnityEngine;
+using UnityEngine.UIElements;
 using Yarn.Unity;
 
 public partial class Enemy
@@ -34,8 +36,6 @@ public partial class Enemy
     {
         switch (type)
         {
-            #region Done
-
             case EnemyType.Tutorialgladiator:
                 enemy.health = 26;
                 enemy.Actions = 2;
@@ -101,7 +101,6 @@ public partial class Enemy
                 break;
 
             case EnemyType.Scissor:
-                enemy.health = 50;
                 enemy.Actions = 5;
                 enemy.skills = new SkillInfo[]
                 {
@@ -141,18 +140,61 @@ public partial class Enemy
                 enemy.AddStatus(StatusEffect.Regeneration, 22);
                 break;
 
-            #endregion Done
-
             case EnemyType.Sklaventreiber:
+                enemy.Actions = 3;
+                enemy.skills = new SkillInfo[]
+                {
+                    //Defensive
+                    new SkillInfo(EnemyIntension.Block, (30, 50)),
+                    //Agressive
+                    new SkillInfo(EnemyIntension.Attack, (14, 20), (SkillInfo s, Enemy e) => {e.Attack(e.Player, s.GetPower()); e.skills[2].Execute(e); }),
+                    //Special
+                    new SkillInfo(EnemyIntension.Special, (3, 6), (SkillInfo s, Enemy e) => { e.Player.AddStatus(StatusEffect.Vulnerable, s.GetPower()); e.Player.AddStatus(StatusEffect.Weak, s.GetPower()); e.Player.AddStatus(StatusEffect.Stun, s.GetPower()); })
+                };
+                enemy.forcedIntension = new EnemyIntension?[] { EnemyIntension.Block };
+                enemy.enrage = new EnrageInfo((EnrageInfo l, Enemy e) => e.skills[1] =
+                new SkillInfo(EnemyIntension.Attack, (5, 10), (SkillInfo s, Enemy e) => { e.Attack(e.Player, s.GetPower(), true); e.skills[2].Execute(e); }), 200);
+                enemy.AddStatus(StatusEffect.Regeneration, 20);
                 break;
 
             case EnemyType.Sonnenbringer:
+                enemy.Actions = 1;
+                enemy.skills = new SkillInfo[]
+                {
+                    //Defensive
+                    new SkillInfo(EnemyIntension.Block, 80, (SkillInfo s, Enemy e) => { e.AddBlock(s.GetPower()); e.Heal(20); })
+                };
+                enemy.ability = new AbilityInfo((AbilityInfo a, Enemy e) => { e.Player.InstantDamage(100, false); e.InstantDamage(100, false); })
+                { Frequency = 3 };
                 break;
 
             case EnemyType.Krieger:
+
+                enemy.Actions = 3;
+                enemy.skills = new SkillInfo[]
+                {
+                    //Defensive
+                    new SkillInfo(EnemyIntension.Block, (30, 50)),
+                    //Agressive
+                    new SkillInfo(EnemyIntension.Attack, (40, 60))
+                };
                 break;
 
             case EnemyType.Nemesis:
+                enemy.Actions = 3;
+                Ailment[] ailments = new Ailment[] { Ailment.Cardiac_Insufficiency, Ailment.Panic_Attack, Ailment.Discouraged, Ailment.Hopeless, Ailment.Trauma, Ailment.Terror };
+                enemy.skills = new SkillInfo[]
+                {
+                    //Skills
+                    new SkillInfo(EnemyIntension.Skill, 4, (SkillInfo s, Enemy e) => e.AddStatus(StatusEffect.Strength, s.GetPower())),
+                    new SkillInfo(EnemyIntension.Skill, 0, (SkillInfo s, Enemy e) => e.Player.AddAilment(ailments[Random.Range(0, ailments.Length)], true)),
+                    new SkillInfo(EnemyIntension.Skill, 25, (SkillInfo s, Enemy e) => { e.Player.AddStatus(StatusEffect.Stun, s.GetPower()); e.Player.AddStatus(StatusEffect.Weak, s.GetPower()); }),
+                    //Agressive
+                    new SkillInfo(EnemyIntension.Attack, 30)
+                };
+                enemy.forcedIntension = new EnemyIntension?[] { EnemyIntension.Skill, EnemyIntension.Skill, EnemyIntension.Skill };
+                enemy.enrage = new EnrageInfo((EnrageInfo l, Enemy e) => e.forcedIntension = new EnemyIntension?[0], 500);
+                enemy.AddStatus(StatusEffect.Regeneration, 25);
                 break;
         }
 

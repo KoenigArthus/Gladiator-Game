@@ -1,4 +1,6 @@
-﻿public partial class Enemy
+﻿using System;
+
+public partial class Enemy
 {
     /// <summary>
     /// Add boss specific resources to base enemy from BuildEnemy()
@@ -9,8 +11,6 @@
 
         switch (type)
         {
-            #region Done
-
             case EnemyType.Tutorialgladiator:
                 enemy.health = 16;
                 enemy.reward = new RewardInfo(3, 30);
@@ -62,6 +62,7 @@
                 break;
 
             case EnemyType.Scissor:
+                enemy.health = 50;
                 enemy.ability = new AbilityInfo((AbilityInfo a, Enemy e) => { e.RemoveAllBlock(); e.AddBlock(30); });
                 enemy.reward = new RewardInfo(15, 100);
                 enemy.attackAilments = new AttackAilmentInfo(0.1f, Ailment.Blood_Poisoning);
@@ -78,18 +79,31 @@
                 enemy.attackAilments = new AttackAilmentInfo(0.1f, Ailment.Discouraged, Ailment.Injured, Ailment.Bone_Fracture);
                 break;
 
-            #endregion Done
-
             case EnemyType.Sklaventreiber:
+                enemy.health = 450;
+                enemy.spareThreshold = 150;
+                enemy.ability = new AbilityInfo((AbilityInfo a, Enemy e) => { for (int i = 0; i < 3; i++) e.Player.AddAilment((Ailment)UnityEngine.Random.Range(0, 17)); })
+                { Frequency = 2 };
+                enemy.reward = new RewardInfo(35, 25, 600, 300);
+                enemy.AddStatus(StatusEffect.Regeneration, 10);
                 break;
 
             case EnemyType.Sonnenbringer:
+                enemy.health = 400;
+                enemy.spareThreshold = 200;
+                enemy.reward = new RewardInfo(50, 20, 800, 400);
                 break;
 
             case EnemyType.Krieger:
+                enemy.health = 600;
+                enemy.spareThreshold = 50;
+                enemy.reward = new RewardInfo(75, 50, 1000, 500);
+                enemy.attackAilments = new AttackAilmentInfo(0.1f, Ailment.Injured) { CanUpgrade = true };
                 break;
 
             case EnemyType.Nemesis:
+                enemy.health = 1000;
+                enemy.attackAilments = new AttackAilmentInfo(1, Ailment.Flesh_Wound);
                 break;
         }
 

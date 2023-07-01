@@ -81,7 +81,7 @@ public enum EnemyBehavior
 
 public enum EnemyIntension
 {
-    Attack, Block, Special
+    Attack, Block, Skill, Special
 }
 
 public enum BattleResult

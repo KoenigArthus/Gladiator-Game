@@ -437,6 +437,24 @@ public class Player : Participant
         return permanentEffects[index].Concat(passiveEffects[index]).ToArray();
     }
 
+    public void AddAilment(Ailment ailment, bool addToDeck = false)
+    {
+        string cardName = ailment.ToString();
+        CardInfo info = CardLibrary.GetCardByName(cardName);
+        CardObject card = CardObject.Instantiate(info, Vector2.zero);
+
+        if (!addToDeck)
+            discard.Add(card);
+        else
+        {
+            deck.Add(card);
+            deck.Shuffle();
+        }
+
+        if (!info.DestroyOnDiscard)
+            UserFile.SaveGame.DeckCardEntries = UserFile.SaveGame.DeckCardEntries.Concat(new string[] { cardName }).ToArray();
+    }
+
     #endregion Effects
 
     #region Attack
@@ -534,17 +552,6 @@ public class Player : Participant
             cards.Remove(card.Info.Name);
             UserFile.SaveGame.DeckCardEntries = cards.ToArray();
         }
-    }
-
-    public void AddAilment(Ailment ailment)
-    {
-        string cardName = ailment.ToString();
-        CardInfo info = CardLibrary.GetCardByName(cardName);
-        CardObject card = CardObject.Instantiate(info, Vector2.zero);
-        discard.Add(card);
-
-        if (!info.DestroyOnDiscard)
-            UserFile.SaveGame.DeckCardEntries = UserFile.SaveGame.DeckCardEntries.Concat(new string[] { cardName }).ToArray();
     }
 
     #endregion Discard

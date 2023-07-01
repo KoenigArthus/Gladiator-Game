@@ -100,10 +100,15 @@ public abstract class Participant
             Health += amount;
     }
 
-    public void InstantDamage(int amount)
+    public void InstantDamage(int amount, bool piercing = true)
     {
-        if (amount > 0)
-            Health -= amount;
+        if (amount < 1)
+            return;
+
+        if (!piercing)
+            ReduceBlock(ref amount);
+
+        Health -= amount;
     }
 
     #region Attack
