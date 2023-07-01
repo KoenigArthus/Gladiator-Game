@@ -105,6 +105,18 @@ public partial class Enemy
                 enemy.health = 1000;
                 enemy.attackAilments = new AttackAilmentInfo(1, Ailment.Flesh_Wound);
                 break;
+
+            case EnemyType.Huhn:
+                enemy.health = 10;
+                enemy.attackAilments = new AttackAilmentInfo(1, Ailment.Degeneration, Ailment.Disease);
+                break;
+
+            case EnemyType.Bestie:
+                enemy.health = 500;
+                enemy.Actions = 1;
+                enemy.reward = new RewardInfo(0, 2500);
+                enemy.attackAilments = new AttackAilmentInfo(1, Ailment.Degeneration, Ailment.Disease, Ailment.Toxin);
+                break;
         }
 
         return enemy;

@@ -81,6 +81,15 @@ public partial class Enemy
                 enemy.skills[1].Range = (35, 50);
                 enemy.reward = new RewardInfo((30, 5));
                 break;
+
+            case EnemyType.Bestie:
+                enemy.health = 300;
+                enemy.Actions = 2;
+                enemy.skills[0].Power = 20;
+                enemy.AddStatus(StatusEffect.Regeneration, 14);
+                enemy.reward = new RewardInfo(0, 500);
+                enemy.attackAilments = new AttackAilmentInfo(1, Ailment.Degeneration, Ailment.Disease, Ailment.Toxin);
+                break;
         }
 
         return enemy;

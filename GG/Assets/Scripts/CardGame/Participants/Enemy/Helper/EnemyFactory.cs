@@ -196,6 +196,25 @@ public partial class Enemy
                 enemy.enrage = new EnrageInfo((EnrageInfo l, Enemy e) => e.forcedIntension = new EnemyIntension?[0], 500);
                 enemy.AddStatus(StatusEffect.Regeneration, 25);
                 break;
+
+            case EnemyType.Huhn:
+                enemy.Actions = 5;
+                enemy.skills = new SkillInfo[]
+                {
+                    //Agressive
+                    new SkillInfo(EnemyIntension.Attack, 1)
+                };
+                enemy.AddStatus(StatusEffect.Regeneration, 2);
+                break;
+
+            case EnemyType.Bestie:
+                enemy.skills = new SkillInfo[]
+                {
+                    //Agressive
+                    new SkillInfo(EnemyIntension.Attack, 40)
+                };
+                enemy.AddStatus(StatusEffect.Regeneration, 12);
+                break;
         }
 
         return enemy;
