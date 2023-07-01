@@ -55,12 +55,8 @@ public abstract class Participant
         //Apply status effects
         //Noting yet
 
-        if (!SkipRegeneration)
-        {
-            //Decay status effects
-            DoRegeneration();
-        }
-        SkipRegeneration = false;
+        //Decay status effects
+        DoRegeneration();
 
         Terror = false;
     }
@@ -73,8 +69,20 @@ public abstract class Participant
     {
         lastStatusDecayAmount = 0;
 
+        //Reset status effects
+        for (int i = (int)StatusEffect.Invulnerable; i < (int)StatusEffect.Regeneration; i++)
+        {
+            statusEffectStacks[i] = 0;
+        }
+
+        if (SkipRegeneration)
+        {
+            SkipRegeneration = false;
+            return;
+        }
+
         //Decay status effects
-        int regeneration = GetStatus(StatusEffect.Regeneration);
+        int regeneration = Mathf.Max(1, GetStatus(StatusEffect.Regeneration));
         for (int i = (int)StatusEffect.Regeneration + 1; i < statusEffectStacks.Length; i++)
         {
             int decay = Mathf.Min(statusEffectStacks[i], regeneration);
@@ -83,12 +91,6 @@ public abstract class Participant
                 lastStatusDecayAmount += decay;
                 statusEffectStacks[i] -= decay;
             }
-        }
-
-        //Reset status effects
-        for (int i = (int)StatusEffect.Invulnerable; i < (int)StatusEffect.Regeneration; i++)
-        {
-            statusEffectStacks[i] = 0;
         }
     }
 
@@ -106,7 +108,7 @@ public abstract class Participant
 
     #region Attack
 
-    public int Attack(Participant target, int power, bool piercing = false)
+    public int Attack(Participant target, int power, bool piercing = false, bool doubleBlockDamage = false)
     {
         OnAttack(this, target, power);
         target.OnAttack(this, target, power);
@@ -125,8 +127,20 @@ public abstract class Participant
 
         if (!piercing)
         {
-            //Reduce block and trigger block effects
-            target.ReduceBlock(ref power);
+            if (doubleBlockDamage)
+            {
+                int basePower = power;
+
+                power += basePower;
+
+                //Reduce block and trigger block effects
+                target.ReduceBlock(ref power);
+
+                power = Mathf.Max(0, power - basePower);
+            }
+            else
+                //Reduce block and trigger block effects
+                target.ReduceBlock(ref power);
 
             //Dage attack if invulnerable from block effect
             if (GetStatus(StatusEffect.Invulnerable) > 0)

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public static class CustomUtility
@@ -23,6 +24,7 @@ public static class CustomUtility
 
         return result;
     }
+
     public static void ReplaceSpacesWithUnderscoresInplace(ref string text)
     {
         // Replace all spaces in the given string with underscores in place.
@@ -54,7 +56,21 @@ public static class CustomUtility
         value = !value;
     }
 
+    public static int WeightedRandom(params int[] values)
+    {
+        int sum = values.Sum();
+        int value = Random.Range(0, sum);
 
+        sum -= 1;
+        for (int i = values.Length - 1; i > -1; i--)
+        {
+            if (values[i] < 1)
+                continue;
 
+            sum -= values[i];
+            if (value > sum) return i;
+        }
 
+        return -1;
+    }
 }

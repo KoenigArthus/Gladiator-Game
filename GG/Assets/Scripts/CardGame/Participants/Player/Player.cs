@@ -20,6 +20,8 @@ public class Player : Participant
     private int diceAmount = 3;
     private int dicePower = 0;
 
+    private int drawAmount = 4;
+
     private List<CardInfo> playedCards = new List<CardInfo>();
     private bool[] lockedCardTypes = new bool[6];
 
@@ -129,6 +131,11 @@ public class Player : Participant
         {
             drawActions[i](drawnCards);
         }
+    }
+
+    public void DrawCards()
+    {
+        DrawCards(drawAmount);
     }
 
     #endregion DrawCards
@@ -366,7 +373,7 @@ public class Player : Participant
 
     public void AddActionEffect(CardsAction action, CardInfo card, bool permanent = false)
     {
-        AddActionEffect(PermanentEffect.OnDeck, action, card, permanent);
+        AddActionEffect(PermanentEffect.OnDraw, action, card, permanent);
     }
 
     public void AddActionEffect(AttackEvent action, CardInfo card, bool permanent = false)
@@ -388,7 +395,10 @@ public class Player : Participant
         {
             if (action is ChangeCardAction changeCardAction)
             {
-                int power = card.DicePower;
+                int power = 0;
+                if (card != null)
+                    power = card.DicePower;
+
                 ChangeCard changeAction = (CardInfo c) => changeCardAction(c, power);
                 action = changeAction;
             }
@@ -402,7 +412,10 @@ public class Player : Participant
         {
             if (action is GameEventAction gameEvent)
             {
-                CardInfo snapshot = card;
+                CardInfo snapshot = null;
+                if (card != null)
+                    snapshot = (CardInfo)card.Clone();
+
                 GameEvent eventAction = (CardGameManager m) => gameEvent(m, snapshot);
                 action = eventAction;
             }
@@ -521,6 +534,17 @@ public class Player : Participant
             cards.Remove(card.Info.Name);
             UserFile.SaveGame.DeckCardEntries = cards.ToArray();
         }
+    }
+
+    public void AddAilment(Ailment ailment)
+    {
+        string cardName = ailment.ToString();
+        CardInfo info = CardLibrary.GetCardByName(cardName);
+        CardObject card = CardObject.Instantiate(info, Vector2.zero);
+        discard.Add(card);
+
+        if (!info.DestroyOnDiscard)
+            UserFile.SaveGame.DeckCardEntries = UserFile.SaveGame.DeckCardEntries.Concat(new string[] { cardName }).ToArray();
     }
 
     #endregion Discard

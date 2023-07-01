@@ -1,82 +1,77 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.Deck_Page
+public class EquipmentInfo
 {
-    public class EquipmentInfo
+    #region Fields
+
+    private const int MAX_EQUIPMENT_LEVEL = 3;
+
+    private Dictionary<string, Sprite> equipmentSprites = new Dictionary<string, Sprite>();
+
+    private CardSet equipmentType = CardSet.None;
+
+    #endregion Fields
+
+    #region ctor
+
+    public EquipmentInfo(CardSet equipmentType)
     {
-        #region Fields
+        this.equipmentType = equipmentType;
 
-        private const int MAX_EQUIPMENT_LEVEL = 3;
+        checkEquipmentValid();
+    }
 
-        private Dictionary<string, Sprite> equipmentSprites = new Dictionary<string, Sprite>();
+    public EquipmentInfo(string eqipmentName)
+    {
+        if (!Enum.TryParse(eqipmentName, out equipmentType))
+            throw new ArgumentException("Not valid equipment name");
 
-        private CardSet equipmentType = CardSet.None;
+        checkEquipmentValid();
+    }
 
-        #endregion Fields
+    #endregion ctor
 
-        #region ctor
+    #region Properties
 
-        public EquipmentInfo(CardSet equipmentType)
-        {
-            this.equipmentType = equipmentType;
+    public string Name => equipmentType.ToString();
 
-            checkEquipmentValid();
-        }
+    public Sprite Sprite
+    { get { if (!equipmentSprites.ContainsKey(Name)) equipmentSprites.Add(Name, GetSprite(Name)); return equipmentSprites[Name]; } }
 
-        public EquipmentInfo(string eqipmentName)
-        {
-            if (!Enum.TryParse(eqipmentName, out equipmentType))
-                throw new ArgumentException("Not valid equipment name");
+    public CardInfo[] Cards => CardLibrary.Cards.Where(x => x.Set == equipmentType).ToArray();
+    public int EXP { get => UserFile.SaveGame.EquipmentEXP[(int)equipmentType]; set => UserFile.SaveGame.EquipmentEXP[(int)equipmentType] = value; }
+    public int Level => (int)MathF.Min(EXP / 100, MAX_EQUIPMENT_LEVEL);
 
-            checkEquipmentValid();
-        }
+    #endregion Properties
 
-        #endregion ctor
+    public static Sprite GetSprite(string name)
+    {
+        Sprite sprite = Resources.Load<Sprite>($"Textures/CardGame/Equipment{name}");
+        if (sprite != null)
+            return sprite;
 
-        #region Properties
+        return Resources.Load<Sprite>($"Textures/CardGame/Equipment/Debug");
+    }
 
-        public string Name => equipmentType.ToString();
+    private void checkEquipmentValid()
+    {
+        if (!(this.equipmentType < CardSet.Health))
+            throw new ArgumentException("Not valid equipment set");
+    }
 
-        public Sprite Sprite
-        { get { if (!equipmentSprites.ContainsKey(Name)) equipmentSprites.Add(Name, GetSprite(Name)); return equipmentSprites[Name]; } }
+    public override bool Equals(object obj)
+    {
+        if (obj is EquipmentInfo other)
+            return this.equipmentType == other.equipmentType;
 
-        public CardInfo[] Cards => CardLibrary.Cards.Where(x => x.Set == equipmentType).ToArray();
-        public float EXP { get => UserFile.SaveGame.EquipmentEXP[(int)equipmentType]; set => UserFile.SaveGame.EquipmentEXP[(int)equipmentType] = value; }
-        public float Level => MathF.Min(EXP / 100, MAX_EQUIPMENT_LEVEL);
+        return false;
+    }
 
-        #endregion Properties
-
-        public static Sprite GetSprite(string name)
-        {
-            Sprite sprite = Resources.Load<Sprite>($"Textures/CardGame/Equipment{name}");
-            if (sprite != null)
-                return sprite;
-
-            return Resources.Load<Sprite>($"Textures/CardGame/Equipment/Debug");
-        }
-
-        private void checkEquipmentValid()
-        {
-            if (!(this.equipmentType < CardSet.Health))
-                throw new ArgumentException("Not valid equipment set");
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (obj is EquipmentInfo other)
-                return this.equipmentType == other.equipmentType;
-
-            return false;
-        }
-
-        public override int GetHashCode()
-        {
-            return equipmentType.GetHashCode();
-        }
+    public override int GetHashCode()
+    {
+        return equipmentType.GetHashCode();
     }
 }

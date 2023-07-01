@@ -307,7 +307,7 @@ public static class CardLibrary
 
             //Provokation - Block entsprechend Augenzahl. Verteidigunsstapel: dein Gegner kann nur Angriffe ausführen, ändere alle Nicht-Angriffsaktionen zu Standartangriffen.
             new PassiveBlockCardInfo("Provocation", CardSet.Scutum, 1, 1,
-            (CardInfo c) => c.DicePower, (CardGameManager m, CardInfo c) => m.Enemy.ChangeIntension(EnemyAction.Attack)),
+            (CardInfo c) => c.DicePower, (CardGameManager m, CardInfo c) => m.Enemy.ChangeIntension(EnemyIntension.Attack)),
 
             //Schildlogik - Permanent: Zu Rundenbeginn: Ziehe 1 Karte für jede aktive Verteidigungskarte.
             new PermanentCardInfo("Shield_Logic", CardSet.Scutum, 1, 2,
@@ -390,7 +390,7 @@ public static class CardLibrary
 
             //Kehlschnitt - 2 Schaden. Diese Runde: Der Gegner kann keine Fähigkeiten verwenden, falls er keinen Block hat.
             new InstantCardInfo("Throat_Cut", CardSet.Pugio, CardType.Attack, 1, 2,
-            (CardInfo c) => {c.Player.Attack(c.Enemy, 2); if (c.Enemy.Block < 1) c.Enemy.BlockIntension(EnemyAction.Special); }),
+            (CardInfo c) => {c.Player.Attack(c.Enemy, 2); if (c.Enemy.Block < 1) c.Enemy.BlockIntension(EnemyIntension.Special); }),
 
             //Plattenbrecher - Schaden entsprechend Augenzahl. Multipliziert mit 6, falls der Gegner Block hat.
             new InstantCardInfo("Board_Breaker", CardSet.Pugio, CardType.Attack, 1, 1,
@@ -582,7 +582,7 @@ public static class CardLibrary
 
             //Soterias Segen - Diese Karte kann nicht gespielt werden wenn in diese Runde ein Angriff gespielt wurde. Diese Runde:es können keine Angriffe gespielt werden.
             new InstantCardInfo("Soterias_Blessing", CardSet.Parmula, CardType.Skill, 3, 0,
-            (CardInfo c) => {c.Player.LockCardType(CardType.Attack); c.Enemy.BlockIntension(EnemyAction.Attack); })
+            (CardInfo c) => {c.Player.LockCardType(CardType.Attack); c.Enemy.BlockIntension(EnemyIntension.Attack); })
             {CostReduction = (CardInfo c) => c.Player.PlayedCards.Any(x => x.Type == CardType.Attack) ? -1 : 0},
 
             #endregion Tier 3

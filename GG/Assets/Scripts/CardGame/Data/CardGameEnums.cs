@@ -59,18 +59,34 @@ public enum SpecialCardEffectFlags
     SkipRegeneration = 1, NegativeStatusShield = 2, StrengthBleedSalt = 4, Terror = 8
 }
 
+public enum Ailment
+{
+    Exhausted, Injured, Hunger, Terror, Trauma, Flesh_Wound, Bone_Fracture, Toxin, Hopeless, Degeneration, Discouraged, Psychosis, Blood_Poisoning, Frenzy, Crippling_Pain, Disease, Panic_Attack, Cardiac_Insufficiency
+}
+
 #endregion
 
 #region Enemy
+
+public enum EnemyType
+{
+    Tutorialgladiator, Murmillo, Trax, Hoplomachus, Scissor, Dimachaerus, Schwerathlet, Sklaventreiber, Sonnenbringer, Krieger, Nemesis, Retiarius,
+    Huhn = -1, Bestie = -2, Bestienkämpfer = -3
+}
 
 public enum EnemyBehavior
 {
     None, Aggressive, Defensive, Balanced, Tactical
 }
 
-public enum EnemyAction
+public enum EnemyIntension
 {
     Attack, Block, Special
+}
+
+public enum BattleResult
+{
+    Lose = -1, Spare, Win
 }
 
 #endregion

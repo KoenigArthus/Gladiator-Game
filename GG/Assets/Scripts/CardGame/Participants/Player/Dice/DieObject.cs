@@ -14,8 +14,6 @@ public class DieObject : MonoBehaviour, IPointerClickHandler
     private DieInfo dieInfo;
     private Player player;
 
-    private int rollAmount = 0;
-
     private Image backgroundUI;
     private Text valueUI;
 
@@ -44,7 +42,6 @@ public class DieObject : MonoBehaviour, IPointerClickHandler
     public DieInfo Info => dieInfo;
     public Player Player { get => player; set => player = value; }
     public bool Selected => player != null && player.Prepareing != null && player.Prepareing.Info.HasDie(Info);
-    public bool Rolling => rollAmount > 0;
 
     #endregion Properties
 
@@ -86,12 +83,6 @@ public class DieObject : MonoBehaviour, IPointerClickHandler
     // Update is called once per frame
     private void Update()
     {
-        if (rollAmount > 0)
-        {
-            dieInfo.Roll();
-            rollAmount--;
-        }
-
         if (Selected)
             valueUI.color = Color.red;
         else
@@ -107,14 +98,14 @@ public class DieObject : MonoBehaviour, IPointerClickHandler
 
     public void Roll()
     {
-        rollAmount = Random.Range(100, 201);
+        dieInfo.Roll();
     }
 
     #region Pointer
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (rollAmount < 1 && player != null && player.Prepareing != null)
+        if (player != null && player.Prepareing != null)
             player.Prepareing.Info.ToggleDie(Info);
     }
 

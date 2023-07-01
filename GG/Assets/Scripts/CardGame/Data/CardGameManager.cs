@@ -1,8 +1,6 @@
-using System.Linq;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using JSAM;
-using System.Collections.Generic;
 
 public class CardGameManager : MonoBehaviour
 {
@@ -22,8 +20,7 @@ public class CardGameManager : MonoBehaviour
     private Player player;
     private Enemy enemy;
 
-    private int drawAmount = 4;
-
+    private int round = 0;
     private bool battleEnded = false;
 
     private List<UIValues> uiChanges = new List<UIValues>();
@@ -34,6 +31,8 @@ public class CardGameManager : MonoBehaviour
 
     public Player Player => player;
     public Enemy Enemy => enemy;
+
+    public int Round => round;
 
     #endregion Properties
 
@@ -50,16 +49,7 @@ public class CardGameManager : MonoBehaviour
 
         //Select Opponent
         int nextOpponent = UserFile.SaveGame.NextOpponent;
-        if (nextOpponent > 0)
-        {
-            //Special Fight
-            enemy = new Enemy(this, Mathf.Max(100, 150 * nextOpponent), EnemyBehavior.Aggressive);
-        }
-        else
-        {
-            //Normal/Random Fight
-            enemy = new Enemy(this, Mathf.Max(50, 70 * -nextOpponent), EnemyBehavior.Defensive);
-        }
+        enemy = new Enemy(this, nextOpponent);
 
         //CardSet[] sets = new CardSet[] { CardSet.Gladius, CardSet.Scutum, CardSet.Cassis, CardSet.Manica, CardSet.Ocrea };
         CardInfo[] deck = CardLibrary.GetCardsByNames(UserFile.SaveGame.DeckCardEntries); //cards.Where(x => x.Tier == 0 && sets.Contains(x.Set)).ToArray();
@@ -93,14 +83,24 @@ public class CardGameManager : MonoBehaviour
         }
         else
         {
+            battleEnded = true;
+
             UnityEngine.Debug.Log(enemy.Health);
             UnityEngine.Debug.Log(player.Health);
+
             //Give Rewards
-            if (player.Health > 0)
-                UserFile.SaveGame.Gold += 100 * Mathf.Abs(UserFile.SaveGame.NextOpponent);
+            enemy.Reward.ApplyRewards(
+                //If
+                player.Health > 0 ?
+                    //If
+                    enemy.Health > 0 ?
+                        BattleResult.Spare :
+                        //Else
+                        BattleResult.Win :
+                    //Else
+                    BattleResult.Lose);
 
             //Go back to overwolrd
-            battleEnded = true;
             LevelLoader.i.LoadScene("Ludus");
         }
     }
@@ -116,8 +116,8 @@ public class CardGameManager : MonoBehaviour
 
     public UIValues[] CollectUIChanges()
     {
-        UIValues[] changes = uiChanges.ToArray();
-        uiChanges.Clear();
+        UIValues[] changes = this.uiChanges.ToArray();
+        this.uiChanges.Clear();
 
         return changes;
     }
@@ -136,24 +136,24 @@ public class CardGameManager : MonoBehaviour
 
     public void EndRound()
     {
+        //Round End
+
         player.AbortPreparedCardPlay();
         player.DiscardHand();
 
         enemy.TakeTurn(player);
+
+        round += 1;
+
+        //Round Start
+
         enemy.ChangeIntension();
 
         player.RollDice();
-        player.DrawCards(drawAmount);
+        player.DrawCards();
 
         player.AdvanceRound();
         enemy.AdvanceRound();
-
-        player.AddDie(new DieInfo(4));
-        player.AddDie(new DieInfo(6));
-        player.AddDie(new DieInfo(8));
-        player.AddDie(new DieInfo(10));
-        player.AddDie(new DieInfo(12));
-        player.AddDie(new DieInfo(20));
     }
 
     public void Debug()
