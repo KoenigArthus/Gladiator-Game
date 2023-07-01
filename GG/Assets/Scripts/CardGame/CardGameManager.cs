@@ -22,9 +22,9 @@ public class CardGameManager : MonoBehaviour
     public CardCollection discard;
     public DieCollection dice;
     public List<UIValues> uiChanges = new List<UIValues>();
-    public UnityEvent uiHasChanged;
+    [HideInInspector] public UnityEvent uiHasChanged;
 
-
+    [SerializeField] private GameObject rewardScreen;
     private Player player;
     private Enemy enemy;
 
@@ -108,9 +108,11 @@ public class CardGameManager : MonoBehaviour
             if (player.Health > 0)
                 UserFile.SaveGame.Gold += 100 * Mathf.Abs(UserFile.SaveGame.NextOpponent);
 
-            //Go back to overwolrd
+            //Does the game have to be saved here ? gold seems to be 0 after this operation
+
+            // show result screen here
+            rewardScreen.SetActive(true);
             battleEnded = true;
-            SceneManager.LoadScene("Ludus");
         }
     }
 
