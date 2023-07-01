@@ -46,7 +46,7 @@ public class CharacterRotation : MonoBehaviour
         //Debug.Log("Speed = 0");
         // Set the IsWalking parameter to false to stop the walking animation
         animator.SetBool("Walking", false);
-        animator.SetBool("Idle", true);
+        animator.SetBool("IdleSwordRightandLeftTrue", true);
     }
 
     /*public void PlayMovement()

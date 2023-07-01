@@ -294,12 +294,19 @@ public class Player : Participant
             switch (info.Set)
             {
                 case CardSet.Trident:
-                    cardAnimations.PlayTridentAnimation();
+                    cardAnimations.PlaySpearwithShieldAnimation();
+                    cardAnimations.PlaySwordAnimation();
+                    cardAnimations.PlaySpearAnimation();
+                    cardAnimations.PlayDoubleSpearAnimation();
+                    cardAnimations.PlayScindoAnimations();
+                    cardAnimations.PlayReteAnimation();
                     Debug.Log("TridentGespielt");
                     break;
 
                 case CardSet.Gladius:
-                    cardAnimations.PlayGladiusAnimation();
+                    cardAnimations.PlaySwordAnimation();
+                    cardAnimations.PlayScindoAnimations();
+                    cardAnimations.PlayReteAnimation();
                     Debug.Log("GladiusGespielt");
                     break;
 
@@ -309,34 +316,46 @@ public class Player : Participant
                     break;
 
                 case CardSet.Scutum:
-                    cardAnimations.PlayScutumAnimation();
+                    cardAnimations.PlayShieldAttackAnimation();
+                    cardAnimations.PlayScindoAnimations();
+                    cardAnimations.PlayReteAnimation();
                     Debug.Log("ScutumGespielt");
 
                     break;
 
                 case CardSet.Pugio:
-                    cardAnimations.PlayPugiuAnimation();
-                    Debug.Log("PugioGespielt");
+                    cardAnimations.PlaySwordAnimation();
+                    cardAnimations.PlayScindoAnimations();
+                    cardAnimations.PlayReteAnimation();
+                    Debug.Log("GladiusGespielt");
                     break;
 
                 case CardSet.Doru:
-                    cardAnimations.PlayDoruAnimation();
+                    cardAnimations.PlaySpearwithShieldAnimation();
+                    cardAnimations.PlaySwordAnimation();
+                    cardAnimations.PlaySpearAnimation();
+                    cardAnimations.PlayDoubleSpearAnimation();
+                    cardAnimations.PlayScindoAnimations();
+                    cardAnimations.PlayReteAnimation();
                     Debug.Log("DoruGespielt");
                     break;
 
                 case CardSet.Parmula:
-                    cardAnimations.PlayParmulaAnimation();
+                    cardAnimations.PlayShieldAttackAnimation();
+                    cardAnimations.PlayScindoAnimations();
+                    cardAnimations.PlayReteAnimation();
                     Debug.Log("ParmulaGespielt");
 
                     break;
 
                 case CardSet.Scindo:
-                    cardAnimations.PlayScindoAnimation();
-                    Debug.Log("ScindoGespielt");
+                    cardAnimations.PlaySwordAnimation();
+                    cardAnimations.PlayScindoAnimations();
+                    cardAnimations.PlayReteAnimation();
+                    Debug.Log("GladiusGespielt");
                     break;
             }
 
-            camFocus.DecideFocus(info.Type);
         }
 
         if (info.Type == CardType.Block)
@@ -355,8 +374,8 @@ public class Player : Participant
                     break;
             }
 
-            camFocus.DecideFocus(info.Type);
         }
+            camFocus.DecideFocus(info.Type);
     }
 
     #endregion Play

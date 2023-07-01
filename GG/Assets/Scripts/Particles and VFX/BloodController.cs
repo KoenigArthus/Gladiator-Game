@@ -5,6 +5,8 @@ using UnityEngine;
 public class BloodController : MonoBehaviour
 {
     public ParticleSystem bloodParticleSystem;
+    public ParticleSystem blockParticleSystem, healParticleSystem, skillParticleSystem;
+    public GameObject floorSpawner, chestParticleSpawner;
 
     public void Awake()
     {

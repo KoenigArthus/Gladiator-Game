@@ -62,11 +62,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Speerangriff
+      name: SpearAttackAnimation
       takeName: Armature.001|Armature.001|mixamo.com|Layer0
       internalID: 4386217130849869944
-      firstFrame: 92
-      lastFrame: 190
+      firstFrame: 125
+      lastFrame: 130
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

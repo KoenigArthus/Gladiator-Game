@@ -5,11 +5,23 @@ public class TerrainTypeDetector : MonoBehaviour
 {
     private Terrain terrain;
     private TerrainData terrainData;
+    public ParticleSystem sandParticles;
+    public ParticleSystem stoneParticles;
+    public Rigidbody rigidbody;
+
+    private bool isMoving = false; // Track player movement
 
     private void Start()
     {
+        rigidbody = GetComponent<Rigidbody>();
         terrain = Terrain.activeTerrain;
         terrainData = terrain.terrainData;
+    }
+
+    private void Update()
+    {
+        // Check if the player is moving
+        isMoving = (rigidbody.velocity.sqrMagnitude > 0.01f);
     }
 
     public void PlayFootstepSound()
@@ -24,21 +36,27 @@ public class TerrainTypeDetector : MonoBehaviour
 
             if (terrainType.Contains("Sand"))
             {
-                JSAM.AudioManager.StopSound(Sounds.StoneSteps);
-                JSAM.AudioManager.PlaySound(Sounds.SandSteps);
+                AudioManager.StopSound(Sounds.StoneSteps);
+                sandParticles.Play();
+                stoneParticles.Stop();
+                AudioManager.PlaySound(Sounds.SandSteps);
             }
             else if (terrainType.Contains("Stone"))
             {
-                JSAM.AudioManager.StopSound(Sounds.SandSteps);
-                JSAM.AudioManager.PlaySound(Sounds.StoneSteps);
-            }
-            else
-            {
-                Debug.LogWarning("for the terrain " + terrainType + " was no sound assigned");
+                AudioManager.StopSound(Sounds.SandSteps);
+                sandParticles.Stop();
+                stoneParticles.Play();
+                AudioManager.PlaySound(Sounds.StoneSteps);
             }
         }
-    }
 
+        // Stop particles if player is not moving
+        if (!isMoving)
+        {
+            sandParticles.Stop();
+            stoneParticles.Stop();
+        }
+    }
 
     private int GetMainTextureIndex(Vector3 terrainLocalPos)
     {

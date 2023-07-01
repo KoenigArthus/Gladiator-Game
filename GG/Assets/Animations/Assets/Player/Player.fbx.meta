@@ -149,11 +149,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Schildangriff_animation
+      name: ShieldAttackAnimation_
       takeName: Armature.001|Armature.001|mixamo.com|Layer0
       internalID: -5991856397084909526
-      firstFrame: 1468
-      lastFrame: 1567
+      firstFrame: 1497
+      lastFrame: 1505
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
