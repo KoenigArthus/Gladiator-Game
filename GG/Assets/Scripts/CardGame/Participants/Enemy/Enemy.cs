@@ -182,6 +182,6 @@ public partial class Enemy : Participant
 
     public override string ToString()
     {
-        return base.ToString() + $"\nIntend: {Intension}";
+        return base.ToString() + $"\nIntend:\n{Intension}";
     }
 }

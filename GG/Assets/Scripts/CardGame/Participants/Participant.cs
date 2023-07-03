@@ -33,6 +33,7 @@ public abstract class Participant
     public int Block => BlockStack.Sum();
     public abstract int[] BlockStack { get; }
     public int BlockSlots { get => blockSlots; set => blockSlots = value; }
+    public virtual float EvadeChance => 0;
     public int LastStatusDecayAmount => lastStatusDecayAmount;
 
     public bool SkipRegeneration
@@ -46,6 +47,9 @@ public abstract class Participant
 
     public bool Terror
     { get => specialFlags.HasFlag(SpecialCardEffectFlags.Terror); set { if (value) specialFlags |= SpecialCardEffectFlags.Terror; else specialFlags &= (SpecialCardEffectFlags)(int.MaxValue ^ (int)SpecialCardEffectFlags.Terror); } }
+
+    public bool SpikyBlock
+    { get => specialFlags.HasFlag(SpecialCardEffectFlags.Spiky_Block); set { if (value) specialFlags |= SpecialCardEffectFlags.Spiky_Block; else specialFlags &= (SpecialCardEffectFlags)(int.MaxValue ^ (int)SpecialCardEffectFlags.Spiky_Block); } }
 
     #endregion Properties
 
@@ -128,13 +132,22 @@ public abstract class Participant
             return 0;
         }
 
+        //Try to evade attack
+        if (Random.Range(0f, 1f) < EvadeChance)
+            return 0;
+
         //Calculate bonus
         power += BonusDamage;
+        power = Mathf.Max(0, power);
+
         if (target.GetStatus(StatusEffect.Vulnerable) > 0)
             power += (int)(power * 0.05f);
 
         if (!piercing)
         {
+            if (target.Block > 0 && target.SpikyBlock)
+                InstantDamage(2, false);
+
             if (doubleBlockDamage)
             {
                 int basePower = power;
@@ -151,9 +164,9 @@ public abstract class Participant
                 target.ReduceBlock(ref power);
 
             //Dage attack if invulnerable from block effect
-            if (GetStatus(StatusEffect.Invulnerable) > 0)
+            if (target.GetStatus(StatusEffect.Invulnerable) > 0)
             {
-                RemoveStatus(StatusEffect.Invulnerable, 1);
+                target.RemoveStatus(StatusEffect.Invulnerable, 1);
                 return 0;
             }
         }

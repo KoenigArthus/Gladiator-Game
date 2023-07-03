@@ -10,6 +10,7 @@ public partial class Enemy
     private int health = 10;
     private int spareThreshold = int.MinValue;
     private bool dontOverstackBlock = false;
+    private GetEvadeChance evadeChance = null;
     private SkillInfo[] skills = new SkillInfo[0];
     private AbilityInfo ability = null;
     private EnrageInfo enrage = null;
@@ -21,6 +22,7 @@ public partial class Enemy
     #region Properties
 
     public bool DontOverstackBlock => dontOverstackBlock;
+    public override float EvadeChance => evadeChance == null ? base.EvadeChance : evadeChance(this);
 
     public int Actions
     {
@@ -74,9 +76,9 @@ public partial class Enemy
                     new SkillInfo(EnemyIntension.Block, (3, 6)),
                     //Agressive
                     new SkillInfo(EnemyIntension.Attack, (5, 8), (SkillInfo s, Enemy e) => e.Attack(e.Player, s.GetPower(), false, true))
-
-                    //Solange er keinen Block hat, 40% Chance Angriffen auszuweichen.
                 };
+                //Solange er keinen Block hat, 40% Chance Angriffen auszuweichen.
+                enemy.evadeChance = (Enemy e) => e.Block > 0 ? 0 : 0.4f;
 
                 enemy.AddStatus(StatusEffect.Regeneration, 4);
                 break;
@@ -108,7 +110,7 @@ public partial class Enemy
                 enemy.skills = new SkillInfo[]
                 {
                     //Agressive
-                    new SkillInfo(EnemyIntension.Attack, (3, 5), (SkillInfo s, Enemy e) => {e.Attack(e.Player, s.GetPower()); e.Player.AddStatus(StatusEffect.Bleeding, 1); })
+                    new SkillInfo(EnemyIntension.Attack, (3, 5), (SkillInfo s, Enemy e) => { if(e.Player.Block < 1) e.Player.AddStatus(StatusEffect.Bleeding, 1); e.Attack(e.Player, s.GetPower()); })
                 };
                 enemy.Player.AddActionEffect((CardInfo c, int v) => { if (c.Type == CardType.Block) { c.DestroyOnDiscard = true; return c; } return null; }, null, true);
                 enemy.AddStatus(StatusEffect.Regeneration, 3);
@@ -134,7 +136,7 @@ public partial class Enemy
                 enemy.skills = new SkillInfo[]
                 {
                     //Agressive
-                    new SkillInfo(EnemyIntension.Attack, (2, 3), (SkillInfo s, Enemy e) => {e.Attack(e.Player, s.GetPower(), false, true); e.Player.AddStatus(StatusEffect.Bleeding, 1); }),
+                    new SkillInfo(EnemyIntension.Attack, (2, 3), (SkillInfo s, Enemy e) => { if(e.Player.Block < 1) e.Player.AddStatus(StatusEffect.Bleeding, 1); e.Attack(e.Player, s.GetPower(), false, true); }),
                     //Special
                     new SkillInfo(EnemyIntension.Special, 30, (SkillInfo s, Enemy e) => e.Player.AddStatus(StatusEffect.Feeble, 30))
                 };
@@ -208,6 +210,7 @@ public partial class Enemy
                     //Agressive
                     new SkillInfo(EnemyIntension.Attack, 1)
                 };
+                enemy.evadeChance = (Enemy e) => 0.75f;
                 enemy.AddStatus(StatusEffect.Regeneration, 2);
                 break;
 
@@ -233,4 +236,6 @@ public partial class Enemy
 
         return enemy;
     }
+
+    private delegate float GetEvadeChance(Enemy enemy);
 }

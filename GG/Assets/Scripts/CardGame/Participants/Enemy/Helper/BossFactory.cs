@@ -50,7 +50,7 @@ public partial class Enemy
                     };
                 enemy.forcedIntension = new EnemyIntension?[] { EnemyIntension.Block, EnemyIntension.Attack, EnemyIntension.Attack, EnemyIntension.Attack };
                 //Solange er blockt werden dem Spieler 2 Schaden pro Angriff gegen Block mitgegeben.
-
+                enemy.SpikyBlock = true;
                 enemy.AddStatus(StatusEffect.Regeneration, 5);
                 enemy.reward = new RewardInfo(6, 50);
                 enemy.attackAilments = new AttackAilmentInfo(0.2f, Ailment.Bone_Fracture);

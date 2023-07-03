@@ -56,7 +56,7 @@ public enum StatusEffect
 [Flags]
 public enum SpecialCardEffectFlags
 {
-    SkipRegeneration = 1, NegativeStatusShield = 2, StrengthBleedSalt = 4, Terror = 8
+    SkipRegeneration = 1, NegativeStatusShield = 2, StrengthBleedSalt = 4, Terror = 8, Spiky_Block = 16
 }
 
 public enum Ailment
