@@ -153,6 +153,16 @@ public class Deckbuilder : MonoBehaviour
     public void RemoveFromDeckEntrie(CardSet cardSet)
     {
         deckCardEntries = deckCardEntries.Where(x => CardLibrary.GetCardByName(x).Set != cardSet).ToList();
+
+        //updating the save game to remove the same cards
+        List<string> resultList = new List<string>(UserFile.SaveGame.DeckCardEntries);
+
+        foreach (string str in deckCardEntries)
+        {
+            resultList.Remove(str);
+        }
+
+        UserFile.SaveGame.DeckCardEntries = resultList.ToArray();
     }
 
     public void FillEquipmentEntrie(Equipment equipment)
@@ -183,7 +193,7 @@ public class Deckbuilder : MonoBehaviour
 
     public void SaveDeck()
     {
-        UserFile.SaveGame.DeckCardEntries = deckCardEntries.ToArray();
+        //UserFile.SaveGame.DeckCardEntries = UserFile.SaveGame.DeckCardEntries + deckCardEntries.ToArray();
         //deckCardEntries = UserFile.SaveGame.DeckCardEntries.ToList(); 
         // UserFile.SaveGame.Save();|
     }

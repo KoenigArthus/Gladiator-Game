@@ -93,8 +93,11 @@ public class UIUpdater : MonoBehaviour
                 .setOnUpdate((float val) => { hpPlayer.fillAmount = val; })
                 .setOnComplete(() => { progress += 1; });
         }
+
+
+
     }
 
-
+    
 
 }

@@ -137,7 +137,10 @@ public class DialogueSystem : MonoBehaviour
     [YarnCommand("add_card")]
     public static void UnlockCard(string cardName)
     {
-        Debug.Log(cardName);
+        Debug.Log("added" + cardName);
+
+        CardLibrary.GetCardByName(cardName);
+        //UserFile.SaveGame.DeckCardEntries
     }
 
 
