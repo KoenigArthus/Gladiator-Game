@@ -42,6 +42,52 @@ public partial class Enemy : Participant
     #region Properties
 
     public override string Name => type.ToString();
+    public EnemyType Type => type;
+
+    public CardSet[] Equipped
+    {
+        get
+        {
+            switch (type)
+            {
+                case EnemyType.Tutorialgladiator:
+                case EnemyType.Murmillo:
+                    return new CardSet[] { CardSet.Gladius, CardSet.Parmula }; //Scuntum
+                case EnemyType.Trax:
+                    return new CardSet[] { CardSet.Gladius, CardSet.Scutum };
+
+                case EnemyType.Hoplomachus:
+                    return new CardSet[] { CardSet.Doru, CardSet.Parmula };
+
+                case EnemyType.Scissor:
+                    return new CardSet[] { CardSet.Scindo, CardSet.Gladius };
+
+                case EnemyType.Dimachaerus:
+                    return new CardSet[] { CardSet.Gladius, CardSet.Gladius };
+
+                case EnemyType.Schwerathlet:
+                    return new CardSet[] { }; //Cestus
+                case EnemyType.Sklaventreiber:
+                    return new CardSet[] { CardSet.Scutum, CardSet.Rete };
+
+                case EnemyType.Sonnenbringer:
+                    return new CardSet[] { }; //Staff
+                case EnemyType.Krieger:
+                    return new CardSet[] { CardSet.Gladius };
+
+                case EnemyType.Nemesis:
+                    return new CardSet[] { CardSet.Gladius }; //Gladius
+                case EnemyType.Retiarius:
+                    return new CardSet[] { CardSet.Trident, CardSet.Rete };
+
+                case EnemyType.Bestienkämpfer:
+                    return new CardSet[] { CardSet.Scindo, CardSet.Scindo };
+            }
+
+            return new CardSet[0];
+        }
+    }
+
     public override int Health { get => health; set => health = value; }
     public override int[] BlockStack => blockStack;
     public string Intension => string.Join('|', intension.Select(x => x.ToString()));
