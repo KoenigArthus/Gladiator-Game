@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using JSAM;
 
 public class BloodController : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class BloodController : MonoBehaviour
     public void PlayBloodParticleSystem()
     {
         bloodParticleSystem.Play();
+        JSAM.AudioManager.PlaySound(Sounds.Hit);
     }
 }
 

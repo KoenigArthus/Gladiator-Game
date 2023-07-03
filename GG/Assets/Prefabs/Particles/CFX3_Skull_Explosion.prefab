@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3645347252445729069}
   - component: {fileID: 3644157438670575995}
   - component: {fileID: 3585136468828176729}
+  - component: {fileID: 1037683599718693674}
   m_Layer: 0
   m_Name: CFX3_Skull_Explosion
   m_TagString: Untagged
@@ -4872,6 +4873,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnlyDeactivate: 0
+--- !u!114 &1037683599718693674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3481912705081309867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c6cfe8bfc0d31409a979c41b0c8d71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spatialSound: 0
+  loopSound: 0
+  priority: 128
+  pitchShift: 0
+  delay: 0
+  ignoreTimeScale: 0
+  sound: {fileID: 11400000, guid: 05f6d719a68d8bd409d7a6f99a7abd0d, type: 2}
+  onStart: 1
+  onEnable: 0
+  onDisable: 2
+  onDestroy: 0
 --- !u!1 &3482167743861625499
 GameObject:
   m_ObjectHideFlags: 0

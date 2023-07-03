@@ -344,6 +344,7 @@ public class Player : Participant
                     cardAnimations.PlayShieldAttackAnimation();
                     cardAnimations.PlayScindoAnimations();
                     cardAnimations.PlayReteAnimation();
+                    cardAnimations.PlaySwordAnimation();
                     Debug.Log("ParmulaGespielt");
 
                     break;
