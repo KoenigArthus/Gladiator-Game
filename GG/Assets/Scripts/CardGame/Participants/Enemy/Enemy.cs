@@ -16,6 +16,24 @@ public partial class Enemy : Participant
 
     public Enemy(CardGameManager manager, int level) : base(manager)
     {
+        //Check out of range
+        if (level < -12 || level > 13 || level == -10)
+        {
+            BuildEnemy(this, EnemyType.Tutorialgladiator);
+            return;
+        }
+
+        bool sparring = level < 0;
+        EnemyType type;
+        if (level > -12 && level < 11)
+            type = (EnemyType)Mathf.Abs(level);
+        else
+            type = (EnemyType)(-Mathf.Abs(level) + 10);
+
+        if (sparring)
+            BuildSparringPartner(this, type);
+        else
+            BuildBoss(this, type);
     }
 
     #region Properties

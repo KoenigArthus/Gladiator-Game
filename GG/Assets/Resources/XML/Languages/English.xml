@@ -1,6 +1,15 @@
 <Language>
 	<Unplayable Name="Unplayable" Description="" />
 	<Cost Name="Cost" Description="" />
+	<Strength Name="Strength" Description="" />
+	<Defence Name="Defence" Description="" />
+	<Invulnerable Name="Invulnerable" Description="" />
+	<Regeneration Name="Regeneration" Description="" />
+	<Stun Name="Stun" Description="" />
+	<Weak Name="Weak" Description="" />
+	<Feeble Name="Feeble" Description="" />
+	<Bleeding Name="Bleeding" Description="" />
+	<Vulnerable Name="Vulnerable" Description="" />
 	<Thrust Name="Thrust" Description="" />
 	<Shove Name="Shove" Description="" />
 	<Jump_Thrust Name="Jump Thrust" Description="" />

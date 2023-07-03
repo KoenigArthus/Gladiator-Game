@@ -49,7 +49,7 @@ public class EquipmentInfo
 
     public static Sprite GetSprite(string name)
     {
-        Sprite sprite = Resources.Load<Sprite>($"Textures/CardGame/Equipment{name}");
+        Sprite sprite = Resources.Load<Sprite>($"Textures/CardGame/Equipment/{name}");
         if (sprite != null)
             return sprite;
 

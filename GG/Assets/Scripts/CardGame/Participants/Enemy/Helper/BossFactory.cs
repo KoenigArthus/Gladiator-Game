@@ -117,6 +117,12 @@ public partial class Enemy
                 enemy.reward = new RewardInfo(0, 2500);
                 enemy.attackAilments = new AttackAilmentInfo(1, Ailment.Degeneration, Ailment.Disease, Ailment.Toxin);
                 break;
+
+            case EnemyType.Bestienkämpfer:
+                enemy.health = 250;
+                enemy.reward = new RewardInfo((1, 1));
+                enemy.attackAilments = new AttackAilmentInfo(1, Ailment.Flesh_Wound);
+                break;
         }
 
         return enemy;

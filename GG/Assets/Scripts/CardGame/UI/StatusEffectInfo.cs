@@ -5,7 +5,7 @@ public class StatusEffectInfo
 {
     #region Fields
 
-    private Dictionary<StatusEffect, Sprite> effectSprites = new Dictionary<StatusEffect, Sprite>();
+    private Dictionary<string, Sprite> effectSprites = new Dictionary<string, Sprite>();
 
     private StatusEffect effect;
     private int value;
@@ -22,18 +22,44 @@ public class StatusEffectInfo
 
     public StatusEffect Effect => effect;
     public int Value => value;
+    public string Name => CardLibrary.GetTranslatedName(effect.ToString());
+    public string Description => CardLibrary.GetTranslatedDescription(effect.ToString());
 
     public Sprite Sprite
-    { get { if (!effectSprites.ContainsKey(effect)) effectSprites.Add(effect, GetSprite(effect.ToString())); return effectSprites[effect]; } }
+    { get { string effect = GetSpriteName(); if (!effectSprites.ContainsKey(effect)) effectSprites.Add(effect, GetSprite(effect.ToString())); return effectSprites[effect]; } }
 
     #endregion Properties
 
+    public string GetSpriteName()
+    {
+        string name = effect.ToString();
+
+        if (name.EndsWith("Strength"))
+        {
+            if (value < 0)
+                return "Strength-";
+            else
+                return "Strength";
+        }
+
+        if (name.EndsWith("Defence"))
+        {
+            if (value < 0)
+                return "Defence-";
+            else
+                return "Defence";
+        }
+
+        return name;
+    }
+
     public static Sprite GetSprite(string name)
     {
-        Sprite sprite = Resources.Load<Sprite>($"Textures/CardGame/Equipment{name}");
+#warning TODO
+        Sprite sprite = Resources.Load<Sprite>($"Textures/Icons/StatusEffect/{name}");
         if (sprite != null)
             return sprite;
 
-        return Resources.Load<Sprite>($"Textures/CardGame/Equipment/Debug");
+        return Resources.Load<Sprite>($"Textures/CardGame/Icons/Debug");
     }
 }

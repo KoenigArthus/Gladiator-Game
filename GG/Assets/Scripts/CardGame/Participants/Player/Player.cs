@@ -228,12 +228,11 @@ public class Player : Participant
                         }
                     }
 
-                    for (int i = 0; i < instantCard.Repeat; i++)
-                    {
+                    for (int i = 0; i < Mathf.Max(1, instantCard.Repeat); i++)
                         instantCard.Execute();
-                        PlayCardAnimation(info);
-                        Manager.NotifyStatsChange();
-                    }
+
+                    PlayCardAnimation(info);
+                    Manager.NotifyStatsChange();
 
                     //Dont discard block
                     if (dontDiscard)

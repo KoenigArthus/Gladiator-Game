@@ -30,7 +30,15 @@ public class SaveGame : UserFile
     public int Health { get => health; set => health = value; }
     public int Gold { get => gold; set => gold = value; }
     public int[] EquipmentEXP { get => equipmentEXP; set => equipmentEXP = value; }
+
+    /// <summary>
+    ///  0  ~  10 = Boss Fights (0: A Variant | 1: B Variant)<br/>
+    /// -1  ~ -11 = Sparring Fights (-11 = Retarius)<br/>
+    /// 11 = Chicken (Quest), 12 = Beast (Quest), -12 = Beast (Free Match), 13 = Beastfighter<br/>
+    /// Every other number = Tutorial
+    /// </summary>
     public int NextOpponent { get => nextOpponent; set => nextOpponent = value; }
+
     public string[] DeckCardEntries { get => deckCardEntries; set => deckCardEntries = value; }
     public string[] EquipmentCardEntries { get => equipmentCardEntries; set => equipmentCardEntries = value; }
     public string[] Equipped { get => equipped; set => equipped = value; }

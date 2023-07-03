@@ -215,6 +215,16 @@ public partial class Enemy
                 };
                 enemy.AddStatus(StatusEffect.Regeneration, 12);
                 break;
+
+            case EnemyType.Bestienkämpfer:
+                enemy.Actions = 1;
+                enemy.skills = new SkillInfo[]
+                {
+                    //Agressive
+                    new SkillInfo(EnemyIntension.Attack, 5)
+                };
+                enemy.AddStatus(StatusEffect.Regeneration, 8);
+                break;
         }
 
         return enemy;

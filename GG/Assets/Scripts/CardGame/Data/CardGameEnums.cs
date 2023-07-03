@@ -74,11 +74,6 @@ public enum EnemyType
     Huhn = -1, Bestie = -2, Bestienkämpfer = -3
 }
 
-public enum EnemyBehavior
-{
-    None, Aggressive, Defensive, Balanced, Tactical
-}
-
 public enum EnemyIntension
 {
     Attack, Block, Skill, Special
