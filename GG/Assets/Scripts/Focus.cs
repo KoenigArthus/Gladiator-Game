@@ -10,7 +10,7 @@ public class Focus : MonoBehaviour
     [SerializeField] GameObject[] activationObjects;
     [SerializeField] GameObject player, enemy;
     [SerializeField] Rotator rotator;
-
+    [SerializeField] BloodController bloodController;
 
     public void DecideFocus(string notification)
     {
@@ -33,13 +33,23 @@ public class Focus : MonoBehaviour
                 break;
             case CardType.Block:
                 //StartBlockFocus();
+                Instantiate(bloodController.blockParticleSystem, bloodController.floorSpawner.transform);
                 break;
+            case CardType.Aid:
+                Instantiate(bloodController.healParticleSystem, bloodController.chestParticleSpawner.transform);
+                break;
+            case CardType.Skill:
+                Instantiate(bloodController.skillParticleSystem, bloodController.chestParticleSpawner.transform);
+                break;
+
             default:
                 Debug.LogWarning("Invalid string recieved");
                 break;
         }
+        LeanTween.delayedCall(2f, rotator.StartMovement);
     }
 
+    
 
     private void StopFocus()
     {

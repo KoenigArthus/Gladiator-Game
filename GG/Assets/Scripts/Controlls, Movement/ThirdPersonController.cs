@@ -101,6 +101,9 @@ public class ThirdPersonController : MonoBehaviour
         movementEnabled = false;
         LookAt(CustomUtility.StringToVector3(lookAtPos));
     }
+
+    public bool GetMovementStatus()
+    { return movementEnabled; }
     #endregion
 
 
