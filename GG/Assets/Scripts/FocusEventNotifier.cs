@@ -14,7 +14,6 @@ public class FocusEventNotifier : MonoBehaviour
 
     public void NotifyFocus(string notification)
     {
-        Debug.Log("watafak");
         focus.DecideFocus(notification);
     }
 

@@ -1,0 +1,44 @@
+﻿title: pb4_1
+position: 89,-10
+---
+<<if visited("pb4_2")>>
+    <<jump pb4_4>>
+<<endif>>
+Ein Buch mit der Aufschrift "Illusion von Willen"
+-> (Zeitaufwand) Lesen?
+<<if $hastime == true>>
+    <<set_time = get_time + 1>>
+    <<jump pb4_2>>
+<<else>>
+    <<jump pb4_hasnotime>>
+<<endif>>
+-> (Verlassen) Liegen lassen
+    <<jump pb4_3>>
+===
+title: pb4_2
+position: -183,-248
+---
+<<set $player_rhetoric = $player_rhetoric + 1>> 
+Interessant (Rhetorik plus 1)
+    <<jump pb4_5>>
+===
+title: pb4_3
+position: 149,-228
+---
+Mir ist gerade nicht nach lesen.
+===
+title: pb4_4
+position: -191,160
+---
+Ich habe das bereits gelesen.
+===
+title: pb4_5
+position: 11,288
+---
+
+===
+title: pb4_hasnotime
+position: 89,-10
+---
+Es lohnt sich jetzt nicht anzufagen, ich muss bald weiter.
+===

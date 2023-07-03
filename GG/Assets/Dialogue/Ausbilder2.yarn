@@ -1,0 +1,80 @@
+﻿title: Aus2_0
+position: -319,-570
+---
+<<if $hastime == true>>
+    <<jump Aus2_1>>
+<<else>>
+    <<jump hasnotime>>
+<<endif>>
+===
+title: Aus2_1
+position: -41,-520
+---
+<<if visited ("Aus2_1")>>
+    <<jump Aus2_2>>
+<<endif>>
+Ausbilder: Gladiator! Mir scheint dir dürstetst es nach einem kleinen Scharmützel, HA!
+Ausbilder: Also? Lust auf einen Trainingskampf?
+<<jump Aus2_3>>
+===
+title: Aus2_2
+position: 334,-506
+---
+Ausbilder: Haha, Lust auf einen Trainingskampf?
+<<jump Aus2_3>>
+===
+title: Aus2_3
+position: 75,-187
+---
+-> Natürlich!
+    <<jump Aus2_4>>
+-> (Verlassen) Nein, nicht jetzt.
+    <<jump Aus2_ENDE>>
+===
+title: Aus2_4
+position: 69,11
+---
+Ausbilder: Alles klar wer soll dein Gegner sein?
+<<jump Aus2_6>>
+===
+title: Aus2_ENDE
+position: -457,16
+---
+Ausbilder: Komm wieder, bevor der Hunger nach einem Gerangel dich frisst, HA!
+===
+title: Aus2_6
+position: 76,243
+---
+-> //Standart Trainingspartner der immer verfügbar ist
+(Zeitaufwand) Trax 
+     <<set_time to {get_time()} + 1>>
+     <<start_fight>>
+-> //Standart Trainingspartner der immer verfügbar ist
+(Zeitaufwand)  Retiarius
+     <<set_time to {get_time()} + 1>>
+     <<start_fight>>
+-> //Abfrage ob der Glaidator noch am Leben ist!
+(Zeitaufwand) Tutorialgladiator //(Variante A)
+     <<set_time to {get_time()} + 1>>
+     <<start_fight>>
+-> //Abfrage ob der Glaidator noch am Leben ist!
+(Zeitaufwand) Tutorialgladiator //(Variante B) Entsprechend der Beziehung mit dem Tutorialgladiator Variante A/B
+     <<set_time to {get_time()} + 1>>
+     <<start_fight>>
+->//Erste Woche Trainingspartner (Tutorialglaidator=Murmillo)
+(Zeitaufwand) Tutorialgladiator
+     <<set_time to {get_time()} + 1>>
+     <<start_fight>>
+->//Herausforderung um Eintritt in die Katakomben zu erhalten.
+(Zeitaufwand) Herausforderer <<if $challenge == false && visited("wa4_ENDE")>>
+     <<set_time to {get_time()} + 1>>
+     <<start_fight>>
+     //Hier muss bei einem Trefferlosen Sieg der Bool umgestellt werden. ($challenge = true)
+-> (Verlassen) Ich muss noch etwas erledigen...
+    <<jump Aus2_ENDE>>
+===
+title: hasnotime
+position: -581,-522
+---
+Ich habe kein Zeit.
+===

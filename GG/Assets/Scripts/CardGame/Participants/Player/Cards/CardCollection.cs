@@ -115,7 +115,9 @@ public class CardCollection : MonoBehaviour
     {
         card.Collection = this;
         cards.Add(card);
-        card.transform.parent = this.transform;
+        //card.transform.parent = this.transform;
+        // Unity devs build made it so that a warning appeared and they told me to do this because of scaling issues that can happen
+        card.transform.SetParent(this.transform,true);
 
         changed = true;
     }

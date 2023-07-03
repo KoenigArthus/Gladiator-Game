@@ -1,0 +1,53 @@
+﻿title: me0
+tags:
+---
+<<declare $meday = 0>>
+<<if $meday == 0>>
+    <<if visited ("me1")>>
+        <<jump me2>>
+    <<else>>
+        <<jump me1>>
+    <<endif>>
+<<endif>>
+===
+title: me1
+position: -149,193
+---
+Mediziner: Möchtest du mal etwas entspannen?
+Mediziner: vielleicht die Leiden etwas lindern?
+Mediziner: Wir haben alles hier im Badehaus um deine Gebrechen zu versorgen!
+-> (Zeitaufwand) Ich fühl mich tatsächlich etwas ausgelaugt
+    <<if $hastime == true>>
+        <<set_time to {get_time()} + 1>>
+        <<add_card "Refreshed">>
+    <<else>>
+        <<jump me_hasnotime>>
+    <<endif>>
+-> (Verlassen) Nein, danke
+    <<jump meENDE>>
+
+===
+title: me2
+position: -283,-106
+---
+Mediziner: Das Badehaus steht jederzeit für dich offen!
+-> (Zeitaufwand) Ich muss etwas entspannen
+  <<if $hastime == true>>
+        <<set_time to {get_time()} + 1>>
+        <<add_card "Refreshed">>
+    <<else>>
+        <<jump me_hasnotime>>
+    <<endif>>
+-> (Verlassen) Ich habe gerade keine Zeit
+    <<jump meENDE>>
+===
+title: meENDE
+position: -149,193
+---
+Mediziner: Bleib gesund, Gladiator!
+===
+title: me_hasnotime
+position: 39,-227
+---
+Ich kann es mir jetzt nich erlauben baden zu gehen...
+===

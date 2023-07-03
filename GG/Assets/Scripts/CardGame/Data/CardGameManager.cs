@@ -1,6 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using JSAM;
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 public class CardGameManager : MonoBehaviour
 {
@@ -16,14 +21,16 @@ public class CardGameManager : MonoBehaviour
     public CardCollection block;
     public CardCollection discard;
     public DieCollection dice;
+    public List<UIValues> uiChanges = new List<UIValues>();
+    [HideInInspector] public UnityEvent uiHasChanged;
 
+    [SerializeField] private GameObject rewardScreen;
     private Player player;
     private Enemy enemy;
 
     private int round = 0;
     private bool battleEnded = false;
 
-    private List<UIValues> uiChanges = new List<UIValues>();
 
     #endregion Fields
 
@@ -41,10 +48,6 @@ public class CardGameManager : MonoBehaviour
     private void Awake()
     {
         CardLibrary.Setup();
-    }
-
-    private void Start()
-    {
         player = new Player(this);
 
         //Select Opponent
@@ -58,9 +61,17 @@ public class CardGameManager : MonoBehaviour
             player.Deck.Add(CardObject.Instantiate((CardInfo)deck[i].Clone(), this.deck.transform.position));
 
         player.cardAnimations = FindObjectOfType<CardAnimations>();
+        player.camFocus = FindObjectOfType<Focus>();
+
 
         player.Deck.Shuffle();
         EndRound();
+        NotifyStatsChange();
+    }
+
+    private void Start()
+    {
+      
     }
 
     private void Update()
@@ -101,8 +112,11 @@ public class CardGameManager : MonoBehaviour
                     //Else
                     BattleResult.Lose);
 
-            //Go back to overwolrd
-            LevelLoader.i.LoadScene("Ludus");
+            //Does the game have to be saved here ? gold seems to be 0 after this operation
+
+            // show result screen here
+            rewardScreen.SetActive(true);
+            battleEnded = true;
         }
     }
 
@@ -113,15 +127,27 @@ public class CardGameManager : MonoBehaviour
     public void NotifyStatsChange()
     {
         uiChanges.Add(new UIValues(player, enemy));
+        uiHasChanged?.Invoke();
+
     }
 
-    public UIValues[] CollectUIChanges()
-    {
-        UIValues[] changes = this.uiChanges.ToArray();
-        this.uiChanges.Clear();
+    /* public UIValues[] CollectUIChanges()
+     {
+         UIValues[] changes =  uiChanges.ToArray();
+         uiChanges.Clear();
 
-        return changes;
-    }
+         return changes;
+     }
+     public UIValues[] CollectUIChanges(bool clearValues)
+     {
+         UIValues[] changes = uiChanges.ToArray();
+
+         if (clearValues)
+         uiChanges.Clear();
+
+         return changes;
+     }*/
+
 
     #endregion UI
 

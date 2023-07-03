@@ -49,7 +49,7 @@ public class CharacterSpawnManager : MonoBehaviour
 
         if (IsInSpawnTime(character.spawnDate, timeManager.passedDays, character.killDate))
         {
-             switch (weekdayIndex)
+              switch (weekdayIndex)
             {
                 case 0: // Monday
                     switch (timeIndex)
@@ -141,23 +141,19 @@ public class CharacterSpawnManager : MonoBehaviour
     }
 
 
-    /// <summary>
-    /// Returns true if the date in the <paramref name="passedDays"/> is in between the two dates.
-    /// <br> If <paramref name="spawnDate"/> is higher than <paramref name="killDate"/>, the function will return false if <paramref name="currentDate"/> is in between.</br>
-    /// </summary>
+
     /// <param name="spawnDate">The date representing the spawn date.</param>
     /// <param name="passedDays">The date representing the current date.</param>
     /// <param name="killDate">The date representing the kill date.</param>
-    /// <returns>Returns true if the date in the <paramref name="passedDays"/> is between the two dates; otherwise, false.</returns>
+    /// <returns> true if the date in the <paramref name="passedDays"/> is between the two dates; otherwise, false.</returns>
     private bool IsInSpawnTime(Date spawnDate, int passedDays, Date killDate)
     {
-        //Debug.Log(CustomUtility.ToPassedDays(spawnDate) + ", " + passedDays + ", " + CustomUtility.ToPassedDays(killDate));
+        Debug.Log(CustomUtility.ToPassedDays(spawnDate) + ", " + passedDays + ", " + CustomUtility.ToPassedDays(killDate));
             
         if (CustomUtility.ToPassedDays(spawnDate) <= passedDays && passedDays < CustomUtility.ToPassedDays(killDate))
         {
             return true;
         }
-
         return false;
     }
 

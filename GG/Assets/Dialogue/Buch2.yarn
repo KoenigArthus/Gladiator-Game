@@ -1,0 +1,44 @@
+﻿title: pb2_1
+position: 89,-10
+---
+<<if visited("pb2_2")>>
+    <<jump pb2_4>>
+<<endif>>
+Ein Buch mit der Aufschrift "Gladiatur und Erfüllung"
+-> (Zeitaufwand) Lesen?
+<<if $hastime == true>>
+    <<set_time = get_time + 1>>
+    <<jump pb2_2>>
+<<else>>
+    <<jump pb2_hasnotime>>
+-> (Verlassen) Liegen lassen
+    <<jump pb2_3>>
+<<endif>>
+===
+title: pb2_2
+position: -183,-248
+---
+<<set $player_rhetoric = $player_rhetoric + 1>> 
+Interessant (Rhetorik plus 1)
+    <<jump pb2_5>>
+===
+title: pb2_3
+position: 149,-228
+---
+Mir ist gerade nicht nach lesen.
+===
+title: pb2_4
+position: -191,160
+---
+Ich habe das bereits gelesen.
+===
+title: pb2_5
+position: 11,288
+---
+
+===
+title: pb2_hasnotime
+position: 89,-10
+---
+Es lohnt sich jetzt nicht anzufagen, ich muss bald weiter.
+===

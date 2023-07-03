@@ -11,7 +11,7 @@ public class MenuButton : MonoBehaviour
     private void Awake()
     {
         button = this.gameObject.GetComponent<Button>();
-        button.onClick.AddListener(delegate { LevelLoader.i.LoadScene("Start"); });
+        button.onClick.AddListener(delegate {SceneManager.LoadScene("Start"); });
 
     }
 }
