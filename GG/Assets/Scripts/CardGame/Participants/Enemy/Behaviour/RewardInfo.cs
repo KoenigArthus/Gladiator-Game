@@ -82,7 +82,7 @@ public struct RewardInfo
         UserFile.SaveGame.Gold += gold;
 
         //EXP
-        string[] equipment = UserFile.SaveGame.EquipmentCardEntries;
+        string[] equipment = UserFile.SaveGame.Equipped;
         for (int i = 0; i < equipment.Length; i++)
         {
             CardSet current;

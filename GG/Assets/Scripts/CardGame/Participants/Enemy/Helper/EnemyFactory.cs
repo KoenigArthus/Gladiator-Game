@@ -9,6 +9,7 @@ public partial class Enemy
 
     private int health = 10;
     private int spareThreshold = int.MinValue;
+    private bool dontOverstackBlock = false;
     private SkillInfo[] skills = new SkillInfo[0];
     private AbilityInfo ability = null;
     private EnrageInfo enrage = null;
@@ -18,6 +19,8 @@ public partial class Enemy
     #endregion Fields
 
     #region Properties
+
+    public bool DontOverstackBlock => dontOverstackBlock;
 
     public int Actions
     {
@@ -141,6 +144,7 @@ public partial class Enemy
                 break;
 
             case EnemyType.Sklaventreiber:
+                enemy.dontOverstackBlock = true;
                 enemy.Actions = 3;
                 enemy.skills = new SkillInfo[]
                 {

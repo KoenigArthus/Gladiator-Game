@@ -70,6 +70,7 @@ public class Player : Participant
 
     #region Properties
 
+    public override string Name => "Player";
     public override int Health { get => UserFile.SaveGame.Health; set => UserFile.SaveGame.Health = value; }
     public override int[] BlockStack => block.Cards.Select(x => (x.Info as BlockCardInfo).CurrentBlock).ToArray();
     public Enemy Enemy => Manager.Enemy;
@@ -175,7 +176,10 @@ public class Player : Participant
     protected void PlayPreparedCard()
     {
         if (prepareing == null)
+        {
+            Debug.Log("Nothing prepared");
             return;
+        }
 
         CardObject card = prepareing;
         CardInfo info = card.Info;
@@ -187,13 +191,14 @@ public class Player : Participant
 
         if (Terror && UnityEngine.Random.Range(0, 2) > 0)
         {
+            Debug.Log("Terror");
             playedCards.Add(null);
         }
         else
         {
-            int stun = GetStatus(StatusEffect.Stun) - playedCards.Count(x => x == null);
             if (!IsStuned())
             {
+                Debug.Log("PlayActions");
                 CardAction[] playActions = GetActionEffects(PermanentEffect.OnPlay).Cast<CardAction>().ToArray();
                 for (int i = 0; i < playActions.Length; i++)
                 {
@@ -204,13 +209,16 @@ public class Player : Participant
                 if (info.Type != CardType.Ailment)
                     playedCards.Add(info);
 
-                //Move card to correct collection
+                Debug.Log("Execute Effect");
+
                 if (info is InstantCardInfo instantCard)
                 {
                     bool dontDiscard = false;
 
                     if (info is BlockCardInfo blockCard)
                     {
+                        Debug.Log("Block");
+
                         //Apply bonus block
                         card.Info.DiceBonus += BonusBlock;
 
@@ -228,6 +236,7 @@ public class Player : Participant
                         }
                     }
 
+                    Debug.Log("Execute Instant Effect");
                     for (int i = 0; i < Mathf.Max(1, instantCard.Repeat); i++)
                         instantCard.Execute();
 
@@ -240,6 +249,8 @@ public class Player : Participant
                 }
                 else if (info is PermanentCardInfo permanentCard)
                 {
+                    Debug.Log("Register Permanent Effect");
+
                     PermanentEffect effect = permanentCard.Effect.Item1;
                     Delegate action = permanentCard.Effect.Item2;
 
@@ -248,6 +259,7 @@ public class Player : Participant
             }
             else
             {
+                Debug.Log("Stunned");
                 playedCards.Add(null);
                 AbortPreparedCardPlay();
             }

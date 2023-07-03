@@ -24,6 +24,7 @@ public abstract class Participant
     #region Properties
 
     protected CardGameManager Manager => manager;
+    public abstract string Name { get; }
     public abstract int Health { get; set; }
     public int Strenght => GetStatus(StatusEffect.Strength) + GetStatus(StatusEffect.FragileStrength);
     public int BonusDamage => Strenght - GetStatus(StatusEffect.Weak);
@@ -35,16 +36,16 @@ public abstract class Participant
     public int LastStatusDecayAmount => lastStatusDecayAmount;
 
     public bool SkipRegeneration
-    { get => specialFlags.HasFlag(SpecialCardEffectFlags.SkipRegeneration); set { if (value) specialFlags |= SpecialCardEffectFlags.SkipRegeneration; else specialFlags ^= SpecialCardEffectFlags.SkipRegeneration; } }
+    { get => specialFlags.HasFlag(SpecialCardEffectFlags.SkipRegeneration); set { if (value) specialFlags |= SpecialCardEffectFlags.SkipRegeneration; else specialFlags &= (SpecialCardEffectFlags)(int.MaxValue ^ (int)SpecialCardEffectFlags.SkipRegeneration); } }
 
     public bool NegativeStatusShield
-    { get => specialFlags.HasFlag(SpecialCardEffectFlags.NegativeStatusShield); set { if (value) specialFlags |= SpecialCardEffectFlags.NegativeStatusShield; else specialFlags ^= SpecialCardEffectFlags.NegativeStatusShield; } }
+    { get => specialFlags.HasFlag(SpecialCardEffectFlags.NegativeStatusShield); set { if (value) specialFlags |= SpecialCardEffectFlags.NegativeStatusShield; else specialFlags &= (SpecialCardEffectFlags)(int.MaxValue ^ (int)SpecialCardEffectFlags.NegativeStatusShield); } }
 
     public bool StrengthBleedSalt
-    { get => specialFlags.HasFlag(SpecialCardEffectFlags.StrengthBleedSalt); set { if (value) specialFlags |= SpecialCardEffectFlags.StrengthBleedSalt; else specialFlags ^= SpecialCardEffectFlags.StrengthBleedSalt; } }
+    { get => specialFlags.HasFlag(SpecialCardEffectFlags.StrengthBleedSalt); set { if (value) specialFlags |= SpecialCardEffectFlags.StrengthBleedSalt; else specialFlags &= (SpecialCardEffectFlags)(int.MaxValue ^ (int)SpecialCardEffectFlags.StrengthBleedSalt); } }
 
     public bool Terror
-    { get => specialFlags.HasFlag(SpecialCardEffectFlags.Terror); set { if (value) specialFlags |= SpecialCardEffectFlags.Terror; else specialFlags ^= SpecialCardEffectFlags.Terror; } }
+    { get => specialFlags.HasFlag(SpecialCardEffectFlags.Terror); set { if (value) specialFlags |= SpecialCardEffectFlags.Terror; else specialFlags &= (SpecialCardEffectFlags)(int.MaxValue ^ (int)SpecialCardEffectFlags.Terror); } }
 
     #endregion Properties
 
@@ -115,6 +116,8 @@ public abstract class Participant
 
     public int Attack(Participant target, int power, bool piercing = false, bool doubleBlockDamage = false)
     {
+        Debug.Log($"{this.Name} attacked {target.Name} for {power} Damage. Piercing:{piercing} | DoubleBlockDamage:{doubleBlockDamage}");
+
         OnAttack(this, target, power);
         target.OnAttack(this, target, power);
 
@@ -219,7 +222,7 @@ public abstract class Participant
 
     public override string ToString()
     {
-        string str = $"{GetType().Name}\n" +
+        string str = $"{Name}\n" +
             $"Health: {Health}\n" +
             $"Block : {Block}";
 

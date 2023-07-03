@@ -18,7 +18,7 @@ public class SkillInfo
 
     public SkillInfo(EnemyIntension intension, int chance, (int, int) range, EnemySkillAction action = null)
     {
-        if (action != null)
+        if (action == null)
             switch (intension)
             {
                 case EnemyIntension.Attack:
@@ -30,8 +30,8 @@ public class SkillInfo
                     action = (SkillInfo s, Enemy e) => e.AddBlock(s.GetPower());
                     break;
             }
-        else
-            this.action = action;
+
+        this.action = action;
 
         this.intension = intension;
         this.chance = chance;
@@ -60,7 +60,6 @@ public class SkillInfo
     public EnemySkillAction Action { get => action; set => action = value; }
     public int ExecuteCount => executeCount;
     public EnemyIntension Intension => intension;
-    public int Chance => chance;
     public (int, int) Range { get => range; set => range = value; }
     public int Power { get => GetPower(); set => Range = (value, value); }
     public int Repeat { get => repeat; set => repeat = value; }
@@ -71,6 +70,14 @@ public class SkillInfo
     {
         executeCount += 1;
         action(this, enemy);
+    }
+
+    public int GetChance(Enemy enemy)
+    {
+        if (enemy.DontOverstackBlock && intension == EnemyIntension.Block && enemy.BlockStack.Length > 2)
+            return 0;
+
+        return chance;
     }
 
     public int GetPower()

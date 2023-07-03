@@ -8,6 +8,7 @@ public partial class Enemy : Participant
 {
     #region Fields
 
+    private EnemyType type;
     private int[] blockStack = new int[0];
     private SkillInfo[] intension = new SkillInfo[3];
     private EnemyIntension?[] forcedIntension = new EnemyIntension?[0];
@@ -34,10 +35,13 @@ public partial class Enemy : Participant
             BuildSparringPartner(this, type);
         else
             BuildBoss(this, type);
+
+        this.type = type;
     }
 
     #region Properties
 
+    public override string Name => type.ToString();
     public override int Health { get => health; set => health = value; }
     public override int[] BlockStack => blockStack;
     public string Intension => string.Join('|', intension.Select(x => x.ToString()));
@@ -71,7 +75,7 @@ public partial class Enemy : Participant
                 currentSkills = currentSkills.Where(x => x.Intension != EnemyIntension.Special).ToArray();
 
             if (currentSkills.Length > 1)
-                intension[i] = skills[CustomUtility.WeightedRandom(skills.Select(x => x.Chance).ToArray())];
+                intension[i] = skills[CustomUtility.WeightedRandom(skills.Select(x => x.GetChance(this)).ToArray())];
             else
                 intension[i] = currentSkills.FirstOrDefault();
         }
@@ -82,7 +86,7 @@ public partial class Enemy : Participant
         ChangeIntension(skills.Where(x => x.Intension == action).ToArray());
     }
 
-    public void BlockIntension(EnemyIntension action)
+    public void LockIntension(EnemyIntension action)
     {
         for (int i = 0; i < intension.Length; i++)
         {
@@ -126,7 +130,14 @@ public partial class Enemy : Participant
 
     public void AddBlock(int amount)
     {
-        blockStack = blockStack.Concat(new int[] { amount }).ToArray();
+        this.blockStack = blockStack.Concat(new int[] { amount }).ToArray();
+
+        if (this.blockStack.Length > 3)
+        {
+            int[] blockStack = new int[3];
+            this.blockStack.CopyTo(blockStack, this.blockStack.Length - 3);
+            this.blockStack = blockStack;
+        }
     }
 
     protected override void ReduceBlock(ref int amount)

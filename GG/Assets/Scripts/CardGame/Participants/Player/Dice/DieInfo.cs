@@ -75,7 +75,7 @@ public class DieInfo
     public int TrueValue => sides[index];
     public int Value => Mathf.Max(1, sides[index] + bonus);
     public DieObject Die => die;
-    public bool Rolling => die != null && die.Rolling;
+    public bool Rolling => die != null;
 
     public int Bonus { get => bonus; set => bonus = value; }
     public string Tag { get => tag; set => tag = value; }

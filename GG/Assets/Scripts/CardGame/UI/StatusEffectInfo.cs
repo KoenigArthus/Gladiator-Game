@@ -26,7 +26,7 @@ public class StatusEffectInfo
     public string Description => CardLibrary.GetTranslatedDescription(effect.ToString());
 
     public Sprite Sprite
-    { get { string effect = GetSpriteName(); if (!effectSprites.ContainsKey(effect)) effectSprites.Add(effect, GetSprite(effect.ToString())); return effectSprites[effect]; } }
+    { get { string effect = GetSpriteName(); if (!effectSprites.ContainsKey(effect)) effectSprites.Add(effect, GetSprite(effect)); return effectSprites[effect]; } }
 
     #endregion Properties
 
@@ -55,7 +55,6 @@ public class StatusEffectInfo
 
     public static Sprite GetSprite(string name)
     {
-#warning TODO
         Sprite sprite = Resources.Load<Sprite>($"Textures/Icons/StatusEffect/{name}");
         if (sprite != null)
             return sprite;

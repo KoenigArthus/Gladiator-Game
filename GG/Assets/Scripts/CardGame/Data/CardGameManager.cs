@@ -68,21 +68,22 @@ public class CardGameManager : MonoBehaviour
         //Stop updateing after battle
         if (battleEnded) return;
 
+        if (playerStats != null)
+            playerStats.text = player.ToString();
+
+        if (enemyStats != null)
+            enemyStats.text = enemy.ToString();
+
         if (player.Health > 0 && enemy.Health > 0)
         {
             player.Update();
-
-            if (playerStats != null)
-                playerStats.text = player.ToString();
-
-            if (enemyStats != null)
-                enemyStats.text = enemy.ToString();
 
             if (!player.CanPlayCards())
                 EndRound();
         }
         else
         {
+            UnityEngine.Debug.Log("Battle End");
             battleEnded = true;
 
             UnityEngine.Debug.Log(enemy.Health);
@@ -137,6 +138,7 @@ public class CardGameManager : MonoBehaviour
     public void EndRound()
     {
         //Round End
+        UnityEngine.Debug.Log("Round End");
 
         player.AbortPreparedCardPlay();
         player.DiscardHand();
@@ -146,6 +148,7 @@ public class CardGameManager : MonoBehaviour
         round += 1;
 
         //Round Start
+        UnityEngine.Debug.Log("Round Start");
 
         enemy.ChangeIntension();
 

@@ -390,7 +390,7 @@ public static class CardLibrary
 
             //Kehlschnitt - 2 Schaden. Diese Runde: Der Gegner kann keine Fähigkeiten verwenden, falls er keinen Block hat.
             new InstantCardInfo("Throat_Cut", CardSet.Pugio, CardType.Attack, 1, 2,
-            (CardInfo c) => {c.Player.Attack(c.Enemy, 2); if (c.Enemy.Block < 1) c.Enemy.BlockIntension(EnemyIntension.Special); }),
+            (CardInfo c) => {c.Player.Attack(c.Enemy, 2); if (c.Enemy.Block < 1) c.Enemy.LockIntension(EnemyIntension.Special); }),
 
             //Plattenbrecher - Schaden entsprechend Augenzahl. Multipliziert mit 6, falls der Gegner Block hat.
             new InstantCardInfo("Board_Breaker", CardSet.Pugio, CardType.Attack, 1, 1,
@@ -582,7 +582,7 @@ public static class CardLibrary
 
             //Soterias Segen - Diese Karte kann nicht gespielt werden wenn in diese Runde ein Angriff gespielt wurde. Diese Runde:es können keine Angriffe gespielt werden.
             new InstantCardInfo("Soterias_Blessing", CardSet.Parmula, CardType.Skill, 3, 0,
-            (CardInfo c) => {c.Player.LockCardType(CardType.Attack); c.Enemy.BlockIntension(EnemyIntension.Attack); })
+            (CardInfo c) => {c.Player.LockCardType(CardType.Attack); c.Enemy.LockIntension(EnemyIntension.Attack); })
             {CostReduction = (CardInfo c) => c.Player.PlayedCards.Any(x => x.Type == CardType.Attack) ? -1 : 0},
 
             #endregion Tier 3

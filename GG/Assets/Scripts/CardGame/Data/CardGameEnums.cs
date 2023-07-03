@@ -79,6 +79,11 @@ public enum EnemyIntension
     Attack, Block, Skill, Special
 }
 
+public enum EnemyIntensionType
+{
+    Attack, Block, Buff, Debuff, Special, Ailment, Heal, Skip = -1
+}
+
 public enum BattleResult
 {
     Lose = -1, Spare, Win
