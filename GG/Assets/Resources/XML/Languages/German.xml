@@ -1,6 +1,15 @@
 <Language>
 	<Unplayable Name="Unspielbar" Description="" />
 	<Cost Name="Kosten" Description="" />
+	<Strength Name="Stärke" Description="(zusätzlicher/reduzierter) Schaden pro Angriff." />
+	<Defence Name="Schutz" Description="(zusätzlicher/reduzierter) Block pro Verteidig." />
+	<Invulnerable Name="Invulnerable" Description="" />
+	<Regeneration Name="Regeneration" Description="Anzahl der neg. Status, die zum Rundenende verfallen." />
+	<Stun Name="Betäubung" Description="10% Chance eine Aktion zu überspringen. Bedeut für den Spieler: Kosten werden angewandt, aber Karteneffekte nicht aktiviert, Karte wird abgeworfen, bei Leidenskarten wie Panikattacke wird sie anstelle abgeworfen zu werden auf der Hand behalten." />
+	<Weak Name="Schwäche" Description="Weniger verursachter Schaden durch Angriffskarten." />
+	<Feeble Name="Entkräftet" Description="Weniger erhaltener Block durch Verteidigungskarten." />
+	<Bleeding Name="Blutung" Description="Zusätzlicher Vitalitäts-Schaden in Höhe des Stapels. (Flacher Schadensbonus = Stapel) Wird durch Angriffe ausgelöst." />
+	<Vulnerable Name="Verwundbarkeit" Description="Mehr Schaden durch geg. Angriffskarten. (+20 %)" />
 	<Thrust Name="Stoß" Description="Schaden entsprechend Augenzahl." />
 	<Shove Name="Schub" Description="Entferne die letzte geg. Verteidigungskarte." />
 	<Jump_Thrust Name="Sprungstoß" Description="Schaden entsprechend Augenzahl, multipliziert mit 2. Füge 2 Schwach zu." />

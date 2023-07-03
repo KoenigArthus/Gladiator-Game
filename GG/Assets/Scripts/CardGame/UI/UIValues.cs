@@ -1,4 +1,7 @@
-﻿public class UIValues
+﻿using System.Collections.Generic;
+using System.Linq;
+
+public class UIValues
 {
     #region Fields
 
@@ -7,8 +10,8 @@
     private float enemyHealth;
     private float enemyBlock;
 
-    private int[] playerStatusEffectStacks = new int[CardGameConstants.STATUS_EFFECT_COUNT];
-    private int[] enemyStatusEffectStacks = new int[CardGameConstants.STATUS_EFFECT_COUNT];
+    private StatusEffectInfo[] playerStatusEffects;
+    private StatusEffectInfo[] enemyStatusEffects;
 
     #endregion Fields
 
@@ -19,15 +22,16 @@
         enemyHealth = enemy.Health;
         enemyBlock = enemy.Block;
 
-        for (int i = 0; i < playerStatusEffectStacks.Length; i++)
+        List<StatusEffectInfo> playerStatusEffects = new List<StatusEffectInfo>();
+        List<StatusEffectInfo> enemyStatusEffects = new List<StatusEffectInfo>();
+        for (int i = 0; i < 11; i++)
         {
-            playerStatusEffectStacks[i] = player.GetStatus((StatusEffect)i);
+            StatusEffect effect = (StatusEffect)i;
+            playerStatusEffects.Add(new StatusEffectInfo(effect, player));
+            enemyStatusEffects.Add(new StatusEffectInfo(effect, enemy));
         }
-
-        for (int i = 0; i < enemyStatusEffectStacks.Length; i++)
-        {
-            enemyStatusEffectStacks[i] = enemy.GetStatus((StatusEffect)i);
-        }
+        this.playerStatusEffects = playerStatusEffects.Where(x => x.Value != 0).ToArray();
+        this.enemyStatusEffects = enemyStatusEffects.Where(x => x.Value != 0).ToArray();
     }
 
     #region Properties
@@ -36,6 +40,9 @@
     public float PlayerBlock => playerBlock;
     public float EnemyHealth => enemyHealth;
     public float EnemyBlock => enemyBlock;
+
+    public StatusEffectInfo[] PlayerStatusEffects => playerStatusEffects;
+    public StatusEffectInfo[] EnemyStatusEffects => enemyStatusEffects;
 
     #endregion Properties
 }

@@ -10,8 +10,8 @@ public class SaveGame : UserFile
 
     private string name;
     private int health = 20;
-    private float gold = 0;
-    private float[] equipmentEXP = new float[(int)CardSet.Health];
+    private int gold = 0;
+    private int[] equipmentEXP = new int[(int)CardSet.Health];
     private int nextOpponent = 0;
     private string[] deckCardEntries = new string[0];
     private string[] equipmentCardEntries = new string[0];
@@ -28,9 +28,17 @@ public class SaveGame : UserFile
 
     public string Name { get => name; set => name = value; }
     public int Health { get => health; set => health = value; }
-    public float Gold { get => gold; set => gold = value; }
-    public float[] EquipmentEXP { get => equipmentEXP; set => equipmentEXP = value; }
+    public int Gold { get => gold; set => gold = value; }
+    public int[] EquipmentEXP { get => equipmentEXP; set => equipmentEXP = value; }
+
+    /// <summary>
+    ///  0  ~  10 = Boss Fights (0: A Variant | 1: B Variant)<br/>
+    /// -1  ~ -11 = Sparring Fights (-11 = Retarius)<br/>
+    /// 11 = Chicken (Quest), 12 = Beast (Quest), -12 = Beast (Free Match), 13 = Beastfighter<br/>
+    /// Every other number = Tutorial
+    /// </summary>
     public int NextOpponent { get => nextOpponent; set => nextOpponent = value; }
+
     public string[] DeckCardEntries { get => deckCardEntries; set => deckCardEntries = value; }
     public string[] EquipmentCardEntries { get => equipmentCardEntries; set => equipmentCardEntries = value; }
     public string[] Equipped { get => equipped; set => equipped = value; }
@@ -64,7 +72,6 @@ public class SaveGame : UserFile
 
         //fighting location
         SaveElement(doc, rootNode, "FightingLocation", fightingLocation);
-
     }
 
     protected override void DoLoad(XmlNode rootNode)
@@ -76,13 +83,13 @@ public class SaveGame : UserFile
         health = LoadElement<int>(rootNode.SelectSingleNode("Health"));
 
         //Gold
-        gold = LoadElement<float>(rootNode.SelectSingleNode("Gold"));
+        gold = LoadElement<int>(rootNode.SelectSingleNode("Gold"));
 
         //Equipment EXP
         {
             string data = LoadElement<string>(rootNode.SelectSingleNode("EquipmentEXP"));
             if (data != null && data.Length > 0)
-                equipmentEXP = data.Split(',').Select(x => Convert.ToSingle(x)).ToArray();
+                equipmentEXP = data.Split(',').Select(x => Convert.ToInt32(x)).ToArray();
         }
 
         //Next Opponent
