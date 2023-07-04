@@ -3,7 +3,17 @@ guid: c272fb6903b43bd4789ae1a1537416e7
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Holz
+    second: {fileID: 2100000, guid: e11b5e1a0bfe5e74baeece1ba6154a1d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sandstone Light
+    second: {fileID: 2100000, guid: 65ebcd3c8cf693b4f9f652a3e97146d7, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

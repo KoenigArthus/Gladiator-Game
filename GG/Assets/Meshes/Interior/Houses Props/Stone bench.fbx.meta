@@ -1,19 +1,9 @@
 fileFormatVersion: 2
-guid: 6f0ff7e5e441dfa40bd7f1a6f85120a3
+guid: 0b71cac18bcf1fe418728eea193b296e
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Holz
-    second: {fileID: 2100000, guid: e11b5e1a0bfe5e74baeece1ba6154a1d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Sanstone
-    second: {fileID: 2100000, guid: 65ebcd3c8cf693b4f9f652a3e97146d7, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
