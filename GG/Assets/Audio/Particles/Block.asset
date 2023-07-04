@@ -18,7 +18,7 @@ MonoBehaviour:
   neverRepeat: 0
   lastClipIndex: -1
   category: Sounds
-  relativeVolume: 0.502
+  relativeVolume: 0.4
   spatialize: 0
   maxDistance: 0
   priority: 128
