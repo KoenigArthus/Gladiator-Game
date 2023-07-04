@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dff739b1315f7948b5ba39efb157cd5, type: 3}
   m_Name: Scutum
   m_EditorClassIdentifier: 
+  equipmentIDName: Scutum
+  sprite: {fileID: 21300000, guid: 773b7238c8188bc4697e4b82cc96dbca, type: 3}
   cardSet: 3
   slotType: 0

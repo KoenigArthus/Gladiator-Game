@@ -7,7 +7,7 @@
   <NextOpponent>0</NextOpponent>
   <DeckEntrie>
   </DeckEntrie>
-  <EquipmentEntrie>Cassis (Equipment),Cestust (Equipment),Doru (Equipment),Galerus (Equipment),Gladius (Equipment),Health (Equipment),Item (Equipment),Laqueus (Equipment),Manica (Equipment),Ocrea (Equipment),Parmula (Equipment),Pilum (Equipment),Pugio (Equipment),Rete (Equipment),Scindo (Equipment),Scutum (Equipment),Spartha (Equipment),Trident (Equipment)</EquipmentEntrie>
+  <EquipmentEntrie>Doru,Pugio,Scindo,Trident,Parmula,Gladius,Manica,Cassis,Galerus,Ocrea,Scutum,Rete</EquipmentEntrie>
   <Equipped>none,none,none,none,none</Equipped>
   <FightingLocation>0</FightingLocation>
 </UserFile>

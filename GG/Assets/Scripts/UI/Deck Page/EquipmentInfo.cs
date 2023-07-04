@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -17,15 +18,16 @@ namespace Assets.Scripts.UI.Deck_Page
 
         private CardSet equipmentType = CardSet.None;
 
+        private SlotType slotType;
+
         #endregion Fields
 
         #region ctor
-
         public EquipmentInfo(CardSet equipmentType)
         {
             this.equipmentType = equipmentType;
-
             checkEquipmentValid();
+            SetSlotType();
         }
 
         public EquipmentInfo(string eqipmentName)
@@ -34,6 +36,7 @@ namespace Assets.Scripts.UI.Deck_Page
                 throw new ArgumentException("Not valid equipment name");
 
             checkEquipmentValid();
+            SetSlotType();
         }
 
         #endregion ctor
@@ -49,11 +52,13 @@ namespace Assets.Scripts.UI.Deck_Page
         public float EXP { get => UserFile.SaveGame.EquipmentEXP[(int)equipmentType]; set => UserFile.SaveGame.EquipmentEXP[(int)equipmentType] = value; }
         public float Level => MathF.Min(EXP / 100, MAX_EQUIPMENT_LEVEL);
 
+        public CardSet CardSet => equipmentType;
+        public SlotType SlotType => slotType;
         #endregion Properties
 
         public static Sprite GetSprite(string name)
         {
-            Sprite sprite = Resources.Load<Sprite>($"Textures/CardGame/Equipment{name}");
+            Sprite sprite = Resources.Load<Sprite>($"Textures/CardGame/Equipment/{name}");
             if (sprite != null)
                 return sprite;
 
@@ -65,6 +70,35 @@ namespace Assets.Scripts.UI.Deck_Page
             if (!(this.equipmentType < CardSet.Health))
                 throw new ArgumentException("Not valid equipment set");
         }
+
+        private void SetSlotType()
+        {
+            switch (equipmentType)
+            {
+                case CardSet.Trident:
+                case CardSet.Gladius:
+                case CardSet.Rete:
+                case CardSet.Scutum:
+                case CardSet.Pugio:
+                case CardSet.Doru:
+                case CardSet.Parmula:
+                case CardSet.Scindo:
+                    slotType = SlotType.Hand;
+                    break;
+                case CardSet.Cassis:
+                case CardSet.Galerus:
+                    slotType = SlotType.Head;
+                    break;
+                case CardSet.Manica:
+                    slotType = SlotType.Shoulder;
+                    break;
+                case CardSet.Ocrea:
+                    slotType = SlotType.Leg;
+                    break;
+            }
+        }
+
+
 
         public override bool Equals(object obj)
         {
@@ -78,5 +112,9 @@ namespace Assets.Scripts.UI.Deck_Page
         {
             return equipmentType.GetHashCode();
         }
+
+
+
+
     }
 }

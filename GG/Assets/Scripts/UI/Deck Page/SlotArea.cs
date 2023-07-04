@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -14,14 +12,14 @@ public class SlotArea : MonoBehaviour, IDropHandler
         {
             GameObject dropped = eventData.pointerDrag;
             EquipmentCard equipmentCard = dropped.GetComponent<EquipmentCard>();
-            Equipment equipmentInfo = equipmentCard.equipment;
+            string equipmentName = equipmentCard.equipmentIDName;
             if(equipmentCard.slot != null)
             {
                 equipmentCard.slot.equipment = "none";
                 equipmentCard.slot = null;
             }
-            Deckbuilder.instance.RemoveFromDeckEntrie(equipmentInfo.cardSet);
-            Deckbuilder.instance.FillEquipmentEntrie(equipmentInfo);
+            Deckbuilder.instance.RemoveFromDeckEntrie((CardSet)Enum.Parse(typeof(CardSet),equipmentName));
+            Deckbuilder.instance.FillEquipmentEntrie(equipmentName);
 
             Deckbuilder.instance.LoadDeckPanel();
             Deckbuilder.instance.LoadEquipmentPanel();

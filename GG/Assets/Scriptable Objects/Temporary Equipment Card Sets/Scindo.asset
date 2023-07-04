@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dff739b1315f7948b5ba39efb157cd5, type: 3}
   m_Name: Scindo
   m_EditorClassIdentifier: 
+  equipmentIDName: Scindo
+  sprite: {fileID: 21300000, guid: 8fba4cfb876e1d44caa3c7309d576871, type: 3}
   cardSet: 9
   slotType: 0

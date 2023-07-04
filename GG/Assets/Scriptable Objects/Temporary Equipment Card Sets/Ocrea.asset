@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dff739b1315f7948b5ba39efb157cd5, type: 3}
   m_Name: Ocrea
   m_EditorClassIdentifier: 
-  cardSet: 15
+  equipmentIDName: Ocrea
+  sprite: {fileID: 21300000, guid: e22c5f18bd96e7c4390d26ddbe2bd65a, type: 3}
+  cardSet: 11
   slotType: 3

@@ -1,3 +1,4 @@
+using Assets.Scripts.UI.Deck_Page;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,12 +24,6 @@ public class Deckbuilder : MonoBehaviour
     [SerializeField] private GameObject rowPreFabFourColumns, rowPreFabFiveColumns;
     public List<Transform> equipmentSlots = new List<Transform>();
     public List<Transform> deckSlots = new List<Transform>();
-    public List<Equipment> equipmentCardEntries = new List<Equipment>();
-    [Obsolete("this has been moved to the Save Game directly use\r\n" +
-        "  List<string> temporaryList = UserFile.SaveGame.DeckCardEntries.ToList();\r\n" +
-        "  UserFile.SaveGame.DeckCardEntries = temporaryList.ToArray();\r\n" +
-        "  to get and set the UserFile.SaveGame.DeckCardEntries instead", true)]
-    public List<string> deckCardEntries = new List<string>();
     private int minRowCount = 5;
 
     private void Awake()
@@ -47,6 +42,8 @@ public class Deckbuilder : MonoBehaviour
         tooltip.SetActive(false);
 
         UserFile.SaveGame.DeckCardEntries = new string[0];
+        UserFile.SaveGame.EquipmentCardEntries = new string[] { "Cassis", "Doru", "Galerus", "Gladius", "Manica", "Ocrea", "Parmula", "Pugio", "Rete", "Scindo", "Scutum", "Trident" };
+
     }
 
 
@@ -61,7 +58,7 @@ public class Deckbuilder : MonoBehaviour
         ClearPanel(deckPanel, deckSlots);
         //SaveDeck();
         SaveEquipped();
-        SaveEquipment();
+        //SaveEquipment();
         UserFile.SaveGame.Save();
     }
 
@@ -144,7 +141,7 @@ public class Deckbuilder : MonoBehaviour
                 for (int i = 0; i < entries.Count; i++)
                 {
                     GameObject card = Instantiate(cardPreFab, slotList[i]);
-                    card.GetComponent<EquipmentCard>().equipment = entries[i];
+                    card.GetComponent<EquipmentCard>().equipmentIDName = entries[i];
                 }
                 break;
 
@@ -153,16 +150,6 @@ public class Deckbuilder : MonoBehaviour
                 break;
 
         }
-
-
-
-        //Intantiate Cards into slots
-        for (int i = 0; i < entries.Count; i++)
-        {
-            GameObject card = Instantiate(cardPreFab, slotList[i]);
-            card.GetComponent<InventoryCard>().cardIDName = entries[i];
-        }
-
     }
     private void ClearPanel(Transform panel, List<Transform> slotList)
     {
@@ -206,6 +193,20 @@ public class Deckbuilder : MonoBehaviour
         UserFile.SaveGame.DeckCardEntries = temporaryList.ToArray();
 
     }
+    public void AddToDeckEntrie(string cardName)
+    {
+        List<string> temporaryList = UserFile.SaveGame.DeckCardEntries.ToList();
+
+        if (CardLibrary.GetCardByName(cardName) != null)
+            temporaryList.Add(CardLibrary.GetCardByName(cardName).Name);
+        else
+            Debug.LogWarning(cardName + " could not be found!");
+ 
+        UserFile.SaveGame.DeckCardEntries = temporaryList.ToArray();
+
+    }
+
+
     public void RemoveFromDeckEntrie(CardSet cardSet)
     {
         UserFile.SaveGame.DeckCardEntries = UserFile.SaveGame.DeckCardEntries.Where(x => CardLibrary.GetCardByName(x).Set != cardSet).ToArray();
@@ -222,30 +223,33 @@ public class Deckbuilder : MonoBehaviour
     public void SaveDeck()
     {
 
-        UserFile.SaveGame.DeckCardEntries = deckCardEntries.ToArray();
+       // UserFile.SaveGame.DeckCardEntries = deckCardEntries.ToArray();
         //deckCardEntries = UserFile.SaveGame.DeckCardEntries.ToList(); 
         // UserFile.SaveGame.Save();|
     }
     #endregion Deck
 
     #region Equipment
-    public void FillEquipmentEntrie(Equipment equipment)
+    public void FillEquipmentEntrie(string equipmentname)
     {
-        if (equipmentCardEntries.Contains(equipment) == false)
-            equipmentCardEntries.Add(equipment);
+        List<string> temporaryList = UserFile.SaveGame.EquipmentCardEntries.ToList();
+
+        if (temporaryList.Contains(equipmentname) == false)
+            temporaryList.Add(equipmentname);
+
+        UserFile.SaveGame.EquipmentCardEntries = temporaryList.ToArray();
     }
-    public void RemoveFromEquipmentEntrie(Equipment equipment)
+    public void RemoveFromEquipmentEntrie(string equipmentname)
     {
-        if (equipmentCardEntries.Contains(equipment))
-        {
-            int indexToRemove = equipmentCardEntries.IndexOf(equipment);
-            equipmentCardEntries.RemoveAt(indexToRemove);
-        }
+        List<string> temporaryList = UserFile.SaveGame.EquipmentCardEntries.ToList();
+        temporaryList.Remove(equipmentname);
+        UserFile.SaveGame.EquipmentCardEntries = temporaryList.ToArray();
     }
+    [Obsolete("UserFile.SaveGame.EquipmentEntries is modified directly", true)]
     public void SaveEquipment()
     {
-        string[] equipmentCardEntriesAsString = equipmentCardEntries.ConvertAll(equipment => equipment.ToString()).ToArray();
-        UserFile.SaveGame.EquipmentCardEntries = equipmentCardEntriesAsString;
+        //string[] equipmentCardEntriesAsString = equipmentCardEntries.ConvertAll(equipment => equipment.ToString()).ToArray();
+       // UserFile.SaveGame.EquipmentCardEntries = equipmentCardEntriesAsString;
     }
 
     #endregion Equipment

@@ -5,32 +5,34 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
-
+using Assets.Scripts.UI.Deck_Page;
 
 public class EquipmentCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [CustomAttributes.ReadOnly]
-    public Equipment equipment;
-    public EquipmentSlot slot;
+    public string equipmentIDName;
     public Image image;
-    public TMP_Text cardName;
-    public TMP_Text cardType;
-
+    [SerializeField] private TMP_Text cardName;
+    [SerializeField] private TMP_Text cardType;
+    [CustomAttributes.ReadOnly] public SlotType slotType;
+    [CustomAttributes.ReadOnly] public CardSet cardSet;
     [HideInInspector] public Transform afterDragParent;
+    [CustomAttributes.ReadOnly] public EquipmentSlot slot;
 
     private void Start()
     {
-        SetupCard(equipment.name);
+        SetupCard();
     }
 
-    private void SetupCard(string name)
+    private void SetupCard()
     {
-
-
-
-        image.sprite = 
-        cardName.text = equipment.cardSet.ToString();
-        cardType.text = equipment.slotType.ToString();
+        EquipmentInfo equipmentInfo = new EquipmentInfo(equipmentIDName);
+        Debug.Log(equipmentInfo.Sprite);
+        slotType = equipmentInfo.SlotType;
+        cardSet = equipmentInfo.CardSet;
+        image.sprite = equipmentInfo.Sprite;
+        cardName.text = equipmentInfo.CardSet.ToString();
+        cardType.text = equipmentInfo.SlotType.ToString();
     }
 
 

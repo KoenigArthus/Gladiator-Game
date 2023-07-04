@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dff739b1315f7948b5ba39efb157cd5, type: 3}
   m_Name: Pugio
   m_EditorClassIdentifier: 
+  equipmentIDName: Pugio
+  sprite: {fileID: 21300000, guid: 8bb2dd707c1614b4ab490a2e9e65ce29, type: 3}
   cardSet: 4
   slotType: 0

@@ -37,11 +37,10 @@ public class DialogueSystem : MonoBehaviour
     private VariableStorageCustom variableStorage;
     [SerializeField] private TextLineProvider textLineProvider;
 
-
+    //Dictionaries
     [SerializeField] private Dictionary<string, float> floatValues;
     [SerializeField] private Dictionary<string, string> stringValues;
     [SerializeField] private Dictionary<string, bool> boolValues;
-
 
     private void Awake()
     {
@@ -65,7 +64,11 @@ public class DialogueSystem : MonoBehaviour
         characters.AddRange(characterObjects);
 
         //get TextLineProvider for localization
-        textLineProvider = gameObject.GetComponent<TextLineProvider>(); //TODO
+        textLineProvider = gameObject.GetComponent<TextLineProvider>();
+
+        
+
+
     }
 
     private void Update()
@@ -138,11 +141,7 @@ public class DialogueSystem : MonoBehaviour
     public static void UnlockCard(string cardName)
     {
         Debug.Log("added" + cardName);
-
-        CardLibrary.GetCardByName(cardName);
-
-        // preload list with strings needs parsing?
-        //UserFile.SaveGame.DeckCardEntries
+        Deckbuilder.instance.AddToDeckEntrie(cardName);
     }
 
 

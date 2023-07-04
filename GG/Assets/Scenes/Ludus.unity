@@ -61713,22 +61713,16 @@ MonoBehaviour:
   deckSlots: []
   equipmentCardEntries:
   - {fileID: 11400000, guid: 0117558a49680a143babd22cb8a781b4, type: 2}
-  - {fileID: 11400000, guid: c0570c17412cec14795c635c6da7b66d, type: 2}
   - {fileID: 11400000, guid: 858ac6524f8d4354895ff13f51f29c98, type: 2}
   - {fileID: 11400000, guid: 7a6378742b8cd1842bb83d24428188ed, type: 2}
   - {fileID: 11400000, guid: c36d4d67a39f5cc428d06b5603da79ea, type: 2}
-  - {fileID: 11400000, guid: 0d103e1a322b8204a87d8f66492527bc, type: 2}
-  - {fileID: 11400000, guid: 23816bc0dc67b3448a7a2cb82dcbb2f3, type: 2}
-  - {fileID: 11400000, guid: 6c830089a4babec4b8cfc24bed5380be, type: 2}
   - {fileID: 11400000, guid: 326b51607d390344f8efe18ad3347fd8, type: 2}
   - {fileID: 11400000, guid: 848f173a1106a3b44b1de327472bcb23, type: 2}
   - {fileID: 11400000, guid: aa0a4aa3ba6c03043b4aade8942183c6, type: 2}
-  - {fileID: 11400000, guid: e00cfdd6c7af60340a2e7c67bec61ff3, type: 2}
   - {fileID: 11400000, guid: 04c99865aa390584d9514d0edbf6026a, type: 2}
   - {fileID: 11400000, guid: 36fabc6b12c048741ab68460f3f6fde2, type: 2}
   - {fileID: 11400000, guid: b3709adc71bfdd84f93ee86b1447e55e, type: 2}
   - {fileID: 11400000, guid: 213191d61195a044481e78c26f83d0fd, type: 2}
-  - {fileID: 11400000, guid: 095ff008b0cd68849a29fba30c513b6a, type: 2}
   - {fileID: 11400000, guid: 1e6c2c9822d4bf04083c8d459be702bf, type: 2}
   deckCardEntries: []
 --- !u!1 &1800534425

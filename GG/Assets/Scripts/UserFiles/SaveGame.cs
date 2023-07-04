@@ -22,6 +22,7 @@ public class SaveGame : UserFile
 
     public SaveGame(string filename) : base(filename)
     {
+
     }
 
     #region Properties

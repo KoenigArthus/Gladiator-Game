@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dff739b1315f7948b5ba39efb157cd5, type: 3}
   m_Name: Trident
   m_EditorClassIdentifier: 
+  equipmentIDName: Trident
+  sprite: {fileID: 21300000, guid: 6a7b1e0619dbaf242aba962a1bacc3fa, type: 3}
   cardSet: 0
   slotType: 0

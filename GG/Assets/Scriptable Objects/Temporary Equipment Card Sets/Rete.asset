@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dff739b1315f7948b5ba39efb157cd5, type: 3}
   m_Name: Rete
   m_EditorClassIdentifier: 
+  equipmentIDName: Rete
+  sprite: {fileID: 21300000, guid: 1490e54f5b79c9a4a91adde4b984e508, type: 3}
   cardSet: 2
   slotType: 0

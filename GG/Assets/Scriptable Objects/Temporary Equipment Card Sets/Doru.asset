@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dff739b1315f7948b5ba39efb157cd5, type: 3}
   m_Name: Doru
   m_EditorClassIdentifier: 
-  cardSet: 6
+  equipmentIDName: Doru
+  sprite: {fileID: 21300000, guid: cf4b3f2fa349d434f9689c841836304b, type: 3}
+  cardSet: 5
   slotType: 0
