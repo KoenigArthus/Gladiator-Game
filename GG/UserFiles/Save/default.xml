@@ -5,8 +5,8 @@
   <Gold>0</Gold>
   <EquipmentEXP>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</EquipmentEXP>
   <NextOpponent>0</NextOpponent>
-  <DeckEntrie>Shield_Block,Testudo,Shield_Soul,Provocation,Shield_Logic,Immovable_Object,Shield_Flame,Bastion,Petra_Solida,Scutum_Vitalis,Battering_Ram,Mars_Patronage,Moloch</DeckEntrie>
-  <EquipmentEntrie>Doru,Scindo,Trident,Rete,Ocrea,Pugio,Gladius,Galerus,Cassis,Manica,Parmula</EquipmentEntrie>
-  <Equipped>none,none,none,Scutum,none</Equipped>
+  <DeckEntrie>Sting,Mighty_Sweep,Pommel_Strike,Jump_Slash,Double_Stab,Sword_Dance,Sword_Vortex,Flaming_Impact,Gleaming_Blade,Flaming_Passion,Perfect_Parry,Damocles_Sword,Searing_Inferno,Head_Matter,Head_Thrust,Boldness,Protective_Cage,Deflecting_Stance,Symbol_Of_Duty,Stubborn,Parma,Shield_Slam,Sweep,Armored_Colossus,Titan,True_Phalanx,Equilibrium,Minotaur_Stomp,Iron_Will,Indomitable,Reflect,Heroic_Onslaught,Soterias_Blessing,Kick,Evasive_Step,Footwork,Knee_Kick,Jump_Kick,Flying_Spin_Kick</DeckEntrie>
+  <EquipmentEntrie>Doru,Galerus,Manica,Pugio,Rete,Scindo,Scutum,Trident</EquipmentEntrie>
+  <Equipped>Cassis,none,Ocrea,Gladius,Parmula</Equipped>
   <FightingLocation>0</FightingLocation>
 </UserFile>

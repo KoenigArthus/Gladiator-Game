@@ -118,6 +118,16 @@ public class CardAnimations : MonoBehaviour
             animator.SetBool("WalkingSpearRight", true);
             doru.SetActive(true);
         }
+        else if ((leftHand == CardSet.Rete) && (rightHand == CardSet.None))
+        {
+            animator.SetBool("ReteIdle", true);
+            rete.SetActive(true);
+        }
+        else if ((leftHand == CardSet.None) && (rightHand == CardSet.Rete))
+        {
+            animator.SetBool("ReteIdle", true);
+            rete.SetActive(true);
+        }
         #endregion SpearRight
 
         #region ShieldLeft
