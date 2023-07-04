@@ -1,7 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
+
+public enum PanelType
+{
+    Deck,
+    Equipment
+}
 
 
 public class Deckbuilder : MonoBehaviour
@@ -16,6 +24,10 @@ public class Deckbuilder : MonoBehaviour
     public List<Transform> equipmentSlots = new List<Transform>();
     public List<Transform> deckSlots = new List<Transform>();
     public List<Equipment> equipmentCardEntries = new List<Equipment>();
+    [Obsolete("this has been moved to the Save Game directly use\r\n" +
+        "  List<string> temporaryList = UserFile.SaveGame.DeckCardEntries.ToList();\r\n" +
+        "  UserFile.SaveGame.DeckCardEntries = temporaryList.ToArray();\r\n" +
+        "  to get and set the UserFile.SaveGame.DeckCardEntries instead", true)]
     public List<string> deckCardEntries = new List<string>();
     private int minRowCount = 5;
 
@@ -34,6 +46,7 @@ public class Deckbuilder : MonoBehaviour
 
         tooltip.SetActive(false);
 
+        UserFile.SaveGame.DeckCardEntries = new string[0];
     }
 
 
@@ -46,13 +59,50 @@ public class Deckbuilder : MonoBehaviour
     {
         ClearPanel(equipmentPanel, equipmentSlots);
         ClearPanel(deckPanel, deckSlots);
-        SaveDeck();
+        //SaveDeck();
         SaveEquipped();
         SaveEquipment();
         UserFile.SaveGame.Save();
     }
 
-    private void LoadPanel(GameObject cardPreFab, Transform panel, List<Transform> slotList, List<string> entries, int columnCount)
+
+    #region Panel
+    // this should not be needed with the new system for equipments
+    /*  private void LoadPanel(GameObject cardPreFab, Transform panel, List<Transform> slotList, List<Equipment> entries, int columnCount)
+      {
+          ClearPanel(panel, slotList);
+
+
+          int rowCount = Mathf.CeilToInt((float)entries.Count / (float)columnCount);
+
+          if (rowCount < minRowCount)
+              rowCount = minRowCount;
+
+          switch (columnCount)
+          {
+              case 4: InstantiateRow(rowCount, rowPreFabFourColumns, panel); break;
+              case 5: InstantiateRow(rowCount, rowPreFabFiveColumns, panel); break;
+              default: Debug.LogWarning("Wrong column Count"); break;
+          }
+
+
+          //add rows
+          foreach (Transform row in panel)
+          {
+              foreach (Transform slot in row)
+              {
+                  slotList.Add(slot);
+              }
+          }
+
+          //Intantiate Cards into slots
+          for (int i = 0; i < entries.Count; i++)
+          {
+              GameObject card = Instantiate(cardPreFab, slotList[i]);
+              card.GetComponent<EquipmentCard>().equipment = entries[i];
+          }
+      }*/
+    private void LoadPanel(GameObject cardPreFab, Transform panel, List<Transform> slotList, List<string> entries, int columnCount, PanelType panelType)
     {
         ClearPanel(panel, slotList);
 
@@ -78,6 +128,33 @@ public class Deckbuilder : MonoBehaviour
             }
         }
 
+        switch (panelType)
+        {
+            case PanelType.Deck:
+                //Intantiate Cards into slots
+                for (int i = 0; i < entries.Count; i++)
+                {
+                    GameObject card = Instantiate(cardPreFab, slotList[i]);
+                    card.GetComponent<InventoryCard>().cardIDName = entries[i];
+                }
+                break;
+
+            case PanelType.Equipment:
+                //Intantiate Cards into slots
+                for (int i = 0; i < entries.Count; i++)
+                {
+                    GameObject card = Instantiate(cardPreFab, slotList[i]);
+                    card.GetComponent<EquipmentCard>().equipment = entries[i];
+                }
+                break;
+
+            default:
+                Debug.LogWarning("wrong panel ?");
+                break;
+
+        }
+
+
 
         //Intantiate Cards into slots
         for (int i = 0; i < entries.Count; i++)
@@ -86,40 +163,6 @@ public class Deckbuilder : MonoBehaviour
             card.GetComponent<InventoryCard>().cardIDName = entries[i];
         }
 
-    }
-    private void LoadPanel(GameObject cardPreFab, Transform panel, List<Transform> slotList, List<Equipment> entries, int columnCount)
-    {
-        ClearPanel(panel, slotList);
-
-
-        int rowCount = Mathf.CeilToInt((float)entries.Count / (float)columnCount);
-
-        if (rowCount < minRowCount)
-            rowCount = minRowCount;
-
-        switch (columnCount)
-        {
-            case 4: InstantiateRow(rowCount, rowPreFabFourColumns, panel); break;
-            case 5: InstantiateRow(rowCount, rowPreFabFiveColumns, panel); break;
-            default: Debug.LogWarning("Wrong column Count"); break;
-        }
-
-
-        //add rows
-        foreach (Transform row in panel)
-        {
-            foreach (Transform slot in row)
-            {
-                slotList.Add(slot);
-            }
-        }
-
-        //Intantiate Cards into slots
-        for (int i = 0; i < entries.Count; i++)
-        {
-            GameObject card = Instantiate(cardPreFab, slotList[i]);
-            card.GetComponent<EquipmentCard>().equipment = entries[i];
-        }
     }
     private void ClearPanel(Transform panel, List<Transform> slotList)
     {
@@ -138,39 +181,59 @@ public class Deckbuilder : MonoBehaviour
             Instantiate(rowPreFab, panel);
         }
     }
+    public void LoadEquipmentPanel()
+    {
+        LoadPanel(equipmentCardPreFab, equipmentPanel, equipmentSlots, UserFile.SaveGame.EquipmentCardEntries.ToList(), 4, PanelType.Equipment);
+    }
+    public void LoadDeckPanel()
+    {
+        LoadPanel(inventoryCardPreFab, deckPanel, deckSlots, UserFile.SaveGame.DeckCardEntries.ToList(), 5, PanelType.Deck);
+    }
+    #endregion Panel
 
 
-
-
+    #region Deck
     public void FillDeckEntrie(IEnumerable<CardInfo> cards)
     {
+        List<string> temporaryList = UserFile.SaveGame.DeckCardEntries.ToList();
+
         foreach (CardInfo card in cards)
         {
-            if (!deckCardEntries.Contains(card.Name))
-                deckCardEntries.Add(card.Name);
+            if (!temporaryList.Contains(card.Name))
+                temporaryList.Add(card.Name);
         }
+
+        UserFile.SaveGame.DeckCardEntries = temporaryList.ToArray();
+
     }
     public void RemoveFromDeckEntrie(CardSet cardSet)
     {
-        deckCardEntries = deckCardEntries.Where(x => CardLibrary.GetCardByName(x).Set != cardSet).ToList();
-
-        //updating the save game to remove the same cards
-        List<string> resultList = new List<string>(UserFile.SaveGame.DeckCardEntries);
-
-        foreach (string str in deckCardEntries)
-        {
-            resultList.Remove(str);
-        }
-
-        UserFile.SaveGame.DeckCardEntries = resultList.ToArray();
+        UserFile.SaveGame.DeckCardEntries = UserFile.SaveGame.DeckCardEntries.Where(x => CardLibrary.GetCardByName(x).Set != cardSet).ToArray();
+    }
+    public void RemoveFromDeckEntrie(string cardname)
+    {
+        List<string> temporaryList = UserFile.SaveGame.DeckCardEntries.ToList();
+        temporaryList.Remove(cardname);
+        UserFile.SaveGame.DeckCardEntries = temporaryList.ToArray();
     }
 
+
+    [Obsolete("UserFile.SaveGame.DeckCardEntries is modified directly", true)]
+    public void SaveDeck()
+    {
+
+        UserFile.SaveGame.DeckCardEntries = deckCardEntries.ToArray();
+        //deckCardEntries = UserFile.SaveGame.DeckCardEntries.ToList(); 
+        // UserFile.SaveGame.Save();|
+    }
+    #endregion Deck
+
+    #region Equipment
     public void FillEquipmentEntrie(Equipment equipment)
     {
         if (equipmentCardEntries.Contains(equipment) == false)
             equipmentCardEntries.Add(equipment);
     }
-
     public void RemoveFromEquipmentEntrie(Equipment equipment)
     {
         if (equipmentCardEntries.Contains(equipment))
@@ -179,38 +242,23 @@ public class Deckbuilder : MonoBehaviour
             equipmentCardEntries.RemoveAt(indexToRemove);
         }
     }
-
-
-
-    public void LoadEquipmentPanel()
-    {
-        LoadPanel(equipmentCardPreFab, equipmentPanel, equipmentSlots, equipmentCardEntries, 4);
-    }
-    public void LoadDeckPanel()
-    {
-        LoadPanel(inventoryCardPreFab, deckPanel, deckSlots, deckCardEntries, 5);
-    }
-
-    public void SaveDeck()
-    {
-        //UserFile.SaveGame.DeckCardEntries = UserFile.SaveGame.DeckCardEntries + deckCardEntries.ToArray();
-        //deckCardEntries = UserFile.SaveGame.DeckCardEntries.ToList(); 
-        // UserFile.SaveGame.Save();|
-    }
-
     public void SaveEquipment()
     {
         string[] equipmentCardEntriesAsString = equipmentCardEntries.ConvertAll(equipment => equipment.ToString()).ToArray();
         UserFile.SaveGame.EquipmentCardEntries = equipmentCardEntriesAsString;
     }
 
+    #endregion Equipment
+
+
+    #region Equipped
     public void SaveEquipped()
     {
         List<string> equipped = new List<string>();
 
         for (int i = 0; i < equippedSlots.Length; i++)
         {
-            if (equippedSlots[i].equipment != null & equippedSlots[i].equipment != "" )
+            if (equippedSlots[i].equipment != null & equippedSlots[i].equipment != "")
             {
                 equipped.Add(equippedSlots[i].equipment);
             }
@@ -221,10 +269,25 @@ public class Deckbuilder : MonoBehaviour
             }
         }
 
-        Debug.Log(equipped.ToArray()[0] +","+ equipped.ToArray()[1] + "," + equipped.ToArray()[2] + "," + equipped.ToArray()[3] + "," + equipped.ToArray()[4]);
+        Debug.Log(equipped.ToArray()[0] + "," + equipped.ToArray()[1] + "," + equipped.ToArray()[2] + "," + equipped.ToArray()[3] + "," + equipped.ToArray()[4]);
 
         UserFile.SaveGame.Equipped = equipped.ToArray();
         // UserFile.SaveGame.Save();
     }
+    #endregion Equipped
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

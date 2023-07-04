@@ -6,7 +6,7 @@ public class Character : MonoBehaviour
     public string characterName;
     public string englishCharacterName;
     public string startNode;
-    [SerializeField] private Vector3 activeDialogueIconOffset;
+    [SerializeField] private Vector3 activeDialogueIconOffset = new Vector3(0,1.9f,0);
     public Date spawnDate;
     public TimeBoolTable spawnTable;
     public Date killDate;

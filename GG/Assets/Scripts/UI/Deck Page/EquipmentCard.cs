@@ -15,16 +15,20 @@ public class EquipmentCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public Image image;
     public TMP_Text cardName;
     public TMP_Text cardType;
+
     [HideInInspector] public Transform afterDragParent;
 
     private void Start()
     {
-        SetupCard();
+        SetupCard(equipment.name);
     }
 
-    private void SetupCard()
+    private void SetupCard(string name)
     {
 
+
+
+        image.sprite = 
         cardName.text = equipment.cardSet.ToString();
         cardType.text = equipment.slotType.ToString();
     }

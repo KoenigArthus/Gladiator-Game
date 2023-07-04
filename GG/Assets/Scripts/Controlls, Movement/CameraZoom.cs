@@ -23,6 +23,18 @@ public class CameraZoom : MonoBehaviour
         playerAA.Enable();
     }
 
+    public void EnableZoom()
+    {
+        playerAA.Player.Zoom.performed += ZoomCamera;
+        playerAA.Enable();
+    }
+
+    public void DisableZoom()
+    {
+        playerAA.Player.Zoom.performed -= ZoomCamera;
+        playerAA.Disable();
+    }
+
     private void OnDisable()
     {
         playerAA.Player.Zoom.performed -= ZoomCamera;
@@ -46,4 +58,5 @@ public class CameraZoom : MonoBehaviour
             cineZoom.m_Width = 15f;
 
     }
+
 }

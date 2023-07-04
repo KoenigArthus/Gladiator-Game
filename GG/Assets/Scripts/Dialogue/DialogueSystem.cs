@@ -140,6 +140,8 @@ public class DialogueSystem : MonoBehaviour
         Debug.Log("added" + cardName);
 
         CardLibrary.GetCardByName(cardName);
+
+        // preload list with strings needs parsing?
         //UserFile.SaveGame.DeckCardEntries
     }
 

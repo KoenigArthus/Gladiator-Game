@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Assets.Scripts.UI.Deck_Page;
 
 public class InventoryCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
