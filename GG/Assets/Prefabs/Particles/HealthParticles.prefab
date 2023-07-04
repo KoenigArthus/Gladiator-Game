@@ -9499,7 +9499,7 @@ GameObject:
   - component: {fileID: 5069422768260714986}
   - component: {fileID: 5071885323672661863}
   m_Layer: 0
-  m_Name: CFX4 Aura Bubble C
+  m_Name: HealthParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

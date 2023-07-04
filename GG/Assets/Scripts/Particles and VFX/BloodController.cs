@@ -1,22 +1,56 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using JSAM;
 
 public class BloodController : MonoBehaviour
 {
-    public ParticleSystem bloodParticleSystem;
-    public ParticleSystem blockParticleSystem, healParticleSystem, skillParticleSystem;
-    public GameObject floorSpawner, chestParticleSpawner;
+    private Enemy enemy;
+    private Player player;
+    public CardGameManager cardGameManager;
+    public ParticleSystem enemybloodParticleSystem;
+    public ParticleSystem playerbloodParticleSystem;
+    public ParticleSystem enemywithblockParticleSystem;
+    public ParticleSystem playerwithblockParticleSystem;
+    public ParticleSystem playerblockParticleSystem, playerhealParticleSystem, playerskillParticleSystem;
+    public ParticleSystem enemyblockParticleSystem, enemyhealParticleSystem, enemyskillParticleSystem;
+    public GameObject playerfloorSpawner, playerchestParticleSpawner;
+    public GameObject enemyfloorSpawner, enemychestParticleSpawner;
 
     public void Awake()
     {
-        bloodParticleSystem.Stop();
+        enemybloodParticleSystem.Stop();
     }
-    public void PlayBloodParticleSystem()
+    public void PlayEnemyBloodParticleSystem()
     {
-        bloodParticleSystem.Play();
+        if (cardGameManager.Enemy.BlockStack.Length < 1)
+        {
+            enemybloodParticleSystem.Play();
+            JSAM.AudioManager.PlaySound(Sounds.Hit);
+            Debug.Log("Enemy has less than 1 Block");
+        }
+        else if (cardGameManager.Enemy.BlockStack.Length > 1)
+        {
+            enemywithblockParticleSystem.Play();
+            Debug.Log("Enemy has more than 1 Block");
+        }
+
+    }
+
+    public void PlayPlayerBloodParticleSystem()
+    {
+        if (cardGameManager.Player.BlockStack.Length < 1)
+        { 
+        playerbloodParticleSystem.Play();
         JSAM.AudioManager.PlaySound(Sounds.Hit);
+            Debug.Log("Player has less than 1 Block");
+        }
+        else if (cardGameManager.Player.BlockStack.Length > 1)
+        {
+            
+            Debug.Log("Player has more than 1 Block");
+        }
     }
 }
 

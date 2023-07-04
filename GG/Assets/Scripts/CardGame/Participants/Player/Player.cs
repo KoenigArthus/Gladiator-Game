@@ -397,7 +397,7 @@ public class Player : Participant
             }
 
         }
-            camFocus.DecideFocus(info.Type);
+            camFocus.PlayerDecideFocus(info.Type);
     }
 
     #endregion Play

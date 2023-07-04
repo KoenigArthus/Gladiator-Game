@@ -63,7 +63,11 @@ public class CardGameManager : MonoBehaviour
             player.Deck.Add(CardObject.Instantiate((CardInfo)deck[i].Clone(), this.deck.transform.position));
 
         player.cardAnimations = FindObjectOfType<CardAnimations>();
+        enemy.cardAnimationsEnemy = FindObjectOfType<CardAnimationsEnemy>();
+        enemy.rotator = FindObjectOfType<Rotator>();
         player.camFocus = FindObjectOfType<Focus>();
+        enemy.bloodController = FindObjectOfType<BloodController>();
+        enemy.focus = FindObjectOfType<Focus>();
 
         player.Deck.Shuffle();
         EndRound();

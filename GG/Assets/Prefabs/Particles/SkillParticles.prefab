@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3585136468828176729}
   - component: {fileID: 1037683599718693674}
   m_Layer: 0
-  m_Name: CFX3_Skull_Explosion
+  m_Name: SkillParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

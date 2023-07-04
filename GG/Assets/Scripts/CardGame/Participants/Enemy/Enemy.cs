@@ -94,6 +94,14 @@ public partial class Enemy : Participant
 
     public Player Player => Manager.Player;
 
+    public CardAnimationsEnemy cardAnimationsEnemy;
+
+    public Rotator rotator;
+
+    public BloodController bloodController;
+
+    public Focus focus;
+
     #endregion Properties
 
     #region Play
@@ -153,8 +161,12 @@ public partial class Enemy : Participant
             ability.Execute(this);
 
         int stun = GetStatus(StatusEffect.Stun);
+        
         for (int i = 0; i < intension.Length; i++)
         {
+            /*if (i == 0)
+                rotator.StopMovement();*/
+
             SkillInfo current = intension[i];
 
             if (current == null || IsStuned())
@@ -162,18 +174,38 @@ public partial class Enemy : Participant
 
             if (attackAilments != null && current.Intension == EnemyIntension.Attack)
                 attackAilments.OnAttack(this);
-
+            
             current.Execute(this);
 
 #warning TODO: Play Enemy Animations
+            if (current.Intension == EnemyIntension.Attack)
+            {
+                cardAnimationsEnemy.PlayTutorialGladiatorAnimation();
+            }
+            else if (current.Intension == EnemyIntension.Block)
+            {
+                focus.EnemyDecideBlockFocus();
+            }
+            
+            
+            
+            
         }
         Manager.NotifyStatsChange();
+        
     }
 
+    public void EnemyAnimation()
+    {
+        cardAnimationsEnemy.PlayTutorialGladiatorAnimation();
+    }
     #endregion Play
 
     #region Defend
-
+    public void Particles()
+    {
+    
+    }
     public void AddBlock(int amount)
     {
         blockStack = blockStack.Concat(new int[] { amount }).ToArray();

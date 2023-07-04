@@ -1,3 +1,4 @@
+using JSAM;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -84,7 +85,9 @@ public class DieObject : MonoBehaviour, IPointerClickHandler
     private void Update()
     {
         if (Selected)
+        {
             valueUI.color = Color.red;
+        }
         else
             valueUI.color = Color.black;
 
@@ -107,6 +110,7 @@ public class DieObject : MonoBehaviour, IPointerClickHandler
     {
         if (player != null && player.Prepareing != null)
             player.Prepareing.Info.ToggleDie(Info);
+        JSAM.AudioManager.PlaySound(Sounds.Click);
     }
 
     #endregion Pointer
