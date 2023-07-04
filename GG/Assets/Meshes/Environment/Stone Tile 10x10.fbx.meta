@@ -7,18 +7,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Stone
-    second: {fileID: 2100000, guid: 6049c6f4030a2e145b262a71577608bb, type: 2}
+      name: Stone Dark.001
+    second: {fileID: 2100000, guid: 8b1675a81bc998f4c9cdbfffb2d6370b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Stone Dark
+      name: Stone light.002
     second: {fileID: 2100000, guid: 07b172f7004e16a45b67d938c2c21215, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Stone light
-    second: {fileID: 2100000, guid: de485133effb8ba44aec8eac09c01589, type: 2}
+      name: Stone.004
+    second: {fileID: 2100000, guid: 6049c6f4030a2e145b262a71577608bb, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

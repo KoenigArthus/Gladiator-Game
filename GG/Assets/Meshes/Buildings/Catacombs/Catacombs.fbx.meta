@@ -7,6 +7,16 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Plaster
+    second: {fileID: 2100000, guid: f46a1f6519c8144449a713056421677c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Red
+    second: {fileID: 2100000, guid: 05f9ad573679c2d4687250b8b3a419d0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Stein
     second: {fileID: 2100000, guid: 6049c6f4030a2e145b262a71577608bb, type: 2}
   - first:
@@ -28,7 +38,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Stein am Hellsten
-    second: {fileID: 2100000, guid: 69b67c8cfbfd64f419487e4265b7e0fa, type: 2}
+    second: {fileID: 2100000, guid: 6049c6f4030a2e145b262a71577608bb, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
