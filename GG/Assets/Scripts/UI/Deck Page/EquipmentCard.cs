@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
-using Assets.Scripts.UI.Deck_Page;
 
 public class EquipmentCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
@@ -27,7 +26,6 @@ public class EquipmentCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     private void SetupCard()
     {
         EquipmentInfo equipmentInfo = new EquipmentInfo(equipmentIDName);
-        Debug.Log(equipmentInfo.Sprite);
         slotType = equipmentInfo.SlotType;
         cardSet = equipmentInfo.CardSet;
         image.sprite = equipmentInfo.Sprite;

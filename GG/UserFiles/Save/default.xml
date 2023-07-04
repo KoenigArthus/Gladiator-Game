@@ -5,9 +5,8 @@
   <Gold>0</Gold>
   <EquipmentEXP>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</EquipmentEXP>
   <NextOpponent>0</NextOpponent>
-  <DeckEntrie>
-  </DeckEntrie>
-  <EquipmentEntrie>Doru,Pugio,Scindo,Trident,Parmula,Gladius,Manica,Cassis,Galerus,Ocrea,Scutum,Rete</EquipmentEntrie>
-  <Equipped>none,none,none,none,none</Equipped>
+  <DeckEntrie>Shield_Block,Testudo,Shield_Soul,Provocation,Shield_Logic,Immovable_Object,Shield_Flame,Bastion,Petra_Solida,Scutum_Vitalis,Battering_Ram,Mars_Patronage,Moloch</DeckEntrie>
+  <EquipmentEntrie>Doru,Scindo,Trident,Rete,Ocrea,Pugio,Gladius,Galerus,Cassis,Manica,Parmula</EquipmentEntrie>
+  <Equipped>none,none,none,Scutum,none</Equipped>
   <FightingLocation>0</FightingLocation>
 </UserFile>
