@@ -3,7 +3,12 @@ guid: 0b71cac18bcf1fe418728eea193b296e
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sanstone
+    second: {fileID: 2100000, guid: 65ebcd3c8cf693b4f9f652a3e97146d7, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
