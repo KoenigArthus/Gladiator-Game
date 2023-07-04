@@ -47,21 +47,33 @@ public class Focus : MonoBehaviour
             case CardType.Skill:
                 Instantiate(bloodController.playerskillParticleSystem, bloodController.playerchestParticleSpawner.transform);
                 break;
+            case CardType.Ailment:
+                Instantiate(bloodController.ailmentinstantParticleSystem, bloodController.playerchestParticleSpawner.transform);
+            break;
 
             default:
                 Debug.LogWarning("Invalid string recieved");
                 break;
         }
-        LeanTween.delayedCall(2f, rotator.StartMovement);
+        LeanTween.delayedCall(0.75f, rotator.StartMovement);
     }
 
+    public void PlayerAilmentParticles(CardType cardType)
+    {
+        switch (cardType)
+        {   
+            case CardType.Ailment:
+                Instantiate(bloodController.ailmentinstantParticleSystem, bloodController.playerchestParticleSpawner.transform);
+                break;
+        }
+    }
     public void EnemyDecideAttackFocus()
     {
         if (enemyIntension == EnemyIntension.Attack)
         {
             StartAttackFocus();
         }
-        LeanTween.delayedCall(2f, rotator.StartMovement);
+        LeanTween.delayedCall(0.75f, rotator.StartMovement);
     }
 
     public void EnemyDecideBlockFocus()
@@ -92,7 +104,7 @@ public class Focus : MonoBehaviour
         }
 
 
-        LeanTween.delayedCall(2f, rotator.StartMovement);
+        LeanTween.delayedCall(0.75f, rotator.StartMovement);
     }
 
     private void StartFocus()

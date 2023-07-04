@@ -1,5 +1,6 @@
 namespace JSAM {
     public enum Sounds {
+        Ailment,
         AnimationStep,
         BathRaw,
         BathRaw2,

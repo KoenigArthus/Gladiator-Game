@@ -13,6 +13,8 @@ public partial class Enemy : Participant
     private SkillInfo[] intension = new SkillInfo[3];
     private EnemyIntension?[] forcedIntension = new EnemyIntension?[0];
 
+    public float delayTime = 0.2f;
+
     #endregion Fields
 
     public Enemy(CardGameManager manager, int level) : base(manager)
@@ -180,7 +182,7 @@ public partial class Enemy : Participant
 #warning TODO: Play Enemy Animations
             if (current.Intension == EnemyIntension.Attack)
             {
-                cardAnimationsEnemy.PlayTutorialGladiatorAnimation();
+                cardAnimationsEnemy.PlayTutorialGladiatorAnimation(delayTime);
             }
             else if (current.Intension == EnemyIntension.Block)
             {
@@ -195,10 +197,7 @@ public partial class Enemy : Participant
         
     }
 
-    public void EnemyAnimation()
-    {
-        cardAnimationsEnemy.PlayTutorialGladiatorAnimation();
-    }
+   
     #endregion Play
 
     #region Defend

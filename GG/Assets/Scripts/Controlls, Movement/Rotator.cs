@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Rotator : MonoBehaviour
 {
-    
+    public float fadingSpeed;
     public float minSpeed;
     public float currentSpeed;
     public float maxSpeed;
@@ -21,12 +21,14 @@ public class Rotator : MonoBehaviour
 
     public void StopMovement()
     {
-        currentSpeed = 0;
+        LeanTween.value(gameObject, currentSpeed, 0f, fadingSpeed)
+        .setOnUpdate((float value) => { currentSpeed = value; });
     }
 
     public void StartMovement()
     {
-       currentSpeed = maxSpeed;
+        LeanTween.value(gameObject, currentSpeed, maxSpeed, fadingSpeed)
+        .setOnUpdate((float value) => { currentSpeed = value; });
     }
 
 

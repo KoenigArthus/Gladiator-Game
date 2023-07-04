@@ -9630,10 +9630,10 @@ MonoBehaviour:
   spatialSound: 0
   loopSound: 0
   priority: 128
-  pitchShift: 0.05
-  delay: 0.2
+  pitchShift: 0
+  delay: 0
   ignoreTimeScale: 0
-  sound: {fileID: 11400000, guid: 4a346ab34eec6324dbea50c249b090d5, type: 2}
+  sound: {fileID: 11400000, guid: f79a0420040a9dc478d5348ba2207b86, type: 2}
   playSoundOn: 0
 --- !u!1 &9124427607299019013
 GameObject:

@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d15ae218647a2d4f85e14306846c10c, type: 3}
   m_Name: BlockImpact
   m_EditorClassIdentifier: 
-  file: {fileID: 8300000, guid: 38f585c746cd8cd4eb9a6b10c26f9ce0, type: 3}
+  file: {fileID: 8300000, guid: 84f781b1054b4fa419e78ebb10a9900b, type: 3}
   files: []
   useLibrary: 0
   neverRepeat: 0
   lastClipIndex: -1
   category: Sound
-  relativeVolume: 0.5
+  relativeVolume: 0.1
   spatialize: 0
   maxDistance: 0
   priority: 128

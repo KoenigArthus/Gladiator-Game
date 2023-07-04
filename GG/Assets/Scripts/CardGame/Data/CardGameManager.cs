@@ -66,6 +66,7 @@ public class CardGameManager : MonoBehaviour
         enemy.cardAnimationsEnemy = FindObjectOfType<CardAnimationsEnemy>();
         enemy.rotator = FindObjectOfType<Rotator>();
         player.camFocus = FindObjectOfType<Focus>();
+        player.bloodController = FindObjectOfType<BloodController>();
         enemy.bloodController = FindObjectOfType<BloodController>();
         enemy.focus = FindObjectOfType<Focus>();
 

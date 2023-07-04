@@ -3,7 +3,22 @@ guid: 185611b4ab66671419960443a0607e19
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GOLD
+    second: {fileID: 2100000, guid: bdf188b6adc5a57459f51f9b5a1eef59, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "G\xDCRTEL2"
+    second: {fileID: 2100000, guid: 461d6f21a2ec4b14eb05da988a601d33, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: HOSE
+    second: {fileID: 2100000, guid: bf6d8073d96d8704ebadb06e050c87d4, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -68,7 +83,7 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
-    normalSmoothAngle: 0
+    normalSmoothAngle: 30
     normalImportMode: 1
     tangentImportMode: 3
     normalCalculationMode: 4

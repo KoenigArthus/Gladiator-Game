@@ -13,6 +13,7 @@ public class BloodController : MonoBehaviour
     public ParticleSystem playerbloodParticleSystem;
     public ParticleSystem enemywithblockParticleSystem;
     public ParticleSystem playerwithblockParticleSystem;
+    public ParticleSystem ailmentinstantParticleSystem;
     public ParticleSystem playerblockParticleSystem, playerhealParticleSystem, playerskillParticleSystem;
     public ParticleSystem enemyblockParticleSystem, enemyhealParticleSystem, enemyskillParticleSystem;
     public GameObject playerfloorSpawner, playerchestParticleSpawner;
@@ -40,15 +41,15 @@ public class BloodController : MonoBehaviour
 
     public void PlayPlayerBloodParticleSystem()
     {
-        if (cardGameManager.Player.BlockStack.Length < 1)
+        if (cardGameManager.Player.Block < 1)
         { 
         playerbloodParticleSystem.Play();
         JSAM.AudioManager.PlaySound(Sounds.Hit);
             Debug.Log("Player has less than 1 Block");
         }
-        else if (cardGameManager.Player.BlockStack.Length > 1)
+        else if (cardGameManager.Player.Block > 1)
         {
-            
+            playerwithblockParticleSystem.Play();
             Debug.Log("Player has more than 1 Block");
         }
     }

@@ -95,6 +95,7 @@ public class Player : Participant
 
     public CardAnimations cardAnimations;
     public Focus camFocus;
+    public BloodController bloodController;
 
     #endregion Animators
 
@@ -121,6 +122,7 @@ public class Player : Participant
 
             if (drawnCardInfo.Type == CardType.Ailment && drawnCardInfo.Cost == 0)
             {
+                camFocus.PlayerAilmentParticles(CardType.Ailment);
                 drawnCardInfo.Execute();
 
                 //prepareing = drawnCard;

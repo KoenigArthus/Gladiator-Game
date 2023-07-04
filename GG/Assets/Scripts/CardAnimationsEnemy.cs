@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class CardAnimationsEnemy : MonoBehaviour
 {
@@ -40,6 +41,8 @@ public class CardAnimationsEnemy : MonoBehaviour
     public EnemyType enemyType;
     private Focus focus;
 
+    float delayTime = 0.2f;
+
 
     public void Awake()
     {
@@ -54,13 +57,21 @@ public class CardAnimationsEnemy : MonoBehaviour
 
 
 
-    }   
-        
+    }
 
-    public void PlayTutorialGladiatorAnimation()
+
+    public void PlayTutorialGladiatorAnimation(float delay)
     {
-            focus.DecideFocus("enemyattack");
-            animator.SetTrigger("ESwordAttack"); 
+        focus.DecideFocus("enemyattack");
+
+        StartCoroutine(DelayedTrigger(delay));
+    }
+
+    private IEnumerator DelayedTrigger(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        animator.SetTrigger("ESwordAttack");
     }
 
 }

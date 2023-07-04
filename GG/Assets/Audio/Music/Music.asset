@@ -19,7 +19,7 @@ MonoBehaviour:
   neverRepeat: 0
   lastClipIndex: -1
   category: Music
-  relativeVolume: 0.103
+  relativeVolume: 0
   spatialize: 0
   maxDistance: 0
   priority: 0
