@@ -176,14 +176,10 @@ public partial class Enemy : Participant
 
     public void AddBlock(int amount)
     {
-        this.blockStack = blockStack.Concat(new int[] { amount }).ToArray();
+        blockStack = blockStack.Concat(new int[] { amount }).ToArray();
 
-        if (this.blockStack.Length > 3)
-        {
-            int[] blockStack = new int[3];
-            this.blockStack.CopyTo(blockStack, this.blockStack.Length - 3);
-            this.blockStack = blockStack;
-        }
+        if (blockStack.Length > 3)
+            blockStack = blockStack.Skip(blockStack.Length - 3).ToArray();
     }
 
     protected override void ReduceBlock(ref int amount)

@@ -1,9 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using JSAM;
+
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
@@ -30,7 +33,6 @@ public class CardGameManager : MonoBehaviour
 
     private int round = 0;
     private bool battleEnded = false;
-
 
     #endregion Fields
 
@@ -63,7 +65,6 @@ public class CardGameManager : MonoBehaviour
         player.cardAnimations = FindObjectOfType<CardAnimations>();
         player.camFocus = FindObjectOfType<Focus>();
 
-
         player.Deck.Shuffle();
         EndRound();
         NotifyStatsChange();
@@ -71,7 +72,6 @@ public class CardGameManager : MonoBehaviour
 
     private void Start()
     {
-      
     }
 
     private void Update()
@@ -116,7 +116,9 @@ public class CardGameManager : MonoBehaviour
 
             // show result screen here
             rewardScreen.SetActive(true);
-            battleEnded = true;
+
+            //Go back to overwolrd
+            //SceneManager.LoadScene("Ludus");
         }
     }
 
@@ -128,7 +130,6 @@ public class CardGameManager : MonoBehaviour
     {
         uiChanges.Add(new UIValues(player, enemy));
         uiHasChanged?.Invoke();
-
     }
 
     /* public UIValues[] CollectUIChanges()
@@ -147,7 +148,6 @@ public class CardGameManager : MonoBehaviour
 
          return changes;
      }*/
-
 
     #endregion UI
 
