@@ -3,7 +3,17 @@ guid: 01da8bc8af5d7984793e120095d90241
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: HOSE
+    second: {fileID: 2100000, guid: 398177c0c72b4324a9fc7c12970235d4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: STOFF
+    second: {fileID: 2100000, guid: 6f1245951ba3da44cadcb0aee1b3b05f, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
