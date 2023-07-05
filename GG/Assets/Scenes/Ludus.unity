@@ -2227,12 +2227,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 58209597}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &58274495 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8747656529396171380, guid: 6a019c52bcb3d9842bd675972ae395a8,
-    type: 3}
-  m_PrefabInstance: {fileID: 2066155888}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &63789186
 GameObject:
   m_ObjectHideFlags: 0
@@ -4391,10 +4385,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01f742d01ceb36b40a203cf2b79ed83d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsToDissapear:
-  - {fileID: 238871967}
-  - {fileID: 1491207970}
-  - {fileID: 777373311}
+  objectsToDisappear: []
+  newRoofObjects: []
+  colorTransitionDuration: 1
 --- !u!65 &160918308
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7755,12 +7748,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 20546715}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &238871967 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 143210941573105543, guid: 6a019c52bcb3d9842bd675972ae395a8,
-    type: 3}
-  m_PrefabInstance: {fileID: 2066155888}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &240353021
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8763,8 +8750,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01f742d01ceb36b40a203cf2b79ed83d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsToDissapear:
+  objectsToDisappear:
   - {fileID: 2066155889}
+  newRoofObjects:
+  - {fileID: 344719697}
+  colorTransitionDuration: 1
 --- !u!1 &271339609
 GameObject:
   m_ObjectHideFlags: 0
@@ -10118,12 +10108,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c353b41568cd0394e9480bb89b96f07a, type: 3}
---- !u!1 &313844790 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4779527863267775297, guid: 6a019c52bcb3d9842bd675972ae395a8,
-    type: 3}
-  m_PrefabInstance: {fileID: 2066155888}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &315160939
 GameObject:
   m_ObjectHideFlags: 0
@@ -10884,6 +10868,89 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d26adda454cc6274fbb35c2bfd5898c6, type: 3}
+--- !u!1 &344719697
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 344719698}
+  - component: {fileID: 344719700}
+  - component: {fileID: 344719699}
+  m_Layer: 6
+  m_Name: Dach 3.1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 0
+--- !u!4 &344719698
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344719697}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1669170151}
+  m_RootOrder: 83
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &344719699
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344719697}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 98eb45d230afd6549b91d3e41195a674, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &344719700
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344719697}
+  m_Mesh: {fileID: 7167278082252228466, guid: 6a019c52bcb3d9842bd675972ae395a8, type: 3}
 --- !u!4 &351611126 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2412161367050800168, guid: 01da8bc8af5d7984793e120095d90241,
@@ -16264,12 +16331,6 @@ Transform:
   m_Father: {fileID: 1326865217}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!1 &474078061 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -6765821011246119232, guid: 6a019c52bcb3d9842bd675972ae395a8,
-    type: 3}
-  m_PrefabInstance: {fileID: 2066155888}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &478725139
 GameObject:
   m_ObjectHideFlags: 0
@@ -21062,7 +21123,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &625550286
 Transform:
   m_ObjectHideFlags: 0
@@ -21071,8 +21132,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 625550285}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 150.2286, y: 2.62, z: 135.7369}
-  m_LocalScale: {x: 20.87873, y: 0.1, z: 5.709127}
+  m_LocalPosition: {x: 150.2286, y: 2.61, z: 135.7369}
+  m_LocalScale: {x: 20.87873, y: 0.01, z: 5.709127}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1106891388}
@@ -22751,8 +22812,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01f742d01ceb36b40a203cf2b79ed83d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsToDissapear:
-  - {fileID: 313844790}
+  objectsToDisappear: []
+  newRoofObjects: []
+  colorTransitionDuration: 1
 --- !u!65 &700318401
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24193,12 +24255,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8879528566716807029, guid: 01da8bc8af5d7984793e120095d90241,
     type: 3}
   m_PrefabInstance: {fileID: 20546715}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &777373311 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -8081592808053563498, guid: 6a019c52bcb3d9842bd675972ae395a8,
-    type: 3}
-  m_PrefabInstance: {fileID: 2066155888}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &777489081
 GameObject:
@@ -29034,8 +29090,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01f742d01ceb36b40a203cf2b79ed83d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsToDissapear:
-  - {fileID: 1695961818}
+  objectsToDisappear: []
+  newRoofObjects: []
+  colorTransitionDuration: 1
 --- !u!65 &885164396
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -49305,12 +49362,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 829815533}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1240637568 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -7045922076424554854, guid: 6a019c52bcb3d9842bd675972ae395a8,
-    type: 3}
-  m_PrefabInstance: {fileID: 2066155888}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1241093416
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57254,12 +57305,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1344929205}
   m_CullTransparentMesh: 1
---- !u!1 &1352856948 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3253957600620176730, guid: 6a019c52bcb3d9842bd675972ae395a8,
-    type: 3}
-  m_PrefabInstance: {fileID: 2066155888}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1355732438
 GameObject:
   m_ObjectHideFlags: 0
@@ -60461,12 +60506,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486874675}
   m_CullTransparentMesh: 1
---- !u!1 &1491207970 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -1537200965953886529, guid: 6a019c52bcb3d9842bd675972ae395a8,
-    type: 3}
-  m_PrefabInstance: {fileID: 2066155888}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1491336610 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3540789762192964390, guid: 01da8bc8af5d7984793e120095d90241,
@@ -67751,10 +67790,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01f742d01ceb36b40a203cf2b79ed83d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsToDissapear:
-  - {fileID: 1352856948}
-  - {fileID: 58274495}
-  - {fileID: 474078061}
+  objectsToDisappear: []
+  newRoofObjects: []
+  colorTransitionDuration: 1
 --- !u!65 &1646271896
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -70719,12 +70757,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 617f838aed2565147b2bd97e35b56444, type: 3}
---- !u!1 &1695961818 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -1856381660106276985, guid: 6a019c52bcb3d9842bd675972ae395a8,
-    type: 3}
-  m_PrefabInstance: {fileID: 2066155888}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1696744236
 GameObject:
   m_ObjectHideFlags: 0
@@ -79175,12 +79207,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1859703867}
   m_CullTransparentMesh: 1
---- !u!1 &1860700151 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -4477929917014402167, guid: 6a019c52bcb3d9842bd675972ae395a8,
-    type: 3}
-  m_PrefabInstance: {fileID: 2066155888}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1862879255
 GameObject:
   m_ObjectHideFlags: 0
@@ -80012,12 +80038,6 @@ Transform:
   m_Father: {fileID: 667558605}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1910789369 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8055227861166706376, guid: 6a019c52bcb3d9842bd675972ae395a8,
-    type: 3}
-  m_PrefabInstance: {fileID: 2066155888}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1912229264 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d26adda454cc6274fbb35c2bfd5898c6,
@@ -81344,10 +81364,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01f742d01ceb36b40a203cf2b79ed83d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsToDissapear:
-  - {fileID: 1240637568}
-  - {fileID: 1910789369}
-  - {fileID: 1860700151}
+  objectsToDisappear: []
+  newRoofObjects: []
+  colorTransitionDuration: 1
 --- !u!65 &2003904746
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -82864,7 +82883,7 @@ PrefabInstance:
     - target: {fileID: -1665175552694461891, guid: 6a019c52bcb3d9842bd675972ae395a8,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -1665175552694461891, guid: 6a019c52bcb3d9842bd675972ae395a8,
         type: 3}

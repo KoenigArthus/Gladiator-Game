@@ -25,7 +25,7 @@ public class TimeManager : MonoBehaviour
         // default singleton pattern
         if (instance == null)
         {
-            DontDestroyOnLoad(gameObject);
+           // DontDestroyOnLoad(gameObject);
             instance = this;
         }
         else if (instance != this)
