@@ -5,8 +5,8 @@
   <Gold>0</Gold>
   <EquipmentEXP>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</EquipmentEXP>
   <NextOpponent>0</NextOpponent>
-  <DeckEntrie>Sting,Mighty_Sweep,Pommel_Strike,Jump_Slash,Double_Stab,Sword_Dance,Sword_Vortex,Flaming_Impact,Gleaming_Blade,Flaming_Passion,Perfect_Parry,Damocles_Sword,Searing_Inferno,Head_Matter,Head_Thrust,Boldness,Protective_Cage,Deflecting_Stance,Symbol_Of_Duty,Stubborn,Parma,Shield_Slam,Sweep,Armored_Colossus,Titan,True_Phalanx,Equilibrium,Minotaur_Stomp,Iron_Will,Indomitable,Reflect,Heroic_Onslaught,Soterias_Blessing,Kick,Evasive_Step,Footwork,Knee_Kick,Jump_Kick,Flying_Spin_Kick</DeckEntrie>
-  <EquipmentEntrie>Doru,Galerus,Manica,Pugio,Rete,Scindo,Scutum,Trident</EquipmentEntrie>
-  <Equipped>Cassis,none,Ocrea,Gladius,Parmula</Equipped>
+  <DeckEntrie>Trip_Rope,Cast_Net,Constrict,Dompteur,Web_Weaver,Trapper,Disarm,Pittakos,Scornful_Finesse,Arachnid,Thread_Of_Fate,Control,Cruel_Fate,Head_Matter,Head_Thrust,Boldness,Protective_Cage,Deflecting_Stance,Symbol_Of_Duty,Stubborn,Well_Fed,Well_Fed</DeckEntrie>
+  <EquipmentEntrie>Doru,Galerus,Manica,Ocrea,Pugio,Scindo,Scutum,Trident,Gladius,Parmula</EquipmentEntrie>
+  <Equipped>Cassis,none,none,Rete,none</Equipped>
   <FightingLocation>0</FightingLocation>
 </UserFile>

@@ -1,10 +1,7 @@
 using Cinemachine;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
-using System.Security.Cryptography.X509Certificates;
-using UnityEditor.Experimental.GraphView;
 
 public class Focus : MonoBehaviour
 {

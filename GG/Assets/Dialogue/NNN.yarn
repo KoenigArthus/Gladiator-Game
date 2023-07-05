@@ -1,0 +1,16 @@
+﻿title: NNN
+tags:
+position: -17,-62
+---
+Player: Salve!
+<<jump NNN1>>
+===
+title: NNN1
+position: 28,156
+---
+Wegweisender: Salve!
+Wegweisender: Wo soll ich dich hinbringen?
+-> Nirgendwo, ich wollte nur Hallo sagen.
+-> Bring mich zum Forum.
+	<<change_scene "Forum">>
+===

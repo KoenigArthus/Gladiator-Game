@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class TimeManager : MonoBehaviour
 {
+    public static TimeManager instance;
     UnityEvent timeHasChanged;
     CharacterSpawnManager characterSpawner;
     public GameObject lightObject;
@@ -21,6 +22,19 @@ public class TimeManager : MonoBehaviour
 
     private void Awake()
     {
+        // default singleton pattern
+        if (instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+
+
+
         if (timeHasChanged == null)
             timeHasChanged = new UnityEvent();
 
@@ -30,6 +44,17 @@ public class TimeManager : MonoBehaviour
             timeHasChanged.AddListener(characterSpawner.ScheduleCharacters);
         }
     }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            MoveInTime();
+        }
+    }
+
+
+
 
 
     #region Time functions

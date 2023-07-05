@@ -23,6 +23,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/TimeSystemTest.unity
     guid: 2e447bec25e03d245b5b1c80dd4b2737
+  - enabled: 1
+    path: Assets/Scenes/Forum.unity
+    guid: 1a9d370e54687a948b37d5500b60f904
+  - enabled: 0
+    path: Assets/Scenes/Catacombs.unity
+    guid: 348feb40166fa954aa736e41c58e62fb
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: c07ef7e97ae3d4349833253c2e7e3b2f,
       type: 2}

@@ -1,0 +1,8 @@
+﻿title: Esstisch
+tags:
+---
+Hmm soll ich was essen?
+-> nein ich mache lieber etwas anderes
+-> Ich habe einen riesen Hunger!
+	<<add_card "Well_Fed">>
+===

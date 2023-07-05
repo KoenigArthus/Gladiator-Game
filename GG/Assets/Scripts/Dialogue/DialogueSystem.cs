@@ -66,8 +66,6 @@ public class DialogueSystem : MonoBehaviour
         //get TextLineProvider for localization
         textLineProvider = gameObject.GetComponent<TextLineProvider>();
 
-        
-
 
     }
 
@@ -142,6 +140,8 @@ public class DialogueSystem : MonoBehaviour
     {
         Debug.Log("added" + cardName);
         Deckbuilder.instance.AddToDeckEntrie(cardName);
+        TimeManager.instance.MoveInTime();
+
     }
 
 
@@ -152,6 +152,14 @@ public class DialogueSystem : MonoBehaviour
         UserFile.SaveGame.Save();
         SceneManager.LoadScene("CardGameTest");
     }
+
+    [YarnCommand("change_scene")]
+    public static void MoveInScene(string scene)
+    {
+        UserFile.SaveGame.Save();
+        SceneManager.LoadScene(scene);
+    }
+
 
     [YarnCommand("log")]
     public static void Log(string message)
