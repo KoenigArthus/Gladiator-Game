@@ -2966,6 +2966,11 @@ PrefabInstance:
       propertyPath: m_StaticShadowCaster
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -5974891482690446528, guid: 876f169b82423e04b8c38a7d99fff4f1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -5142415319785703067, guid: 876f169b82423e04b8c38a7d99fff4f1,
         type: 3}
       propertyPath: m_Layer
