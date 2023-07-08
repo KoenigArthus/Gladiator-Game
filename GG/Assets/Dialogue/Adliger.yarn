@@ -1,0 +1,292 @@
+﻿title: a0
+tags:
+---
+<<declare $token_count to 0>>
+<<declare $wine_count to 0>>
+<<if $wine_count > 0 || $token_count > 0>>
+    <<jump a1b>>
+<<endif>>
+<<if $aday != 0>>
+    <<jump aENDE3>>
+<<endif>>
+<<if visited("a2") && visited("a3a") && $aday == 0>>
+    <<jump a1a>>
+<<endif>>
+<<jump a1>>
+===
+title: a1
+position: 0,0
+---
+<<if !visited("a3a")>>
+Adliger: Guten Tag...
+Adliger: Ah, ein Gladiator, wenn mich nicht alles täuscht.
+Adliger: Bist du fähig und gewillt zu arbeiten?
+-> Worum geht es?
+    <<jump a2>>
+-> Sprechen wir erstmal über die Bezahlung?
+    <<jump a3>>
+-> (Zeitaufwand) Ich bin sofort bereit loszulegen.
+    <<jump astart>>
+-> (Verlassen) Nein, Danke.
+    <<jump aENDE>>
+<<else>>
+Adliger: Guten Tag...
+Adliger: Bist du fähig und gewillt zu arbeiten?
+-> Worum geht es?
+    <<jump a2>>
+-> (Zeitaufwand) Ich bin sofort bereit loszulegen.
+    <<jump astart>>
+-> (Verlassen) Nein, Danke.
+    <<jump aENDE>>
+<<endif>>
+===
+title: aENDE
+position: 10,10
+---
+Adliger: Ich sehe dich spätestens in der Arena wieder, bis dahin, gehabe dich wohl, Gladiator
+===
+title: a2
+position: 20,20
+---
+<<if !visited("a3a")>>
+Adliger: Hausarbeiten, richtige Kleinigkeiten, bisschen hier was, bisschen da was,
+Adliger: ich kann nicht alle meine Diener in der Karawane unterbringen,
+Adliger: also bin ich darauf angewiesen hier vor Ort Tagelöhner anzuheuern,
+Adliger: Interessiert?
+-> Bezahlst du mich auch anständig?
+    <<jump a3>>
+-> Du willst mich also für Hausarbeiten anheuern?
+    <<jump a4>>
+-> (Zeitaufwand) Wenn es nur um Hausarbeiten geht, bin ich sofort dabei.
+    <<jump astart>>
+-> (Verlassen) Nein, Danke, ich kein Haussklave.
+    Adliger: Ich sehe... sehr schade, aber wie dem auch sei,
+    <<jump aENDE>>
+<<else>>
+Adliger: Hausarbeiten, richtige Kleinigkeiten, bisschen hier was, bisschen da was,
+Adliger: ich kann nicht alle meine Diener in der Karawane unterbringen,
+Adliger: also bin ich darauf angewiesen hier vor Ort Tagelöhner anzuheuern,
+Adliger: Interessiert?
+-> Du willst mich also für Hausarbeiten anheuern?
+    <<jump a4>>
+-> (Zeitaufwand) Wenn es nur um Hausarbeiten geht, bin ich sofort dabei.
+    <<jump astart>>
+-> (Verlassen) Nein, Danke, ich kein Haussklave.
+    Adliger: Ich sehe... sehr schade, aber wie dem auch sei,
+    <<jump aENDE>>
+<<endif>>
+===
+title: a3
+position: 30,30
+---
+Adliger: Ja, natürlich, die Bezahlung!
+Adliger: 120 Gold, pro Arbeitsblock!
+Adliger: Wenn das keine fürstliche Bezahlung ist weis ich auch nicht!
+-> (Rhetorik V) Arbeitskräfte hier sind rar, wie wärs mit etwas mehr? <<if $player_rhetoric >= 5>>
+    <<jump a3a>>
+-> (Zeitaufwand) Ok ich werde für dich arbeiten!
+    <<jump astart>>
+-> (Verlassen) Nein, keine Interesse
+    <<jump aENDE>>
+    
+===
+title: a4
+position: 40,40
+---
+Adliger: Diese Atmosphäre, diese Hitze, der Sand...
+Adliger: ich kann hier einfach nicht entspannen!
+Adliger: Irgendwie muss ich mir diesen Ort zu einem Heim ausbauen, sonst verlier ich hier den Verstand!
+Adliger: Ich bin zwar nur selten hier, aber jedes mal quält dieser Ort mich!
+Adliger: Hier möchte ich Erholung finden, ist es zu viel verlangt?
+-> Verstehe...
+    <<jump a2a>>
+===
+title: astart
+position: 50,50
+---
+<<if $hastime == true>>
+    <<jump astarta>>
+<<else>>
+    <<jump hasnotime>>
+<<endif>>
+===
+title: astarta
+position: 60,60
+---
+<<if !visited("aENDE1")>>
+Adliger: Ich kann mich hier an diesem Ort einfach nicht wohlfühlen
+Adliger: Lass uns damit beginnen in meinen Räumlichkeiten ein paar Zierpflanzen unterzubringen
+Adliger: Gladiator! Du wirst dabei helfen Wasser und Blumenerde zu schleppen
+//fadeout
+//wait1
+//fadein
+<<jump aENDE1>>
+<<elseif visited_count("aENDE1") == 1>>
+Adliger: es ist immer noch nicht angenehm...
+Adliger: In meinem Gemach fehlen Teppiche, daran muss es liegen!
+Adliger: Gladiator! Du wirst dabei helfen Teppiche aus dem Lager zu holen!
+//fadeout
+//wait1
+//fadein
+<<jump aENDE1>>
+<<elseif visited_count("aENDE1") == 2>>
+Adliger: Dieser Ort verdient noch nicht wirklich die Bezeichnung Residenz...
+Adliger: Es ist zu viel Sand in den Gängen, wie die Wüste so das Haus, das darf nicht sein!
+Adliger: Gladiator! Du wirst dabei helfen die Räume auszukehren!
+//fadeout
+//wait1
+//fadein
+<<jump aENDE1>>
+<<elseif visited_count("aENDE1") == 3>>
+Adliger: Die Wände, sie sind noch zu kahl, so lebt doch niemand!
+Adliger: In meinem Gemach müssen Trophäen und Schätze aufgehängt werden!
+Adliger: Gladiator! Du wirst dabei helfen die Wände mit prachtvollen Dekorationen zu zieren!
+//fadeout
+//wait1
+//fadein
+<<jump aENDE1>>
+<<elseif visited_count("aENDE1") == 4>>
+Adliger: Hier ist es immer noch nicht erfrischend, dieser Ort ist einfach noch so ... farblos!
+Adliger: Es fehlen bunte Exotische Früchte! Bananen, Drachenfrüchte, all die schönen Farben!
+Adliger: Gladiator! Du wirst dabei helfen die notwendigen dekorativen Früchte zu transportieren! 
+//fadeout
+//wait1
+//fadein
+<<jump aENDE1>>
+<<elseif visited_count("aENDE1") == 5>>
+Adliger: Es hilft alles nichts, daher habe ich von einer vorbeiziehenden Karawane Marmor gekauft
+Adliger: Ein Bildhauer wird darin wundervoll meine Persönlichkeit verewigen können!
+Adliger: Gladiator! Du wirst dabei helfen den Stein hierrauf zubringen!
+//fadeout
+//wait1
+//fadein
+<<jump aENDE1>>
+<<elseif visited_count("aENDE1") >= 6>>
+Adliger: Tja.. ich weis auch nicht mehr weiter...
+Adliger: Wollen wir nicht einfach eine Runde Mühle spielen?
+Adliger: Gladiator ich forderer dich zu einer Runde Mühle heraus! 
+//fadeout
+//wait1
+//fadein
+<<jump aENDE1a>>
+<<endif>>
+===
+title: aENDE1
+position: 70,70
+---
+Adliger: Großartige, Arbeit!
+Adliger: Hier ist deine Bezahlung, Gladiator.
+<<if visited("a3a")>>
+    <<set $money += 150>>
+<<else>>
+    <<set $money += 120>>
+<<endif>>
+<<add_card "exhausted">>
+<<add_card "degeneration">>
+<<add_card "hunger">>
+Adliger: Mit deiner Hilfe geht es hier ordentlich vorran, ich hoffe ich kann auf baldige Rückkehr deiner Arbeitsbereitschaft setzen?
+===
+title: a3a
+position: 80,80
+---
+Adliger: Ziemlich geizig... aber du hast recht, das Arbeitsangebot hier ist recht mager. 150 Gold!
+Adliger: Letztes Angebot, also was sagst du?
+-> Ich bin bereit zu arbeiten
+    Adliger: Wundervoll, lass uns gleich beginnen!
+    <<jump astart>>
+-> (Verlassen) Ich bin immernoch nicht bereit hierfür zu arbeiten.
+    Adliger: Nun gut, dann werde ich wohl Ersatz suchen müssen, ich bin hier falls du es dir anders überlegst.
+        <<jump aENDE>>
+    
+===
+title: a2a
+position: 90,90
+---
+---
+<<if !visited("a3a")>>
+Adliger: Also hilfst du mir, bei meinem Unterfangen?
+-> Bezahlst du mich auch anständig?
+    <<jump a3>>
+-> (Zeitaufwand) Wenn es nur um Hausarbeiten geht, bin ich sofort dabei.
+    <<jump astart>>
+-> (Verlassen) Nein, Danke, ich kein Haussklave.
+    Adliger: Ich sehe... sehr schade, aber wie dem auch sei,
+    <<jump aENDE>>
+<<else>>
+Adliger: Also hilfst du mir, bei meinem Unterfangen?
+-> (Zeitaufwand) Wenn es nur um Hausarbeiten geht, bin ich dabei.
+    <<jump astart>>
+-> (Verlassen) Nein, Danke, ich kein Haussklave.
+    Adliger: Ich sehe... sehr schade, aber wie dem auch sei,
+    <<jump aENDE>>
+<<endif>>
+===
+title: aENDE1a
+position: 100,100
+---
+<<declare $aday = 0>>
+Adliger: Großartige, Arbeit!
+Adliger: Hier ist deine Bezahlung, Gladiator.
+<<if visited("a3a")>>
+    <<set $money += 150>>
+<<else>>
+    <<set $money += 120>>
+<<endif>>
+Adliger: Das hat Spaß gemacht, wir sollten das wiederholen, ja?
+Adliger: Ich freue mich auf deinen nächsten Besuch.
+<<set $aday to 1>>
+===
+title: aENDE3
+position: 107,103
+---
+Adliger: Komm Morgen wieder, falls du möchtest versteht sich.
+===
+title: a1a
+position: 117,113
+---
+Adliger: Guten Tag...
+Adliger: Bist du fähig und gewillt zu arbeiten?
+-> (Zeitaufwand) Ich bin sofort bereit loszulegen.
+    <<jump astart>>
+-> (Verlassen) Nein, Danke.
+    <<jump aENDE>>
+
+===
+title: a1b
+position: 127,123
+---
+Adliger: Guten Tag...
+Adliger: Was möchtest du mir sagen?
+-> (Verkaufen) Ich möchte etwas bringen, seltener Wein, interessiert? <<if $wine_count > 0>>
+    Adliger: Ich sehe schon, großartige Ware, ich gebe dir 200 Gold dafür! 
+        <<set $money += 200>>
+        <<set $wine_count -= 1>>
+        <<jump a0>>
+-> Ich habe hier diese besonderen Spielsteine möchtest du die? <<if $token_count > 0>>
+    Adliger: Wunderschön, uhhh die sind von einem Meister geschnitzt worden!
+        <<set $money += 100>>
+        <<set $token_count -= 1>>
+        <<jump a0>>
+-> Eigentlich möchte ich arbeiten!
+    <<if $aday == 0>>
+        Adliger: Großartig, lass uns gleich beginnen!
+        <<jump a1c>>
+    <<else>>
+        <<jump a1d>>
+    <<endif>>
+-> (Verlassen) Wenn ich es mir genau überlege gibt es nichts.
+    <<jump aENDE>>
+===
+title: a1c
+position: 137,133
+---
+-> (Zeitaufwand) Ich bin bereit sofort loszulegen.
+    <<jump astart>>
+-> (Verlassen) Nein, hab es mir doch nochmal überlegt.
+    <<jump aENDE>>
+===
+title: a1d
+position: 0,0
+---
+Adliger: Leider gibt es heute nichts mehr zu tuen, schau morgen nochmal vorbei.
+===

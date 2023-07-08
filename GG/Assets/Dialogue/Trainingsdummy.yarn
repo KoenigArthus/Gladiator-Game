@@ -42,8 +42,8 @@ position: 30,30
 //Fadeout
 //Fadein
 <<set $player_strength = $player_strength + 1>>
-<<add_card "strength">>
-<<add_card "exhausted">> //kannst du machen das sich die Karte mit Erholt dann neutralisiert
+<<add_card "gstrength">>
+<<add_card "exhausted">> //kannst du machen das sich die Karte mit Ausgeruht dann neutralisiert
 <<set_time to {get_time()} + 1>>
 <<jump Tra_1>>
 ===
@@ -52,9 +52,9 @@ position: 40,40
 ---
 //Fadeout
 //Fadein
-<<set $player_strength = $player_strength + 1>>
-<<add_card "endurance">>
-<<add_card "exhausted">> //kannst du machen das sich die Karte mit Erholt dann neutralisiert
+<<set $player_endurance = $player_endurance + 1>>
+<<add_card "gendurance">>
+<<add_card "exhausted">> //kannst du machen das sich die Karte mit Ausgeruht dann neutralisiert
 <<set_time to {get_time()} + 1>>
 <<jump Tra_1>>
 ===
@@ -63,9 +63,9 @@ position: 50,50
 ---
 //Fadeout
 //Fadein
-<<set $player_strength = $player_strength + 1>>
-<<add_card "finesse">>
-<<add_card "exhausted">> //kannst du machen das sich die Karte mit Erholt dann neutralisiert
+<<set $player_finesse = $player_finesse+ 1>>
+<<add_card "gfinesse">>
+<<add_card "exhausted">> //kannst du machen das sich die Karte mit Ausgeruht dann neutralisiert
 <<set_time to {get_time()} + 1>>
 <<jump Tra_1>>
 ===

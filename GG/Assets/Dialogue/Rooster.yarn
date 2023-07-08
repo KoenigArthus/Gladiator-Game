@@ -1,6 +1,22 @@
-﻿title: Rooster
+﻿title: r0
 tags:
 ---
-<<declare $rooster to true>>
-Der Hahn ist zurück im Stall.
+<<declare $rooster to false>>
+<<if visited("ko8")>>
+    <<jump r1>>
+<<endif>>
+Ein ungewöhnlich kampflustiger Hahn.
+===
+title: r1
+position: 0,0
+---
+Ein ungewöhnlich kampflustiger Hahn.
+-> (Zeitaufwand) Einfangen!
+    <<if $hastime == true>>
+    <<set_time = get_time + 1>>
+        <<start_fight>>
+    <<else>>
+        <<jump hasnotime>>
+    <<endif>>
+-> (Verlassen) Ich möchte gerade nicht.
 ===

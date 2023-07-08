@@ -1,9 +1,23 @@
 ﻿title: me0
 tags:
 ---
+<<declare $honey to 0>>
+<<declare $pomegranate to 0>>
 <<declare $meday = 0>>
+<<declare $player_shealth to 0>>
+<<declare $SHealth to false>>
 <<if $meday == 0>>
-    <<if visited ("me1")>>
+    <<if visited("meDone") && $meday == 0>>
+        <<jump me2b>>
+    <<elseif visited("me6") && $papyrus == true>>
+        <<jump me7>>
+    <<elseif $papyrus == true>>
+        <<jump me5>>
+    <<elseif $papyrus ==false && visited("meENDE2")>>
+        <<jump me2>>
+    <<elseif visited("me1") && $player_rhetoric >= 1>>
+        <<jump me2a>>
+    <<elseif visited ("me1")>>
         <<jump me2>>
     <<else>>
         <<jump me1>>
@@ -14,12 +28,19 @@ title: me1
 position: -149,193
 ---
 Mediziner: Möchtest du mal etwas entspannen?
-Mediziner: vielleicht die Leiden etwas lindern?
+Mediziner: Wenn dich irgendein Leiden quält kannst du es hier betimmt loswerden?
 Mediziner: Wir haben alles hier im Badehaus um deine Gebrechen zu versorgen!
 -> (Zeitaufwand) Ich fühl mich tatsächlich etwas ausgelaugt
     <<if $hastime == true>>
+        //fadeout
+        //wait1
+        //fadein
         <<set_time to {get_time()} + 1>>
+        //remove a card taged as Suffering "Leiden", except "hunger" or "exhausted"
         <<add_card "Refreshed">>
+        <<if $SHealth == true>>
+            <<set $player_shealth = $player_shealth + 1>>
+        <<endif>>
     <<else>>
         <<jump me_hasnotime>>
     <<endif>>
@@ -33,8 +54,14 @@ position: -283,-106
 Mediziner: Das Badehaus steht jederzeit für dich offen!
 -> (Zeitaufwand) Ich muss etwas entspannen
   <<if $hastime == true>>
+        //fadeout
+        //wait1
+        //fadein
         <<set_time to {get_time()} + 1>>
         <<add_card "Refreshed">>
+        <<if $SHealth == true>>
+            <<set $player_shealth = $player_shealth + 1>>
+        <<endif>>
     <<else>>
         <<jump me_hasnotime>>
     <<endif>>
@@ -50,4 +77,168 @@ title: me_hasnotime
 position: 39,-227
 ---
 Ich kann es mir jetzt nich erlauben baden zu gehen...
+===
+title: me3
+position: 0,0
+---
+<<if !visited("me3")>>
+Mediziner: Oho, gute Beobachtung.
+Mediziner: Allerdings ist es nicht so, als ob ich hier nicht an Medizin rankomme,
+Mediziner: Nein, es gibt sogar viele Optionen, nur...
+Mediziner: bin ich leider noch nicht so vertraut mit der ägyptischen Flora und Fauna wie ich es sein sollte.
+Mediziner: Du musst verstehen bevor ich hierher beordert wurde war ich Heiler in einem Amphitheater direkt in Rom.
+Mediziner: Ich hatte überhaupt nicht erwartet wie anders die Heilung hier praktiziert werden muss.
+Mediziner: Kräuter die es in Rom im Überfluss gibt sind hier kaum bis gar nicht zu finden.
+Mediziner: Es ist fast so als ob ich mein Handwerk neu erlernen muss!
+<<else>>
+Mediziner: Ich weis noch so wenig über die örtlichen Heilpraktiken...
+Mediziner: Es ist zum verzweifeln!
+Mediziner: Und deine ernüchternde Observation macht es nicht besser!
+<<endif>>
+-> Kann ich dir helfen dein Wissen zu vertiefen?
+    <<jump me4>>
+-> (Verlassen) Ich hoffe du kriegst das bald hin.
+    <<jump meENDE1>>
+===
+title: me2a
+position: 10,10
+---
+Mediziner: Das Badehaus steht jederzeit für dich offen!
+-> (Zeitaufwand) Ich muss etwas entspannen
+  <<if $hastime == true>>
+        //fadeout
+        //wait1
+        //fadein
+        <<set_time to {get_time()} + 1>>
+        <<add_card "Refreshed">>
+        <<if $SHealth == true>>
+            <<set $player_shealth = $player_shealth + 1>>
+        <<endif>>
+    <<else>>
+        <<jump me_hasnotime>>
+    <<endif>>
+-> (Rhetorik II) Ich sehe hier nicht viele medizinische Kräuter<<if $player_rhetoric >= 2>>
+    <<jump me3>>
+-> (Verlassen) Ich habe gerade keine Zeit
+    <<jump meENDE>>
+===
+
+title: meENDE1
+position: 20,20
+---
+Mediziner: Ich arbeite daran!
+===
+title: me4
+position: 30,30
+---
+Mediziner: Ja es gibt ein Schriftstück, das beschreibt recht gut, welche Kräuter wie wirken.
+Mediziner: Es heißt "Ebers Papyrus".
+Mediziner: wenn du mir eine Kopie desse besorgen könntest, wäre ich relativ gut aufgestellt was meine Kenntnisse betrifft!
+-> Ich halte meine Augen offen
+    <<jump meENDE2>>
+===
+title: meENDE2
+position: 12,-18
+---
+Mediziner: Vielen Dank, Gladiator.
+===
+title: me5
+position: 22,-8
+---
+Mediziner: Was sehe ich denn da!
+Mediziner: Oha, das "Ebers Papyrus"!
+<<if visited("meENDE2")>>
+Mediziner: Ich danke das du daran gedacht hast!
+Mediziner: Du glaubst gar nich wie viel produktiver mich das macht!
+Mediziner: Wie viele mehr Leben ich damit retten kann!
+-> Hier bitte, hoffentlich erfreuen wir uns nun alle an besserer Gesundheit!
+    <<set $papyrus = false>>
+    Mediziner: Du glaubst gar nicht wie sehr wir alle davon profitieren werden!
+    //<<add_Skill "Superb Health">>
+<<else>>
+Mediziner: du weist es wahrscheinlich noch nicht, 
+Mediziner: aber ich bin schon seit längerem auf der Suche nach exakt diesem Schriftstück.
+Mediziner: Du musst verstehen, das meine Ausbildung hauptsächlich den römischen Heilpraktiken gewidmet war,
+Mediziner: Ich habe also leider nur geringes Wissen über die örtlichen Heilverfahren.
+Mediziner: Wenn du mir diese Schriftrolle gibt kann ich diese gewaltige Wissenslücke schließen!
+Mediziner: Und wir alle können von besserer Gesundheit profitieren!
+-> Natürlich, wenn es uns hilft, sich besserer Gsundheit zu erfreuen, nimm.
+    <<set $papyrus = false>>
+    Mediziner: Du hast uns allen einen großen Dienst erwiesen, danke.
+    //<<add_skill "Superb Health">>
+    <<jump meDone>>
+-> (Verlassen) Ich weiß nicht, ob ich die einfach verschenken möchte...
+    <<jump me6>>
+<<endif>>
+===
+title: me6
+position: 32,2
+---
+Mediziner: Ich verstehe...
+Mediziner: Natürlich ist es traurig das zu hören, aber letzendlich ist es deine Entscheidung
+Mediziner: Gib mir bescheid falls du es dir anders überlegt hast.
+===
+title: me7
+position: 42,12
+---
+Mediziner: Hast du es dir jetzt anders überlegt, wegen dem "Ebers Papyrus"?
+-> Ja, du kannst es nehmen, bitte.
+    <<set $papyrus = false>>
+    Mediziner: Du hast uns allen einen großen Dienst erwiesen, danke.
+    //<<add_skill "Superb Health">>
+    <<jump meDone>>
+-> Bin noch unschlüssig.
+    Mediziner: Schade.
+    <<jump me2>>
+===
+title: meDone
+position: 52,22
+---
+Du hast das Ebers Papyrus übergeben.
+<<set $meday = 1>>
+===
+title: me2b
+position: 62,32
+---
+<<if !visited("me2b")>>
+Mediziner: Großartige Neuigkeiten Gladiator!
+Mediziner: Die Schriftrolle offenbarte mir tatsächlich zahlreiche Geheimnisse über die örtliche Heilkultur!
+Mediziner: So kann ich nun einen Trank herstellen, der von alten Alchemisten "Elysium Nektar" genannt wurde!
+Mediziner: Hier nimm eine Kostprobe!
+    <<add_card "elysium nectar">>
+Mediziner: Das meiste was ich zu seiner Herstellung benötige habe ich da,
+Mediziner: Allerdings brauche ich frische "Granatäpfel" und süßen "Honig"
+Mediziner: um noch mehr herstellen zu können
+Mediziner: Also falls du mir "Grantäpfel" und "Honig" bringst können wir mehr davon herstellen!
+Mediziner: Natürlich nur wenn du möchtest, ist aber sehr effektiv in seiner Heilwirkung,
+Mediziner: Also kann ich es nur empfehlen!
+<<endif>>
+Mediziner: Du kannst natürlich das Badehaus nutzen, oder wir können auch Nektar produzieren, falls du die Zutaten hast.
+-> (Zeitaufwand) Ich will ins Badehaus
+  <<if $hastime == true>>
+        //fadeout
+        //wait1
+        //fadein
+        <<set_time to {get_time()} + 1>>
+        <<add_card "Refreshed">>
+        <<if $SHealth == true>>
+            <<set $player_shealth = $player_shealth + 1>>
+        <<endif>>
+    <<else>>
+        <<jump me_hasnotime>>
+    <<endif>>
+-> (Zeitaufwand/Honig/Granatapfel) Lass uns kochen. <<if $honey >= 1 && $pomegranate >= 1>>
+  <<if $hastime == true>>
+        //fadeout
+        //wait1
+        //fadein
+        <<set_time to {get_time()} + 1>>
+        //<<sub_card "honey">>
+        //<<sub_card "pomegranate">>
+        <<add_card "elysium nectar">>
+    <<else>>
+        <<jump me_hasnotime>>
+    <<endif>>
+-> (Verlassen) Ich habe gerade keine Zeit
+    <<jump meENDE>>
 ===

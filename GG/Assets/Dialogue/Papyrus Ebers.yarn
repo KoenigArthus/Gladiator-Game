@@ -1,0 +1,6 @@
+﻿title: Papyrus_Ebers
+tags:
+---
+<<declare $papyrus = true>>
+Du hast das "Papyrus Ebers" erhalten.
+===

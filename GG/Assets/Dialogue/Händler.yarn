@@ -1,0 +1,11 @@
+﻿title: h1_0
+tags:
+---
+Händler: Hey, wie gehts dir?
+Händler: Von Kauflust übermannt?
+-> (Einkaufen) Zeig mal was du anbietest.
+    Händler: HoHOHOO, Nur das beste schau es dir an!
+        <<open_shop>>
+-> (Verlassen) Nein, ich schau mich nur um.
+    Händler: Lass mich nicht zulange warten!
+===

@@ -1,6 +1,40 @@
-﻿title: Hennery
+﻿title: h0
 tags:
 ---
-<<declare $repaired to true>>
-Das Loch ist repariert.
+<<declare $repaired to false>>
+<<if visited("ko18") && $koday == 0 || visited("h2")>>
+    <<jump h3>>
+<<endif>>
+<<if $tools == true && $wood == true>>
+    <<jump h1>>
+<<endif>>
+Ein Loch von nennenswerter Größe ziert die Seite des Stalls.
+===
+title: h1
+position: 0,0
+---
+Ich könnte das Loch mit dem Holz und meinem Werkzeug flicken.
+-> (Zeitaufwand) Ich mach mich gleich ans Werk.
+    <<if $hastime == true>>
+        <<set_time to {get_time()} + 1>>
+        <<set $tools = false>>
+        <<set $wood = false>>
+        <<jump h2>>
+    <<else>>
+        <<jump hasnotime>>
+    <<endif>>
+-> (Verlassen) Ich bin gerade nicht in Stimmung dafür.
+===
+title: h2
+position: 10,10
+---
+//fadeout
+//wait1
+//fadein
+Ok, es ist repariert.
+===
+title: h3
+position: 5,20
+---
+Der Stall ist repariert.
 ===

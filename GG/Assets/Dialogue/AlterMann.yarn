@@ -1,0 +1,190 @@
+﻿title: am0
+tags:
+---
+<<declare $amday to 0>>
+<<declare $yarnspinner to 0>>
+<<if visited("am3") && $amday == 0>>
+    <<jump am4>>
+<<endif>>
+<<if visited("am3") && $amday != 0>>
+    <<jump am4a>>
+<<endif>>
+<<if $amday == 0>>
+    <<if $hastime == true>>
+        <<jump am1>>
+    <<else>>
+        <<jump amnotime>>
+    <<endif>>
+<<else>>
+    <<jump amENDE2>>
+<<endif>>
+===
+title: am1
+position: 0,0
+---
+<<if !visited("am1")>>
+Alter Mann: Ahhh, ein junger Gladiator.
+<<else>>
+Alter Mann: Ahhh, der junge Gladiator.
+<<endif>>
+Alter Mann: Möchtest du eine Geschichte hören?
+Alter Mann: Über meine Zeit in der Arena?
+Alter Mann: Über Ruhm, Ehre, Plicht und Bestimmung?
+Alter Mann: Komm setz dich zu mir.
+-> (Zeitaufwand) Sehr gerne.
+    <<set_time = get_time + 1>>
+    <<set $yarnspinner = $yarnspinner +1>>
+    <<jump am2a>>
+-> (Verlassen) Mir ist gerade nicht nach einer Geschichte zumute
+    <<jump amENDE>>
+
+===
+title: amnotime
+position: 10,10
+---
+Der Mann schein gerade in einem richtigen Redeschwall zu sein,
+ich kann mir gerade nicht erlauben ihn anzusprechen...
+===
+title: am2a
+position: 20,20
+---
+<<if visited("am2a")>>
+    <<jump am2b>>
+<<endif>>
+//fadeout
+//wait1
+Und der Alte Mann erzählte von seiner Zeit auf hoher See
+von seiener freiwilligen Gladiatur
+von seiner Suche nach Glück im Todesspektakel der Areana...
+//fadein
+<<jump amENDE1>>
+===
+title: amENDE
+position: 30,30
+---
+Alter Mann: Das ist sehr schade, 
+Alter Mann: man sollte sich immer Zeit nehmen den Worten eines Alten zu lauschen, 
+Alter Mann: man weis nie welche Weisheit man sonst verpasst.
+===
+title: amENDE1
+position: 40,40
+---
+Alter Mann: So ich bin vom reden müde geworden, junger Gladiator
+Alter Mann: wir sehen uns bestimmt ein Andermal wieder.
+Alter Mann: ...
+<<set $amday to 1>>
+===
+title: amENDE2
+position: 50,50
+---
+Er scheint tief und fest zu schlafen.
+===
+title: am2b
+position: 60,60
+---
+Alter Mann: So wo waren wir letztes mal stehen geblieben?
+<<if visited("am2b")>>
+    <<jump am2c>>
+<<endif>>
+//fadeout
+//wait1
+Und der Alte Mann erzählte von seinem Kampf um das Herz einer ägytischen Schönheit
+von seiner Flucht aus der Leibeigenschaft der Gladiatoren
+von seiner Rebellion gegen die Normen und Erwartungen
+//fadein
+<<jump amENDE1>>
+===
+title: am2c
+position: 70,70
+---
+<<if visited("am2c")>>
+    <<jump am2d>>
+<<endif>>
+//fadeout
+//wait1
+Und der Alte Mann erzählte von seiner Reise durch die Wüste
+von einem Sklaventreiber der ihn aufnahm und Obhut gab
+von seiner unermüdlichen Suche nach Glückseligkeit
+//fadein
+<<jump amENDE1>>
+===
+title: am2d
+position: 80,80
+---
+<<if visited("am2d")>>
+    <<jump am2e>>
+<<endif>>
+//fadeout
+//wait1
+Und der Alte Mann erzählte von der Rückkehr in das Amphitheater
+von einer weiteren Liebe
+von einem weiteren Todeskampf...
+//fadein
+<<jump amENDE1>>
+===
+title: am2e
+position: 90,90
+---
+<<if visited("am2e")>>
+    <<jump am3>>
+<<endif>>
+//fadeout
+//wait1
+Und der Alte Mann erzählte davon wie er zur Ruhe kam
+von seiner dritten und letzen großen Liebe
+von einer unendlichen Freude die er gerne teilen würde.
+//fadein
+<<jump amENDE1>>
+===
+title: am3
+position: 100,100
+---
+Alter Mann: Ich denke ich habe meine gesamte Lebensgeschichte erzählt
+Alter Mann: Vielen dank fürs Zuhören...
+Alter Mann: Hier ich möchte dir das hier schenken
+<<add_card "wine">>
+Alter Mann: Ich habe viel Zeit investiert meine Kunst zu perfektionieren
+Alter Mann: Kenner werden einen hohen Preis hierfür hergeben
+Alter Mann: Glaub mir.
+Alter Mann: Lass dich hier mal wieder blicken, vielleicht fällt mir ja noch eine Geschichte ein, hehehe
+-> Danke... für alles
+    <<jump amENDE3>>
+===
+title:amENDE3
+position: 110,110
+---
+Er ist bereits wieder eingeschlafen...
+<<set $amday = 3>>
+===
+title: am4
+position: 120,120
+---
+Alter Mann: Ahhh, willkommen Gladiator.
+Alter Mann: ich möchte deine Zeit nicht weiter in Anspruch nehmen,
+Alter Mann: ich habe sowiso nichts interessantes mehr zu erzählen
+Alter Mann: aber hier habe ich nochmal etwas von meiner Überproduktion
+Alter Mann: Hier nimm es bitte, ich schenke es dir
+<<add_card "wine">>
+-> Danke
+    <<jump amENDE3>>
+===
+title: am4a
+position: 130,130
+---
+<<declare $amdayText to "">>
+
+<<if $amday == 1>>
+    <<set $amdayText = "einem Tag">>
+<<elseif $amday == 2>>
+    <<set $amdayText = "zwei Tagen">>
+<<elseif $amday == 3>>
+    <<set $amdayText = "drei Tagen">>
+<<endif>>
+
+Alter Mann: Ich habe nichts mehr zu erzählen,
+Alter Mann: Aber wenn du in {$amdayText} wiederkommst,
+Alter Mann: Habe ich nochmal eine Kleinigkeit für dich,
+Alter Mann: Weil du so ein guter zuhörer bist, hehe.
+-> (Verlassen) Ich verstehe bis ein andermal.
+    Alter Mann: Ave. Mein Freund.
+===

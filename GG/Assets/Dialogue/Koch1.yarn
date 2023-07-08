@@ -6,6 +6,9 @@ position: -340,-88
 //<<set $tools to false>>
 //<<set $rooster = false>>
 //<<declare $repaired = true>> //Test ende
+<<if visited("ko18") && $koday == 0>>
+    <<jump ko1a>>
+<<endif>>
 
 <<if $repaired == true && $rooster == true>>
         <<jump ko12>>
@@ -13,7 +16,7 @@ position: -340,-88
         <<jump ko13>>
     <<elseif $repaired == true>>
         <<jump ko14>>
-    <<elseif $tools == true && $wood == true>>
+    <<elseif $tools == true && $wood == true && !visited("ko15a")>>
         <<jump ko15>>
     <<else>>
         <<jump ko1>>
@@ -100,7 +103,7 @@ Koch: Ja! eigentlich schon... aber ich kriege den nicht wieder hin,
 Koch: Ich habe ehhh, wie soll ich sagen... die Reparatur ehhm nicht ganz hinbekommen.
 Koch: Damit meine ich, alle Ressourcen die zur Reperatur notwendig waren...
 Koch: sind jetzt weg, kaputt... der Lanista sagt es ist mein Versagen,
-Koch: und da hat er natürlich Recht,
+Koch: und da hat er Recht...
 Koch: aber es ändert nichts daran das der Stall immernoch ein Loch hat und der Hahn ständig abhaut.
 -> Soll ich mit dem Lanista reden?
     <<jump ko6>>
@@ -172,7 +175,6 @@ position: -465,-830
 Koch: Wow, du hast alles erledigt
 Koch: Der Hahn ist zurück im Stall und er ist auch noch repariert!
 Koch: Hier, das hast du dir verdient!
-//<<add_skill "Extra Serving">>
 <<set $money = $money + 100>>
 <<add_card "egg">>
 <<set $rooster to false>>
@@ -197,5 +199,82 @@ Koch: Hier, das schulde ich dir!
 title: ko15
 position: -47,-178
 ---
-Koch: Platzhaltertext
+Koch: Du hast Werkzeug und Holz!
+Koch: sehr schön....
+Koch: Willst du auch den Hühnerstall auch gleich für mich reparieren?
+-> Ja, ich kümmere mich darum
+    <<jump ko15a>>
+-> (Rhetorik IV) Nein, du solltest es selber tuen <<if $player_rhetoric >= 4>>
+    <<jump ko16>>
+-> (Verlassen) Jetzt nicht, ich schau mal später.
+    <<jump koENDE1>>
+===
+title: ko16
+position: -340,-88
+---
+Koch: Ja du hast recht, hier kann ich beginnen mir meinen Respekt zu verdienen
+Koch: Ich werde mich selbst um den Stall kümmern.
+Koch: Kein Widerspruch! Ich bestehe darauf.
+-> Was ist wenn du wieder versagst?
+    <<jump ko17>>
+-> Sehr gut!
+    <<jump ko18>>
+===
+title: ko17
+position: -330,-78
+---
+Koch: Tja... dann soll es wohl so sein,
+Koch: aber ich muss mich beweisen!
+Koch: Nur so werde ich den notwendigen Respekt vom Lanista ernten!
+Koch: Und selbst wenn ich wieder die Reperatur in den Sand setze, 
+Koch: wird der Lanista zumindest meinen Willen sehen! 
+Koch: Und wenn er meinen Willen sieht, wird er mich sicher unterstützen! 
+-> Sicher, so wird es sein
+    <<jump ko18>>
+===
+title: ko18
+position: -320,-68
+---
+//entferne wood und tools
+Koch: Ich nehme das Holz und die Werkzeuge an mich
+Koch: Ich werde mich sobald möglich um den Stall kümmern.
+Koch: Wünsch mir Glück...
+-> Viel Glück.
+    <<set $koday = 1>>
+===
+title: ko15a
+position: -310,-58
+---
+Koch: Vielen Dank!
+===
+title: ko1a
+position: -315,-48
+---
+<<if !visited("ko1a")>>
+Koch: Ich habe den Stall repariert!
+Koch: Mir wurde auch gleich erlaubt den Speiseplan selber zu gestalleten!
+Koch: Für einen kleinen Aufpreis kann ich nun ganz besondere Speisen zubereiten!
+<<endif>>
+Koch: Hey hast du hunger?
+Koch: Wir haben Bohnen und Linsen, aber auch auch was ordentlich Nahrhaftes!
+Koch: Ich kann dir gleich was zubereiten.
+-> (Zeitaufwand) Bohnen und Linsen reichen mir gerade.
+    //<<set $player_actualvitality = $player_actualvitality + (1/2)* $player_maxvitality>>
+    <<add_card "Well Nourished">> //Der Name passt bestimmt noch nicht; Notiz an mich selbst: Jojo fragen ob er eine Abfrage machen kann: Hunger sollte entfernt werden anstelle Gut Gesättigt hinzugefügt zu werden
+    <<set_time to {get_time()} + 1>>
+    //Fadeout
+    //wait1
+    //Fadein
+    <<jump koENDE2>>
+-> (Zeitaufwand/Bezahlen) Bereite mir mal was besonderes zu! (25 Gold)
+    //<<set $player_actualvitality = $player_actualvitality + (1/2)* $player_maxvitality>>
+    <<add_card "Well Nourished">> //Der Name passt bestimmt noch nicht; Notiz an mich selbst: Jojo fragen ob er eine Abfrage machen kann: Hunger sollte entfernt werden anstelle Gut Gesättigt hinzugefügt zu werden
+    <<set_time to {get_time()} + 1>>
+    //add_skill "Extra Serving" +1
+    //Fadeout
+    //wait1
+    //Fadein
+    <<jump koENDE2>>
+-> (Verlassen) Ich möchte gerade nichts.
+    <<jump koENDE1>>
 ===

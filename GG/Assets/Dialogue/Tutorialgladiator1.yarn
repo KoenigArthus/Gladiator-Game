@@ -5,26 +5,26 @@ position: -215,586
 <<declare $tgday = 0>>
 //<<log_int $tgday>>
 //<<declare $tgtime = 0>>
+<<if $tgday != 0>> //$tgday == 1
+    <<if visited("tg10")>>
+        <<jump tg10b>>
+    <<elseif visited("tg8")>>
+        <<jump tg10b>>
+    <<else>>
+        <<jump tgENDE2a>>
+    <<endif>>
+<<endif>>
 <<if $tgday == 0>>
-   <<if visited("tg7")>>
+    <<if visited("tg12")>>
+        <<jump tg11a>>
+    <<elseif visited("tg10")>>
+        <<jump tg11>>
+    <<elseif visited("tg7")>>
         <<jump tg10>>
     <<elseif visited("tgENDE2")>>
         <<jump tg7>>
-    <<elseif $tgday != 0>>
-        <<jump tgENDE2>>
-    <<elseif $tgday == 0>>
+    <<else>>
         <<jump tg1>>
-    <<endif>>
-<<endif>>
-<<if $tgday != 0>>
-    <<if visited("tgENDE") && visited_count("tg12") == 0>>
-        <<jump tg11>>
-    <<elseif visited ("tg10")>>
-        <<jump tg10b>>
-    <<elseif visited ("tg7")>>
-        <<jump tg8>>
-    <<elseif visited ("tgENDE2")>>
-        <<jump tgENDE2>>
     <<endif>>
 <<endif>>
 ===
@@ -33,14 +33,11 @@ tags:
 position: -222,807
 ---
 <<declare $player_rhetoric = 0>>
-<<if visited("tgENDE1")>>
-    <<jump tgENDE1>>
-<<endif>>
 <<if visited ("tgENDE2")>>
     <<jump tgENDE2>>
 <<endif>>
-<<if visited ("tgENDE2") and visited("tgENDE1")>>
-    <<jump tgENDE2>>
+<<if visited("tgENDE1")>>
+    <<jump tgENDE1>>
 <<endif>>
 Tutorialgladiator: Ich bin froh das wir nicht bis zum Tod kämpfen müssen...
 Tutorialgladiator: Noch nicht zumindest...
@@ -128,7 +125,6 @@ position: -222,807
 <<if visited("tg7")>>
     <<jump tg8>>
 <<endif>>
-<<set $tgday to 1>>
 Tutorialgladiator: Ich habe über das was du gesagt hast nachgedacht...
 Tutorialgladiator: Du hast Recht!
 Tutorialgladiator: Das ist eine zweite Chance! Wir sind nicht zum sterben hier!
@@ -242,7 +238,6 @@ Tutorialgladiator: Aber du wirst daran wachsen davon zu hören
 Tutorialgladiator: und ich werde daran wachsen davon zu erzählen...
 //fadeout
 //wait 2
-//fadein
 Er erzählte mir von seiner Frau und seinem Kind
 seiner stettigen Flucht vor Pflichten
 seiner Angst vor Konsequenzen
@@ -250,9 +245,31 @@ Wie Wein und Glückspiel ihn zum Dieb machten
 Warum der Wunsch nach Freiheit ihn dazu trieb
 und wie er sich nun, wissentlich und willentlich, seinem Schicksal stellt
 um nun wirklich am Leben zu sein.
+//fadein
 //add_skill "Determination"
 Tutorialgladiator: Danke, mein Freund
 Tutorialgladiator: es schwierig darüber zu reden, doch ich spüre wie neue Kraft durch meinen Körper fließt.
 Tutorialgladiator: Es war notwendig, darüber zu reden.
 Tutorialgladiator: Danke.
+===
+title: tg11a
+position: -215,586
+---
+Tutorialgladiator: Ein weiterer wunderschöner Tag um zu trainieren, denkst du nicht auch?
+-> (Zeitaufwand) Dann lass uns Kämpfen 
+<<if $hastime == true>>
+    <<set_time = get_time + 1>>
+    <<set $tgday to 1>>
+    <<start_fight>> //nach dem Kampf muss der Spieler hierher zurückkehren! (also zum tgENDE) "Though Love"
+    <<jump tgENDE>>
+<<else>>
+    <<jump tgHasNoTime>>
+<<endif>>
+-> (Verlassen) Gewiss, doch bin ich gerade in Eile, bis später.
+    <<jump tg9>>
+===
+title: tgENDE2a
+position: -215,586
+---
+Tutorialgladiator: Lass mich in Ruhe.
 ===
