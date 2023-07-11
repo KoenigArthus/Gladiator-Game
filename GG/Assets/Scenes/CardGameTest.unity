@@ -14788,6 +14788,11 @@ PrefabInstance:
       propertyPath: m_StaticShadowCaster
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -5974891482690446528, guid: 876f169b82423e04b8c38a7d99fff4f1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -5142415319785703067, guid: 876f169b82423e04b8c38a7d99fff4f1,
         type: 3}
       propertyPath: m_Layer
@@ -14817,6 +14822,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -3061048440429171045, guid: 876f169b82423e04b8c38a7d99fff4f1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2848165432258906628, guid: 876f169b82423e04b8c38a7d99fff4f1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -2656173366829120335, guid: 876f169b82423e04b8c38a7d99fff4f1,
         type: 3}
@@ -40602,6 +40617,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1467873510}
   - component: {fileID: 1467873511}
+  - component: {fileID: 1467873512}
   m_Layer: 0
   m_Name: Time Manager
   m_TagString: Untagged
@@ -40651,6 +40667,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f37166d035d97cf499e840eb3c4706f9, type: 2}
   - {fileID: 11400000, guid: fa4873a1561bf754b8508702c4928c7e, type: 2}
   - {fileID: 11400000, guid: 1e4122c115b8d674b81004dd4a457ec9, type: 2}
+--- !u!114 &1467873512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467873509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab11d95aae24e2148a6854da5021b2d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1472024885
 GameObject:
   m_ObjectHideFlags: 0

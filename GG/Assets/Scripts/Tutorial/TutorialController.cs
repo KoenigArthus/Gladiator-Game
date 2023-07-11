@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class TutorialController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-        
+        /*
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            
+            if (Time.timeScale == 0)
+            {
+                Time.timeScale = 1;
+                Debug.Log("Game resumed");
+            }
+            else if (Time.timeScale == 1)
+            {
+                Time.timeScale = 0;
+                Debug.Log("Game stopped");
+            }
+        }
+        */
     }
-
-    // Update is called once per frame
-    void Update()
-    {
         
-    }
 }
