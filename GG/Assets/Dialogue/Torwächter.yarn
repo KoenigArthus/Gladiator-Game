@@ -2,6 +2,9 @@
 tags:
 ---
 <<declare $beastmaster = false>>
+<<if visited("tw4") && !visited ("tw5")>>
+    <<jump tw5>>
+    <<endif>>
 <<if $beastmasternoprize == true || $beastmaster == true>>
     <<jump tw2>>
 <<endif>>
@@ -15,27 +18,26 @@ position: 0,0
 ---
 <<if !visited("tw1")>>
 Torwächter: Beeindruckender Kampf!
-Torwächter: Ja ich habe es bereits erfahren, beeindruckende Leistungen sprechen sich schnell rum.
-Torwächter: Du hast es dir wirklich verdient hier zu kämpfen
+Torwächter: Ja, ich habe es bereits erfahren, beeindruckende Leistungen sprechen sich hier schnell rum.
+Torwächter: Du hast es dir wirklich verdient in den Katakomben zu kämpfen!
 <<endif>>
 Torwächter: Möchtest du dich gleich der Bestie stellen?
 -> (Zeitaufwand) Ja, sicher
 <<if $hastime == true>>
-    <<set_time to {get_time()} + 1>>
-    <<start_fight>>
+    <<jump tw4>>
 <<else>>
     <<jump hasnotime>>
 <<endif>>
 -> (Zeitaufwand) Kann ich zuerste gegen ein anderes Biest kämpfen? Eines das nicht Teil des Wettkampf ist?
 <<if $hastime == true>>
-        Torwächter: Natürlich
+        Torwächter: Natürlich!
     <<set_time to {get_time()} + 1>>
     <<start_fight>>
 <<else>>
     <<jump hasnotime>>
 <<endif>>
 -> (Verlassen) Nein, ich möchte gerde nicht.
-    Torwächter: wie du meinst.
+    Torwächter: wie du meinst, die Katakomben stehen offen für dich.
 ===
 title: tw2
 position: 0,0
@@ -44,7 +46,7 @@ position: 0,0
 Torwächter: Du hast den Kampf tatsächlich gewonnen, Respekt Junge!
 Torwächter: Sebstverständlich würden wir es begrüßen, wenn du weiterhin, trotz deines Status als Champion,
 Torwächter: die Monstrositäten der großzügen Spender bekämpfen würdest!
-Torwächter: Es springt natürlich auch eine Menge Geld dabei für dich raus.
+Torwächter: Jeder zukünftig gewonnene Kampf wird dir natürlich auch eine Menge Geld einbringen.
 Torwächter: Also was sagst du? Lust etwas Geld zu verdienen?
 <<jump tw3>>
 <<else>>
@@ -66,4 +68,55 @@ position: 10,10
 <<endif>>
 -> (Verlassen) Nein, ich möchte gerde nicht.
     Torwächter: wie du meinst.
+===
+title: tw4
+position: 0,0
+---
+Torwächter: Auf gehts, das Publikum wartet!
+<<set_time to {get_time()} + 1>>
+<<start_fight>>
+===
+title: tw5
+position: 10,10
+---
+Torwächter: Du hast also gewonnen.
+Torwächter: Beeindruckend! Wahrlich ein Champion des Überlebens!
+Torwächter: 2500 Gold, alles dein, hier nimm!
+Torwächter: Nun gut, der Besitzer der Bestie hat ein ordentliches Preisgeld bereitgestellt,
+Torwächter: Hier bitte, für deine zukünftiges Leben, jensteits der Gladiatur, eine köngliche Rente!
+Torwächter: Oder auch für jetzt um dein Leben hier angehnehmer zu gestalten!
+Torwächter: Oh Man! Schon allein mit diesem Geld, wirst du in Rom angehnehm leben können, das garantiere ich!
+Torwächter: Das macht mich fast neidisch, andererseits hab ich gesehen was du dafür tun musstest...
+Torwächter: Bin ich schon ganz froh wo ich gerade bin, haha!
+-> Nein, danke, dieses Mal ging es nicht um Geld.
+    <<jump tw6>>
+-> Danke, ich werde dieses Vermögen gewiss sinnvoll investieren können!
+    <<jump tw7>>
+===
+title: tw6
+position: 20,20
+---
+Torwächter: Bist du dir sicher!?
+Torwächter: 2500 Gold sind ein ordentlicher Happen Geld!
+-> Haha, ich schärze nur! Gib mir was mir zusteht!
+    <<jump tw7>>
+-> Ich meine es völlig ernst!
+    Torwächter: Ich gebe die Info weiter...
+    Torwächter: Du bist echt seltsam...
+    Torwächter: Wow... Das lässt mich echt an meinen Werten zweifeln.
+    <<set $beastmasternoprize = true>>
+    <<set $beastmaster = false>>
+
+===
+title: tw7
+position: 30,30
+---
+Torwächter: So lobe ich mir das!
+Torwächter: Vergiss nicht das wir noch mehr Biester im Käfig haben!
+Torwächter: Du kannst jederzeit wieder antretten!
+Torwächter: Aber ich nehme an du möchtest sicher erstmal was hübsches einkaufen gehen,
+Torwächter: Machs gut, Champion!
+<<set $money = $money + 2500>>
+<<set $beastmasternoprize = false>>
+<<set $beastmaster = true>>
 ===
