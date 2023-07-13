@@ -38,6 +38,7 @@ ScriptedImporter:
   - {fileID: 6391573757903218779, guid: f97eef5d75438eb44b242b82c12762b9, type: 3}
   - {fileID: 6391573757903218779, guid: 75e06e01f7a057743babb9c70abdf306, type: 3}
   - {fileID: 6391573757903218779, guid: 5f3cd2a9e71d2954aaa84b16af9d58d6, type: 3}
+  - {fileID: 6391573757903218779, guid: 3581e62f68d25824c854f1b548cdb6cc, type: 3}
   compileErrors: []
   serializedDeclarations:
   - name: $lvday

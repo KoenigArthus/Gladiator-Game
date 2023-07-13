@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class TutorialController : MonoBehaviour
 {
+    public bool tutorialCompleted = false;
+    public string startNode;
+
     private void Update()
     {
         /*
@@ -23,5 +26,10 @@ public class TutorialController : MonoBehaviour
         }
         */
     }
-        
+
+    private void Start()
+    {
+        DialogueSystem.i.dialogueRunner.StartDialogue(startNode);
+    }
+
 }
