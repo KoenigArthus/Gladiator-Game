@@ -9,4 +9,6 @@
   <EquipmentEntrie>Doru,Galerus,Manica,Ocrea,Pugio,Scindo,Scutum,Trident,Gladius,Parmula</EquipmentEntrie>
   <Equipped>Cassis,none,none,Rete,none</Equipped>
   <FightingLocation>0</FightingLocation>
+  <Time>1</Time>
+  <PassedDays>7</PassedDays>
 </UserFile>

@@ -17,6 +17,8 @@ public class SaveGame : UserFile
     private string[] equipmentCardEntries = new string[0];
     private string[] equipped = new string[0];
     private int fightingLocation = 0;
+    private int time = 0;
+    private int passedDays = 0;
 
     #endregion Fields
 
@@ -44,6 +46,8 @@ public class SaveGame : UserFile
     public string[] EquipmentCardEntries { get => equipmentCardEntries; set => equipmentCardEntries = value; }
     public string[] Equipped { get => equipped; set => equipped = value; }
     public int FightingLocation { get => fightingLocation; set => fightingLocation = value; }
+    public int Time { get => time; set => time = value; }
+    public int PassedDays { get => passedDays; set => passedDays = value; }
 
     #endregion Properties
 
@@ -73,6 +77,10 @@ public class SaveGame : UserFile
 
         //fighting location
         SaveElement(doc, rootNode, "FightingLocation", fightingLocation);
+
+        //Time
+        SaveElement(doc, rootNode, "Time", time);
+        SaveElement(doc, rootNode, "PassedDays", passedDays);
     }
 
     protected override void DoLoad(XmlNode rootNode)
@@ -103,6 +111,11 @@ public class SaveGame : UserFile
 
         // Fighting Location
         fightingLocation = LoadElement<int>(rootNode.SelectSingleNode("FightingLocation"));
+
+        //Time
+        time = LoadElement<int>(rootNode.SelectSingleNode("Time"));
+        passedDays = LoadElement<int>(rootNode.SelectSingleNode("PassedDays"));
+
     }
 
     #endregion Save/Load

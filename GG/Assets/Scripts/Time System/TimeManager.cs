@@ -43,6 +43,10 @@ public class TimeManager : MonoBehaviour
             characterSpawner = GetComponent<CharacterSpawnManager>();
             timeHasChanged.AddListener(characterSpawner.ScheduleCharacters);
         }
+
+        currentTime = UserFile.SaveGame.Time;
+        currentDate = CustomUtility.ToDate(UserFile.SaveGame.PassedDays);
+
     }
 
     private void Update()
@@ -88,6 +92,9 @@ public class TimeManager : MonoBehaviour
 
         // Invoke timeHasChanged Event
         timeHasChanged?.Invoke();
+
+        // Save the Time in UserFiles
+        UserFile.SaveGame.Time = currentTime;
     }
     // Set the time to the next time in the time settings list
     public void SetNextTime()
@@ -141,6 +148,10 @@ public class TimeManager : MonoBehaviour
         {
             Debug.LogError("Invalid date provided");
         }
+
+        //Save Date to UserFile
+        UserFile.SaveGame.PassedDays = CustomUtility.ToPassedDays(currentDate);
+
     }
 
     // Advances a day in the currentdate

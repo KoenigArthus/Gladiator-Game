@@ -44,7 +44,7 @@ public static class CustomUtility
 
 
     /// <summary>
-    /// Converts takes a given date
+    /// Converts the given date to a total number of passed days
     /// </summary>
     /// <param name="date"></param>
     /// <returns> the amount of days that have passed since the w0 d1 m1 y1</returns>
@@ -67,6 +67,46 @@ public static class CustomUtility
 
         return daysPassed;
     }
+
+    /// <summary>
+    /// Converts the total number of passed days into a Date.
+    /// </summary>
+    /// <param name="passedDays">The total number of days passed.</param>
+    /// <returns>A Date struct representing the converted date.</returns>
+    public static Date ToDate(int passedDays)
+    {
+
+        int yearsPassed = passedDays / 365;
+        int remainingDays = passedDays % 365;
+
+        int year = yearsPassed + 1;
+        int month = 0;
+        int day = 0;
+
+        int[] monthDays = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+        for (int i = 0; i < monthDays.Length; i++)
+        {
+            if (remainingDays < monthDays[i])
+            {
+                month = i + 1;
+                day = remainingDays + 1;
+                break;
+            }
+
+            remainingDays -= monthDays[i];
+        }
+
+        Date date = new Date()
+        {
+            weekday = passedDays % 7,
+            day = day,
+            month = month,
+            year = year
+        };
+        
+        return date;
+    }
+
 
     public static void ToggleBool(ref bool value)
     {
