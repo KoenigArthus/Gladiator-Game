@@ -178,7 +178,7 @@ public class Deckbuilder : MonoBehaviour
 
 
     #region Deck
-    public void FillDeckEntrie(IEnumerable<CardInfo> cards)
+    public void AddToDeckEntrie(IEnumerable<CardInfo> cards)
     {
         List<string> temporaryList = UserFile.SaveGame.DeckCardEntries.ToList();
 
@@ -191,6 +191,8 @@ public class Deckbuilder : MonoBehaviour
         UserFile.SaveGame.DeckCardEntries = temporaryList.ToArray();
 
     }
+
+    [Obsolete("This method has been moved to CustomUtility since calling it here requires to open the dechbuilder at least once which may not always be the case",false)]
     public void AddToDeckEntrie(string cardName)
     {
         List<string> temporaryList = UserFile.SaveGame.DeckCardEntries.ToList();

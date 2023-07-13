@@ -17,7 +17,7 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler
         {
             EquipmentCard equipmentCard = eventData.pointerDrag.GetComponent<EquipmentCard>();
             equipmentCard.afterDragParent = transform;
-            Deckbuilder.instance.FillDeckEntrie(CardLibrary.Cards.Where(x => x.Set == equipmentCard.cardSet));
+            Deckbuilder.instance.AddToDeckEntrie(CardLibrary.Cards.Where(x => x.Set == equipmentCard.cardSet));
             Deckbuilder.instance.LoadDeckPanel();
             Deckbuilder.instance.RemoveFromEquipmentEntrie(equipmentCard.equipmentIDName);
             Deckbuilder.instance.LoadEquipmentPanel();

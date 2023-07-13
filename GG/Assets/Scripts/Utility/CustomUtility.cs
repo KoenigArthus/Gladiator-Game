@@ -5,6 +5,11 @@ using UnityEngine;
 
 public static class CustomUtility
 {
+    /// <summary>
+    /// Converts a given string as "x,y,z" to a Vector3
+    /// </summary>
+    /// <param name="sVector"></param>
+    /// <returns></returns>
     public static Vector3 StringToVector3(string sVector)
     {
         // Remove the parentheses
@@ -25,12 +30,24 @@ public static class CustomUtility
         return result;
     }
 
+
+
+    /// <summary>
+    /// Replases all the spaces in the given sting with underscores
+    /// </summary>
+    /// <param name="text"></param>
     public static void ReplaceSpacesWithUnderscoresInplace(ref string text)
     {
         // Replace all spaces in the given string with underscores in place.
         text = text.Replace(' ', '_');
     }
 
+
+    /// <summary>
+    /// Converts takes a given date
+    /// </summary>
+    /// <param name="date"></param>
+    /// <returns> the amount of days that have passed since the w0 d1 m1 y1</returns>
     public static int ToPassedDays(Date date)
     {
         // Calculate the total number of days passed since the starting date
@@ -73,4 +90,24 @@ public static class CustomUtility
 
         return -1;
     }
+
+
+    public static void AddToDeckEntrie(string cardName)
+    {
+        List<string> temporaryList = UserFile.SaveGame.DeckCardEntries.ToList();
+
+        if (CardLibrary.GetCardByName(cardName) != null)
+            temporaryList.Add(CardLibrary.GetCardByName(cardName).Name);
+        else
+            Debug.LogWarning(cardName + " could not be found!");
+
+        UserFile.SaveGame.DeckCardEntries = temporaryList.ToArray();
+
+    }
+
+
+
+
+
+
 }

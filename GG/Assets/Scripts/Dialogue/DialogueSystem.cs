@@ -69,16 +69,6 @@ public class DialogueSystem : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.C))
-        {
-            variableStorage.SecondCoins += 2;
-            variableStorage.PlayerCoins += 1;
-        }
-    }
-
-
     // Is used in the Character Name View Script on the Dialogue System Game Object at OnNameUpdate()
     /// <summary>
     /// Changes the Dialogue Portrait to that of the referenced Character
@@ -139,7 +129,7 @@ public class DialogueSystem : MonoBehaviour
     public static void UnlockCard(string cardName)
     {
         Debug.Log("added" + cardName);
-        Deckbuilder.instance.AddToDeckEntrie(cardName);
+        CustomUtility.AddToDeckEntrie(cardName);
         TimeManager.instance.MoveInTime();
 
     }
@@ -196,6 +186,13 @@ public class DialogueSystem : MonoBehaviour
     {
         return true;
     }
+
+
+    //change cam
+    // activate fade
+    // deactivate fade
+    // add card silent
+
 
 
 }
